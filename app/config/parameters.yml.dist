@@ -1,0 +1,13 @@
+parameters:
+    database_host: db
+    database_port: 3306
+    database_name: dev
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: ThisTokenIsNotSoSecretChangeIt
+    assets_version: v1
+    googlemaps_apikey: YourGoogleMapsApiKey

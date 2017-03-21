@@ -1,0 +1,2 @@
+imports:
+    - { resource: "src/Yay/Bridge/JiraBridge/services.yml" }
