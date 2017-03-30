@@ -13,8 +13,11 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Bundle Test Suite">
+            <directory>src/Yay/Bundle</directory>
+        </testsuite>
+        <testsuite name="Compnent Test Suite">
+            <directory>src/Yay/Component</directory>
         </testsuite>
     </testsuites>
 

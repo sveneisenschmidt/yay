@@ -1,0 +1,33 @@
+parameters:
+  # Core Engine
+  yay.engine.engine.class: Yay\Component\Engine\Engine
+  # Core Engine
+  yay.engine.storage.class: Yay\Component\Engine\Storage\DoctrineStorage
+  # Core Validation
+  yay.goal_validation.validator_collection.class: Yay\Component\Engine\GoalValidatorCollection
+  # Core Validation - Validator
+  yay.goal_validation.validator.expression_language.class: Yay\Component\Engine\GoalValidator\Validator\ExpressionLanguageValidator
+  # Core Validation - Filter
+  yay.goal_validation.filter.unique_goal.class: Yay\Component\Engine\GoalValidator\Filter\UniqueGoalFilter
+  yay.goal_validation.filter.only_new_goal.class: Yay\Component\Engine\GoalValidator\Filter\OnlyNewGoalFilter
+
+services:
+  # Core Engine incl. Storage
+  yay.engine:
+    class:  '%yay.engine.engine.class%'
+    arguments:
+      - '@yay.engine.storage'
+      - '@yay.goal_validation.validator_collection'
+
+  yay.engine.storage:
+    class:  '%yay.engine.storage.class%'
+    arguments:
+      - "@=service('doctrine').getManager()"
+
+  # Core Validation
+  yay.goal_validation.validator_collection:
+    class:  '%yay.goal_validation.validator_collection.class%'
+
+  yay.goal_validation.filter.unique:
+    class:  '%yay.goal_validation.validator_collection.class%'
+

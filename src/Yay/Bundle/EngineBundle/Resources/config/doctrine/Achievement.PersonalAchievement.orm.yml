@@ -1,0 +1,27 @@
+Yay\Component\Entity\Achievement\PersonalAchievement:
+  type: entity
+  table: personal_achievement
+  # Primary Key
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  # Columns
+  fields:
+    achievedAt:
+      type: datetime
+  # Relationships
+  manyToOne:
+    goalDefinition:
+      targetEntity: 'Yay\Component\Entity\Achievement\GoalDefinition'
+      inversedBy: personalAchievements
+      joinColumn:
+        name: goal_definition
+        referencedColumnName: name
+    player:
+      targetEntity: 'Yay\Component\Entity\Player'
+      inversedBy: personalAchievements
+      joinColumn:
+        name: player_id
+        referencedColumnName: id

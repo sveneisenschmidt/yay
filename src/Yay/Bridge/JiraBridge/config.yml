@@ -1,0 +1,20 @@
+yay:
+  achievements:
+    -
+      name: First 10 Pull Requests created
+      actions:
+        - 'jira.pull_request.created'
+        - 'jira.pull_request.reopened'
+      goals:
+        - @yay.bridge.jira.ten_pr_created
+
+services:
+  yay.bridge.jira.ten_pr_created:
+    class: Yay\Component\Entity\Goal\ExpressionLanguageGoal
+    arguments:
+      - >
+        steps.filter('asdasd').count() > 10
+
+
+
+

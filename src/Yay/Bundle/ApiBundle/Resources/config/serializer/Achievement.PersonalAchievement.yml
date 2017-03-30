@@ -1,0 +1,15 @@
+Yay\Component\Entity\Achievement\PersonalAchievement:
+  exclusion_policy: ALL
+  properties:
+    achievedAt:
+      groups:
+        - 'player.show'
+        - 'player.personal_achievements.show'
+        - 'progress.submit'
+  virtual_properties:
+    name:
+      exp: object.getGoalDefinition().getName()
+      groups:
+        - 'player.show'
+        - 'player.personal_achievements.show'
+        - 'progress.submit'

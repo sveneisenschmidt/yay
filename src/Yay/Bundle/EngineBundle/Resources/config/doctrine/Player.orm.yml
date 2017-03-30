@@ -1,0 +1,27 @@
+Yay\Component\Entity\Player:
+  type: entity
+  table: player
+  # Primary Key
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  # Columns
+  fields:
+    name:
+      type: string
+    username:
+      type: string
+      unique: true
+    email:
+      type: string
+      unique: true
+  # Relationships
+  oneToMany:
+    steps:
+      targetEntity: 'Yay\Component\Entity\Achievement\Step'
+      mappedBy: player
+    personalAchievements:
+      targetEntity: 'Yay\Component\Entity\Achievement\PersonalAchievement'
+      mappedBy: player

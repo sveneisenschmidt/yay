@@ -1,0 +1,23 @@
+Yay\Component\Entity\Achievement\ActionDefinition:
+    action_definition:
+        __construct:
+          - 'yay.action.demo_action'
+
+Yay\Component\Entity\Achievement\GoalDefinition:
+    goal_definition{1..2}:
+        __construct:
+          - 'yay.goal.demo_goal_<current()>'
+        __calls:
+          - addActionDefinition: [ '@action_definition' ]
+
+Yay\Component\Entity\Player:
+    player{1..5}:
+        username: '<username()>'
+        name: '<firstName()> <lastName()>'
+        email: '<email()>'
+
+Yay\Component\Entity\Achievement\Step:
+    step{1..5}:
+        __construct:
+          - '@player1'
+          - '@action_definition'

@@ -1,0 +1,12 @@
+# JMS Serializer
+jms_serializer:
+    enable_short_alias: true
+    metadata:
+        cache: file
+        debug: "%kernel.debug%"
+        file_cache:
+            dir: "%kernel.cache_dir%/serializer"
+        directories:
+            yay:
+                namespace_prefix: 'Yay\Component\Entity'
+                path: "@ApiBundle/Resources/config/serializer"

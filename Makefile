@@ -8,6 +8,8 @@ SHELL := bash
 .SUFFIXES:
 .PHONY: .preflight-check
 
+# Variables
+BASH := bash
 ECHO := echo
 SLEEP := sleep
 TEST := test
@@ -25,6 +27,7 @@ DOCKER := docker
 GREP := grep
 XARGS := xargs
 PROJECT := yay
+COMPOSE_FILE := $(shell bash docker/docker-compose.sh)
 COMPOSE := docker-compose -p $(PROJECT)
 CONTAINER_PWD := $(shell pwd)
 CONTAINER_USER := $(shell id -u)
@@ -61,15 +64,10 @@ all: \
 	#   watch-assets              Watch assets and continuously build them
 	#   watch-logs                Watch log files
 	#   watch-redis               Monitor redis queries
-	#   mc                        Browse container files with mdinight commaner
 	#
 	#   clean                     Clean all build outputs
-	#   clean-containers          Remove the built docker-compose containers
-	#   clean-images              Remove the built docker images
-	#   clean-dependencies        Clean all installed dependencies and caches
 	#   clean-logs                Clean all log files
 	#   clean-caches              Clean and restart the Redis database and clear the application cache
-	#   distclean                 Run all clean targets
 	#
 	#   test                      Run the test suite
 	#   shell                     Start a interactive shell session on the container
@@ -84,36 +82,29 @@ all: \
 	@if [[ "${OS}" -eq "Darwin"  ]] ; then echo "#  $$ brew tap $(REQ_BREW_TAPS)"; fi
 	@if [[ "${OS}" -eq "Darwin"  ]] ; then echo "#  $$ brew install $(REQ_BREW_PACKAGES)"; fi
 
-
-
-distclean: \
-	clean-project \
-	clean-docker-containers \
-	clean-docker-images
-
 clean: \
-	clean-project \
-	clean-docker-containers
+	.clean-project \
+	.clean-containers \
+	.clean-images \
 
-clean-docker-containers: stop
+.clean-containers: stop
 	# Kill running containers
 	@$(COMPOSE) kill || true
 	# Remove built docker containers
 	@$(COMPOSE) rm --force -v || true
 
-clean-docker-images: stop
+.clean-images: stop
 	# Clean built docker images
 	@$(DOCKER) images | $(GREP) -P '$(PROJECT)' \
 		| $(SED) 's/  */ /g' | $(CUT) -d' ' -f3 \
 		| $(XARGS) -rn1 $(DOCKER) rmi --force || true
 
-clean-project:
+.clean-project:
+	@$(COMPOSE) run --rm cli bash -c 'rm  -rf vendor'
 	# Remove application dependencies: composer
 	@$(COMPOSE) run --rm cli bash -c 'rm  -rf vendor'
-	@$(COMPOSE) run --rm cli bash -c 'rm  -rf .data/vendor'
 	# Remove application dependencies: node_modules
 	@$(COMPOSE) run --rm cli bash -c 'rm  -rf node_modules'
-	@$(COMPOSE) run --rm cli bash -c 'rm  -rf .data/node_modules'
 	# Remove application caches
 	@$(COMPOSE) run --rm cli bash -c 'rm  -rf var/cache/*'
 	# Remove application logs
@@ -122,6 +113,12 @@ clean-project:
 	@$(COMPOSE) run --rm cli bash -c 'rm  -rf var/sessions/*'
 	# Remove generated configurations
 	@$(COMPOSE) run --rm cli bash -c 'rm  -rf app/config/parameters.yml'
+
+build:
+	# Prepare host-specific docker-compose.yml
+	$(CP) ${COMPOSE_FILE} docker-compose.yml
+	# Docker Compose build
+	@$(COMPOSE) build
 
 clean-caches:
 	# Clean application cache
@@ -134,26 +131,36 @@ clean-logs:
 		2>/dev/null
 
 install-dependencies:
+	# Workaround for permission errors
+	@$(COMPOSE) run --rm cli bash -c 'rm  -rf node_modules'
 	# Create cache, session and logs directories
 	@$(MKDIR) -p vendor var/logs var/cache var/sessions || true
 	# Install php dependencies
-	@$(COMPOSE) run --rm cli bash -c 'composer install'
+	@$(COMPOSE) run --rm cli bash -c 'composer install --ignore-platform-reqs'
 	# Install node dependencies
 	@$(COMPOSE) run --rm cli bash -c 'yarn'
 	@$(COMPOSE) run --rm cli bash -c 'npm rebuild node-sass'
 
-sync-dependencies:
-    # Create .data directory
-	@$(MKDIR) -p .data || true
-    # vendor
-	@$(COMPOSE) run --rm cli bash -c 'rsync -rtuz --delete-delay --progress --exclude="bin/" vendor/ .data/vendor'
-    # node_modules
-	@$(COMPOSE) run --rm cli bash -c 'rsync -rtuz --delete-delay --progress --exclude=".bin/" --exclude=".cache/" node_modules/ .data/node_modules'
-
-install: install-dependencies sync-dependencies
+install: build install-dependencies install-database
 	@$(COMPOSE) run --rm cli bash -c 'rm  -rf var/cache/*'
 
-test:
+install-database:
+	# Drop the database schema
+	@$(COMPOSE) run --rm cli bash -c 'php bin/console doctrine:schema:drop --force --em=default'
+	# Create the database schema
+	@$(COMPOSE) run --rm cli bash -c 'php bin/console doctrine:schema:create --em=default'
+
+import-demo:
+	# Import Demo Fixtures
+	@$(COMPOSE) run --rm cli bash -c \
+		'php bin/console doctrine:fixtures:load --fixtures=src/Yay/Bundle/DemoBundle -em=default --no-interaction'
+
+dump-api-docs:
+	# Dump the api documentation
+	@$(COMPOSE) run --rm cli bash -c 'php bin/console api:doc:dump' > API.md
+
+
+test: install-database
 	# Run the testsuite
 	@$(COMPOSE) run --rm cli bash -c 'vendor/bin/phpunit'
 
@@ -164,17 +171,13 @@ run:
 	@$(COMPOSE) up -d web
 	#
 	# The application should be up and running
-	#   web server: http://localhost:9406/
-	# MySQL Server: 127.0.0.1:4407
-	@bash -c 'sleep 1 && open http://localhost:9406'
+	#   API:          http://localhost:50080/api/doc
+	#   MySQL Server: localhost:53306
+	#   Redis Server: localhost:56379
 
 stop:
 	# Stop all containers
 	@$(COMPOSE) stop || true
-
-show-files:
-	# Starts file manager
-	@$(COMPOSE) run --rm cli bash -c 'EDITOR=nano ranger'
 
 watch-logs: .preflight-check
 	# Watch log files

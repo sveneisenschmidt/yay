@@ -1,0 +1,34 @@
+services:
+  # Query parameter converter
+  request.paramconverter.querystring:
+    class:  Yay\Component\HttpFoundation\Request\ParamConverter\QueryStringConverter
+    tags:
+      - { name: request.param_converter, priority: -2, converter: QueryString }
+  # Header field converter
+  request.paramconverter.headerfield:
+    class:  Yay\Component\HttpFoundation\Request\ParamConverter\HeaderFieldConverter
+    tags:
+      - { name: request.param_converter, priority: -2, converter: HeaderField }
+  # Header field converter
+  request.paramconverter.jsonfield:
+    class:  Yay\Component\HttpFoundation\Request\ParamConverter\JsonFieldConverter
+    tags:
+      - { name: request.param_converter, priority: -2, converter: JsonField }
+
+  # Serializer extensions
+  yay.serializer.handler.links:
+    class:  Yay\Bundle\ApiBundle\Serializer\EventListener\LinkListener
+    arguments:
+      - '@router'
+    tags:
+      - { name: jms_serializer.event_listener, event: serializer.post_serialize, method: onPostSerialize, direction: serialization }
+
+  # Test Goal Validator
+  yay.goal_validation.validator.test_goal:
+    class:  '%yay.goal_validation.validator.expression_language.class%'
+    arguments:
+      - >
+        goal.getName() in ['yay.goal.test_goal'] and
+        filteredSteps.count() >= 5
+    tags:
+        - { name: yay.goal_validator }

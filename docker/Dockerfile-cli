@@ -12,6 +12,8 @@ RUN PACKAGES="\
         php-xml \
         php-curl \
         php-dom \
+        php-mbstring \
+        php-apcu \
         wget \
         zip \
         unzip \

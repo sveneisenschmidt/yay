@@ -1,0 +1,40 @@
+# Web Server
+web:
+    build: .
+    dockerfile: docker/Dockerfile-web
+    command: "php bin/console server:run 0.0.0.0:80"
+    ports:
+        - "50080:80"
+    links:
+        - mysqldb
+        - redis
+    volumes:
+        - ./:/data
+    working_dir: "/data"
+    environment:
+        APPLICATION_ENV: dev
+
+# Command Line Tools
+cli:
+    build: .
+    dockerfile: docker/Dockerfile-cli
+    links:
+        - mysqldb
+        - redis
+    volumes:
+        - ./:/data
+    working_dir: "/data"
+
+# MySQL
+mysqldb:
+    image: mysql:5.7
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: dev
+    ports:
+        - "53306:3306"
+# Redis
+redis:
+    image: redis:latest
+    ports:
+        - "56379:6379"

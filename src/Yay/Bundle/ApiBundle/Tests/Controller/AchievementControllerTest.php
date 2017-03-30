@@ -1,0 +1,49 @@
+<?php
+
+use Yay\Bundle\ApiBundle\Test\WebTestCase;
+
+class AchievementControllerTest extends WebTestCase
+{
+    /**
+     * @test
+     * @testdox Retrieve all achievements
+     */
+    public function Achievement_IndexAction()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/achievements/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        foreach ($data as $key => $value) {
+            $this->assertArrayHasKey('name', $value);
+            $this->assertArraySubsetHasKey('links', 'self', $value);
+            $this->assertArraySubsetHasKey('links', 'actions', $value);
+        }
+    }
+    /**
+     * @test
+     * @testdox Retrieve a single achievement
+     */
+    public function Achievement_ShowAction()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/achievements/yay.goal.test_goal');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        $this->assertArrayHasKey('name', $data);
+        $this->assertArraySubsetHasKey('links', 'self', $data);
+        $this->assertArraySubsetHasKey('links', 'actions', $data);
+    }
+}

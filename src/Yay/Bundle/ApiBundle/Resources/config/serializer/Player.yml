@@ -1,0 +1,14 @@
+Yay\Component\Entity\Player:
+  exclusion_policy: ALL
+  properties:
+    name:
+      groups:
+        - 'player.index'
+        - 'player.show'
+    username:
+      groups:
+        - 'player.index'
+        - 'player.show'
+#    personalAchievements:
+#      groups:
+#        - 'player.show'

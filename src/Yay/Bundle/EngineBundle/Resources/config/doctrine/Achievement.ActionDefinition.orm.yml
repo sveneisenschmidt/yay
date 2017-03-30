@@ -1,0 +1,14 @@
+Yay\Component\Entity\Achievement\ActionDefinition:
+  type: entity
+  table: action_definition
+  # Primary Key
+  id:
+    name:
+      type: string
+  # Columns
+  fields: ~
+  # Relationships
+  oneToMany:
+    steps:
+      targetEntity: 'Yay\Component\Entity\Achievement\Step'
+      mappedBy: actionDefinition

@@ -23,3 +23,4 @@
 /web/build
 !web/build/bundle.js
 !web/build/styles.css
+/docker-compose.yml

@@ -1,0 +1,27 @@
+Yay\Component\Entity\Achievement\GoalDefinition:
+  type: entity
+  table: goal_definition
+  # Primary Key
+  id:
+    name:
+      type: string
+  # Columns
+  fields:
+    createdAt:
+      type: datetime
+  # Relationships
+  oneToMany:
+    personalAchievements:
+      targetEntity: 'Yay\Component\Entity\Achievement\PersonalAchievement'
+      mappedBy: goalDefinition
+  manyToMany:
+    actionDefinitions:
+      targetEntity: 'Yay\Component\Entity\Achievement\ActionDefinition'
+      joinTable:
+        name: goal_action_definition
+        joinColumns:
+          goal_definition:
+            referencedColumnName: name
+        inverseJoinColumns:
+          action_definition:
+            referencedColumnName: name

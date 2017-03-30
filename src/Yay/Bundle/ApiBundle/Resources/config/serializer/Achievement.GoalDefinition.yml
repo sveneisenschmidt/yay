@@ -1,0 +1,13 @@
+Yay\Component\Entity\Achievement\GoalDefinition:
+  exclusion_policy: ALL
+  properties:
+    name:
+      expose: true
+      groups:
+        - 'achievement.index'
+        - 'achievement.show'
+    createdAt:
+      expose: true
+      groups:
+        - 'achievement.show'
+

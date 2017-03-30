@@ -1,0 +1,8 @@
+Yay\Component\Entity\Achievement\ActionDefinition:
+  properties:
+    name:
+      groups:
+        - 'action.index'
+        - 'action.show'
+        - 'achievement.index'
+        - 'achievement.show'
