@@ -32,10 +32,10 @@ class ProgressController extends ApiController
      * {
      *     "player": "jane.doe",
      *     "actions": [
-     *         'yay.action.demo_action',
-     *         'yay.action.demo_action',
-     *         'yay.action.demo_action',
-     *         'yay.action.demo_action'
+     *         "yay.action.demo_action",
+     *         "yay.action.demo_action",
+     *         "yay.action.demo_action",
+     *         "yay.action.demo_action"
      *     ]
      * }
      * ```
