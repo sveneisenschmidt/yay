@@ -3,7 +3,7 @@ services:
     # Web Server
     web:
         build:
-          context: ../
+          context: ./
           dockerfile: docker/Dockerfile-web
         command: "php bin/console server:run 0.0.0.0:80"
         ports:
@@ -20,7 +20,7 @@ services:
     # Command Line Tools
     cli:
         build:
-            context: ../
+            context: ./
             dockerfile: docker/Dockerfile-cli
         links:
             - mysqldb

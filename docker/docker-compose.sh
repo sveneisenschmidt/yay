@@ -1,5 +1,6 @@
 #! /bin/bash
 
+OS=`uname`
 DOCKER_VERSION=`docker version --format '{{.Server.Version}}'`
 DOCKER_COMPOSE_FILE_VERSION='v2'
 
@@ -9,7 +10,7 @@ function version_le() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" 
 function version_lt() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" != "$1"; }
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 
-if version_lt $DOCKER_VERSION 17.04; then
+if [ "$OS" != "Darwin" ] && version_lt $DOCKER_VERSION 17.04; then
     DOCKER_COMPOSE_FILE_VERSION='v1'
 fi
 
