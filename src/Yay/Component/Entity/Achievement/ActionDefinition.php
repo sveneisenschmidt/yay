@@ -3,8 +3,8 @@
 namespace Yay\Component\Entity\Achievement;
 
 use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
-use Yay\Component\Entity\Achievement\StepCollection;
-use Yay\Component\Entity\Achievement\StepInterface;
+use Yay\Component\Entity\Achievement\PersonalActionCollection;
+use Yay\Component\Entity\Achievement\PersonalActionInterface;
 
 class ActionDefinition implements ActionDefinitionInterface
 {
@@ -14,9 +14,9 @@ class ActionDefinition implements ActionDefinitionInterface
     protected $name;
 
     /**
-     * @var array|StepInterface[]
+     * @var array|PersonalActionInterface[]
      */
-    protected $steps;
+    protected $personalActions;
 
     /**
      * ActionDefinition constructor.
@@ -25,7 +25,7 @@ class ActionDefinition implements ActionDefinitionInterface
      */
     public function __construct(string $name)
     {
-        $this->steps = new StepCollection();
+        $this->personalActions = new PersonalActionCollection();
         $this->name = $name;
     }
 

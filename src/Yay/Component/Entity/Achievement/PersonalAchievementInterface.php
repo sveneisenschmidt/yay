@@ -2,20 +2,20 @@
 
 namespace Yay\Component\Entity\Achievement;
 
-use Yay\Component\Entity\Achievement\GoalDefinitionInterface;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\PlayerInterface;
 
 interface PersonalAchievementInterface
 {
     /**
-     * @param GoalDefinitionInterface $goalDefinition
+     * @param AchievementDefinitionInterface $achievementDefinition
      */
-    public function setGoalDefinition(GoalDefinitionInterface $goalDefinition);
+    public function setAchievementDefinition(AchievementDefinitionInterface $achievementDefinition);
 
     /**
-     * @return GoalDefinitionInterface
+     * @return AchievementDefinitionInterface
      */
-    public function getGoalDefinition(): GoalDefinitionInterface;
+    public function getAchievementDefinition(): AchievementDefinitionInterface;
 
     /**
      * @return PlayerInterface

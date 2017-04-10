@@ -1,4 +1,4 @@
-Yay\Component\Entity\Achievement\GoalDefinition:
+Yay\Component\Entity\Achievement\AchievementDefinition:
   exclusion_policy: ALL
   properties:
     name:

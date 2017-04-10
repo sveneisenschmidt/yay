@@ -1,6 +1,6 @@
-Yay\Component\Entity\Achievement\Step:
+Yay\Component\Entity\Achievement\PersonalAction:
   type: entity
-  table: step
+  table: personalAction
   # Primary Key
   id:
     id:
@@ -15,13 +15,13 @@ Yay\Component\Entity\Achievement\Step:
   manyToOne:
     actionDefinition:
       targetEntity: 'Yay\Component\Entity\Achievement\ActionDefinition'
-      inversedBy: steps
+      inversedBy: personalActions
       joinColumn:
         name: action_definition
         referencedColumnName: name
     player:
       targetEntity: 'Yay\Component\Entity\Player'
-      inversedBy: steps
+      inversedBy: personalActions
       joinColumn:
         name: player_id
         referencedColumnName: id

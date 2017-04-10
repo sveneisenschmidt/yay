@@ -6,10 +6,10 @@ use Doctrine\Common\Collections\Collection as CollectionInterface;
 
 use Yay\Component\Entity\Achievement\ActionDefinitionCollection;
 use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
-use Yay\Component\Entity\Achievement\GoalDefinitionCollection;
-use Yay\Component\Entity\Achievement\GoalDefinitionInterface;
+use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalAchievementInterface;
-use Yay\Component\Entity\Achievement\StepInterface;
+use Yay\Component\Entity\Achievement\PersonalActionInterface;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerCollection;
 use Yay\Component\Entity\PlayerInterface;
@@ -38,16 +38,16 @@ interface StorageInterface
     /**
      * @param int $id
      *
-     * @return GoalDefinitionCollection
+     * @return AchievementDefinitionCollection
      */
-    public function findGoalDefinition(int $id);
+    public function findAchievementDefinition(int $id);
 
     /**
      * @param array $criteria
      *
-     * @return GoalDefinitionCollection
+     * @return AchievementDefinitionCollection
      */
-    public function findGoalDefinitionBy(array $criteria = []): GoalDefinitionCollection;
+    public function findAchievementDefinitionBy(array $criteria = []): AchievementDefinitionCollection;
 
     /**
      * @param int $id
@@ -64,9 +64,9 @@ interface StorageInterface
     public function findActionDefinitionBy(array $criteria = []): ActionDefinitionCollection;
 
     /**
-     * @param StepInterface $step
+     * @param PersonalActionInterface $personalAction
      */
-    public function saveStep(StepInterface $step);
+    public function savePersonalAction(PersonalActionInterface $personalAction);
 
     /**
      * @param PersonalAchievementInterface $personalAchievement

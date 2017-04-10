@@ -9,11 +9,11 @@ use Doctrine\Common\Collections\Collection as CollectionInterface;
 use Yay\Component\Engine\StorageInterface;
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\ActionDefinitionCollection;
-use Yay\Component\Entity\Achievement\GoalDefinition;
-use Yay\Component\Entity\Achievement\GoalDefinitionCollection;
-use Yay\Component\Entity\Achievement\GoalDefinitionInterface;
+use Yay\Component\Entity\Achievement\AchievementDefinition;
+use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalAchievementInterface;
-use Yay\Component\Entity\Achievement\StepInterface;
+use Yay\Component\Entity\Achievement\PersonalActionInterface;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerCollection;
 use Yay\Component\Entity\PlayerInterface;
@@ -55,18 +55,18 @@ class DoctrineStorage implements StorageInterface
     /**
      * {@inheritDoc}
      */
-    public function findGoalDefinition(int $id)
+    public function findAchievementDefinition(int $id)
     {
-        return $this->manager->getRepository(GoalDefinition::class)->find($id);
+        return $this->manager->getRepository(AchievementDefinition::class)->find($id);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function findGoalDefinitionBy(array $criteria = []): GoalDefinitionCollection
+    public function findAchievementDefinitionBy(array $criteria = []): AchievementDefinitionCollection
     {
-        $result = $this->manager->getRepository(GoalDefinition::class)->findBy($criteria);
-        return new GoalDefinitionCollection($result);
+        $result = $this->manager->getRepository(AchievementDefinition::class)->findBy($criteria);
+        return new AchievementDefinitionCollection($result);
     }
 
     /**
@@ -97,9 +97,9 @@ class DoctrineStorage implements StorageInterface
     /**
      * {@inheritDoc}
      */
-    public function saveStep(StepInterface $step)
+    public function savePersonalAction(PersonalActionInterface $personalAction)
     {
-        $this->manager->persist($step);
+        $this->manager->persist($personalAction);
         $this->manager->flush();
     }
 

@@ -19,8 +19,8 @@ Yay\Component\Entity\Player:
       unique: true
   # Relationships
   oneToMany:
-    steps:
-      targetEntity: 'Yay\Component\Entity\Achievement\Step'
+    personalActions:
+      targetEntity: 'Yay\Component\Entity\Achievement\PersonalAction'
       mappedBy: player
     personalAchievements:
       targetEntity: 'Yay\Component\Entity\Achievement\PersonalAchievement'

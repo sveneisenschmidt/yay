@@ -4,7 +4,7 @@ namespace Yay\Component\Entity\Achievement;
 
 use Doctrine\Common\Collections\Collection as CollectionInterface;
 
-interface GoalDefinitionInterface
+interface AchievementDefinitionInterface
 {
     /**
      * @return string

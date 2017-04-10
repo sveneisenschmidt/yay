@@ -3,10 +3,10 @@ Yay\Component\Entity\Achievement\ActionDefinition:
         __construct:
           - 'yay.action.demo_action'
 
-Yay\Component\Entity\Achievement\GoalDefinition:
-    goal_definition{1..2}:
+Yay\Component\Entity\Achievement\AchievementDefinition:
+    achievement_definition{1..2}:
         __construct:
-          - 'yay.goal.demo_achievement_<current()>'
+          - 'yay.achievement.demo_achievement_<current()>'
         __calls:
           - addActionDefinition: [ '@action_definition' ]
 
@@ -20,8 +20,8 @@ Yay\Component\Entity\Player:
         name: '<firstName()> <lastName()>'
         email: '<email()>'
 
-#Yay\Component\Entity\Achievement\Step:
-#    step{1..5}:
+#Yay\Component\Entity\Achievement\PersonalAction:
+#    personalAction{1..5}:
 #        __construct:
 #          - '@player1'
 #          - '@action_definition'

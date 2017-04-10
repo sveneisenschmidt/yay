@@ -122,7 +122,8 @@ build:
 
 clean-caches:
 	# Clean application cache
-	@$(COMPOSE) run --rm cli bash -c 'php bin/console cache:clear --no-warmup'
+	@$(COMPOSE) run --rm cli bash -c 'php bin/console cache:clear --env=dev --no-warmup'
+	@$(COMPOSE) run --rm cli bash -c 'php bin/console cache:clear --env=test --no-warmup'
 
 clean-logs:
 	# Clean all log files

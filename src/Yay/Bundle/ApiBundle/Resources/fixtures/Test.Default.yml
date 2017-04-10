@@ -9,10 +9,10 @@ Yay\Component\Entity\Achievement\ActionDefinition:
         __construct:
           - 'yay.action.test_action'
 
-Yay\Component\Entity\Achievement\GoalDefinition:
-    goal_definition:
+Yay\Component\Entity\Achievement\AchievementDefinition:
+    achievement_definition:
         __construct:
-          - 'yay.goal.test_goal'
+          - 'yay.achievement.test_achievement'
         __calls:
           - addActionDefinition: [ '@action_definition' ]
 

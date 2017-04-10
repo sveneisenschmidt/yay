@@ -23,12 +23,12 @@ services:
     tags:
       - { name: jms_serializer.event_listener, event: serializer.post_serialize, method: onPostSerialize, direction: serialization }
 
-  # Test Goal Validator
-  yay.goal_validation.validator.test_goal:
-    class:  '%yay.goal_validation.validator.expression_language.class%'
+  # Test Achievement Validator
+  yay.achievement_validation.validator.test_achievement:
+    class:  '%yay.achievement_validation.validator.expression_language.class%'
     arguments:
       - >
-        goal.getName() in ['yay.goal.test_goal'] and
-        filteredSteps.count() >= 5
+        achievement.getName() in ['yay.achievement.test_achievement'] and
+        filteredPersonalActions.count() >= 5
     tags:
-        - { name: yay.goal_validator }
+        - { name: yay.achievement_validator }

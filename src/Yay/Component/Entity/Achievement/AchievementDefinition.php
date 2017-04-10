@@ -7,12 +7,12 @@ use Doctrine\Common\Collections\Collection as CollectionInterface;
 
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
-use Yay\Component\Entity\Achievement\GoalDefinitionInterface;
-use Yay\Component\Entity\Achievement\StepInterface;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
+use Yay\Component\Entity\Achievement\PersonalActionInterface;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 
-class GoalDefinition implements GoalDefinitionInterface
+class AchievementDefinition implements AchievementDefinitionInterface
 {
     /**
      * @var string
@@ -35,7 +35,7 @@ class GoalDefinition implements GoalDefinitionInterface
     protected $personalAchievements;
 
     /**
-     * GoalDefinition constructor.
+     * AchievementDefinition constructor.
      *
      * @param string    $name
      * @param \DateTime $createdAt

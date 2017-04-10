@@ -2,9 +2,9 @@
 
 namespace Yay\Component\Entity\Achievement;
 
-use Yay\Component\Entity\Achievement\StepInterface;
-use Yay\Component\Entity\Achievement\GoalDefinition;
-use Yay\Component\Entity\Achievement\GoalDefinitionInterface;
+use Yay\Component\Entity\Achievement\PersonalActionInterface;
+use Yay\Component\Entity\Achievement\AchievementDefinition;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 
@@ -21,9 +21,9 @@ class PersonalAchievement implements PersonalAchievementInterface
     protected $achievedAt;
 
     /**
-     * @var GoalDefinitionInterface
+     * @var AchievementDefinitionInterface
      */
-    protected $goalDefinition;
+    protected $achievementDefinition;
 
     /**
      * @var PlayerInterface
@@ -31,20 +31,20 @@ class PersonalAchievement implements PersonalAchievementInterface
     protected $player;
 
     /**
-     * AchievementStep constructor.
+     * AchievementPersonalAction constructor.
      *
      * @param PlayerInterface         $user
-     * @param GoalDefinitionInterface $goalDefinition
+     * @param AchievementDefinitionInterface $achievementDefinition
      * @param \DateTime|null          $achievedAt
      */
     public function __construct(
         PlayerInterface $player,
-        GoalDefinitionInterface $goalDefinition,
+        AchievementDefinitionInterface $achievementDefinition,
         \DateTime $achievedAt = null
     )
     {
         $this->setPlayer($player);
-        $this->setGoalDefinition($goalDefinition);
+        $this->setAchievementDefinition($achievementDefinition);
         $this->setAchievedAt($achievedAt ?: new \DateTime());
     }
 
@@ -59,9 +59,9 @@ class PersonalAchievement implements PersonalAchievementInterface
     /**
      * {@inheritDoc}
      */
-    public function getGoalDefinition(): GoalDefinitionInterface
+    public function getAchievementDefinition(): AchievementDefinitionInterface
     {
-        return $this->goalDefinition;
+        return $this->achievementDefinition;
     }
 
     /**
@@ -75,9 +75,9 @@ class PersonalAchievement implements PersonalAchievementInterface
     /**
      * {@inheritDoc}
      */
-    public function setGoalDefinition(GoalDefinitionInterface $goalDefinition)
+    public function setAchievementDefinition(AchievementDefinitionInterface $achievementDefinition)
     {
-        $this->goalDefinition = $goalDefinition;
+        $this->achievementDefinition = $achievementDefinition;
     }
 
     /**
@@ -101,6 +101,6 @@ class PersonalAchievement implements PersonalAchievementInterface
      */
     public function __toString(): string
     {
-        return $this->getGoalDefinition()->getName();
+        return $this->getAchievementDefinition()->getName();
     }
 }

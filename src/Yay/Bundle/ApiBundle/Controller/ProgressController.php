@@ -8,8 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
-use Yay\Component\Entity\Achievement\Step;
-use Yay\Component\Entity\Achievement\StepCollection;
+use Yay\Component\Entity\Achievement\PersonalAction;
+use Yay\Component\Entity\Achievement\PersonalActionCollection;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 
@@ -43,20 +43,20 @@ class ProgressController extends ApiController
      * **Example Response:**
      * ```json
      * [{
-     *     "name": "yay.goal.demo_goal_1",
+     *     "name": "yay.achievement.demo_achievement_1",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
      *         "self": "http://example.org/api/players/gschowalter/personal-achievements",
      *         "player": "http://example.org/api/players/gschowalter",
-     *         "achievement": "http://example.org/api/achievements/yay.goal.demo_goal_1"
+     *         "achievement": "http://example.org/api/achievements/yay.achievement.demo_achievement_1"
      *     }
      * }, {
-     *     "name": "yay.goal.demo_goal_2",
+     *     "name": "yay.achievement.demo_achievement_2",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
      *         "self": "http://example.org/api/players/gschowalter/personal-achievements",
      *         "player": "http://example.org/api/players/gschowalter",
-     *         "achievement": "http://example.org/api/achievements/yay.goal.demo_goal_2"
+     *         "achievement": "http://example.org/api/achievements/yay.achievement.demo_achievement_2"
      *     }
      * }]
      * ```
@@ -135,7 +135,7 @@ class ProgressController extends ApiController
 
         /** @var PlayerInterface $player */
         $player = $players->first();
-        $stepCollection = new StepCollection();
+        $personalActionCollection = new PersonalActionCollection();
 
         foreach ($actions as $action) {
             $actionDefinitions = $this->getEngine()->findActionDefinitionBy(['name' => $action]);
@@ -143,12 +143,12 @@ class ProgressController extends ApiController
                 continue;
             }
 
-            $stepCollection->add(
-                new Step($player, $actionDefinitions->first())
+            $personalActionCollection->add(
+                new PersonalAction($player, $actionDefinitions->first())
             );
         }
 
-        $personalAchievements = $this->getEngine()->advance($player, $stepCollection);
+        $personalAchievements = $this->getEngine()->advance($player, $personalActionCollection);
         return $this->respond(
             $personalAchievements,
             ['progress.submit']

@@ -3,16 +3,17 @@ trivago/yay
 
 Gamification done simple.
 
-## ToDos
+## ToDo
 
-* Rename Goal* to Achievement
-* Rename Step* to Acion
-* Remove dependency on api-platoform
-* Introduce AchievementValidatorFilter via Tags (wraps Validators)
-* Introduce label, description on Achievement* and ActionDefinition
-* Introduce BinaryResource as Relation for Achievement* and ActionDefnition
-* Refactor DemoBundle 
-    * Should work like a future third party bundle
-    * Autoloadung and persitance of goals and actions
-    * Autoregistration and wiring of validators
-* Draft Webhooks
+- [x] Add demo documentation
+- [x] Rename Goal* to Achievement
+- [X] Rename Step* to Action
+- [X] Remove dependency on api-platoform
+- [ ] Introduce AchievementValidatorFilter via Tags (wraps Validators)
+- [ ] Introduce label, description on Achievement- [ ] and ActionDefinition
+- [ ] Introduce BinaryResource as Relation for Achievement- [ ] and ActionDefnition
+- [ ] Refactor DemoBundle 
+    - [ ] Should work like a future third party bundle
+    - [ ] Autoloadung and persitance of goals and actions
+    - [ ] Autoregistration and wiring of validators
+- [ ] Draft Webhooks

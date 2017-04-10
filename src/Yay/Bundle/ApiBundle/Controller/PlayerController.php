@@ -104,20 +104,20 @@ class PlayerController extends ApiController
      * **Example Response:**
      * ```json
      * [{
-     *     "name": "yay.goal.demo_goal_1",
+     *     "name": "yay.achievement.demo_achievement_1",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
      *         "self": "http://example.org/api/players/gschowalter/personal-achievements",
      *         "player": "http://example.org/api/players/gschowalter",
-     *         "achievement": "http://example.org/api/achievements/yay.goal.demo_goal_1"
+     *         "achievement": "http://example.org/api/achievements/yay.achievement.demo_achievement_1"
      *     }
      * }, {
-     *     "name": "yay.goal.demo_goal_2",
+     *     "name": "yay.achievement.demo_achievement_2",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
      *         "self": "http://example.org/api/players/gschowalter/personal-achievements",
      *         "player": "http://example.org/api/players/gschowalter",
-     *         "achievement": "http://example.org/api/achievements/yay.goal.demo_goal_2"
+     *         "achievement": "http://example.org/api/achievements/yay.achievement.demo_achievement_2"
      *     }
      * }]
      * ```
@@ -219,7 +219,7 @@ class PlayerController extends ApiController
         $player = $players->first();
 
         return $this->respond(
-            $player->getSteps(),
+            $player->getPersonalActions(),
             ['player.personal_actions.show']
         );
     }

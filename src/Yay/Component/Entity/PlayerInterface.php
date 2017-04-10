@@ -4,7 +4,7 @@ namespace Yay\Component\Entity;
 
 use Doctrine\Common\Collections\Collection as CollectionInterface;
 
-use Yay\Component\Entity\Achievement\GoalDefinitionInterface;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 
 interface PlayerInterface
 {
@@ -52,7 +52,7 @@ interface PlayerInterface
      *
      * @return CollectionInterface
      */
-    public function getSteps(): CollectionInterface;
+    public function getPersonalActions(): CollectionInterface;
 
     /**
      *
@@ -64,5 +64,5 @@ interface PlayerInterface
      *
      * @return bool
      */
-    public function hasPersonalAchievement(GoalDefinitionInterface $goalDefinition): bool;
+    public function hasPersonalAchievement(AchievementDefinitionInterface $achievementDefinition): bool;
 }

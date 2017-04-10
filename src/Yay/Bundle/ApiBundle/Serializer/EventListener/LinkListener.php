@@ -9,9 +9,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalAchievementInterface;
-use Yay\Component\Entity\Achievement\StepInterface;
+use Yay\Component\Entity\Achievement\PersonalActionInterface;
 use Yay\Component\Entity\PlayerInterface;
-use Yay\Component\Entity\Achievement\GoalDefinitionInterface;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 
 
 class LinkListener
@@ -58,16 +58,16 @@ class LinkListener
             $this->handleActionDefinition($visitor, $event->getObject());
         }
 
-        if ($event->getObject() instanceof GoalDefinitionInterface) {
-            $this->handleGoalDefinition($visitor, $event->getObject());
+        if ($event->getObject() instanceof AchievementDefinitionInterface) {
+            $this->handleAchievementDefinition($visitor, $event->getObject());
         }
 
         if ($event->getObject() instanceof PersonalAchievementInterface) {
             $this->handlePersonalAchievement($visitor, $event->getObject());
         }
 
-        if ($event->getObject() instanceof StepInterface) {
-            $this->handleStep($visitor, $event->getObject());
+        if ($event->getObject() instanceof PersonalActionInterface) {
+            $this->handlePersonalAction($visitor, $event->getObject());
         }
     }
 
@@ -95,27 +95,27 @@ class LinkListener
 
     /**
      * @param GenericSerializationVisitor $visitor
-     * @param GoalDefinitionInterface  $goalDefinition
+     * @param AchievementDefinitionInterface  $achievementDefinition
      */
-    public function handleGoalDefinition(GenericSerializationVisitor $visitor, GoalDefinitionInterface $goalDefinition)
+    public function handleAchievementDefinition(GenericSerializationVisitor $visitor, AchievementDefinitionInterface $achievementDefinition)
     {
         $visitor->setData('links', [
             'self' => $this->generateRoute(
                 'achievement_show',
-                ['name' => $goalDefinition->getName()]
+                ['name' => $achievementDefinition->getName()]
             ),
             'actions' => array_map(function(ActionDefinitionInterface $actionDefinition) {
                 return $this->generateRoute(
                     'action_show',
                     ['name' => $actionDefinition->getName()]
                 );
-            }, $goalDefinition->getActionDefinitions()->toArray()),
+            }, $achievementDefinition->getActionDefinitions()->toArray()),
         ]);
     }
 
     /**
      * @param GenericSerializationVisitor $visitor
-     * @param ActionDefinitionInterface  $goalDefinition
+     * @param ActionDefinitionInterface  $achievementDefinition
      */
     public function handleActionDefinition(GenericSerializationVisitor $visitor, ActionDefinitionInterface $actionDefinition)
     {
@@ -130,7 +130,7 @@ class LinkListener
 
     /**
      * @param GenericSerializationVisitor $visitor
-     * @param ActionDefinitionInterface  $goalDefinition
+     * @param ActionDefinitionInterface  $achievementDefinition
      */
     public function handlePersonalAchievement(GenericSerializationVisitor $visitor, PersonalAchievementInterface $personalAchievement)
     {
@@ -145,30 +145,30 @@ class LinkListener
             ),
             'achievement' => $this->generateRoute(
                 'achievement_show',
-                ['name' => $personalAchievement->getGoalDefinition()->getName()]
+                ['name' => $personalAchievement->getAchievementDefinition()->getName()]
             ),
         ]);
     }
 
     /**
      * @param GenericSerializationVisitor $visitor
-     * @param StepInterface  $goalDefinition
+     * @param PersonalActionInterface  $achievementDefinition
      */
-    public function handleStep(GenericSerializationVisitor $visitor, StepInterface $step)
+    public function handlePersonalAction(GenericSerializationVisitor $visitor, PersonalActionInterface $personalAction)
     {
 
         $visitor->setData('links', [
             'self' => $this->generateRoute(
                 'player_personal_actions_show',
-                ['username' => $step->getPlayer()->getUsername()]
+                ['username' => $personalAction->getPlayer()->getUsername()]
             ),
             'player' => $this->generateRoute(
                 'player_show',
-                ['username' => $step->getPlayer()->getUsername()]
+                ['username' => $personalAction->getPlayer()->getUsername()]
             ),
             'action' => $this->generateRoute(
                 'action_show',
-                ['name' => $step->getActionDefinition()->getName()]
+                ['name' => $personalAction->getActionDefinition()->getName()]
             ),
         ]);
     }

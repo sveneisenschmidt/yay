@@ -4,7 +4,7 @@ namespace Yay\Component\Engine;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-class GoalValidatorCollection extends ArrayCollection
+class AchievementValidatorCollection extends ArrayCollection
 {
 
 }

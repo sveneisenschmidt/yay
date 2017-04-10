@@ -5,15 +5,15 @@ yay:
       actions:
         - 'jira.pull_request.created'
         - 'jira.pull_request.reopened'
-      goals:
+      achievements:
         - @yay.bridge.jira.ten_pr_created
 
 services:
   yay.bridge.jira.ten_pr_created:
-    class: Yay\Component\Entity\Goal\ExpressionLanguageGoal
+    class: Yay\Component\Entity\Achievement\ExpressionLanguageAchievement
     arguments:
       - >
-        steps.filter('asdasd').count() > 10
+        personalActions.filter('asdasd').count() > 10
 
 
 

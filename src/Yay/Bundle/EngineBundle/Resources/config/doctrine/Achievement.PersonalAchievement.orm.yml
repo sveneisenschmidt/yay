@@ -13,11 +13,11 @@ Yay\Component\Entity\Achievement\PersonalAchievement:
       type: datetime
   # Relationships
   manyToOne:
-    goalDefinition:
-      targetEntity: 'Yay\Component\Entity\Achievement\GoalDefinition'
+    achievementDefinition:
+      targetEntity: 'Yay\Component\Entity\Achievement\AchievementDefinition'
       inversedBy: personalAchievements
       joinColumn:
-        name: goal_definition
+        name: achievement_definition
         referencedColumnName: name
     player:
       targetEntity: 'Yay\Component\Entity\Player'

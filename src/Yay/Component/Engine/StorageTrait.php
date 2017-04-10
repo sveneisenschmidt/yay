@@ -7,10 +7,10 @@ use Doctrine\Common\Collections\Collection as CollectionInterface;
 use Yay\Component\Engine\StorageInterface;
 use Yay\Component\Entity\Achievement\ActionDefinitionCollection;
 use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
-use Yay\Component\Entity\Achievement\GoalDefinitionCollection;
-use Yay\Component\Entity\Achievement\GoalDefinitionInterface;
+use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalAchievementInterface;
-use Yay\Component\Entity\Achievement\StepInterface;
+use Yay\Component\Entity\Achievement\PersonalActionInterface;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerCollection;
 use Yay\Component\Entity\PlayerInterface;
@@ -70,20 +70,20 @@ trait StorageTrait
     /**
      * @param array $criteria
      *
-     * @return GoalDefinitionCollection
+     * @return AchievementDefinitionCollection
      */
-    public function findGoalDefinitionBy(array $criteria = []): GoalDefinitionCollection
+    public function findAchievementDefinitionBy(array $criteria = []): AchievementDefinitionCollection
     {
-        return $this->getStorage()->findGoalDefinitionBy($criteria);
+        return $this->getStorage()->findAchievementDefinitionBy($criteria);
     }
 
     /**
      *
-     * @return GoalDefinitionCollection
+     * @return AchievementDefinitionCollection
      */
-    public function findGoalDefinitionAny(): GoalDefinitionCollection
+    public function findAchievementDefinitionAny(): AchievementDefinitionCollection
     {
-        return $this->findGoalDefinitionBy([]);
+        return $this->findAchievementDefinitionBy([]);
     }
 
     /**
@@ -106,11 +106,11 @@ trait StorageTrait
     }
 
     /**
-     * @param StepInterface $step
+     * @param PersonalActionInterface $personalAction
      */
-    public function saveStep(StepInterface $step)
+    public function savePersonalAction(PersonalActionInterface $personalAction)
     {
-        $this->getStorage()->saveStep($step);
+        $this->getStorage()->savePersonalAction($personalAction);
     }
 
     /**

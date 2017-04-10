@@ -1,8 +1,8 @@
 include:
   - Test.Default.yml
 
-Yay\Component\Entity\Achievement\Step:
-    step{1..5}:
+Yay\Component\Entity\Achievement\PersonalAction:
+    personalAction{1..5}:
         __construct:
           - '@player'
           - '@action_definition'
@@ -11,4 +11,4 @@ Yay\Component\Entity\Achievement\PersonalAchievement:
     achievement:
         __construct:
           - '@player'
-          - '@goal_definition'
+          - '@achievement_definition'

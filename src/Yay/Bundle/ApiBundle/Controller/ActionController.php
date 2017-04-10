@@ -86,11 +86,11 @@ class ActionController extends ApiController
      */
     public function showAction(string $name): Response
     {
-        $goalDefinitions = $this->getEngine()->findActionDefinitionBy(['name' => $name]);
-        if ($goalDefinitions->isEmpty()) {
+        $achievementDefinitions = $this->getEngine()->findActionDefinitionBy(['name' => $name]);
+        if ($achievementDefinitions->isEmpty()) {
             throw $this->createNotFoundException();
         }
 
-        return $this->respond($goalDefinitions->first(), ['action.show']);
+        return $this->respond($achievementDefinitions->first(), ['action.show']);
     }
 }

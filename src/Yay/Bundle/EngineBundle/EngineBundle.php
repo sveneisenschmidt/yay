@@ -6,7 +6,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 use Yay\Bundle\EngineBundle\DependencyInjection\EngineExtension;
-use Yay\Bundle\EngineBundle\DependencyInjection\GoalValidatorPass;
+use Yay\Bundle\EngineBundle\DependencyInjection\AchievementValidatorPass;
 
 class EngineBundle extends Bundle
 {
@@ -15,7 +15,7 @@ class EngineBundle extends Bundle
      */
     public function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new GoalValidatorPass());
+        $container->addCompilerPass(new AchievementValidatorPass());
     }
 
     /**

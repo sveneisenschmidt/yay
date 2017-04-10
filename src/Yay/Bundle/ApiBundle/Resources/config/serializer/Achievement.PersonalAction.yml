@@ -1,4 +1,4 @@
-Yay\Component\Entity\Achievement\Step:
+Yay\Component\Entity\Achievement\PersonalAction:
   exclusion_policy: ALL
   properties:
     achievedAt:

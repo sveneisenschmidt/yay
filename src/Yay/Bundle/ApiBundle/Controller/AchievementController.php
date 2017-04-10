@@ -16,15 +16,15 @@ class AchievementController extends ApiController
      * **Example Response:**
      * ```json
      * [{
-     *     "name": "yay.goal.demo_goal_1",
+     *     "name": "yay.achievement.demo_achievement_1",
      *     "links": {
-     *         "self": "http://example.org/api/achievements/yay.goal.demo_goal_1",
+     *         "self": "http://example.org/api/achievements/yay.achievement.demo_achievement_1",
      *         "actions": ["http://example.org/api/actions/yay.action.demo_action"]
      *     }
      * }, {
-     *     "name": "yay.goal.demo_goal_2",
+     *     "name": "yay.achievement.demo_achievement_2",
      *     "links": {
-     *         "self": "http://example.org/api/achievements/yay.goal.demo_goal_2",
+     *         "self": "http://example.org/api/achievements/yay.achievement.demo_achievement_2",
      *         "actions": ["http://example.org/api/actions/yay.action.demo_action"]
      *     }
      * }]
@@ -49,7 +49,7 @@ class AchievementController extends ApiController
     public function indexAction(): Response
     {
         return $this->respond(
-            $this->getEngine()->findGoalDefinitionAny()->toArray(),
+            $this->getEngine()->findAchievementDefinitionAny()->toArray(),
             ['achievement.index']
         );
     }
@@ -58,9 +58,9 @@ class AchievementController extends ApiController
      * **Example Response:**
      * ```json
      * {
-     *     "name": "yay.goal.demo_goal_1",
+     *     "name": "yay.achievement.demo_achievement_1",
      *     "links": {
-     *         "self": "http://example.org/api/achievements/yay.goal.demo_goal_1",
+     *         "self": "http://example.org/api/achievements/yay.achievement.demo_achievement_1",
      *         "actions": ["http://example.org/api/actions/yay.action.demo_action"]
      *     }
      * }
@@ -94,11 +94,11 @@ class AchievementController extends ApiController
      */
     public function showAction(string $name): Response
     {
-        $goalDefinitions = $this->getEngine()->findGoalDefinitionBy(['name' => $name]);
-        if ($goalDefinitions->isEmpty()) {
+        $achievementDefinitions = $this->getEngine()->findAchievementDefinitionBy(['name' => $name]);
+        if ($achievementDefinitions->isEmpty()) {
             throw $this->createNotFoundException();
         }
 
-        return $this->respond($goalDefinitions->first(), ['achievement.show']);
+        return $this->respond($achievementDefinitions->first(), ['achievement.show']);
     }
 }

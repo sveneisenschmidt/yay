@@ -6,17 +6,17 @@ use Doctrine\Common\Collections\Collection as CollectionInterface;
 
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\ActionDefinitionCollection;
-use Yay\Component\Entity\Achievement\GoalDefinition;
-use Yay\Component\Entity\Achievement\GoalDefinitionCollection;
+use Yay\Component\Entity\Achievement\AchievementDefinition;
+use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
 use Yay\Component\Entity\Achievement\PersonalAchievement;
 use Yay\Component\Entity\Achievement\PersonalAchievementInterface;
-use Yay\Component\Entity\Achievement\Step;
-use Yay\Component\Entity\Achievement\StepCollection;
-use Yay\Component\Entity\Achievement\StepInterface;
+use Yay\Component\Entity\Achievement\PersonalAction;
+use Yay\Component\Entity\Achievement\PersonalActionCollection;
+use Yay\Component\Entity\Achievement\PersonalActionInterface;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
-use Yay\Component\Engine\GoalValidatorCollection;
-use Yay\Component\Engine\GoalValidatorInterface;
+use Yay\Component\Engine\AchievementValidatorCollection;
+use Yay\Component\Engine\AchievementValidatorInterface;
 use Yay\Component\Engine\StorageTrait;
 
 class Engine
@@ -24,60 +24,60 @@ class Engine
     use StorageTrait;
 
     /**
-     * @var GoalValidatorCollection
+     * @var AchievementValidatorCollection
      */
-    protected $goalValidatorCollection;
+    protected $achievementValidatorCollection;
 
     /**
      * Engine constructor.
      *
      * @param StorageInterface $storage
-     * @param array|null       $goalValidators
+     * @param array|null       $achievementValidators
      */
-    public function __construct(StorageInterface $storage, GoalValidatorCollection $goalValidatorCollection = null)
+    public function __construct(StorageInterface $storage, AchievementValidatorCollection $achievementValidatorCollection = null)
     {
         $this->setStorage($storage);
-        $this->goalValidatorCollection = $goalValidatorCollection ?: new GoalValidatorCollection();
+        $this->achievementValidatorCollection = $achievementValidatorCollection ?: new AchievementValidatorCollection();
     }
 
     /**
-     * @return GoalValidatorCollection
+     * @return AchievementValidatorCollection
      */
-    public function getGoalValidators()
+    public function getAchievementValidators()
     {
-        return $this->goalValidatorCollection;
+        return $this->achievementValidatorCollection;
     }
 
     /**
-     * Collects Step(s) from a Player, ensures that we always get a StepCollection
+     * Collects PersonalAction(s) from a Player, ensures that we always get a PersonalActionCollection
      *
      * @param PlayerInterface $player
      *
-     * @return StepCollection
+     * @return PersonalActionCollection
      */
-    public function getPlayerSteps(PlayerInterface $player): StepCollection
+    public function getPlayerPersonalActions(PlayerInterface $player): PersonalActionCollection
     {
-        $stepCollection = $player->getSteps();
-        if ($stepCollection instanceof StepCollection) {
-            return $stepCollection;
+        $personalActionCollection = $player->getPersonalActions();
+        if ($personalActionCollection instanceof PersonalActionCollection) {
+            return $personalActionCollection;
         }
 
-        return new StepCollection($stepCollection->toArray());
+        return new PersonalActionCollection($personalActionCollection->toArray());
     }
 
     /**
-     * Collects ActionDefinition(s) from Step(s)
+     * Collects ActionDefinition(s) from PersonalAction(s)
      *
-     * @param StepCollection $stepCollection
+     * @param PersonalActionCollection $personalActionCollection
      *
      * @return ActionDefinitionCollection
      */
-    public function extractActionDefinitions(StepCollection $stepCollection): ActionDefinitionCollection
+    public function extractActionDefinitions(PersonalActionCollection $personalActionCollection): ActionDefinitionCollection
     {
         $actionDefinitionCollection = new ActionDefinitionCollection();
 
-        foreach($stepCollection as $step) {
-            $actionDefinition = $step->getActionDefinition();
+        foreach($personalActionCollection as $personalAction) {
+            $actionDefinition = $personalAction->getActionDefinition();
             if (!$actionDefinitionCollection->contains($actionDefinition)) {
                 $actionDefinitionCollection->add($actionDefinition);
             }
@@ -88,102 +88,67 @@ class Engine
     }
 
     /**
-     * Gets GoalDefinition(s) by ActionDefinition(s)
+     * Gets AchievementDefinition(s) by ActionDefinition(s)
      *
      * @param ActionDefinitionCollection $actionDefinitionCollection
      *
-     * @return GoalDefinitionCollection
+     * @return AchievementDefinitionCollection
      */
-    public function getMatchingGoalDefinitions(
+    public function getMatchingAchievementDefinitions(
         ActionDefinitionCollection $actionDefinitionCollection
-    ): GoalDefinitionCollection
+    ): AchievementDefinitionCollection
     {
-        /** @var array|GoalDefinition[] $goalDefinitions */
-        $goalDefinitions = $this->getStorage()->findGoalDefinitionBy([]);
-        $goalDefinitionCollection = new GoalDefinitionCollection();
+        /** @var array|AchievementDefinition[] $achievementDefinitions */
+        $achievementDefinitions = $this->getStorage()->findAchievementDefinitionBy([]);
+        $achievementDefinitionCollection = new AchievementDefinitionCollection();
 
-        foreach ($goalDefinitions as $index => $goalDefinition) {
+        foreach ($achievementDefinitions as $index => $achievementDefinition) {
             $intersection = array_intersect(
-                $goalDefinition->getActionDefinitions()->toArray(),
+                $achievementDefinition->getActionDefinitions()->toArray(),
                 $actionDefinitionCollection->toArray()
             );
 
             if (count($intersection) > 0) {
-                $goalDefinitionCollection->add($goalDefinition);
+                $achievementDefinitionCollection->add($achievementDefinition);
             }
         }
 
-        return $goalDefinitionCollection;
+        return $achievementDefinitionCollection;
     }
 
     /**
      * @param PlayerInterface $player
-     * @param StepCollection $collection
+     * @param PersonalActionCollection $collection
      */
-    public function advance(PlayerInterface $player, StepCollection $collection = null): array
+    public function advance(PlayerInterface $player, PersonalActionCollection $collection = null): array
     {
         if ($collection) {
-            $this->collect($collection);
+            $this->collectPersonalActions($collection);
         }
 
-        return $this->calculate($player);
-    }
+        $personalActionCollection = $this->getPlayerPersonalActions($player);
+        $actionDefinitionCollection = $this->extractActionDefinitions($personalActionCollection);
+        $achievementDefinitionCollection = $this->getMatchingAchievementDefinitions($actionDefinitionCollection);
 
-    /**
-     * @param StepCollection $collection
-     */
-    public function collect(StepCollection $collection)
-    {
-        // Collect players to refresh them later
-        $players = [];
-        foreach($collection as $step) {
-            if (!in_array($step->getPlayer(), $players)) {
-                $players[] = $step->getPlayer();
-            }
-        }
-
-        // Persist new steps to database
-        /** @var StepInterface $step */
-        foreach($collection as $step) {
-            $this->saveStep($step);
-        }
-
-        // Refresh players
-        foreach ($players as $player) {
-            $this->refreshPlayer($player);
-        }
-    }
-
-    /**
-     * @param PlayerInterface $player
-     *
-     * @return array|PersonalAchievementInterface[]
-     */
-    public function calculate(PlayerInterface $player)
-    {
-        $stepCollection = $this->getPlayerSteps($player);
-        $actionDefinitionCollection = $this->extractActionDefinitions($stepCollection);
-        $goalDefinitionCollection = $this->getMatchingGoalDefinitions($actionDefinitionCollection);
-
-        if ($goalDefinitionCollection->count() < 1) {
+        if ($achievementDefinitionCollection->count() < 1) {
             return [];
         }
 
-        if ($this->getGoalValidators()->count() < 1) {
+        if ($this->getAchievementValidators()->count() < 1) {
             return [];
         }
 
         $personalAchievements = [];
-        foreach($this->getGoalValidators() as $goalValidator) {
-            foreach ($goalDefinitionCollection as $goalDefinition) {
-                if (!$goalValidator->supports($goalDefinition)) {
+        foreach($this->getAchievementValidators() as $achievementValidator) {
+            foreach ($achievementDefinitionCollection as $achievementDefinition) {
+                if (!$achievementValidator->supports($achievementDefinition)) {
                     continue;
                 }
-                if ($player->hasPersonalAchievement($goalDefinition)) {
+                if ($player->hasPersonalAchievement($achievementDefinition)) {
                     continue;
                 }
-                if ($goalValidator->validate($player, $goalDefinition, $stepCollection)) {
-                    $personalAchievement = new PersonalAchievement($player, $goalDefinition);
+                if ($achievementValidator->validate($player, $achievementDefinition, $personalActionCollection)) {
+                    $personalAchievement = new PersonalAchievement($player, $achievementDefinition);
                     $personalAchievements []= $personalAchievement;
 
                     $this->savePersonalAchievement($personalAchievement);
@@ -193,5 +158,30 @@ class Engine
         }
 
         return $personalAchievements;
+    }
+
+    /**
+     * @param PersonalActionCollection $collection
+     */
+    public function collectPersonalActions(PersonalActionCollection $collection)
+    {
+        // Collect players to refresh them later
+        $players = [];
+        foreach($collection as $personalAction) {
+            if (!in_array($personalAction->getPlayer(), $players)) {
+                $players[] = $personalAction->getPlayer();
+            }
+        }
+
+        // Persist new personalActions to database
+        /** @var PersonalActionInterface $personalAction */
+        foreach($collection as $personalAction) {
+            $this->savePersonalAction($personalAction);
+        }
+
+        // Refresh players
+        foreach ($players as $player) {
+            $this->refreshPlayer($player);
+        }
     }
 }

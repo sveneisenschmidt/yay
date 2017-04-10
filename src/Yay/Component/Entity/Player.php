@@ -5,9 +5,9 @@ namespace Yay\Component\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as CollectionInterface;
 
-use Yay\Component\Entity\Achievement\GoalDefinitionInterface;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalAchievementInterface;
-use Yay\Component\Entity\Achievement\StepCollection;
+use Yay\Component\Entity\Achievement\PersonalActionCollection;
 use Yay\Component\Entity\PlayerInterface;
 
 class Player implements PlayerInterface
@@ -33,9 +33,9 @@ class Player implements PlayerInterface
     protected $email;
 
     /**
-     * @var StepCollection
+     * @var PersonalActionCollection
      */
-    protected $steps;
+    protected $personalActions;
 
     /**
      * @var array|PersonalAchievementInterface[]
@@ -47,7 +47,7 @@ class Player implements PlayerInterface
      */
     public function __construct()
     {
-        $this->steps = new ArrayCollection();
+        $this->personalActions = new ArrayCollection();
         $this->personalAchievements = new ArrayCollection();
     }
 
@@ -101,9 +101,9 @@ class Player implements PlayerInterface
     /**
      * {@inheritDoc}
      */
-    public function getSteps(): CollectionInterface
+    public function getPersonalActions(): CollectionInterface
     {
-        return $this->steps;
+        return $this->personalActions;
     }
 
     /**
@@ -115,15 +115,15 @@ class Player implements PlayerInterface
     }
 
     /**
-     * @param GoalDefinitionInterface $goalDefinition
+     * @param AchievementDefinitionInterface $achievementDefinition
      *
      * @return bool
      */
-    public function hasPersonalAchievement(GoalDefinitionInterface $goalDefinition): bool
+    public function hasPersonalAchievement(AchievementDefinitionInterface $achievementDefinition): bool
     {
         /** @var PersonalAchievementInterface $personalAchievement */
         foreach($this->getPersonalAchievements() as $personalAchievement) {
-            if ($personalAchievement->getGoalDefinition()->getName() == $goalDefinition->getName()) {
+            if ($personalAchievement->getAchievementDefinition()->getName() == $achievementDefinition->getName()) {
                 return true;
             }
         }

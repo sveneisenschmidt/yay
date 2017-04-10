@@ -1,20 +1,20 @@
 parameters: ~
 
 services:
-  # Demo Goal Validators
-  yay.goal_validation.validator.demo_achievement_1:
-    class:  '%yay.goal_validation.validator.expression_language.class%'
+  # Demo Achievement Validators
+  yay.achievement_validation.validator.demo_achievement_1:
+    class:  '%yay.achievement_validation.validator.expression_language.class%'
     arguments:
       - >
-        goal.getName() in ['yay.goal.demo_achievement_1'] and
-        filteredSteps.count() >= 5
+        achievement.getName() in ['yay.achievement.demo_achievement_1'] and
+        filteredPersonalActions.count() >= 5
     tags:
-        - { name: yay.goal_validator }
-  yay.goal_validation.validator.demo_achievement_2:
-    class:  '%yay.goal_validation.validator.expression_language.class%'
+        - { name: yay.achievement_validator }
+  yay.achievement_validation.validator.demo_achievement_2:
+    class:  '%yay.achievement_validation.validator.expression_language.class%'
     arguments:
       - >
-        goal.getName() in ['yay.goal.demo_achievement_2'] and
-        filteredSteps.count() >= 10
+        achievement.getName() in ['yay.achievement.demo_achievement_2'] and
+        filteredPersonalActions.count() >= 10
     tags:
-        - { name: yay.goal_validator }
+        - { name: yay.achievement_validator }

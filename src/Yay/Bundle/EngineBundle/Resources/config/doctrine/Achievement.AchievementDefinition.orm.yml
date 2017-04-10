@@ -1,6 +1,6 @@
-Yay\Component\Entity\Achievement\GoalDefinition:
+Yay\Component\Entity\Achievement\AchievementDefinition:
   type: entity
-  table: goal_definition
+  table: achievement_definition
   # Primary Key
   id:
     name:
@@ -13,14 +13,14 @@ Yay\Component\Entity\Achievement\GoalDefinition:
   oneToMany:
     personalAchievements:
       targetEntity: 'Yay\Component\Entity\Achievement\PersonalAchievement'
-      mappedBy: goalDefinition
+      mappedBy: achievementDefinition
   manyToMany:
     actionDefinitions:
       targetEntity: 'Yay\Component\Entity\Achievement\ActionDefinition'
       joinTable:
-        name: goal_action_definition
+        name: achievement_action_definition
         joinColumns:
-          goal_definition:
+          achievement_definition:
             referencedColumnName: name
         inverseJoinColumns:
           action_definition:

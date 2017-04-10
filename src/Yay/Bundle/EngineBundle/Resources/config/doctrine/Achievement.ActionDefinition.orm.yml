@@ -9,6 +9,6 @@ Yay\Component\Entity\Achievement\ActionDefinition:
   fields: ~
   # Relationships
   oneToMany:
-    steps:
-      targetEntity: 'Yay\Component\Entity\Achievement\Step'
+    personalActions:
+      targetEntity: 'Yay\Component\Entity\Achievement\PersonalAction'
       mappedBy: actionDefinition

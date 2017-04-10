@@ -4,11 +4,11 @@ namespace Yay\Component\Entity\Achievement;
 
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
-use Yay\Component\Entity\Achievement\StepInterface;
+use Yay\Component\Entity\Achievement\PersonalActionInterface;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 
-class Step implements StepInterface
+class PersonalAction implements PersonalActionInterface
 {
     /**
      * @var integer
@@ -31,7 +31,7 @@ class Step implements StepInterface
     protected $player;
 
     /**
-     * AchievementStep constructor.
+     * AchievementPersonalAction constructor.
      *
      * @param PlayerInterface           $user
      * @param ActionDefinitionInterface $actionDefinition
