@@ -243,10 +243,10 @@ _Submit a payload to update a users progress_
 {
     "player": "jane.doe",
     "actions": [
-        'yay.action.demo_action',
-        'yay.action.demo_action',
-        'yay.action.demo_action',
-        'yay.action.demo_action'
+        "yay.action.demo_action",
+        "yay.action.demo_action",
+        "yay.action.demo_action",
+        "yay.action.demo_action"
     ]
 }
 ```

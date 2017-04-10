@@ -157,7 +157,7 @@ import-demo:
 
 dump-api-docs:
 	# Dump the api documentation
-	@$(COMPOSE) run --rm cli bash -c 'php bin/console api:doc:dump' > API.md
+	@$(COMPOSE) run --rm cli bash -c 'php bin/console api:doc:dump' > docs/API.md
 
 
 test: install-database

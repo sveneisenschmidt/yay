@@ -32,7 +32,7 @@ class LoadDemoData extends AbstractFixture implements OrderedFixtureInterface, C
     public function load(ObjectManager $manager)
     {
         $this->loadFixtures($manager);
-        $this->calculateAchievements($manager);
+        // $this->calculateAchievements($manager);
 
     }
 
@@ -63,14 +63,6 @@ class LoadDemoData extends AbstractFixture implements OrderedFixtureInterface, C
         foreach ($players as $player) {
             $manager->refresh($player);
             $achievements = $engine->advance($player);
-            print sprintf('  > Player %s:%s', $player->getUsername(), PHP_EOL);
-            if (count($achievements) > 0) {
-                foreach ($achievements as $achievement) {
-                    print sprintf('   - Achievement %s granted.%s', $achievement->getGoalDefinition()->getName(), PHP_EOL);
-                }
-            } else {
-                print sprintf('   - No achievements granted.%s', PHP_EOL);
-            }
         }
     }
 

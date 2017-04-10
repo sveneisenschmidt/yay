@@ -10,3 +10,6 @@ jms_serializer:
             yay:
                 namespace_prefix: 'Yay\Component\Entity'
                 path: "@ApiBundle/Resources/config/serializer"
+    visitors:
+            json:
+                options: 192

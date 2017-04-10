@@ -37,7 +37,8 @@ $ make import-demo
 $ make test
 ```
 
-## API Documentation
+## Resources
 
-Browse the API documentation at [API.md](API.md).
-
+* [API Documentation](docs/API.md)
+* [Demo examples](docs/DEMO.md)
+* [ToDos](docs/TODO.md)
