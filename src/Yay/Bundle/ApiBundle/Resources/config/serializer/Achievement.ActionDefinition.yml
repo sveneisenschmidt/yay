@@ -6,3 +6,15 @@ Yay\Component\Entity\Achievement\ActionDefinition:
         - 'action.show'
         - 'achievement.index'
         - 'achievement.show'
+    label:
+      groups:
+        - 'action.index'
+        - 'action.show'
+        - 'achievement.index'
+        - 'achievement.show'
+    description:
+      groups:
+        - 'action.show'
+        - 'achievement.show'
+
+

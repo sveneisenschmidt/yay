@@ -2,6 +2,8 @@ Yay\Component\Entity\Achievement\ActionDefinition:
     action_definition:
         __construct:
           - 'yay.action.demo_action'
+        label: <sentence()>
+        description: <text(255)>
 
 Yay\Component\Entity\Achievement\AchievementDefinition:
     achievement_definition{1..2}:
@@ -9,6 +11,8 @@ Yay\Component\Entity\Achievement\AchievementDefinition:
           - 'yay.achievement.demo_achievement_<current()>'
         __calls:
           - addActionDefinition: [ '@action_definition' ]
+        label: <sentence()>
+        description: <text(255)>
 
 Yay\Component\Entity\Player:
     player1:

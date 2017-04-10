@@ -22,6 +22,8 @@ class AchievementControllerTest extends WebTestCase
 
         foreach ($data as $key => $value) {
             $this->assertArrayHasKey('name', $value);
+            $this->assertArrayHasKey('label', $value);
+            $this->assertArrayNotHasKey('description', $value);
             $this->assertArraySubsetHasKey('links', 'self', $value);
             $this->assertArraySubsetHasKey('links', 'actions', $value);
         }
@@ -43,6 +45,8 @@ class AchievementControllerTest extends WebTestCase
         $this->assertNotEmpty($data);
 
         $this->assertArrayHasKey('name', $data);
+        $this->assertArrayHasKey('label', $data);
+        $this->assertArrayHasKey('description', $data);
         $this->assertArraySubsetHasKey('links', 'self', $data);
         $this->assertArraySubsetHasKey('links', 'actions', $data);
     }

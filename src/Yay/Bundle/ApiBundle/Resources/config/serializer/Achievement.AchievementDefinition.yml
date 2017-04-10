@@ -2,12 +2,17 @@ Yay\Component\Entity\Achievement\AchievementDefinition:
   exclusion_policy: ALL
   properties:
     name:
-      expose: true
       groups:
         - 'achievement.index'
         - 'achievement.show'
+    label:
+      groups:
+        - 'achievement.index'
+        - 'achievement.show'
+    description:
+      groups:
+        - 'achievement.show'
     createdAt:
-      expose: true
       groups:
         - 'achievement.show'
 

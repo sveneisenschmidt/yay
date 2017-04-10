@@ -22,6 +22,8 @@ class ActionControllerTest extends WebTestCase
 
         foreach ($data as $key => $value) {
             $this->assertArrayHasKey('name', $value);
+            $this->assertArrayHasKey('label', $value);
+            $this->assertArrayNotHasKey('description', $value);
             $this->assertArraySubsetHasKey('links', 'self', $value);
         }
     }
@@ -42,6 +44,8 @@ class ActionControllerTest extends WebTestCase
         $this->assertNotEmpty($data);
 
         $this->assertArrayHasKey('name', $data);
+        $this->assertArrayHasKey('label', $data);
+        $this->assertArrayHasKey('description', $data);
         $this->assertArraySubsetHasKey('links', 'self', $data);
     }
 }

@@ -14,6 +14,16 @@ class ActionDefinition implements ActionDefinitionInterface
     protected $name;
 
     /**
+     * @var string
+     */
+    protected $label = '';
+
+    /**
+     * @var string
+     */
+    protected $description = '';
+
+    /**
      * @var array|PersonalActionInterface[]
      */
     protected $personalActions;
@@ -35,6 +45,38 @@ class ActionDefinition implements ActionDefinitionInterface
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
+
+    /**
+     * @param string $label
+     */
+    public function setLabel(string $label)
+    {
+        $this->label = $label;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
     }
 
     /**

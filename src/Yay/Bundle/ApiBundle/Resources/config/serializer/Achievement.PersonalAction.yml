@@ -9,4 +9,12 @@ Yay\Component\Entity\Achievement\PersonalAction:
       exp: object.getActionDefinition().getName()
       groups:
         - 'player.personal_actions.show'
+    label:
+      exp: object.getActionDefinition().getName()
+      groups:
+        - 'player.personal_actions.show'
+    description:
+      exp: object.getActionDefinition().getName()
+      groups:
+        - 'player.personal_actions.show'
 

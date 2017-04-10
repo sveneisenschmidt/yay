@@ -20,4 +20,24 @@ interface AchievementDefinitionInterface
      * @return \DateTime
      */
     public function getCreatedAt(): \DateTime;
+
+    /**
+     * @return string
+     */
+    public function getLabel(): string;
+
+    /**
+     * @param string $label
+     */
+    public function setLabel(string $label);
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string;
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description);
 }

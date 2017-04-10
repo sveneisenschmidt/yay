@@ -13,3 +13,16 @@ Yay\Component\Entity\Achievement\PersonalAchievement:
         - 'player.show'
         - 'player.personal_achievements.show'
         - 'progress.submit'
+    label:
+      exp: object.getAchievementDefinition().getName()
+      groups:
+        - 'player.show'
+        - 'player.personal_achievements.show'
+        - 'progress.submit'
+    description:
+      exp: object.getAchievementDefinition().getName()
+      groups:
+        - 'player.show'
+        - 'player.personal_achievements.show'
+        - 'progress.submit'
+

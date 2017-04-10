@@ -9,6 +9,10 @@ Yay\Component\Entity\Achievement\AchievementDefinition:
   fields:
     createdAt:
       type: datetime
+    label:
+      type: string
+    description:
+      type: string
   # Relationships
   oneToMany:
     personalAchievements:

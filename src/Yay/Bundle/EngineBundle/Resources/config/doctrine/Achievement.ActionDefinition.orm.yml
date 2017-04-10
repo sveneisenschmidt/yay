@@ -6,7 +6,11 @@ Yay\Component\Entity\Achievement\ActionDefinition:
     name:
       type: string
   # Columns
-  fields: ~
+  fields:
+    label:
+      type: string
+    description:
+      type: string
   # Relationships
   oneToMany:
     personalActions:

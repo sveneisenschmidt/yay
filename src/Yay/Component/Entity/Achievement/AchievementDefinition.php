@@ -20,6 +20,16 @@ class AchievementDefinition implements AchievementDefinitionInterface
     protected $name;
 
     /**
+     * @var string
+     */
+    protected $label = '';
+
+    /**
+     * @var string
+     */
+    protected $description = '';
+
+    /**
      * @var \DateTime
      */
     protected $createdAt;
@@ -77,5 +87,37 @@ class AchievementDefinition implements AchievementDefinitionInterface
     public function addActionDefinition(ActionDefinitionInterface $actionDefinition)
     {
         $this->actionDefinitions->add($actionDefinition);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
+
+    /**
+     * @param string $label
+     */
+    public function setLabel(string $label)
+    {
+        $this->label = $label;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
     }
 }
