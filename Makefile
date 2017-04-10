@@ -6,7 +6,7 @@ SHELL := bash
 .DEFAULT_GOAL := all
 .DELETE_ON_ERROR:
 .SUFFIXES:
-.PHONY: .preflight-check
+.PHONY: .all-preflight-check
 
 # Variables
 BASH := bash
@@ -168,7 +168,7 @@ restart: stop run
 
 run:
 	# Start all containers
-	@$(COMPOSE) up -d web 
+	@$(COMPOSE) up -d web
 	#
 	# The application should be up and running
 	#   API:          http://localhost:50080/api/doc
