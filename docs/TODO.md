@@ -17,3 +17,5 @@ Gamification done simple.
     - [x] Autoloadung and persitance of goals and actions
     - [x] Autoregistration and wiring of validators
 - [ ] Draft Webhooks
+- [ ] add leaderboards
+- [ ] add points, levels
