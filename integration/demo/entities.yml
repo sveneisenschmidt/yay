@@ -15,17 +15,7 @@ Yay\Component\Entity\Achievement\AchievementDefinition:
         description: <text(255)>
 
 Yay\Component\Entity\Player:
-    player1:
+    player:
         username: 'jane.doe'
         name: 'Jane Doe'
         email: 'jane.doe@trivago.com'
-    player{2..5}:
-        username: '<username()>'
-        name: '<firstName()> <lastName()>'
-        email: '<email()>'
-
-#Yay\Component\Entity\Achievement\PersonalAction:
-#    personalAction{1..5}:
-#        __construct:
-#          - '@player1'
-#          - '@action_definition'

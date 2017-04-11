@@ -5,10 +5,42 @@ Gamification done simple.
 
 ## Demo
 
-Import demo data and run the application
+Import demo data
+
 ```bash
-make import-demo
-make run
+$ make import-demo
+```
+_Output:_
+
+```bash
+# Import Demo Fixtures
+Services: Creating symlink.
+- Skipping symlink creation. Already created.
+Entities: Persisting entities.
+- Skipping ActionDefinition yay.action.demo_action. Already installed.
+- Skipping AchievementDefinition yay.achievement.demo_achievement_1. Already installed.
+- Skipping AchievementDefinition yay.achievement.demo_achievement_2. Already installed.
+- Skipping Player Jane Doe. Already installed.
+# Clean application cache
+OK (dev)
+OK (test)
+    ```
+
+Run the application
+```bash
+$ make run
+```
+_Output:_
+```bash
+# Start all containers
+yay_redis_1 is up-to-date
+yay_mysqldb_1 is up-to-date
+yay_web_1 is up-to-date
+#
+# The application should be up and running
+#   API:          http://localhost:50080/api/doc
+#   MySQL Server: localhost:53306
+#   Redis Server: localhost:56379
 ```
 
 1\) Make a request to [localhost:50080/api/players](http://localhost:50080/api/players). 
@@ -97,7 +129,7 @@ curl -X "POST" http://localhost:50080/api/progress/ \
             "achievement": "http://localhost:50080/api/achievements/yay.goal.demo_achievement_2"
         }
     }
-]⏎
+]
 ```
 The player should now have earned the `yay.goal.demo_achievement_1` achievement. By repearing step **5)** you can earn
 the `yay.goal.demo_achievement_2` as well.

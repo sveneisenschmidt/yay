@@ -12,8 +12,8 @@ Gamification done simple.
 - [ ] Introduce AchievementValidatorFilter via Tags (wraps Validators)
 - [x] Introduce label, description on Achievement- and ActionDefinition
 - [ ] Introduce BinaryResource as Relation for Achievement- and ActionDefinition
-- [ ] Refactor DemoBundle 
-    - [ ] Should work like a future third party bundle
-    - [ ] Autoloadung and persitance of goals and actions
-    - [ ] Autoregistration and wiring of validators
+- [x] Refactor DemoBundle 
+    - [x] Should work like a future third party bundle
+    - [x] Autoloadung and persitance of goals and actions
+    - [x] Autoregistration and wiring of validators
 - [ ] Draft Webhooks

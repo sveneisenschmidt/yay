@@ -122,8 +122,8 @@ build:
 
 clean-caches:
 	# Clean application cache
-	@$(COMPOSE) run --rm cli bash -c 'php bin/console cache:clear --env=dev --no-warmup'
-	@$(COMPOSE) run --rm cli bash -c 'php bin/console cache:clear --env=test --no-warmup'
+	@$(COMPOSE) run --rm cli bash -c 'php bin/console cache:clear --env=dev --no-warmup --quiet && echo "OK (dev)"'
+	@$(COMPOSE) run --rm cli bash -c 'php bin/console cache:clear --env=test --no-warmup --quiet && echo "OK (test)"'
 
 clean-logs:
 	# Clean all log files
@@ -151,10 +151,19 @@ install-database:
 	# Create the database schema
 	@$(COMPOSE) run --rm cli bash -c 'php bin/console doctrine:schema:create --em=default'
 
-import-demo:
+import-demo: .import-demo-fixtures clean-caches
+
+.import-demo-fixtures:
 	# Import Demo Fixtures
 	@$(COMPOSE) run --rm cli bash -c \
-		'php bin/console doctrine:fixtures:load --fixtures=src/Yay/Bundle/DemoBundle -em=default --no-interaction'
+		'php bin/console yay:integration:install integration/demo'
+
+remove-demo: .remove-demo-fixtures clean-caches
+
+.remove-demo-fixtures:
+	# Remove Demo Fixtures
+	@$(COMPOSE) run --rm cli bash -c \
+		'php bin/console yay:integration:uninstall integration/demo'
 
 dump-api-docs:
 	# Dump the api documentation

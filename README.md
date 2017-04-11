@@ -41,4 +41,5 @@ $ make test
 
 * [API Documentation](docs/API.md)
 * [Demo examples](docs/DEMO.md)
+* [Integration](docs/INTEGRATION.md)
 * [ToDos](docs/TODO.md)

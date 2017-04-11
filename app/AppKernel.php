@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Yay\Bundle\ApiBundle\ApiBundle(),
-            new Yay\Bundle\DemoBundle\DemoBundle(),
             new Yay\Bundle\EngineBundle\EngineBundle(),
         ];
 
