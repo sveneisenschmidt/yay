@@ -13,13 +13,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Yay\\": "src/"
+            "Yay\\": "src/",
             "Tests\\": "tests/"
         }
     },
     "require": {
         "php": ">=5.6",
-        "symfony/symfony": "^3.2",
+        "symfony/symfony": "~3.3",
         "doctrine/orm": "~2.5",
         "doctrine/doctrine-bundle": "~1.6",
         "doctrine/doctrine-cache-bundle": "~1.2",
@@ -29,32 +29,23 @@
         "sensio/distribution-bundle": "~5.0",
         "sensio/framework-extra-bundle": "~3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "~1.1",
+        "nelmio/api-doc-bundle": "^2.13",
+        "jms/serializer-bundle": "^1.3",
+        "snc/redis-bundle": "~2.0",
+        "symfony/yaml": "~3.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
         "symfony/phpunit-bridge": "~3.0",
-        "phpunit/phpunit": "~5.5"
+        "phpunit/phpunit": "~6.0",
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "nelmio/alice": "~3.0"
     },
     "scripts": {
-        "post-install-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-        ],
-        "post-update-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-        ]
     },
     "config": {
+        "cache-dir": ".build/cache",
         "preferred-install": {
             "*": "dist"
         }
@@ -65,9 +56,6 @@
         "symfony-var-dir": "var",
         "symfony-web-dir": "web",
         "symfony-tests-dir": "tests",
-        "symfony-assets-install": "relative",
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
-        }
+        "symfony-assets-install": "relative"
     }
 }

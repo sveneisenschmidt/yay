@@ -1,0 +1,9 @@
+include:
+  - Test.Default.yml
+  - Test.Player_PersonalActions_IndexAction.yml
+
+Yay\Component\Entity\Achievement\PersonalAchievement:
+    achievement:
+        __construct:
+          - '@player'
+          - '@achievement_definition'

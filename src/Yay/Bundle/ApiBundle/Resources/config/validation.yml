@@ -1,0 +1,16 @@
+Yay\Component\Entity\Player:
+    properties:
+        name:
+            - NotBlank: ~
+        username:
+            - NotBlank: ~
+            - Regex:
+                pattern: '/^[A-z\.-_]+$/'
+                match:   true
+        imageUrl:
+            - Url:
+                message: The url "{{ value }}" is not a valid url.
+        email:
+            - Email:
+                message: The email "{{ value }}" is not a valid email.
+                checkMX: false

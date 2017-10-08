@@ -1,0 +1,45 @@
+Yay\Component\Entity\Player:
+    player1:
+        username: '<username()>'
+        name: '<firstName()> <lastName()>'
+        email: '<email()>'
+        score: 100
+        imageUrl: 'https://placehold.it/512x512/007daa/ffffff'
+    player2:
+        username: '<username()>'
+        name: '<firstName()> <lastName()>'
+        email: '<email()>'
+        score: 50
+        imageUrl: 'https://placehold.it/512x512/007daa/ffffff'
+    player{3..5}:
+        username: '<username()>'
+        name: '<firstName()> <lastName()>'
+        email: '<email()>'
+        imageUrl: 'https://placehold.it/512x512/007daa/ffffff'
+
+Yay\Component\Entity\Achievement\ActionDefinition:
+    action_definition:
+        __construct:
+          - 'yay.action.test_action'
+
+Yay\Component\Entity\Achievement\AchievementDefinition:
+    achievement_definition:
+        __construct:
+          - 'yay.achievement.test_achievement'
+        __calls:
+          - addActionDefinition: [ '@action_definition' ]
+        points: 50
+
+Yay\Component\Entity\Achievement\PersonalAchievement:
+    achievement_1:
+        __construct:
+          - '@player1'
+          - '@achievement_definition'
+    achievement_2:
+        __construct:
+          - '@player1'
+          - '@achievement_definition'
+    achievement_3:
+        __construct:
+          - '@player2'
+          - '@achievement_definition'

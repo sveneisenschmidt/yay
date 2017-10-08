@@ -1,0 +1,24 @@
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     '%database_host%'
+        port:     '%database_port%'
+        dbname:   '%database_name%'
+        user:     '%database_user%'
+        password: '%database_password%'
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        default_entity_manager: default
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: false
+                connection: default
+                mappings:
+                    yay_engine:
+                      type: yml
+                      prefix: Yay\Component\Entity
+                      dir: '%kernel.root_dir%/../src/Yay/Bundle/EngineBundle/Resources/config/doctrine'
+                      is_bundle: false

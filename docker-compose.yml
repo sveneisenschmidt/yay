@@ -1,62 +1,51 @@
-version: "2"
-services:
-    # Web Server
-    web:
-        build:
-          context: .
-          dockerfile: docker/Dockerfile-web
-        command: "php bin/console server:run 0.0.0.0:80"
-        ports:
-            - "9406:80"
-        volumes:
-            - ./:/data
-            - app-var-cache:/data/var/cache
-            - app-var-sessions:/data/var/sessions
-            - app-var-logs:/data/var/logs
-            - app-vendor:/data/vendor
-            - app-node_modules:/data/node_modules
-        links:
-            - db
-            - redis
-        working_dir: "/data"
-        environment:
-            APPLICATION_ENV: dev
+# Web Server
+web:
+    build: ./
+    command: "php bin/console server:run 0.0.0.0:80"
+    ports:
+        - "50080:80"
+        - "58080:8080"
+    links:
+        - mysqldb
+        - redis
+    volumes:
+        - ./:/data:cached
+    working_dir: "/data"
+    environment:
+        DATABASE_HOST: mysqldb
+        DATABASE_NAME: dev
+        DATABASE_USER: root
+        DATABASE_PASSWORD: root
+        REDIS_HOST: redis
+        REDIS_PORT: 6379
 
-    # Command Line Tools
-    cli:
-        build:
-            context: .
-            dockerfile: docker/Dockerfile-cli
-        volumes:
-            - ./:/data
-            - app-var-cache:/data/var/cache
-            - app-var-sessions:/data/var/sessions
-            - app-var-logs:/data/var/logs
-            - app-vendor:/data/vendor
-            - app-node_modules:/data/node_modules
-        links:
-            - db
-            - redis
-        working_dir: "/data"
+# Command Line Tools
+cli:
+    build: ./
+    links:
+        - mysqldb
+        - redis
+    volumes:
+        - ./:/data:cached
+    working_dir: "/data"
+    environment:
+        DATABASE_HOST: mysqldb
+        DATABASE_NAME: dev
+        DATABASE_USER: root
+        DATABASE_PASSWORD: root
+        REDIS_HOST: redis
+        REDIS_PORT: 6379
 
-    # Database
-    db:
-        image: mysql:5.7
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: dev
-        ports:
-            - "4407:3306"
-
-    # Redis
-    redis:
-        image: redis:latest
-        ports:
-            - "4408:6379"
-
-volumes:
-    app-var-cache:
-    app-var-sessions:
-    app-var-logs:
-    app-vendor:
-    app-node_modules:
+# MySQL
+mysqldb:
+    image: mysql:5.7
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: dev
+    ports:
+        - "53306:3306"
+# Redis
+redis:
+    image: redis:latest
+    ports:
+        - "56379:6379"

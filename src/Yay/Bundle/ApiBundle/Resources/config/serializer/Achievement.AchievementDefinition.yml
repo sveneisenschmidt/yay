@@ -1,0 +1,22 @@
+Yay\Component\Entity\Achievement\AchievementDefinition:
+  exclusion_policy: ALL
+  properties:
+    name:
+      groups:
+        - 'achievement.index'
+        - 'achievement.show'
+    label:
+      groups:
+        - 'achievement.index'
+        - 'achievement.show'
+    description:
+      groups:
+        - 'achievement.show'
+    createdAt:
+      groups:
+        - 'achievement.show'
+    points:
+      groups:
+        - 'achievement.index'
+        - 'achievement.show'
+

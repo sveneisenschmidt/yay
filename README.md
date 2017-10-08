@@ -1,12 +1,25 @@
-yay
-===
+# What is Yay?
 
-# Installation
-```
-$ make install
-```
+Yay is an **gamification engine**, exposing a web service API, for integrating any kinds of gamification features into your organisation. Yay originally started as a hackathon project at [trivago](https://github.com/trivago) to bring gamification features to [trivago](https://github.com/trivago). Yay offers extension points to write your own integrations for connecting applications with Yay.
 
-# Help
-```
-$ make
-```
+## Yay Documentation
+How-to-use, installation instructions, getting started guides, and extension documentation:
+
+* [Read the documentation](docs/documentation.md)
+
+## Installation
+
+Yay is tested and packable to run through Docker on any operating system that supports Docker.
+
+* [Installation instructions](docs/installation.md)
+* [Releases on github.com](https://github.com/sveneisenschmidt/yay/releases)
+
+
+## Get Yay Support and Help
+
+**Reporting Issues**: To report an issue with Yay, please create an Issue here on github: https://github.com/sveneisenschmidt/yay/issues
+
+
+## License
+
+This project is released under the terms of the [Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0).

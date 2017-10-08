@@ -1,0 +1,13 @@
+Yay\Component\Entity\BinaryResource:
+  type: entity
+  table: binary_resource
+  # Primary Key
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  # Columns
+  fields:
+    data:
+      type: blob

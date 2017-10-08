@@ -1,0 +1,20 @@
+Yay\Component\Entity\Achievement\PersonalAction:
+  exclusion_policy: ALL
+  properties:
+    achievedAt:
+      groups:
+        - 'player.personal_actions.show'
+  virtual_properties:
+    name:
+      exp: object.getActionDefinition().getName()
+      groups:
+        - 'player.personal_actions.show'
+    label:
+      exp: object.getActionDefinition().getName()
+      groups:
+        - 'player.personal_actions.show'
+    description:
+      exp: object.getActionDefinition().getName()
+      groups:
+        - 'player.personal_actions.show'
+

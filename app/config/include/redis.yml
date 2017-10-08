@@ -1,0 +1,30 @@
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: redis://%redis_host%:%redis_port%/1
+        session:
+            type: predis
+            alias: session
+            dsn: redis://%redis_host%:%redis_port%/2
+        cache:
+            type: predis
+            alias: cache
+            dsn: redis://%redis_host%:%redis_port%/3
+    session:
+        client: session
+    doctrine:
+        metadata_cache:
+            client: cache
+            entity_manager: default
+            document_manager: default
+        result_cache:
+            client: cache
+            entity_manager: default
+        query_cache:
+            client: cache
+            entity_manager: default
+        second_level_cache:
+            client: cache
+            entity_manager: default

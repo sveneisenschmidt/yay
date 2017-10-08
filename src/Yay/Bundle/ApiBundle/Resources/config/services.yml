@@ -1,0 +1,37 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Yay\Bundle\ApiBundle\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
+
+    Yay\Bundle\ApiBundle\Response\ResponseSerializer: ~
+    Yay\Bundle\ApiBundle\Validator\EntityValidator: ~
+
+    Yay\Component\HttpFoundation\Request\ParamConverter\QueryStringConverter:
+        tags:
+            - { name: request.param_converter, priority: -2, converter: QueryString }
+    Yay\Component\HttpFoundation\Request\ParamConverter\HeaderFieldConverter:
+        tags:
+            - { name: request.param_converter, priority: -2, converter: HeaderField }
+    Yay\Component\HttpFoundation\Request\ParamConverter\JsonFieldConverter:
+        tags:
+            - { name: request.param_converter, priority: -2, converter: JsonField }
+    Yay\Component\HttpFoundation\Request\ParamConverter\DeserializeFieldConverter:
+        tags:
+            - { name: request.param_converter, priority: -2, converter: DeserializeField }
+
+    Yay\Bundle\ApiBundle\Serializer\EventListener\LinkListener:
+        public: true
+        tags:
+            - { name: jms_serializer.event_listener, event: serializer.post_serialize, method: onPostSerialize, direction: serialization }
+
+    yay.achievement.test_achievement:
+        class: Yay\Component\Engine\AchievementValidator\Validator\ExpressionLanguageValidator
+        arguments:
+            - >
+                achievement.getName() in ['yay.achievement.test_achievement'] and
+                filteredPersonalActions.count() >= 5
