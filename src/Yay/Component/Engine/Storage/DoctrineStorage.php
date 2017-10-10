@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection as CollectionInterface;
 
 use Yay\Component\Engine\StorageInterface;
 use Yay\Component\Entity\Achievement\ActionDefinition;
+use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
 use Yay\Component\Entity\Achievement\ActionDefinitionCollection;
 use Yay\Component\Entity\Achievement\AchievementDefinition;
 use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
@@ -38,7 +39,7 @@ class DoctrineStorage implements StorageInterface
     /**
      * {@inheritDoc}
      */
-    public function findPlayer(int $id)
+    public function findPlayer(int $id): ?PlayerInterface
     {
         return $this->manager->getRepository(Player::class)->find($id);
     }
@@ -55,7 +56,7 @@ class DoctrineStorage implements StorageInterface
     /**
      * {@inheritDoc}
      */
-    public function findAchievementDefinition(int $id)
+    public function findAchievementDefinition(int $id): ?AchievementDefinitionInterface
     {
         return $this->manager->getRepository(AchievementDefinition::class)->find($id);
     }
@@ -72,7 +73,7 @@ class DoctrineStorage implements StorageInterface
     /**
      * {@inheritDoc}
      */
-    public function findActionDefinition(int $id)
+    public function findActionDefinition(int $id): ?ActionDefinitionInterface
     {
         return $this->manager->getRepository(ActionDefinition::class)->find($id);
     }

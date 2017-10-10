@@ -58,7 +58,6 @@ class ExpressionLanguageValidator implements AchievementValidatorInterface
                 return $personalAction->getAchievedAt() >= $achievementDefinition->getCreatedAt();
             });
 
-        var_dump($this->expression);
         return $this->language->evaluate(
             $this->expression,
             [

@@ -21,7 +21,7 @@ interface StorageInterface
      *
      * @return PlayerInterface|null
      */
-    public function findPlayer(int $id);
+    public function findPlayer(int $id): ?PlayerInterface;
 
     /**
      * @param array $criteria
@@ -59,7 +59,7 @@ interface StorageInterface
      *
      * @return ActionDefinitionInterface|null
      */
-    public function findActionDefinition(int $id);
+    public function findActionDefinition(int $id): ?ActionDefinitionInterface;
 
     /**
      * @param array $criteria
