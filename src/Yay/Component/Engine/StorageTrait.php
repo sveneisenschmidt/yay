@@ -41,9 +41,9 @@ trait StorageTrait
     /**
      * @param int $id
      *
-     * @return null|PlayerInterface
+     * @return PlayerInterface|null
      */
-    public function findPlayer(int $id)
+    public function findPlayer(int $id): ?PlayerInterface
     {
         return $this->getStorage()->findPlayer($id);
     }
