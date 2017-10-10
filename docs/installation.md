@@ -2,11 +2,11 @@
 
 ## From source
 
-Local development is supported through `make` and powered Docker. To see all provided commands run `make`. For installing the local development environment, clone from source and install the application first, then start it.
+Local development is supported through `make` and powered by Docker. To see all provided commands run `make`. For installing the local development environment, clone from source and install the application first, then start it.
 
 ```bash
-git clone git@github.com:sveneisenschmidt/yay-api.git yay-api
-cd yay-api
+git clone git@github.com:sveneisenschmidt/yay.git yay
+cd yay
 
 make install
 make start
