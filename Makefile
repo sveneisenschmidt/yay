@@ -41,7 +41,9 @@ cleanall: .clean-project .clean-containers .clean-images
 
 install: build .application-install-dependencies .application-install-database
 
-build: .docker-build-images .application-build-docs
+build: .docker-build-images
+
+build-docs: .application-build-docs
 
 test: .application-test
 
