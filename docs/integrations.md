@@ -12,11 +12,11 @@ touch integration/mycompany/entities.yml
 touch integration/mycompany/services.yml
 ```
 
-# Actions & Achivements
+# Actions & Achievements
 
 ## Actions
 
-Actions are of type [ActionDefinition](../src/Yay/Component/Entity/Achievement/ActionDefinition.php) and need to be imported to the database during installation. Let us assume you want to add a new achievement `mycompany-action-01`, for this we need to extend our `entities.yml` file.
+Actions are of type [ActionDefinition](../src/Yay/Component/Entity/Achievement/ActionDefinition.php) and need to be imported to the database during installation. Let us assume you want to add a new action `mycompany-action-01`, for this we need to extend our `entities.yml` file.
 
 ```yaml
 Yay/Component/Entity/Achievement/AchievementDefinition:
@@ -37,7 +37,7 @@ Yay/Component/Entity/Achievement/AchievementDefinition:
         __construct: ['mycompany-achievement-01']
         __calls:
           - addActionDefinition: [ '@mycompany-action-01' ]
-        label: Achivement One
+        label: Achievement One
         description: My companies achievement one.
         points: 50
 ```
@@ -45,7 +45,7 @@ Hint: Achievements are defined via the `Nelmio/Alice` fixture definition for obj
 
 # Validation & granting an achievement
 
-During runtime the application needs to know when to grant an achivement after certain actions have been performed by an player. To provide this functioanilty the application uses validators that check if achivement criterias are met. Validators are implementing [AchievementValidatorInterface](../src/Yay/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of achivements. Let us assume you want to grant achievement `mycompany-achievement-01` when a player performs the `mycompany-action-01` action five times, for this we need to extend our `services.yml` file.
+During runtime the application needs to know when to grant an Achievement after certain actions have been performed through a player. To provide this functioanilty the application uses validators that are able to tell if achievement criterias are met. Validators are implementing the [AchievementValidatorInterface](../src/Yay/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of Achievements. Let us assume you want to grant achievement `mycompany-achievement-01` when a player performs the `mycompany-action-01` action five times, for this we need to extend our `services.yml` file.
 
 ```yaml
 parameters: ~
@@ -59,8 +59,11 @@ services:
         arguments:
             - achievement.getName() in ['mycompany-achievement-01'] and filteredPersonalActions.count() >= 5
 ```
-Hint 1: Achivement validators are defined via the symfony container specification for services.
-Hint 2: Due to the connection between achievement and action through `addActionDefinition` of our `AchivementDefinition` we can use `filteredPersonalActions` to access on a player's personal actions and actions that are supported by our achievement.
+Hint 1: Achievement validators are defined via the symfony container specification for services.
+
+Hint 2: Achievement validators are automatically registered if when the option `autoconfigure: true` as a default option or service property is set.
+
+Hint 3: Due to the connection between achievement and action through `addActionDefinition` of our `AchievementDefinition` we can use `filteredPersonalActions` to access on a player's personal actions and actions that are supported by our achievement.
 
 # Using your integration
 
