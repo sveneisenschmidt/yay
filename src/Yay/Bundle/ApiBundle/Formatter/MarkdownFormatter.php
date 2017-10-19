@@ -14,7 +14,7 @@ class MarkdownFormatter extends BaseMarkdownFormatter
         $markdown = sprintf("### `%s` %s ###\n", $data['method'], $data['uri']);
 
         if (isset($data['deprecated']) && false !== $data['deprecated']) {
-            $markdown .= "### This method is deprecated ###";
+            $markdown .= '### This method is deprecated ###';
             $markdown .= "\n\n";
         }
 
@@ -104,7 +104,7 @@ class MarkdownFormatter extends BaseMarkdownFormatter
                 }
 
                 if (null !== $parameter['sinceVersion'] || null !== $parameter['untilVersion']) {
-                    $markdown .= "  * versions: ";
+                    $markdown .= '  * versions: ';
                     if ($parameter['sinceVersion']) {
                         $markdown .= '>='.$parameter['sinceVersion'];
                     }
@@ -120,6 +120,8 @@ class MarkdownFormatter extends BaseMarkdownFormatter
                 $markdown .= "\n";
             }
         }
+
+        $markdown = str_replace(['```.'], ['```'], $markdown);
 
         return $markdown;
     }

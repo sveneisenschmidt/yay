@@ -9,7 +9,6 @@ use Nelmio\Alice\Loader\NativeLoader;
 
 abstract class WebTestCase extends BaseWebTestCase
 {
-
     /**
      * @setup
      */

@@ -5,7 +5,7 @@ namespace Yay\Component\Entity;
 class BinaryResource implements BinaryResourceInterface
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 

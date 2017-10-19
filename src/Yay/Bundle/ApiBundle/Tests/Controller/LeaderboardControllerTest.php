@@ -29,7 +29,7 @@ class LeaderboardControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'personal_achievements', $value);
             $this->assertArraySubsetHasKey('links', 'personal_actions', $value);
 
-            $actualPoints []= $value['score'];
+            $actualPoints[] = $value['score'];
         }
 
         $expectedScores = $actualScores;

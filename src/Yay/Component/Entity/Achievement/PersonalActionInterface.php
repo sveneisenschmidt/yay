@@ -2,7 +2,6 @@
 
 namespace Yay\Component\Entity\Achievement;
 
-use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
 use Yay\Component\Entity\PlayerInterface;
 
 interface PersonalActionInterface
