@@ -1,0 +1,8 @@
+preset: symfony
+
+finder:
+  exclude:
+    contains:
+        - "Test"
+    depth:
+        = "< 3"
