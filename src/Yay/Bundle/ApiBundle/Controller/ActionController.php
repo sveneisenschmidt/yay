@@ -24,7 +24,7 @@ class ActionController
      *         "self": "http://example.org/api/actions/yay.action.demo_action",
      *     }
      * }]
-     * ```
+     * ```.
      *
      * @Method("GET")
      *
@@ -42,7 +42,7 @@ class ActionController
      *     }
      * )
      *
-     * @param Engine $engine
+     * @param Engine             $engine
      * @param ResponseSerializer $serializer
      *
      * @return Response
@@ -50,8 +50,7 @@ class ActionController
     public function indexAction(
         Engine $engine,
         ResponseSerializer $serializer
-    ): Response
-    {
+    ): Response {
         return $serializer->createResponse(
             $engine->findActionDefinitionAny()->toArray(),
             ['action.index']
@@ -67,7 +66,7 @@ class ActionController
      *         "self": "http://example.org/api/actions/yay.action.demo_action",
      *     }
      * }
-     * ```
+     * ```.
      *
      * @Method("GET")
      *
@@ -94,9 +93,9 @@ class ActionController
      *     }
      * )
      *
-     * @param Engine $engine
+     * @param Engine             $engine
      * @param ResponseSerializer $serializer
-     * @param string $username
+     * @param string             $username
      *
      * @return Response
      */
@@ -104,8 +103,7 @@ class ActionController
         Engine $engine,
         ResponseSerializer $serializer,
         string $name
-    ): Response
-    {
+    ): Response {
         $achievementDefinitions = $engine->findActionDefinitionBy(['name' => $name]);
         if ($achievementDefinitions->isEmpty()) {
             throw $this->createNotFoundException();

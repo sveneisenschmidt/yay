@@ -27,6 +27,7 @@ class ActionControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'self', $value);
         }
     }
+
     /**
      * @test
      * @testdox Retrieve a single action

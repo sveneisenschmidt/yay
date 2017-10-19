@@ -4,13 +4,11 @@ namespace Yay\Bundle\EngineBundle\Command;
 
 use Nelmio\Alice\Loader\NativeLoader;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Helper\ProgressBar;
-
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\AchievementDefinition;
 use Yay\Component\Entity\Achievement\Level;
@@ -87,7 +85,6 @@ class IntegrationInstallCommand extends ContainerAwareCommand
         } else {
             $output->writeln('<info>- Skipping file creation. Already created.</info>');
         }
-
     }
 
     /**
@@ -114,27 +111,31 @@ class IntegrationInstallCommand extends ContainerAwareCommand
                 case PersonalAction::class:
                     $criteria = [];
                     $always = true;
+
                     break;
                 case ActionDefinition::class:
                 case AchievementDefinition::class:
                 case Level::class:
                     $criteria = ['name' => $object->getName()];
                     $always = false;
+
                     break;
                 case Player::class:
                     $criteria = ['username' => $object->getUsername()];
                     $always = false;
+
                     break;
                 default:
                     continue 2;
             }
 
-            $entities =  $manager->getRepository($class)->findBy($criteria);
+            $entities = $manager->getRepository($class)->findBy($criteria);
             if (count($entities) < 1 || $always) {
                 try {
                     $manager->persist($object);
                     $manager->flush();
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
                 $progress->advance(1);
             }
         }

@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class ResponseSerializer
 {
     /**
-     *
      * @param SerializerInterface $serializer
      */
     public function __construct(SerializerInterface $serializer)
@@ -20,7 +19,7 @@ class ResponseSerializer
     /**
      * @param mixed $unserializedData
      * @param array $serializaionGroups
-     * @param int $status
+     * @param int   $status
      * @param array $headers
      *
      * @return JsonResponse
@@ -31,7 +30,7 @@ class ResponseSerializer
         !empty($serializationGroups) ? $context->setGroups($serializationGroups) : null;
 
         $content = $this->serializer->serialize($unserializedData, 'json', $context);
+
         return new JsonResponse($content, $status, $headers, true);
     }
-
 }

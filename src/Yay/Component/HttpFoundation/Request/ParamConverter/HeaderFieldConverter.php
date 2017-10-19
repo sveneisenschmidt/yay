@@ -1,10 +1,10 @@
 <?php
+
 namespace Yay\Component\HttpFoundation\Request\ParamConverter;
 
-use \Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use \Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
-use \Symfony\Component\HttpFoundation\Request;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class HeaderFieldConverter implements ParamConverterInterface
 {

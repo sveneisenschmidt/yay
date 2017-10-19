@@ -2,17 +2,11 @@
 
 namespace Yay\Bundle\EngineBundle\Command;
 
-use Nelmio\Alice\Loader\NativeLoader;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Filesystem\Filesystem;
-
-use Yay\Component\Entity\Achievement\ActionDefinition;
-use Yay\Component\Entity\Achievement\AchievementDefinition;
-use Yay\Component\Entity\Player;
 
 class IntegrationUninstallCommand extends ContainerAwareCommand
 {

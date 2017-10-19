@@ -37,7 +37,7 @@ class LeaderboardController
      *         "personal_actions": "http://example.org/api/players/cdavis/personal-actions"
      *     }
      * }]
-     * ```
+     * ```.
      *
      * @Method("GET")
      * @Route(
@@ -53,7 +53,7 @@ class LeaderboardController
      *     }
      * )
      *
-     * @param Engine $engine
+     * @param Engine             $engine
      * @param ResponseSerializer $serializer
      *
      * @return Response
@@ -61,8 +61,7 @@ class LeaderboardController
     public function indexAction(
         Engine $engine,
         ResponseSerializer $serializer
-    ): Response
-    {
+    ): Response {
         $players = $engine
             ->findPlayerAny()
             ->filter(function (PlayerInterface $player) {

@@ -26,7 +26,7 @@ class ProgressController
      *     "player": "jane.doe",
      *     "action": "yay.action.demo_action"
      * }
-     * ```
+     * ```.
      *
      * **Example Request (2):**
      * ```json
@@ -113,11 +113,11 @@ class ProgressController
      *     converter="JsonField"
      * )
      *
-     * @param Engine $engine
+     * @param Engine             $engine
      * @param ResponseSerializer $serializer
-     * @param string $username
-     * @param string|null $action
-     * @param array $actions
+     * @param string             $username
+     * @param string|null        $action
+     * @param array              $actions
      *
      * @return Response
      */
@@ -127,10 +127,9 @@ class ProgressController
         string $username,
         string $action = null,
         array $actions = []
-    ): Response
-    {
+    ): Response {
         if (!empty($action)) {
-            $actions []= $action;
+            $actions[] = $action;
         }
 
         if (empty($action) && empty($actions)) {
@@ -158,6 +157,7 @@ class ProgressController
         }
 
         $personalAchievements = $engine->advance($player, $personalActionCollection);
+
         return $serializer->createResponse(
             $personalAchievements,
             ['progress.submit']

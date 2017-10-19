@@ -4,7 +4,6 @@ namespace Yay\Bundle\ApiBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-
 use Yay\Bundle\ApiBundle\DependencyInjection\ApiDocPass;
 use Yay\Bundle\ApiBundle\DependencyInjection\ApiExtension;
 
@@ -17,6 +16,7 @@ class ApiBundle extends Bundle
     {
         $container->addCompilerPass(new ApiDocPass());
     }
+
     /**
      * @return ApiExtension
      */
