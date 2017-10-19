@@ -3,10 +3,8 @@ language: php
 sudo: false
 
 php:
-    - 7.0
     - 7.1
-    - 7.2-rc
-    - nightly
+    - 7.2
     - hhvm
 
 git:
@@ -22,14 +20,7 @@ cache: composer
 services:
     - docker
 
-notifications:
-  email:
-    recipients:
-      - one@example.com
-    on_success: never
-    on_failure: always
-
 before_script:
     - composer install --no-interaction
 
-script: make
+script: make test
