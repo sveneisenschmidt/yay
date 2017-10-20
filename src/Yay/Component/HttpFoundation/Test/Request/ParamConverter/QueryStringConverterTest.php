@@ -10,8 +10,8 @@ use Yay\Component\HttpFoundation\Request\ParamConverter\QueryStringConverter;
 class QueryStringConverterTest extends TestCase
 {
     /**
-     * @param string    $converterName
-     * @param string    $parameterName
+     * @param string $converterName
+     * @param string $parameterName
      *
      * @return ParamConverter
      */
