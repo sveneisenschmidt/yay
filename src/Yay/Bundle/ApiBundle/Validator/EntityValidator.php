@@ -8,13 +8,12 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 class EntityValidator
 {
     /**
-     *
      * @param ValidatorInterface $validator
      */
-     public function __construct(ValidatorInterface $validator)
-     {
-         $this->validator = $validator;
-     }
+    public function __construct(ValidatorInterface $validator)
+    {
+        $this->validator = $validator;
+    }
 
     /**
      * @param      $value
@@ -23,8 +22,8 @@ class EntityValidator
      *
      * @return ConstraintViolationListInterface
      */
-     public function validate($value, $constraints = null, $groups = null): ConstraintViolationListInterface
-     {
-         return $this->validator->validate($value, $constraints, $groups);
-     }
+    public function validate($value, $constraints = null, $groups = null): ConstraintViolationListInterface
+    {
+        return $this->validator->validate($value, $constraints, $groups);
+    }
 }

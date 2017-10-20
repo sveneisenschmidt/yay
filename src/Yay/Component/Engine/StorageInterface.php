@@ -2,15 +2,11 @@
 
 namespace Yay\Component\Engine;
 
-use Doctrine\Common\Collections\Collection as CollectionInterface;
-
 use Yay\Component\Entity\Achievement\ActionDefinitionCollection;
 use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
 use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
-use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalAchievementInterface;
 use Yay\Component\Entity\Achievement\PersonalActionInterface;
-use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerCollection;
 use Yay\Component\Entity\PlayerInterface;
 

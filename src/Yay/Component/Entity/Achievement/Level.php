@@ -2,8 +2,6 @@
 
 namespace Yay\Component\Entity\Achievement;
 
-use Yay\Component\Entity\Achievement\LevelInterface;
-
 class Level implements LevelInterface
 {
     /**
@@ -22,15 +20,14 @@ class Level implements LevelInterface
     protected $description = '';
 
     /**
-     * @var integer
+     * @var int
      */
     protected $level;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $points;
-
 
     /**
      * ActionDefinition constructor.
@@ -45,7 +42,7 @@ class Level implements LevelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName(): string
     {
@@ -53,7 +50,7 @@ class Level implements LevelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getLabel(): string
     {
@@ -69,7 +66,7 @@ class Level implements LevelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getDescription(): string
     {

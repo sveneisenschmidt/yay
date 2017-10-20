@@ -2,15 +2,7 @@
 
 namespace Yay\Component\Entity\Achievement;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as CollectionInterface;
-
-use Yay\Component\Entity\Achievement\ActionDefinition;
-use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
-use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
-use Yay\Component\Entity\Achievement\PersonalActionInterface;
-use Yay\Component\Entity\Player;
-use Yay\Component\Entity\PlayerInterface;
 
 class AchievementDefinition implements AchievementDefinitionInterface
 {
@@ -25,7 +17,7 @@ class AchievementDefinition implements AchievementDefinitionInterface
     protected $label = '';
 
     /**
-     * @var integer
+     * @var int
      */
     protected $points;
 
@@ -63,7 +55,7 @@ class AchievementDefinition implements AchievementDefinitionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName(): string
     {
@@ -71,7 +63,7 @@ class AchievementDefinition implements AchievementDefinitionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getActionDefinitions(): CollectionInterface
     {
@@ -79,7 +71,7 @@ class AchievementDefinition implements AchievementDefinitionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getCreatedAt(): \DateTime
     {
@@ -98,11 +90,12 @@ class AchievementDefinition implements AchievementDefinitionInterface
 
     /**
      * @param ActionDefinitionInterface $actionDefinition
+     *
      * @return bool
      */
     public function hasActionDefinition(ActionDefinitionInterface $actionDefinition)
     {
-        $callback = function($index, ActionDefinitionInterface $item) use ($actionDefinition) {
+        $callback = function ($index, ActionDefinitionInterface $item) use ($actionDefinition) {
             return $item->getName() == $actionDefinition->getName();
         };
 
@@ -110,7 +103,7 @@ class AchievementDefinition implements AchievementDefinitionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getLabel(): string
     {
@@ -126,7 +119,7 @@ class AchievementDefinition implements AchievementDefinitionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getDescription(): string
     {
@@ -142,11 +135,11 @@ class AchievementDefinition implements AchievementDefinitionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPoints(): int
     {
-        return (int)$this->points;
+        return (int) $this->points;
     }
 
     /**

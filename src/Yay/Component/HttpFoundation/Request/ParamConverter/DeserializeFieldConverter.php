@@ -1,18 +1,17 @@
 <?php
+
 namespace Yay\Component\HttpFoundation\Request\ParamConverter;
 
 use JMS\Serializer\SerializerInterface;
 use JMS\Serializer\DeserializationContext;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-
 class DeserializeFieldConverter implements ParamConverterInterface
 {
     /**
-     * @type SerializerInterface
+     * @var SerializerInterface
      */
     protected $serializer;
 
