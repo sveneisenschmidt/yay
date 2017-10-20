@@ -13,19 +13,25 @@ class HeaderFieldConverter implements ParamConverterInterface
      *
      * @return bool
      */
-    public function supports(ParamConverter $configuration)
+    public function supports(ParamConverter $configuration): bool
     {
         return $configuration->getConverter() === 'HeaderField';
     }
 
-    public function apply(Request $request, ParamConverter $configuration)
+    /**
+     * @param Request        $request
+     * @param ParamConverter $configuration
+     *
+     * @return bool
+     */
+    public function apply(Request $request, ParamConverter $configuration): void
     {
         $options = $configuration->getOptions();
         $target = $configuration->getName();
         $source = isset($options['field']) ? $options['field'] : $target;
 
         if (!$request->headers->has($source)) {
-            return false;
+            return;
         }
 
         $value = $request->headers->get($source);
