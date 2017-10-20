@@ -13,12 +13,18 @@ class JsonFieldConverter implements ParamConverterInterface
      *
      * @return bool
      */
-    public function supports(ParamConverter $configuration)
+    public function supports(ParamConverter $configuration): bool
     {
         return $configuration->getConverter() === 'JsonField';
     }
 
-    public function apply(Request $request, ParamConverter $configuration)
+    /**
+     * @param Request        $request
+     * @param ParamConverter $configuration
+     *
+     * @return bool
+     */
+    public function apply(Request $request, ParamConverter $configuration): void
     {
         $options = $configuration->getOptions();
         $target = $configuration->getName();
