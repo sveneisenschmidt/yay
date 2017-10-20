@@ -233,12 +233,12 @@ _Returns a Player achievements identified by its username property_
         "achievement": "https://example.org/api/achievements/demo-achievement-01"
     }
 }, {
-    "name": "yay.achievement.demo_achievement_2",
+    "name": "demo-achievement-02",
     "achieved_at": "2017-04-07T14:12:29+0000",
     "links": {
         "self": "https://example.org/api/players/jane.doe/personal-achievements",
         "player": "https://example.org/api/players/jane.doe",
-        "achievement": "https://example.org/api/achievements/yay.achievement.demo_achievement_2"
+        "achievement": "https://example.org/api/achievements/demo-achievement-02"
     }
 }]
 ```
@@ -321,20 +321,20 @@ _Submit a payload to update a users progress_
 **Example Response:**
 ```json
 [{
-    "name": "yay.achievement.demo_achievement_1",
+    "name": "demo-achievement-01",
     "achieved_at": "2017-04-07T14:12:29+0000",
     "links": {
         "self": "http://example.org/api/players/gschowalter/personal-achievements",
         "player": "http://example.org/api/players/gschowalter",
-        "achievement": "http://example.org/api/achievements/yay.achievement.demo_achievement_1"
+        "achievement": "http://example.org/api/achievements/demo-achievement-01"
     }
 }, {
-    "name": "yay.achievement.demo_achievement_2",
+    "name": "demo-achievement-02",
     "achieved_at": "2017-04-07T14:12:29+0000",
     "links": {
         "self": "http://example.org/api/players/gschowalter/personal-achievements",
         "player": "http://example.org/api/players/gschowalter",
-        "achievement": "http://example.org/api/achievements/yay.achievement.demo_achievement_2"
+        "achievement": "http://example.org/api/achievements/demo-achievement-02"
     }
 }]
 ```

@@ -2,8 +2,6 @@
 
 namespace Yay\Component\Engine;
 
-use Doctrine\Common\Collections\Collection as CollectionInterface;
-
 use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalActionCollection;
 use Yay\Component\Entity\PlayerInterface;
@@ -11,9 +9,9 @@ use Yay\Component\Entity\PlayerInterface;
 interface AchievementValidatorInterface
 {
     /**
-     * @param PlayerInterface           $player
-     * @param AchievementDefinitionInterface   $achievementDefinition
-     * @param PersonalActionCollection            $collection
+     * @param PlayerInterface                $player
+     * @param AchievementDefinitionInterface $achievementDefinition
+     * @param PersonalActionCollection       $collection
      *
      * @return bool
      */

@@ -1,27 +1,28 @@
 <?php
 
 use Yay\Bundle\ApiBundle\Test\WebTestCase;
-
 use Faker\Factory as FakerFactory;
 
 class PlayerControllerTest extends WebTestCase
 {
     /**
-     * Provides faked player data
+     * Provides faked player data.
+     *
      * @return array
      */
     public function providePlayerData()
     {
         $faker = FakerFactory::create();
+
         return [
             [
                 [
                     'name' => $faker->name,
                     'username' => $faker->userName,
                     'email' => $faker->email,
-                    'image_url' => sprintf('https://api.adorable.io/avatars/128/%s', random_int(100, 999))
-                ]
-            ]
+                    'image_url' => sprintf('https://api.adorable.io/avatars/128/%s', random_int(100, 999)),
+                ],
+            ],
         ];
     }
 
@@ -38,7 +39,6 @@ class PlayerControllerTest extends WebTestCase
         $this->assertArraySubsetHasKey('links', 'personal_achievements', $data);
         $this->assertArraySubsetHasKey('links', 'personal_actions', $data);
     }
-
 
     /**
      * @test
@@ -99,15 +99,15 @@ class PlayerControllerTest extends WebTestCase
         $this->assertPlayerData($data);
     }
 
-        /**
-         * @test
-         * @dataProvider providePlayerData
-         * @testdox Create a new player
-         */
-        public function Player_CreateAction_Exception_NonUniqueUsername(array $data)
-        {
-            $this->markTestIncomplete('Implement me');
-        }
+    /**
+     * @test
+     * @dataProvider providePlayerData
+     * @testdox Create a new player
+     */
+    public function Player_CreateAction_Exception_NonUniqueUsername(array $data)
+    {
+        $this->markTestIncomplete('Implement me');
+    }
 
     /**
      * @test

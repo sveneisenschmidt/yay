@@ -2,10 +2,7 @@
 
 namespace Yay\Component\Engine\Storage;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Common\Collections\Collection as CollectionInterface;
-
 use Yay\Component\Engine\StorageInterface;
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
@@ -37,7 +34,7 @@ class DoctrineStorage implements StorageInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findPlayer(int $id): ?PlayerInterface
     {
@@ -45,16 +42,17 @@ class DoctrineStorage implements StorageInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findPlayerBy(array $criteria = []): PlayerCollection
     {
         $result = $this->manager->getRepository(Player::class)->findBy($criteria);
+
         return new PlayerCollection($result);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findAchievementDefinition(int $id): ?AchievementDefinitionInterface
     {
@@ -62,16 +60,17 @@ class DoctrineStorage implements StorageInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findAchievementDefinitionBy(array $criteria = []): AchievementDefinitionCollection
     {
         $result = $this->manager->getRepository(AchievementDefinition::class)->findBy($criteria);
+
         return new AchievementDefinitionCollection($result);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findActionDefinition(int $id): ?ActionDefinitionInterface
     {
@@ -79,16 +78,17 @@ class DoctrineStorage implements StorageInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findActionDefinitionBy(array $criteria = []): ActionDefinitionCollection
     {
         $result = $this->manager->getRepository(ActionDefinition::class)->findBy($criteria);
+
         return new ActionDefinitionCollection($result);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function refreshPlayer(PlayerInterface $player)
     {
@@ -96,7 +96,7 @@ class DoctrineStorage implements StorageInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function savePlayer(PlayerInterface $player)
     {
@@ -105,7 +105,7 @@ class DoctrineStorage implements StorageInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function savePersonalAction(PersonalActionInterface $personalAction)
     {
@@ -114,7 +114,7 @@ class DoctrineStorage implements StorageInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function savePersonalAchievement(PersonalAchievementInterface $personalAchievement)
     {

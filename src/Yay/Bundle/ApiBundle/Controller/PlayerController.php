@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Yay\Bundle\ApiBundle\Form\PlayerCreateType;
 use Yay\Bundle\ApiBundle\Response\ResponseSerializer;
 use Yay\Bundle\ApiBundle\Validator\EntityValidator;
 use Yay\Component\Engine\Engine;
@@ -31,7 +30,7 @@ class PlayerController
      *         "personal_actions": "https://example.org/api/players/jane.doe/personal-actions"
      *     }
      * }]
-     * ```
+     * ```.
      *
      * @Method("GET")
      * @Route(
@@ -50,8 +49,7 @@ class PlayerController
     public function indexAction(
         Engine $engine,
         ResponseSerializer $serializer
-    ): Response
-    {
+    ): Response {
         return $serializer->createResponse(
             $engine->findPlayerAny()->toArray(),
             ['player.index']
@@ -70,7 +68,7 @@ class PlayerController
      *         "personal_actions": "https://example.org/api/players/jane.doe/personal-actions"
      *     }
      * }
-     * ```
+     * ```.
      *
      * @Method("GET")
      * @Route(
@@ -95,9 +93,9 @@ class PlayerController
      *     }
      * )
      *
-     * @param Engine $engine
+     * @param Engine             $engine
      * @param ResponseSerializer $serializer
-     * @param string $username
+     * @param string             $username
      *
      * @return Response
      */
@@ -105,8 +103,7 @@ class PlayerController
         Engine $engine,
         ResponseSerializer $serializer,
         string $username
-    ): Response
-    {
+    ): Response {
         $players = $engine->findPlayerBy(['username' => $username]);
         if ($players->isEmpty()) {
             throw $this->createNotFoundException();
@@ -127,7 +124,7 @@ class PlayerController
      *     "email": "marianne58@gmail.com",
      *     "image_url": "https://api.adorable.io/avatars/128/497"
      * }
-     * ```
+     * ```.
      *
      * **Example Response:**
      * ```json
@@ -165,11 +162,11 @@ class PlayerController
      *     converter="DeserializeField"
      * )
      *
-     * @param Engine $engine
-     * @param EntityValidator $validator
-     * @param ResponseSerializer $serializer
+     * @param Engine                $engine
+     * @param EntityValidator       $validator
+     * @param ResponseSerializer    $serializer
      * @param UrlGeneratorInterface $urlGenerator
-     * @param PlayerInterface $player
+     * @param PlayerInterface       $player
      *
      * @return Response
      */
@@ -179,8 +176,7 @@ class PlayerController
         ResponseSerializer $serializer,
         UrlGeneratorInterface $urlGenerator,
         PlayerInterface $player
-    ): Response
-    {
+    ): Response {
         $violations = $validator->validate($player);
         if ($violations->count() > 0) {
             return $serializer->createResponse(
@@ -196,7 +192,7 @@ class PlayerController
             $player,
             ['player.show'],
             Response::HTTP_CREATED,
-            [ 'Location' => $urlGenerator->generate('api_player_show', ['username' => $player->getUsername()])]
+            ['Location' => $urlGenerator->generate('api_player_show', ['username' => $player->getUsername()])]
         );
     }
 
@@ -212,15 +208,15 @@ class PlayerController
      *         "achievement": "https://example.org/api/achievements/demo-achievement-01"
      *     }
      * }, {
-     *     "name": "yay.achievement.demo_achievement_2",
+     *     "name": "demo-achievement-02",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
      *         "self": "https://example.org/api/players/jane.doe/personal-achievements",
      *         "player": "https://example.org/api/players/jane.doe",
-     *         "achievement": "https://example.org/api/achievements/yay.achievement.demo_achievement_2"
+     *         "achievement": "https://example.org/api/achievements/demo-achievement-02"
      *     }
      * }]
-     * ```
+     * ```.
      *
      * @Method("GET")
      * @Route(
@@ -245,9 +241,9 @@ class PlayerController
      *     }
      * )
      *
-     * @param Engine $engine
+     * @param Engine             $engine
      * @param ResponseSerializer $serializer
-     * @param string $username
+     * @param string             $username
      *
      * @return Response
      */
@@ -255,8 +251,7 @@ class PlayerController
         Engine $engine,
         ResponseSerializer $serializer,
         string $username
-    ): Response
-    {
+    ): Response {
         $players = $engine->findPlayerBy(['username' => $username]);
         if ($players->isEmpty()) {
             throw $this->createNotFoundException();
@@ -291,7 +286,7 @@ class PlayerController
      *         "action": "https://example.org/api/actions/yay.action.demo_action"
      *     }
      * }]
-     * ```
+     * ```.
      *
      * @Method("GET")
      *
@@ -318,9 +313,9 @@ class PlayerController
      *     }
      * )
      *
-     * @param Engine $engine
+     * @param Engine             $engine
      * @param ResponseSerializer $serializer
-     * @param string $username
+     * @param string             $username
      *
      * @return Response
      */
@@ -328,8 +323,7 @@ class PlayerController
         Engine $engine,
         ResponseSerializer $serializer,
         string $username
-    ): Response
-    {
+    ): Response {
         $players = $engine->findPlayerBy(['username' => $username]);
         if ($players->isEmpty()) {
             throw $this->createNotFoundException();

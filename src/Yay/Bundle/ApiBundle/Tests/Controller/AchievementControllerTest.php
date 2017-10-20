@@ -29,6 +29,7 @@ class AchievementControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'actions', $value);
         }
     }
+
     /**
      * @test
      * @testdox Retrieve a single achievement

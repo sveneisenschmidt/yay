@@ -4,7 +4,6 @@ namespace Yay\Component\Engine\AchievementValidator\Validator;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Yay\Component\Engine\AchievementValidatorInterface;
-use Yay\Component\Entity\Achievement\AchievementDefinition;
 use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalActionCollection;
 use Yay\Component\Entity\Achievement\PersonalActionInterface;
@@ -41,20 +40,20 @@ class ExpressionLanguageValidator implements AchievementValidatorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function validate(PlayerInterface $player, AchievementDefinitionInterface $achievementDefinition, PersonalActionCollection $collection): bool
     {
         $filteredCollection = $collection
             // @TODO Add documentation
-            ->filter(function(PersonalActionInterface $personalAction) use ($achievementDefinition) {
+            ->filter(function (PersonalActionInterface $personalAction) use ($achievementDefinition) {
                 return in_array(
                     $personalAction->getActionDefinition(),
                     $achievementDefinition->getActionDefinitions()->toArray()
                 );
             })
             // @TODO Add documentation
-            ->filter(function(PersonalActionInterface $personalAction) use ($achievementDefinition) {
+            ->filter(function (PersonalActionInterface $personalAction) use ($achievementDefinition) {
                 return $personalAction->getAchievedAt() >= $achievementDefinition->getCreatedAt();
             });
 
@@ -70,7 +69,7 @@ class ExpressionLanguageValidator implements AchievementValidatorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function supports(AchievementDefinitionInterface $achievementDefinition): bool
     {

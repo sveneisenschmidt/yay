@@ -30,7 +30,7 @@ class AchievementController
      *         "actions": ["http://example.org/api/actions/demo-action"]
      *     }
      * }]
-     * ```
+     * ```.
      *
      * @Method("GET")
      *
@@ -48,7 +48,7 @@ class AchievementController
      *     }
      * )
      *
-     * @param Engine $engine
+     * @param Engine             $engine
      * @param ResponseSerializer $serializer
      *
      * @return Response
@@ -56,8 +56,7 @@ class AchievementController
     public function indexAction(
         Engine $engine,
         ResponseSerializer $serializer
-    ): Response
-    {
+    ): Response {
         return $serializer->createResponse(
             $engine->findAchievementDefinitionAny()->toArray(),
             ['achievement.index']
@@ -74,7 +73,7 @@ class AchievementController
      *         "actions": ["http://example.org/api/actions/demo-action"]
      *     }
      * }
-     * ```
+     * ```.
      *
      * @Method("GET")
      *
@@ -101,9 +100,9 @@ class AchievementController
      *     }
      * )
      *
-     * @param Engine $engine
+     * @param Engine             $engine
      * @param ResponseSerializer $serializer
-     * @param string $username
+     * @param string             $username
      *
      * @return Response
      */
@@ -111,8 +110,7 @@ class AchievementController
         Engine $engine,
         ResponseSerializer $serializer,
         string $name
-    ): Response
-    {
+    ): Response {
         $achievementDefinitions = $engine->findAchievementDefinitionBy(['name' => $name]);
         if ($achievementDefinitions->isEmpty()) {
             throw $this->createNotFoundException();

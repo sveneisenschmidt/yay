@@ -2,10 +2,6 @@
 
 namespace Yay\Component\Entity\Achievement;
 
-use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
-use Yay\Component\Entity\Achievement\PersonalActionCollection;
-use Yay\Component\Entity\Achievement\PersonalActionInterface;
-
 class ActionDefinition implements ActionDefinitionInterface
 {
     /**
@@ -40,7 +36,7 @@ class ActionDefinition implements ActionDefinitionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName(): string
     {
@@ -48,7 +44,7 @@ class ActionDefinition implements ActionDefinitionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getLabel(): string
     {
@@ -64,7 +60,7 @@ class ActionDefinition implements ActionDefinitionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getDescription(): string
     {

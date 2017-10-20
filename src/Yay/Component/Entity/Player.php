@@ -4,16 +4,14 @@ namespace Yay\Component\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as CollectionInterface;
-
 use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalAchievementInterface;
 use Yay\Component\Entity\Achievement\PersonalActionCollection;
-use Yay\Component\Entity\PlayerInterface;
 
 class Player implements PlayerInterface
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 
@@ -48,7 +46,7 @@ class Player implements PlayerInterface
     protected $personalAchievements;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $score = 0;
 
@@ -62,22 +60,23 @@ class Player implements PlayerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName(): string
     {
         return $this->name;
     }
+
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getUsername(): string
     {
-       return $this->username;
+        return $this->username;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getEmail(): string
     {
@@ -85,7 +84,7 @@ class Player implements PlayerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setName(string $name)
     {
@@ -93,7 +92,7 @@ class Player implements PlayerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setUsername(string $username)
     {
@@ -101,7 +100,7 @@ class Player implements PlayerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setEmail(string $email)
     {
@@ -109,7 +108,7 @@ class Player implements PlayerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPersonalActions(): CollectionInterface
     {
@@ -117,7 +116,7 @@ class Player implements PlayerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPersonalAchievements(): CollectionInterface
     {
@@ -132,7 +131,7 @@ class Player implements PlayerInterface
     public function hasPersonalAchievement(AchievementDefinitionInterface $achievementDefinition): bool
     {
         /** @var PersonalAchievementInterface $personalAchievement */
-        foreach($this->getPersonalAchievements() as $personalAchievement) {
+        foreach ($this->getPersonalAchievements() as $personalAchievement) {
             if ($personalAchievement->getAchievementDefinition()->getName() == $achievementDefinition->getName()) {
                 return true;
             }
@@ -140,8 +139,9 @@ class Player implements PlayerInterface
 
         return false;
     }
+
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getScore(): int
     {
@@ -157,7 +157,7 @@ class Player implements PlayerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function refreshScore(): int
     {
@@ -167,11 +167,12 @@ class Player implements PlayerInterface
         }
 
         $this->setScore($score);
+
         return $this->getScore();
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getImageUrl(): string
     {
@@ -185,6 +186,4 @@ class Player implements PlayerInterface
     {
         $this->imageUrl = $imageUrl;
     }
-
-
 }

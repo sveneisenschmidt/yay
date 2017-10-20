@@ -1,0 +1,15 @@
+dist: trusty
+language: generic
+sudo: false
+
+git:
+    depth: 1
+
+services:
+    - docker
+
+before_script:
+    - sed -i -e 's/data:cached/data/g' docker-compose.yml && cat docker-compose.yml
+    - make install
+
+script: make test

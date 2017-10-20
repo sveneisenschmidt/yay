@@ -2,16 +2,12 @@
 
 namespace Yay\Component\Entity\Achievement;
 
-use Yay\Component\Entity\Achievement\PersonalActionInterface;
-use Yay\Component\Entity\Achievement\AchievementDefinition;
-use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
-use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 
 class PersonalAchievement implements PersonalAchievementInterface
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 
@@ -33,16 +29,15 @@ class PersonalAchievement implements PersonalAchievementInterface
     /**
      * AchievementPersonalAction constructor.
      *
-     * @param PlayerInterface         $user
+     * @param PlayerInterface                $user
      * @param AchievementDefinitionInterface $achievementDefinition
-     * @param \DateTime|null          $achievedAt
+     * @param \DateTime|null                 $achievedAt
      */
     public function __construct(
         PlayerInterface $player,
         AchievementDefinitionInterface $achievementDefinition,
         \DateTime $achievedAt = null
-    )
-    {
+    ) {
         $this->setPlayer($player);
         $this->setAchievementDefinition($achievementDefinition);
         $this->setAchievedAt($achievedAt ?: new \DateTime());
@@ -50,7 +45,7 @@ class PersonalAchievement implements PersonalAchievementInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAchievedAt(): \DateTime
     {
@@ -58,7 +53,7 @@ class PersonalAchievement implements PersonalAchievementInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAchievementDefinition(): AchievementDefinitionInterface
     {
@@ -66,7 +61,7 @@ class PersonalAchievement implements PersonalAchievementInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setAchievedAt(\DateTime $achievedAt)
     {
@@ -74,7 +69,7 @@ class PersonalAchievement implements PersonalAchievementInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setAchievementDefinition(AchievementDefinitionInterface $achievementDefinition)
     {
@@ -82,7 +77,7 @@ class PersonalAchievement implements PersonalAchievementInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setPlayer(PlayerInterface $player)
     {
@@ -90,7 +85,7 @@ class PersonalAchievement implements PersonalAchievementInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPlayer(): PlayerInterface
     {
@@ -98,7 +93,7 @@ class PersonalAchievement implements PersonalAchievementInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function __toString(): string
     {

@@ -3,7 +3,6 @@
 namespace Yay\Component\Entity;
 
 use Doctrine\Common\Collections\Collection as CollectionInterface;
-
 use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 
 interface PlayerInterface

@@ -2,16 +2,12 @@
 
 namespace Yay\Component\Entity\Achievement;
 
-use Yay\Component\Entity\Achievement\ActionDefinition;
-use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
-use Yay\Component\Entity\Achievement\PersonalActionInterface;
-use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 
 class PersonalAction implements PersonalActionInterface
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 
@@ -41,15 +37,14 @@ class PersonalAction implements PersonalActionInterface
         PlayerInterface $player,
         ActionDefinitionInterface $actionDefinition,
         \DateTime $achievedAt = null
-    )
-    {
+    ) {
         $this->setPlayer($player);
         $this->setActionDefinition($actionDefinition);
         $this->setAchievedAt($achievedAt ?: new \DateTime());
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAchievedAt(): \DateTime
     {
@@ -57,7 +52,7 @@ class PersonalAction implements PersonalActionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getActionDefinition(): ActionDefinitionInterface
     {
@@ -65,7 +60,7 @@ class PersonalAction implements PersonalActionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setAchievedAt(\DateTime $achievedAt)
     {
@@ -73,7 +68,7 @@ class PersonalAction implements PersonalActionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setActionDefinition(ActionDefinitionInterface $actionDefinition)
     {
@@ -81,7 +76,7 @@ class PersonalAction implements PersonalActionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setPlayer(PlayerInterface $player)
     {
@@ -89,7 +84,7 @@ class PersonalAction implements PersonalActionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPlayer(): PlayerInterface
     {
@@ -97,7 +92,7 @@ class PersonalAction implements PersonalActionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function __toString(): string
     {
