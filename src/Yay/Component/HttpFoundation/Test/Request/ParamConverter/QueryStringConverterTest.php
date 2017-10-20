@@ -1,11 +1,11 @@
 <?php
+
 namespace Yay\Component\HttpFoundation\Test\Request\ParamConverter;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
 use Yay\Component\HttpFoundation\Request\ParamConverter\QueryStringConverter;
-
 
 class QueryStringConverterTest extends TestCase
 {
@@ -34,7 +34,7 @@ class QueryStringConverterTest extends TestCase
     /**
      * @test
      */
-    public function param_converter_is_supported()
+    public function param_converter_is_supported(): void
     {
         $configuration = $this->createConfiguration('QueryString', 'test');
 
@@ -44,7 +44,7 @@ class QueryStringConverterTest extends TestCase
     /**
      * @test
      */
-    public function param_converter_is_not_supported()
+    public function param_converter_is_not_supported(): void
     {
         $configuration = $this->createConfiguration('QueryString2', 'test');
 
@@ -54,7 +54,7 @@ class QueryStringConverterTest extends TestCase
     /**
      * @test
      */
-    public function query_parameter_is_applied_as_attribute()
+    public function query_parameter_is_applied_as_attribute(): void
     {
         $configuration = $this->createConfiguration('QueryString', 'key');
         $request = Request::create('/', 'GET', ['key' => 'value']);
@@ -66,7 +66,7 @@ class QueryStringConverterTest extends TestCase
     /**
      * @test
      */
-    public function query_parameter_is_not_set()
+    public function query_parameter_is_not_set(): void
     {
         $configuration = $this->createConfiguration('QueryString', 'key');
         $request = Request::create('/', 'GET', []);
