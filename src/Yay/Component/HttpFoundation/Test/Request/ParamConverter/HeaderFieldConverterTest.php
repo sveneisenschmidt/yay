@@ -93,6 +93,6 @@ class HeaderFieldConverterTest extends TestCase
         $request = Request::create('/', 'GET');
 
         (new HeaderFieldConverter())->apply($request, $configuration);
-        $this->assertNull($request->attributes->get('foo'));
+        $this->assertFalse($request->attributes->has('foo'));
     }
 }

@@ -93,6 +93,19 @@ class JsonFieldConverterTest extends TestCase
         $request = Request::create('/', 'POST');
 
         (new JsonFieldConverter())->apply($request, $configuration);
-        $this->assertNull($request->attributes->get('foo'));
+        $this->assertFalse($request->attributes->has('foo'));
+    }
+
+    /**
+     * @test
+     */
+    public function json_field_is_invalid(): void
+    {
+        $configuration = $this->createConfiguration();
+        $content = '{"baz": ';
+        $request = Request::create('/', 'POST', [], [], [], [], $content);
+
+        (new JsonFieldConverter())->apply($request, $configuration);
+        $this->assertFalse($request->attributes->has('foo'));
     }
 }

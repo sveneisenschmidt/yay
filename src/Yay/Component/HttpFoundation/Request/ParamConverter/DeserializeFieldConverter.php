@@ -30,22 +30,26 @@ class DeserializeFieldConverter implements ParamConverterInterface
      *
      * @return bool
      */
-    public function supports(ParamConverter $configuration)
+    public function supports(ParamConverter $configuration): bool
     {
         return $configuration->getConverter() === 'DeserializeField';
     }
 
-    public function apply(Request $request, ParamConverter $configuration)
+    /**
+     * @param Request        $request
+     * @param ParamConverter $configuration
+     */
+    public function apply(Request $request, ParamConverter $configuration): void
     {
         $options = $configuration->getOptions();
         $target = $configuration->getName();
 
         if (!isset($options['type'])) {
-            return false;
+            return;
         }
 
         if (!isset($options['group'])) {
-            return false;
+            return;
         }
 
         $entity = $this->serializer->deserialize(
