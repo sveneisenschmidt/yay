@@ -21,8 +21,6 @@ class QueryStringConverter implements ParamConverterInterface
     /**
      * @param Request        $request
      * @param ParamConverter $configuration
-     *
-     * @return bool
      */
     public function apply(Request $request, ParamConverter $configuration): void
     {

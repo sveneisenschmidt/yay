@@ -74,6 +74,6 @@ class QueryStringConverterTest extends TestCase
         $request = Request::create('/', 'GET', []);
 
         (new QueryStringConverter())->apply($request, $configuration);
-        $this->assertNull($request->attributes->get('foo'));
+        $this->assertFalse($request->attributes->has('foo'));
     }
 }
