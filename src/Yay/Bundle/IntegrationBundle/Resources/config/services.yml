@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Yay\Bundle\IntegrationBundle\Service\InstallerService:
+        public: true

@@ -67,16 +67,16 @@ Hint 3: Due to the connection between achievement and action through `addActionD
 
 # Using your integration
 
-## 1) Install your integration
+## 1) Enable your integration
 ```bash
 $ make shell
-$ php bin/console yay:integration:install integration/mycompany
+$ php bin/console yay:integration:enable mycompany integration/mycompany
 ```
 
-## 2) Remove your integration
+## 2) Disable your integration
 ```bash
 $ make shell
-$ php bin/console yay:integration:uninstall integration/mycompany
+$ php bin/console yay:integration:disable mycompany
 ```
-Hint: The uninstall routine will only remove the service configuration. Entities created during the installation will not be removed due to the fact that they often share relations to other entities (e.g. players and their personal achievements.)
+Hint: The disable routine will only remove the service configuration. Entities created during the installation will not be removed due to the fact that they often share relations to other entities (e.g. players and their personal achievements.)
 

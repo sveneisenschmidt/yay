@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Snc\RedisBundle\SncRedisBundle(),
             new Yay\Bundle\ApiBundle\ApiBundle(),
             new Yay\Bundle\EngineBundle\EngineBundle(),
+            new Yay\Bundle\IntegrationBundle\IntegrationBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

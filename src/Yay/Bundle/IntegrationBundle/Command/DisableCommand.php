@@ -1,6 +1,6 @@
 <?php
 
-namespace Yay\Bundle\EngineBundle\Command;
+namespace Yay\Bundle\IntegrationBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -8,15 +8,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Filesystem\Filesystem;
 
-class IntegrationUninstallCommand extends ContainerAwareCommand
+class DisableCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
-        $this
-            ->setName('yay:integration:uninstall')
-            ->setDescription('Uninstall\'s an integration defined by it\'s path.')
-            ->addArgument('path', InputArgument::REQUIRED, 'The path to all integration specific configuration files')
-        ;
+        $this->setName('yay:integration:disable')
+            ->setDescription('Disables an integration.')
+            ->addArgument(
+                'name',
+                InputArgument::REQUIRED,
+                'The name of the integration to be disabled'
+            );
     }
 
     /**
