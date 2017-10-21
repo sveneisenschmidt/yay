@@ -5,7 +5,6 @@ namespace Yay\Bundle\IntegrationBundle\Service;
 use Nelmio\Alice\Loader\NativeLoader;
 use Symfony\Component\Filesystem\Filesystem;
 use Yay\Component\Engine\StorageInterface;
-use Yay\Component\Engine\Storage\DoctrineStorage;
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\AchievementDefinition;
 use Yay\Component\Entity\Achievement\Level;
@@ -23,12 +22,12 @@ class InstallerService
     protected $storage;
 
     /**
-     * @param Filesystem      $filesystem
-     * @param DoctrineStorage $storage
+     * @param Filesystem       $filesystem
+     * @param StorageInterface $storage
      */
     public function __construct(
         Filesystem $filesystem,
-        DoctrineStorage $storage
+        StorageInterface $storage
     ) {
         $this->filesystem = $filesystem;
         $this->storage = $storage;
@@ -44,26 +43,25 @@ class InstallerService
         string $sourceDirectory,
         string $targetDirectory
     ): void {
-        $this->installServices($name, $sourceDirectory, $targetDirectory);
-        $this->installEntities($name, $sourceDirectory, $targetDirectory);
+        $this->installServices(
+            sprintf('%s/services.yml', $sourceDirectory),
+            sprintf('%s/%s.yml', $targetDirectory, $name)
+        );
+
+        $this->installEntities(
+            sprintf('%s/entities.yml', $sourceDirectory)
+        );
     }
 
     /**
-     * @param string $name
-     * @param string $sourceDirectory
-     * @param string $targetDirectory
+     * @param string $sourceFile
+     * @param string $targetFile
      *
      * @throws RuntimeException
      */
-    protected function installServices(
-        string $name,
-        string $sourceDirectory,
-        string $targetDirectory
-    ): void {
-        $sourceFile = sprintf('%s/services.yml', $sourceDirectory);
-        $targetFile = sprintf('%s/%s.yml', $targetDirectory, $name);
-
-        if (!file_exists($sourceFile)) {
+    public function installServices(string $sourceFile, string $targetFile): void
+    {
+        if (!$this->filesystem->exists($sourceFile)) {
             throw new \RuntimeException(sprintf('File %s is missing.', $sourceFile));
         }
 
@@ -81,18 +79,11 @@ class InstallerService
     }
 
     /**
-     * @param string $name
-     * @param string $sourceDirectory
-     * @param string $targetDirectory
+     * @param string $sourceFile
      */
-    protected function installEntities(
-        string $name,
-        string $sourceDirectory,
-        string $targetDirectory
-    ): void {
-        $sourceFile = sprintf('%s/entities.yml', $sourceDirectory);
-
-        if (!file_exists($sourceFile)) {
+    public function installEntities(string $sourceFile): void
+    {
+        if (!$this->filesystem->exists($sourceFile)) {
             throw new \RuntimeException(sprintf('File %s is missing.', $sourceFile));
         }
 
@@ -121,27 +112,21 @@ class InstallerService
      * @param string $name
      * @param string $targetDirectory
      */
-    public function uninstall(
-        string $name,
-        string $targetDirectory
-    ): void {
-        $this->uninstallServices($name, $targetDirectory);
+    public function uninstall(string $name, string $targetDirectory): void
+    {
+        $this->uninstallService(
+            sprintf('%s/%s.yml', $targetDirectory, $name)
+        );
     }
 
     /**
-     * @param string $name
-     * @param string $sourceDirectory
-     * @param string $targetDirectory
+     * @param string $targetFile
      *
      * @throws RuntimeException
      */
-    protected function uninstallServices(
-        string $name,
-        string $targetDirectory
-    ): void {
-        $targetFile = sprintf('%s/%s.yml', $targetDirectory, $name);
-
-        if (file_exists($targetFile)) {
+    public function uninstallService(string $targetFile): void
+    {
+        if ($this->filesystem->exists($targetFile)) {
             $this->filesystem->remove($targetFile);
         }
     }

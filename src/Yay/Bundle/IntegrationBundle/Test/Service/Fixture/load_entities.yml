@@ -1,0 +1,3 @@
+stdClass:
+    object{1..5}:
+        index: <current()>

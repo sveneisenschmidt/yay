@@ -1,5 +1,5 @@
 Yay\Component\Entity\Achievement\Level:
-    level{1..100}:
+    level{1..5}:
         __construct:
             - 'level-<current()>'
             - <identity((int)$current)>
