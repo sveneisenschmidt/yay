@@ -35,63 +35,68 @@ class InstallerService
     }
 
     /**
-     * @param string $integrationName
-     * @param string $integrationSourceDirectory
-     * @param string $integrationTargetDirectory
+     * @param string $name
+     * @param string $sourceDirectory
+     * @param string $targetDirectory
      */
     public function install(
-        string $integrationName,
-        string $integrationSourceDirectory,
-        string $integrationTargetDirectory
+        string $name,
+        string $sourceDirectory,
+        string $targetDirectory
     ): void {
-        $this->installServices($integrationName, $integrationSourceDirectory, $integrationTargetDirectory);
-        $this->installEntities($integrationName, $integrationSourceDirectory, $integrationTargetDirectory);
+        $this->installServices($name, $sourceDirectory, $targetDirectory);
+        $this->installEntities($name, $sourceDirectory, $targetDirectory);
     }
 
     /**
-     * @param string $integrationName
-     * @param string $integrationSourceDirectory
-     * @param string $integrationTargetDirectory
+     * @param string $name
+     * @param string $sourceDirectory
+     * @param string $targetDirectory
      *
      * @throws RuntimeException
      */
     protected function installServices(
-        string $integrationName,
-        string $integrationSourceDirectory,
-        string $integrationTargetDirectory
+        string $name,
+        string $sourceDirectory,
+        string $targetDirectory
     ): void {
-        $sourceFilepath = sprintf('%s/services.yml', $integrationSourceDirectory);
-        $targetFilepath = sprintf('%s/%s.yml', $integrationTargetDirectory, $integrationName);
+        $sourceFile = sprintf('%s/services.yml', $sourceDirectory);
+        $targetFile = sprintf('%s/%s.yml', $targetDirectory, $name);
 
-        if (!file_exists($sourceFilepath)) {
-            throw new \RuntimeException(sprintf('File %s is missing.', $sourceFilepath));
+        if (!file_exists($sourceFile)) {
+            throw new \RuntimeException(sprintf('File %s is missing.', $sourceFile));
         }
 
-        $this->filesystem->copy($sourceFilepath, $targetFilepath);
+        $this->filesystem->copy($sourceFile, $targetFile);
     }
 
     /**
-     * @param string $integrationName
-     * @param string $integrationSourceDirectory
-     * @param string $integrationTargetDirectory
+     * @param string $file
+     *
+     * @return array
+     */
+    public function loadEntities(string $file): array
+    {
+        return (new NativeLoader())->loadFile($file)->getObjects();
+    }
+
+    /**
+     * @param string $name
+     * @param string $sourceDirectory
+     * @param string $targetDirectory
      */
     protected function installEntities(
-        string $integrationName,
-        string $integrationSourceDirectory,
-        string $integrationTargetDirectory
+        string $name,
+        string $sourceDirectory,
+        string $targetDirectory
     ): void {
-        $sourceFilepath = sprintf('%s/entities.yml', $integrationSourceDirectory);
+        $sourceFile = sprintf('%s/entities.yml', $sourceDirectory);
 
-        if (!file_exists($sourceFilepath)) {
-            throw new \RuntimeException(sprintf('File %s is missing.', $sourceFilepath));
+        if (!file_exists($sourceFile)) {
+            throw new \RuntimeException(sprintf('File %s is missing.', $sourceFile));
         }
 
-        $loader = new NativeLoader();
-        $objects = $loader->loadFile($sourceFilepath)->getObjects();
-
-        foreach ($objects as $object) {
-            $class = get_class($object);
-
+        foreach ($this->loadEntities($sourceFile) as $object) {
             if ($object instanceof Level && !$this->storage->findLevel($object->getName())) {
                 $this->storage->saveLevel($object);
 
@@ -109,6 +114,35 @@ class InstallerService
 
                 continue;
             }
+        }
+    }
+
+    /**
+     * @param string $name
+     * @param string $targetDirectory
+     */
+    public function uninstall(
+        string $name,
+        string $targetDirectory
+    ): void {
+        $this->uninstallServices($name, $targetDirectory);
+    }
+
+    /**
+     * @param string $name
+     * @param string $sourceDirectory
+     * @param string $targetDirectory
+     *
+     * @throws RuntimeException
+     */
+    protected function uninstallServices(
+        string $name,
+        string $targetDirectory
+    ): void {
+        $targetFile = sprintf('%s/%s.yml', $targetDirectory, $name);
+
+        if (file_exists($targetFile)) {
+            $this->filesystem->remove($targetFile);
         }
     }
 }

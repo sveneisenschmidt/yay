@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Yay\Bundle\IntegrationBundle\Service\InstallerService;
 
 class EnableCommand extends ContainerAwareCommand
@@ -41,5 +42,7 @@ class EnableCommand extends ContainerAwareCommand
 
         $installer = $this->getContainer()->get(InstallerService::class);
         $installer->install($name, $sourceDirectory, $targetDirectory);
+
+        (new SymfonyStyle($input, $output))->success(sprintf('Integration "%s" enabled', $name));
     }
 }

@@ -6,11 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Console\Style\SymfonyStyle;
+use Yay\Bundle\IntegrationBundle\Service\InstallerService;
 
 class DisableCommand extends ContainerAwareCommand
 {
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('yay:integration:disable')
             ->setDescription('Disables an integration.')
@@ -27,56 +28,14 @@ class DisableCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $path = realpath(
-            sprintf('%s/../%s',
-                $this->getContainer()->getParameter('kernel.root_dir'),
-                $input->getArgument('path')
-            )
-        );
+        $name = $input->getArgument('name');
 
-        if (!file_exists($path) || !is_readable($path)) {
-            throw new \InvalidArgumentException('Path is does not exist or is not readable.');
-        }
+        $rootDirectory = $this->getContainer()->getParameter('kernel.root_dir');
+        $targetDirectory = realpath(sprintf('%s/../app/config/integration', $rootDirectory));
 
-        $this->uninstallServices($output, sprintf('%s/services.yml', $path));
-    }
+        $installer = $this->getContainer()->get(InstallerService::class);
+        $installer->uninstall($name, $targetDirectory);
 
-    /**
-     * @param $sourceFilepath
-     *
-     * @return string
-     */
-    protected function getServiceFilename($sourceFilepath): string
-    {
-        $rootFilepath = $this->getContainer()->getParameter('kernel.root_dir');
-        $filename = str_replace(realpath($rootFilepath.'/../'), '', $sourceFilepath);
-        $filename = str_replace(DIRECTORY_SEPARATOR, '.', dirname($filename));
-        $filename = sprintf('%s.yml', ltrim($filename, '.'));
-
-        return $filename;
-    }
-
-    /**
-     * @param OutputInterface $output
-     * @param string          $sourceFilepath
-     */
-    protected function uninstallServices(OutputInterface $output, string $sourceFilepath)
-    {
-        if (!file_exists($sourceFilepath)) {
-            throw new \RuntimeException(sprintf('File %s is missing.', $sourceFilepath));
-        }
-
-        $targetFilepath = sprintf('%s/config/services/%s',
-            $this->getContainer()->getParameter('kernel.root_dir'),
-            $this->getServiceFilename($sourceFilepath)
-        );
-
-        $output->writeln('<info>Services: Removing file.</info>');
-        if (file_exists($targetFilepath)) {
-            (new Filesystem())->remove($targetFilepath);
-            $output->writeln(sprintf('<info>- Removed file <options=bold>%s</>.</info>', $targetFilepath));
-        } else {
-            $output->writeln('<info>- Skipping file removal. Already removed.</info>');
-        }
+        (new SymfonyStyle($input, $output))->success(sprintf('Integration "%s" disabled', $name));
     }
 }
