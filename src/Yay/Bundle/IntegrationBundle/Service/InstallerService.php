@@ -9,8 +9,6 @@ use Yay\Component\Engine\Storage\DoctrineStorage;
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\AchievementDefinition;
 use Yay\Component\Entity\Achievement\Level;
-use Yay\Component\Entity\Achievement\PersonalAction;
-use Yay\Component\Entity\Player;
 
 class InstallerService
 {
@@ -25,7 +23,7 @@ class InstallerService
     protected $storage;
 
     /**
-     * @param Filesystem       $filesystem
+     * @param Filesystem      $filesystem
      * @param DoctrineStorage $storage
      */
     public function __construct(
@@ -35,6 +33,7 @@ class InstallerService
         $this->filesystem = $filesystem;
         $this->storage = $storage;
     }
+
     /**
      * @param string $integrationName
      * @param string $integrationSourceDirectory
@@ -53,6 +52,7 @@ class InstallerService
      * @param string $integrationName
      * @param string $integrationSourceDirectory
      * @param string $integrationTargetDirectory
+     *
      * @throws RuntimeException
      */
     protected function installServices(
@@ -94,16 +94,19 @@ class InstallerService
 
             if ($object instanceof Level && !$this->storage->findLevel($object->getName())) {
                 $this->storage->saveLevel($object);
+
                 continue;
             }
 
             if ($object instanceof ActionDefinition && !$this->storage->findActionDefinition($object->getName())) {
                 $this->storage->saveActionDefinition($object);
+
                 continue;
             }
 
             if ($object instanceof AchievementDefinition && !$this->storage->findAchievementDefinition($object->getName())) {
                 $this->storage->saveAchievementDefinition($object);
+
                 continue;
             }
         }
