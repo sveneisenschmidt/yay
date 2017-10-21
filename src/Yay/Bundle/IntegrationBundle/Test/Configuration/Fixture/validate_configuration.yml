@@ -1,0 +1,29 @@
+integration:
+    actions:
+        test-action:
+            label: Test action's label
+            description: Test action's description
+
+    achievements:
+        test-achievement-01:
+            label: Test achievement's label
+            description: Test achievement's description
+            points: 50
+            actions: ['test-action']
+        test-achievement-02:
+            label: Test achievement's label
+            description: Test achievement's description
+            points: 100
+            actions: ['test-action']
+
+    validators:
+        test-achievement-validator-01:
+            type: expression
+            arguments:
+                - achievement.getName() in ['test-achievement-01'] and filteredPersonalActions.count() >= 5
+        test-achievement-validator-02:
+            type: expression
+            arguments:
+                - achievement.getName() in ['test-achievement-02'] and filteredPersonalActions.count() >= 10
+            calls:
+                - ['setFoo', ['bar']]

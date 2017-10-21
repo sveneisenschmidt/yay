@@ -1,0 +1,29 @@
+integration:
+    actions:
+        demo-action:
+            label: Demo action's label
+            description: Demo actions's description
+
+    achievements:
+        demo-achievement-01:
+            label: Demo achievement's label
+            description: Demo achievement's description
+            points: 50
+            action: demo-action
+            actions: ['demo-action']
+        demo-achievement-02:
+            label: Demo achievement's label
+            description: Demo achievement's description
+            points: 100
+            action: demo-action
+            actions: ['demo-action']
+
+    validators:
+        demo-achievement-validator-01:
+            type: expression
+            arguments:
+                - achievement.getName() in ['demo-achievement-01'] and filteredPersonalActions.count() >= 5
+        demo-achievement-validator-02:
+            type: expression
+            arguments:
+                - achievement.getName() in ['demo-achievement-02'] and filteredPersonalActions.count() >= 10

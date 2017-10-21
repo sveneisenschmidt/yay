@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Yay\Bundle\IntegrationBundle\Service\InstallerService;
 use Yay\Component\Engine\StorageInterface;
-use Yay\Component\Entity\Achievement\LevelInterface;
 
 class InstallerServiceTest extends TestCase
 {
