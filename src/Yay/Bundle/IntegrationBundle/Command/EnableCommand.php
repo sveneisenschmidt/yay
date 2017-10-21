@@ -37,11 +37,11 @@ class EnableCommand extends ContainerAwareCommand
         $path = $input->getArgument('path');
 
         $rootDirectory = $this->getContainer()->getParameter('kernel.root_dir');
-        $sourceDirectory = realpath(sprintf('%s/../%s', $rootDirectory, $path));
+        $sourceFile = realpath(sprintf('%s/../%s.yml', $rootDirectory, $path));
         $targetDirectory = realpath(sprintf('%s/../app/config/integration', $rootDirectory));
 
         $installer = $this->getContainer()->get(InstallerService::class);
-        $installer->install($name, $sourceDirectory, $targetDirectory);
+        $installer->install($name, $sourceFile, $targetDirectory);
 
         (new SymfonyStyle($input, $output))->success(sprintf('Integration "%s" enabled', $name));
     }

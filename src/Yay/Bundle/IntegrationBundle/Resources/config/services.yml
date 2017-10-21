@@ -6,3 +6,7 @@ services:
 
     Yay\Bundle\IntegrationBundle\Service\InstallerService:
         public: true
+
+    Symfony\Component\Config\Definition\Processor: ~
+    Yay\Bundle\IntegrationBundle\Configuration\Configuration: ~
+    Yay\Bundle\IntegrationBundle\Configuration\ConfigurationTransformer: ~

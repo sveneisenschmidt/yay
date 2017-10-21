@@ -5,7 +5,7 @@ namespace Yay\Bundle\IntegrationBundle\Configuration;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
-class IntegrationConfiguration implements ConfigurationInterface
+class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
@@ -14,9 +14,31 @@ class IntegrationConfiguration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->arrayNode('levels')
+                    ->normalizeKeys(false)
+                    ->defaultValue([])
+                    ->prototype('array')
+                        ->children()
+                            ->integerNode('level')
+                                ->isRequired()
+                            ->end()
+                            ->integerNode('points')
+                                ->isRequired()
+                            ->end()
+                            ->scalarNode('label')
+                                ->isRequired()
+                                ->cannotBeEmpty()
+                            ->end()
+                            ->scalarNode('description')
+                                ->isRequired()
+                                ->cannotBeEmpty()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
                 ->arrayNode('actions')
                     ->normalizeKeys(false)
-                    ->requiresAtLeastOneElement()
+                    ->defaultValue([])
                     ->prototype('array')
                         ->children()
                             ->scalarNode('label')
@@ -32,6 +54,7 @@ class IntegrationConfiguration implements ConfigurationInterface
                 ->end()
                 ->arrayNode('achievements')
                     ->normalizeKeys(false)
+                    ->defaultValue([])
                     ->prototype('array')
                         ->addDefaultsIfNotSet()
                         ->children()
@@ -54,8 +77,9 @@ class IntegrationConfiguration implements ConfigurationInterface
                 ->end()
                 ->arrayNode('validators')
                     ->normalizeKeys(false)
-                    ->requiresAtLeastOneElement()
+                    ->defaultValue([])
                     ->prototype('array')
+                        ->addDefaultsIfNotSet()
                         ->children()
                             ->scalarNode('type')
                                 ->validate()

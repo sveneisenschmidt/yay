@@ -5,24 +5,36 @@ namespace Yay\Bundle\IntegrationBundle\Test\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Yaml\Yaml;
-use Yay\Bundle\IntegrationBundle\Configuration\IntegrationConfiguration;
+use Yay\Bundle\IntegrationBundle\Configuration\Configuration;
 
-class IntegrationConfigurationTest extends TestCase
+class ConfigurationTest extends TestCase
 {
     /**
      * @test
      */
-    public function validate_configuration(): void
+    public function validate_full_configuration(): void
     {
         $file = sprintf('%s/Fixture/%s.yml', __DIR__, __FUNCTION__);
         $contents = Yaml::parse(file_get_contents($file));
 
-        $config = (new Processor())->processConfiguration(new IntegrationConfiguration(), $contents);
+        $config = (new Processor())->processConfiguration(new Configuration(), $contents);
 
         $this->assertNotEmpty($config);
         $this->assertArrayHasKey('actions', $config);
         $this->assertArrayHasKey('achievements', $config);
         $this->assertArrayHasKey('validators', $config);
+
+        $index = 1;
+        foreach($config['levels'] as $key => $level) {
+            $this->assertEquals(sprintf('test-level-0%s', $index), $key);
+            $this->assertArrayHasKey('label', $level);
+            $this->assertArrayHasKey('description', $level);
+            $this->assertArrayHasKey('points', $level);
+            $this->assertArrayHasKey('points', $level);
+            $this->assertEquals("Test level's label", $level['label']);
+            $this->assertEquals("Test level's description", $level['description']);
+            $index++;
+        }
 
         foreach($config['actions'] as $key => $action) {
             $this->assertEquals('test-action', $key);
@@ -53,5 +65,21 @@ class IntegrationConfigurationTest extends TestCase
             $this->assertArrayHasKey('calls', $validator);
             $index++;
         }
+    }
+
+    /**
+     * @test
+     */
+    public function validate_empty_configuration(): void
+    {
+        $file = sprintf('%s/Fixture/%s.yml', __DIR__, __FUNCTION__);
+        $contents = Yaml::parse(file_get_contents($file));
+
+        $config = (new Processor())->processConfiguration(new Configuration(), $contents);
+
+        $this->assertNotEmpty($config);
+        $this->assertArrayHasKey('actions', $config);
+        $this->assertArrayHasKey('achievements', $config);
+        $this->assertArrayHasKey('validators', $config);
     }
 }

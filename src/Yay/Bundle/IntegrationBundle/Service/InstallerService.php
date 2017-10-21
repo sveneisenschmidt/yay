@@ -4,6 +4,8 @@ namespace Yay\Bundle\IntegrationBundle\Service;
 
 use Nelmio\Alice\Loader\NativeLoader;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Yaml\Yaml;
+use Yay\Bundle\IntegrationBundle\Configuration\ConfigurationTransformer;
 use Yay\Component\Engine\StorageInterface;
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\AchievementDefinition;
@@ -22,50 +24,64 @@ class InstallerService
     protected $storage;
 
     /**
-     * @param Filesystem       $filesystem
-     * @param StorageInterface $storage
+     * @param ConfigurationTransformer
+     */
+    protected $transformer;
+
+    /**
+     * @param Filesystem               $filesystem
+     * @param StorageInterface         $storage
+     * @param ConfigurationTransformer $transformer
      */
     public function __construct(
         Filesystem $filesystem,
-        StorageInterface $storage
+        StorageInterface $storage,
+        ConfigurationTransformer $transformer
     ) {
         $this->filesystem = $filesystem;
         $this->storage = $storage;
+        $this->transformer = $transformer;
     }
 
     /**
      * @param string $name
-     * @param string $sourceDirectory
+     * @param string $sourceFile
      * @param string $targetDirectory
      */
     public function install(
         string $name,
-        string $sourceDirectory,
+        string $sourceFile,
         string $targetDirectory
     ): void {
-        $this->installServices(
-            sprintf('%s/services.yml', $sourceDirectory),
-            sprintf('%s/%s.yml', $targetDirectory, $name)
-        );
+        $config = $this->loadConfig($sourceFile);
+        $configs = $this->transformFromConfig($config);
 
-        $this->installEntities(
-            sprintf('%s/entities.yml', $sourceDirectory)
-        );
+        $this->installServices($configs['services.yml'], sprintf('%s/%s.yml', $targetDirectory, $name));
+        $this->installEntities($configs['entities.yml']);
+    }
+
+    /**
+     * @param array $config
+     *
+     * @return array
+     */
+    public function transformFromConfig(array $config): array
+    {
+        return $this->transformer->transformFromUnprocessedConfig($config);
     }
 
     /**
      * @param string $sourceFile
-     * @param string $targetFile
      *
-     * @throws RuntimeException
+     * @return array
      */
-    public function installServices(string $sourceFile, string $targetFile): void
+    public function loadConfig(string $sourceFile): ?array
     {
         if (!$this->filesystem->exists($sourceFile)) {
             throw new \RuntimeException(sprintf('File %s is missing.', $sourceFile));
         }
 
-        $this->filesystem->copy($sourceFile, $targetFile);
+        return Yaml::parse(file_get_contents($sourceFile));
     }
 
     /**
@@ -73,21 +89,29 @@ class InstallerService
      *
      * @return array
      */
-    public function loadEntities(string $file): array
+    public function loadEntities(array $data): array
     {
-        return (new NativeLoader())->loadFile($file)->getObjects();
+        return (new NativeLoader())->loadData($data)->getObjects();
     }
 
     /**
-     * @param string $sourceFile
+     * @param array  $data
+     * @param string $targetFile
+     *
+     * @throws RuntimeException
      */
-    public function installEntities(string $sourceFile): void
+    public function installServices(array $data, string $targetFile): void
     {
-        if (!$this->filesystem->exists($sourceFile)) {
-            throw new \RuntimeException(sprintf('File %s is missing.', $sourceFile));
-        }
+        $contents = Yaml::dump($data, 32);
+        $this->filesystem->dumpFile($targetFile, $contents);
+    }
 
-        foreach ($this->loadEntities($sourceFile) as $object) {
+    /**
+     * @param array $data
+     */
+    public function installEntities(array $data): void
+    {
+        foreach ($this->loadEntities($data) as $object) {
             if ($object instanceof Level && !$this->storage->findLevel($object->getName())) {
                 $this->storage->saveLevel($object);
 
