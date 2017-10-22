@@ -154,4 +154,19 @@ class InstallerService
             $this->filesystem->remove($targetFile);
         }
     }
+
+    /**
+     * @param string $name
+     * @param string $sourceFile
+     *
+     * @throws \Exception
+     */
+    public function validate(
+        string $name,
+        string $sourceFile
+    ): void {
+        $config = $this->loadConfig($sourceFile);
+        $configs = $this->transformFromConfig($config);
+        $objects = $this->loadEntities($configs['entities.yml']);
+    }
 }
