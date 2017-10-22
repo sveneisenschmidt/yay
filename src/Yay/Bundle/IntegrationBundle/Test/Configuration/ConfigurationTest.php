@@ -25,7 +25,7 @@ class ConfigurationTest extends TestCase
         $this->assertArrayHasKey('validators', $config);
 
         $index = 1;
-        foreach($config['levels'] as $key => $level) {
+        foreach ($config['levels'] as $key => $level) {
             $this->assertEquals(sprintf('test-level-0%s', $index), $key);
             $this->assertArrayHasKey('label', $level);
             $this->assertArrayHasKey('description', $level);
@@ -33,10 +33,10 @@ class ConfigurationTest extends TestCase
             $this->assertArrayHasKey('points', $level);
             $this->assertEquals("Test level's label", $level['label']);
             $this->assertEquals("Test level's description", $level['description']);
-            $index++;
+            ++$index;
         }
 
-        foreach($config['actions'] as $key => $action) {
+        foreach ($config['actions'] as $key => $action) {
             $this->assertEquals('test-action', $key);
             $this->assertArrayHasKey('label', $action);
             $this->assertArrayHasKey('description', $action);
@@ -45,7 +45,7 @@ class ConfigurationTest extends TestCase
         }
 
         $index = 1;
-        foreach($config['achievements'] as $key => $achievement) {
+        foreach ($config['achievements'] as $key => $achievement) {
             $this->assertEquals(sprintf('test-achievement-0%s', $index), $key);
             $this->assertArrayHasKey('label', $achievement);
             $this->assertArrayHasKey('description', $achievement);
@@ -53,17 +53,17 @@ class ConfigurationTest extends TestCase
             $this->assertEquals("Test achievement's label", $achievement['label']);
             $this->assertEquals("Test achievement's description", $achievement['description']);
             $this->assertEquals($index * 50, $achievement['points']);
-            $index++;
+            ++$index;
         }
 
         $index = 1;
-        foreach($config['validators'] as $key => $validator) {
+        foreach ($config['validators'] as $key => $validator) {
             $this->assertEquals(sprintf('test-achievement-validator-0%s', $index), $key);
             $this->assertArrayHasKey('type', $validator);
             $this->assertArrayHasKey('class', $validator);
             $this->assertArrayHasKey('arguments', $validator);
             $this->assertArrayHasKey('calls', $validator);
-            $index++;
+            ++$index;
         }
     }
 

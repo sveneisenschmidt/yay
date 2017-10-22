@@ -54,7 +54,9 @@ class ConfigurationTransformerTest extends TestCase
         }
 
         foreach ($configs['services.yml']['services'] as $name => $service) {
-            if ($name === '_defaults') continue;
+            if ($name === '_defaults') {
+                continue;
+            }
             $this->assertArrayHasKey('class', $service);
             $this->assertArrayHasKey('arguments', $service);
         }
