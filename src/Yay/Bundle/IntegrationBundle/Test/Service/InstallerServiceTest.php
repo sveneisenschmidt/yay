@@ -234,6 +234,7 @@ class InstallerServiceTest extends TestCase
         $installer = new InstallerService(new Filesystem(), $storage, $transformer);
         $installer->installEntities($objects);
     }
+
     /**
      * @test
      */
