@@ -59,6 +59,7 @@ class ConfigurationTransformerTest extends TestCase
             }
             $this->assertArrayHasKey('class', $service);
             $this->assertArrayHasKey('arguments', $service);
+            $this->assertArrayHasKey('tags', $service);
         }
     }
 }

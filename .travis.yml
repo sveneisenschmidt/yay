@@ -1,6 +1,6 @@
 dist: trusty
 language: generic
-sudo: false
+sudo: required
 
 git:
     depth: 1
