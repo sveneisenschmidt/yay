@@ -12,6 +12,9 @@ use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
 use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalAchievementInterface;
 use Yay\Component\Entity\Achievement\PersonalActionInterface;
+use Yay\Component\Entity\Achievement\LevelCollection;
+use Yay\Component\Entity\Achievement\LevelInterface;
+use Yay\Component\Entity\Achievement\Level;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerCollection;
 use Yay\Component\Entity\PlayerInterface;
@@ -54,9 +57,9 @@ class DoctrineStorage implements StorageInterface
     /**
      * {@inheritdoc}
      */
-    public function findAchievementDefinition(int $id): ?AchievementDefinitionInterface
+    public function findAchievementDefinition(string $name): ?AchievementDefinitionInterface
     {
-        return $this->manager->getRepository(AchievementDefinition::class)->find($id);
+        return $this->manager->getRepository(AchievementDefinition::class)->find($name);
     }
 
     /**
@@ -72,9 +75,18 @@ class DoctrineStorage implements StorageInterface
     /**
      * {@inheritdoc}
      */
-    public function findActionDefinition(int $id): ?ActionDefinitionInterface
+    public function saveAchievementDefinition(AchievementDefinitionInterface $achievementDefinition)
     {
-        return $this->manager->getRepository(ActionDefinition::class)->find($id);
+        $this->manager->persist($achievementDefinition);
+        $this->manager->flush();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findActionDefinition(string $name): ?ActionDefinitionInterface
+    {
+        return $this->manager->getRepository(ActionDefinition::class)->find($name);
     }
 
     /**
@@ -85,6 +97,15 @@ class DoctrineStorage implements StorageInterface
         $result = $this->manager->getRepository(ActionDefinition::class)->findBy($criteria);
 
         return new ActionDefinitionCollection($result);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function saveActionDefinition(ActionDefinitionInterface $actionDefinition)
+    {
+        $this->manager->persist($actionDefinition);
+        $this->manager->flush();
     }
 
     /**
@@ -119,6 +140,33 @@ class DoctrineStorage implements StorageInterface
     public function savePersonalAchievement(PersonalAchievementInterface $personalAchievement)
     {
         $this->manager->persist($personalAchievement);
+        $this->manager->flush();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findLevel(string $name): ?LevelInterface
+    {
+        return $this->manager->getRepository(Level::class)->find($name);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findLevelBy(array $criteria = []): LevelCollection
+    {
+        $result = $this->manager->getRepository(Level::class)->findBy($criteria);
+
+        return new LevelCollection($result);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function saveLevel(LevelInterface $level)
+    {
+        $this->manager->persist($level);
         $this->manager->flush();
     }
 }

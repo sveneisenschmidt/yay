@@ -19,6 +19,8 @@ RUN docker-php-ext-install \
     opcache \
     zip
 
+RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory.ini
+
 RUN cd /tmp && \
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \

@@ -3,9 +3,13 @@
 namespace Yay\Component\Engine;
 
 use Yay\Component\Entity\Achievement\ActionDefinitionCollection;
+use Yay\Component\Entity\Achievement\ActionDefinitionInterface;
 use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\PersonalAchievementInterface;
 use Yay\Component\Entity\Achievement\PersonalActionInterface;
+use Yay\Component\Entity\Achievement\LevelCollection;
+use Yay\Component\Entity\Achievement\LevelInterface;
 use Yay\Component\Entity\PlayerCollection;
 use Yay\Component\Entity\PlayerInterface;
 
@@ -87,6 +91,14 @@ trait StorageTrait
     }
 
     /**
+     * @param AchievementDefinitionInterface $achievementDefinition
+     */
+    public function saveAchievementDefinition(AchievementDefinitionInterface $achievementDefinition)
+    {
+        $this->getStorage()->saveAchievementDefinition($achievementDefinition);
+    }
+
+    /**
      * @param array $criteria
      *
      * @return ActionDefinitionCollection
@@ -102,6 +114,14 @@ trait StorageTrait
     public function findActionDefinitionAny(): ActionDefinitionCollection
     {
         return $this->findActionDefinitionBy([]);
+    }
+
+    /**
+     * @param ActionDefinitionInterface $actionDefinition
+     */
+    public function saveActionDefinition(ActionDefinitionInterface $actionDefinition)
+    {
+        $this->getStorage()->saveActionDefinition($actionDefinition);
     }
 
     /**
@@ -126,5 +146,33 @@ trait StorageTrait
     public function refreshPlayer(PlayerInterface $player)
     {
         $this->getStorage()->refreshPlayer($player);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return LevelInterface|null
+     */
+    public function findLevel(string $name): ?LevelInterface
+    {
+        return $this->getStorage()->findLevel($name);
+    }
+
+    /**
+     * @param array $criteria
+     *
+     * @return LevelCollection
+     */
+    public function findLevelBy(array $criteria = []): LevelCollection
+    {
+        return $this->getStorage()->findLevelBy($criteria);
+    }
+
+    /**
+     * @param LevelInterface $level
+     */
+    public function saveLevel(LevelInterface $level)
+    {
+        return $this->getStorage()->saveLevel($level);
     }
 }

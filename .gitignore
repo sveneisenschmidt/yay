@@ -21,5 +21,6 @@
 !.data/.gitkeep
 /.idea
 /web/build
-/app/config/services/*
-!app/config/services/.gitkeep
+/app/config/integration/*
+!app/config/integration/.gitkeep
+coverage.xml

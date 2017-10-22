@@ -1,82 +1,161 @@
 # Integrations #
 
-Integrations are used to extend the application with new actions and achievements. For now actions and achievements are provided as entities and configurable services. This is subject to change in the future and will be by high chance replaced by a single configuration file and format.
+Integrations are used to extend the application with new actions, achievements and validators. Before creating your own integration it is advised to have a look at the the [demo integration](integration/demo) provided in the application's source.
 
-Before creating your own integration it is advised to have a look at the the [demo integration](integration/demo) provided in the application's source.
-
-In our example we will create a `mycompany` integration. To start please execute the following commands to create our integration folder and configuration file.
+In our example we will create a `mycompany` integration. To start please execute the following commands to create our integration setup file.
 
 ```bash
-mkdir -p integraiton/mycompany
-touch integration/mycompany/entities.yml
-touch integration/mycompany/services.yml
+touch integration/mycompany.yml
 ```
 
-# Actions & Achievements
+## Integration setup
 
-## Actions
+The integration setup file has a root element `integration` and four possible children nodes `actions`, `achievements`, and `validators`.
 
-Actions are of type [ActionDefinition](../src/Yay/Component/Entity/Achievement/ActionDefinition.php) and need to be imported to the database during installation. Let us assume you want to add a new action `mycompany-action-01`, for this we need to extend our `entities.yml` file.
+| Node | Desciprion |
+|---|---|---|
+| actions | Actions a player can perform. |
+| achievements | Achievments a player can earn. |
+| validators | Validators validates a players actions against any achivement and grants if validation passed the validation. ( `Validator::validate(Achievement, Actions): true||false` ) |
 
-```yaml
-Yay/Component/Entity/Achievement/AchievementDefinition:
-    mycompany-action-01:
-        __construct: ['mycompany-action-01']
-        label: Action One
-        description: My companies action one.
+### Example setup file
+(See [demo integration](integration/demo))
+
+```yml
+integration:
+    levels: []
+
+    actions:
+        example-action:
+            label: Example action label
+            description: Example actions description
+
+    achievements:
+        example-achievement-01:
+            label: Example achievement label
+            description: Example achievement description
+            points: 50
+            actions: ["example-action"]
+        example-achievement-02:
+            label: Example achievement label
+            description: Example achievement description
+            points: 100
+            actions: ["example-action"]
+
+    validators:
+        # Grants achviement 'example-achievement-01' if action `example-action`
+        # has been performed by the player 5 times.
+        example-achievement-validator-01:
+            type: expression
+            arguments:
+                - "achievement.getName() in ['example-achievement-01'] and filteredPersonalActions.count() >= 5"
+        # Grants achviement 'example-achievement-01' if action `example-action`
+        # has been performed by the player 10 times.
+        example-achievement-validator-02:
+            type: expression
+            arguments:
+                - "achievement.getName() in ['example-achievement-02'] and filteredPersonalActions.count() >= 10"
+
 ```
-Hint: Actions are defined via the `Nelmio/Alice` fixture definition for objects.
 
-## Achievements
+## Structure
 
-Achievements are of type [AchievementDefinition](..src/Yay/Component/Entity/Achievement/AchievementDefinition.php) and need to be imported to the database during installation. Let us assume you want to add a new achievement `mycompany-achievement-01`, for this we need to extend our `entities.yml` file.
+### `actions`
 
-```yaml
-Yay/Component/Entity/Achievement/AchievementDefinition:
-    mycompany-achievement-01:
-        __construct: ['mycompany-achievement-01']
-        __calls:
-          - addActionDefinition: [ '@mycompany-action-01' ]
-        label: Achievement One
-        description: My companies achievement one.
-        points: 50
+Actions are declared as multi-dimensional associative arrays. Keys on the first level are the actions name, keys and values on second level are the properties of the action. Internally actions are of type [ActionDefinition](../src/Yay/Component/Entity/Achievement/ActionDefinition.php) and need to be imported to the database during installation.
+
+Supported properties: `label`, `description`.
+
+```yml
+integration:
+    # ...
+    actions:
+        # First level
+        example-action-01:
+            # Second level
+            label: Example action label"
+            description: Example actions description"
+        # First level
+        example-action-02:
+            # Second level
+            label: Example action label"
+            description: Example actions description"
+    # ...
 ```
-Hint: Achievements are defined via the `Nelmio/Alice` fixture definition for objects.
 
-# Validation & granting an achievement
+### `achievements`
 
-During runtime the application needs to know when to grant an Achievement after certain actions have been performed through a player. To provide this functioanilty the application uses validators that are able to tell if achievement criterias are met. Validators are implementing the [AchievementValidatorInterface](../src/Yay/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of Achievements. Let us assume you want to grant achievement `mycompany-achievement-01` when a player performs the `mycompany-action-01` action five times, for this we need to extend our `services.yml` file.
+Achievements are declared as multi-dimensional associative arrays. Keys on the first level are the achievements name, keys and values on second level are the properties of the achievement. The `actions` property takes a list of actions defined under `actions` or in a different integration, so they can get referenced while validation. Internally achievements are of type [AchievementDefinition](..src/Yay/Component/Entity/Achievement/AchievementDefinition.php) and need to be imported to the database during installation.
 
-```yaml
-parameters: ~
+Supported properties: `label`, `description`, `points`, `actions`.
 
-services:
-    _defaults:
-        autoconfigure: true
-
-    mycompany-achievement-validator-01:
-        class:  Yay\Component\Engine\AchievementValidator\Validator\ExpressionLanguageValidator
-        arguments:
-            - achievement.getName() in ['mycompany-achievement-01'] and filteredPersonalActions.count() >= 5
+```yml
+integration:
+    # ...
+    achievements:
+        # First level
+        demo-achievement-01:
+            # Second level
+            label: Demo example label
+            description: Demo example description
+            points: 50
+            actions: ["example-action"]
+        # First level
+        demo-achievement-02:
+            # Second level
+            label: Demo example label
+            description: Demo example description
+            points: 100
+            actions: ["example-action"]
+    # ...
 ```
-Hint 1: Achievement validators are defined via the symfony container specification for services.
 
-Hint 2: Achievement validators are automatically registered if when the option `autoconfigure: true` as a default option or service property is set.
+### `validators`
 
-Hint 3: Due to the connection between achievement and action through `addActionDefinition` of our `AchievementDefinition` we can use `filteredPersonalActions` to access on a player's personal actions and actions that are supported by our achievement.
+Validators are declared as multi-dimensional associative arrays. Keys on the first level are the validators name, keys and values on second level are the properties of the validator. During runtime the application needs to know when to grant an achievement after certain set of actions have been performed by a player. To provide this functioanilty the application uses validators that are able to tell if achievement criterias are met. Internally validators are implementing the [AchievementValidatorInterface](../src/Yay/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of achievements.
+
+Supported properties: `type`, `arguments`, `class`. If you provide `expression` for `type` internally the property `class` gets set to `AchievementValidatorInterface`.
+
+```yml
+validators:
+    # ...
+    validators:
+        # First level
+        # Grants achviement 'demo-achievement-01' if action `demo-action`
+        # has been performed by the player 5 times.
+        demo-achievement-validator-01:
+            # Second level
+            type: expression
+            arguments:
+                - "achievement.getName() in ['demo-achievement-01'] and filteredPersonalActions.count() >= 5"
+        # Grants achviement 'demo-achievement-01' if action `demo-action`
+        # has been performed by the player 10 times.
+        # First level
+        demo-achievement-validator-02:
+            # Second level
+            type: expression
+            arguments:
+                - "achievement.getName() in ['demo-achievement-02'] and filteredPersonalActions.count() >= 10"
+    # ...
+```
 
 # Using your integration
 
-## 1) Install your integration
+## 1) Validate your integration
 ```bash
 $ make shell
-$ php bin/console yay:integration:install integration/mycompany
+$ php bin/console yay:integration:validate mycompany integration/mycompany
 ```
 
-## 2) Remove your integration
+## 2) Enable your integration
 ```bash
 $ make shell
-$ php bin/console yay:integration:uninstall integration/mycompany
+$ php bin/console yay:integration:enable mycompany integration/mycompany
 ```
-Hint: The uninstall routine will only remove the service configuration. Entities created during the installation will not be removed due to the fact that they often share relations to other entities (e.g. players and their personal achievements.)
 
+## 3) Disable your integration
+```bash
+$ make shell
+$ php bin/console yay:integration:disable mycompany
+```
+Hint: The disable routine will only remove the configuration. Entities created during the installation will not be removed due to the fact that they often share relations to other entities (e.g. players and their personal achievements.)

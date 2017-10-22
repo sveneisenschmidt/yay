@@ -1,6 +1,6 @@
 dist: trusty
 language: generic
-sudo: false
+sudo: required
 
 git:
     depth: 1
@@ -12,4 +12,7 @@ before_script:
     - sed -i -e 's/data:cached/data/g' docker-compose.yml && cat docker-compose.yml
     - make install
 
-script: make test
+script: make test-coverage
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)

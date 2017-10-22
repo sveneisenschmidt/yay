@@ -33,17 +33,20 @@
 
 .application-demo-import-fixtures:
 	@$(call .docker-run,cli,'\
-		php bin/console yay:integration:install integration/default && \
-		php bin/console yay:integration:install integration/demo && \
+		php bin/console yay:integration:enable default integration/default && \
+		php bin/console yay:integration:enable demo integration/demo && \
 		php bin/console yay:recalculate')
 
 .application-demo-remove-fixtures:
 	@$(call .docker-run,cli,'\
-        php bin/console yay:integration:uninstall integration/default && \
-		php bin/console yay:integration:uninstall integration/demo')
+        php bin/console yay:integration:disable default && \
+		php bin/console yay:integration:disable demo')
 
 .application-test: .application-clean-database
 	@$(call .docker-run,cli,'vendor/bin/phpunit')
+
+.application-test-coverage: .application-clean-database
+	@$(call .docker-run,cli,'phpdbg -qrr ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml')
 
 .application-build-docs:
 	@$(call .docker-run,cli,'php bin/console api:doc:dump') > docs/api.md
