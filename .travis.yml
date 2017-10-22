@@ -8,8 +8,24 @@ git:
 services:
     - docker
 
+install:
+    - wget -c -nc --retry-connrefused --tries=0 https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
+    - chmod +x coveralls.phar
+    - php coveralls.phar --version
+
 before_script:
     - sed -i -e 's/data:cached/data/g' docker-compose.yml && cat docker-compose.yml
+    - >
+    echo "RUN apk add --no-cache --virtual .build-deps autoconf gcc make g++ zlib-dev file g++ libc-dev make pkgconf && \\
+        wget http://xdebug.org/files/xdebug-2.5.5.tgz && \\
+        tar -zxvf xdebug-2.5.5.tgz && \\
+        cd xdebug-2.5.5 && phpize && \\
+        ./configure --enable-xdebug && make && make install && \\
+        echo \"zend_extension=xdebug.so\" > \$PHP_INI_DIR/conf.d/xdebug.ini && \\
+        apk del .build-deps && rm -rf tmp/*" >> DOCKERFILE && cat DOCKERFILE
     - make install
 
-script: make test
+script: make test-coverage
+
+after_success:
+    - travis_retry php coveralls.phar -v

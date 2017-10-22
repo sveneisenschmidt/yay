@@ -47,6 +47,8 @@ build-docs: .application-build-docs
 
 test: .application-test
 
+test-coverage: .application-test-coverage
+
 demo-import: .application-demo-import
 
 demo-remove: .application-demo-remove
