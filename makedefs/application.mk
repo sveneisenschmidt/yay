@@ -46,7 +46,7 @@
 	@$(call .docker-run,cli,'vendor/bin/phpunit')
 
 .application-test-coverage: .application-clean-database
-	@$(call .docker-run,cli,'vendor/bin/phpunit --coverage-clover .build/report/clover.xml --coverage-html .build/report/html')
+	@$(call .docker-run,cli,'vendor/bin/phpunit --coverage-text')
 
 .application-build-docs:
 	@$(call .docker-run,cli,'php bin/console api:doc:dump') > docs/api.md

@@ -8,10 +8,6 @@ git:
 services:
     - docker
 
-install:
-    - wget -c -nc --retry-connrefused --tries=0 https://github.com/php-coveralls/php-coveralls/releases/download/v1.0.2/coveralls.phar
-    - chmod +x coveralls.phar
-
 before_script:
     - sed -i -e 's/data:cached/data/g' docker-compose.yml && cat docker-compose.yml
     - >
@@ -25,6 +21,3 @@ before_script:
     - make install
 
 script: make test-coverage
-
-after_success:
-    - travis_retry php coveralls.phar -v
