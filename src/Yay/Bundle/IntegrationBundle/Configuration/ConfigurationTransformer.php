@@ -118,7 +118,7 @@ class ConfigurationTransformer
             $services['services'][$name] = [
                 'class' => $validator['class'],
                 'arguments' => $validator['arguments'],
-                'tags' => ['yay.achievement_validator']
+                'tags' => ['yay.achievement_validator'],
             ];
         }
 
