@@ -17,7 +17,7 @@ before_script:
             cd xdebug-2.5.5 && phpize && \\
             ./configure --enable-xdebug && make && make install && \\
             echo \"zend_extension=xdebug.so\" > \$PHP_INI_DIR/conf.d/xdebug.ini && \\
-            apk del .build-deps && rm -rf tmp/*" >> DOCKERFILE && cat DOCKERFILE
+            apk del .build-deps && rm -rf tmp/*" >> $TRAVIS_BUILD_DIR/DOCKERFILE && cat $TRAVIS_BUILD_DIR/DOCKERFILE
     - make install
 
 script: make test-coverage
