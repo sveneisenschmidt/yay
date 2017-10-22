@@ -234,4 +234,28 @@ class InstallerServiceTest extends TestCase
         $installer = new InstallerService(new Filesystem(), $storage, $transformer);
         $installer->installEntities($objects);
     }
+    /**
+     * @test
+     */
+    public function validate()
+    {
+        $installer = $this->getMockBuilder(InstallerService::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['loadConfig', 'transformFromConfig', 'loadEntities'])
+            ->getMock();
+
+        $installer->expects($this->atLeastonce())
+            ->method('loadConfig')
+            ->willReturn([]);
+
+        $installer->expects($this->atLeastonce())
+            ->method('transformFromConfig')
+            ->willReturn(['services.yml' => [], 'entities.yml' => []]);
+
+        $installer->expects($this->atLeastonce())
+            ->method('loadEntities')
+            ->willReturn([]);
+
+        $installer->validate('a', 'b');
+    }
 }
