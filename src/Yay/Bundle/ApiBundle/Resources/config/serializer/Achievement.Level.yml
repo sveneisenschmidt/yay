@@ -1,0 +1,19 @@
+Yay\Component\Entity\Achievement\Level:
+  exclusion_policy: ALL
+  properties:
+    name:
+      groups:
+        - 'level.index'
+    label:
+      groups:
+        - 'level.index'
+    description:
+      groups:
+        - 'level.index'
+    level:
+      groups:
+        - 'level.index'
+    points:
+      groups:
+        - 'level.index'
+

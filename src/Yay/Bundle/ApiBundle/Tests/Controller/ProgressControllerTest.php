@@ -79,4 +79,63 @@ class ProgressControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'achievement', $value);
         }
     }
+
+    /**
+     * @test
+     * @testdox Submit a payload, but missing actions, to update a users progress
+     */
+    public function Progress_SubmitAction_ValidUser_NoAction()
+    {
+        $client = static::createClient();
+
+        $content = json_encode([
+            'player' => 'jane.doe'
+        ]);
+
+        $client->request('POST', '/api/progress/', [], [], [], $content);
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isNotFound());
+    }
+
+    /**
+     * @test
+     * @testdox Submit a payload, but unkown player, to update a users progress
+     */
+    public function Progress_SubmitAction_ValidUser_UnknownPlayer()
+    {
+        $client = static::createClient();
+
+        $content = json_encode([
+            'player' => 'john.doe',
+            'action' => 'yay.action.test_action',
+        ]);
+
+        $client->request('POST', '/api/progress/', [], [], [], $content);
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isNotFound());
+    }
+
+    /**
+     * @test
+     * @testdox Submit a payload, but missing actions, to update a users progress
+     */
+    public function Progress_SubmitAction_ValidUser_UnknownAction()
+    {
+        $client = static::createClient();
+
+        $content = json_encode([
+            'player' => 'jane.doe',
+            'action' => 'yay.action.unknown_test_action',
+        ]);
+
+        $client->request('POST', '/api/progress/', [], [], [], $content);
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertEmpty($data);
+    }
 }

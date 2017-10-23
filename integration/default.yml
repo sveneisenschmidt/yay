@@ -3,28 +3,28 @@ integration:
         level-01:
             level: 1
             points: 100
-            label: "label-1"
-            description: "description-1"
+            label: label-1
+            description: description-1
         level-02:
             level: 2
             points: 200
-            label: "label-2"
-            description: "description-2"
+            label: label-2
+            description: description-2
         level-03:
             level: 3
             points: 300
-            label: "label-3"
-            description: description-3"
+            label: label-3
+            description: description-3
         level-04:
             level: 4
             points: 400
-            label: "label-4"
-            description: description-4"
+            label: label-4
+            description: description-4
         level-05:
             level: 5
             points: 500
-            label: "label-5"
-            description: "description-5"
+            label: label-5
+            description: description-5
     actions: ~
     achievements: ~
     validators: ~

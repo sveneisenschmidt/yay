@@ -49,4 +49,18 @@ class ActionControllerTest extends WebTestCase
         $this->assertArrayHasKey('description', $data);
         $this->assertArraySubsetHasKey('links', 'self', $data);
     }
+
+    /**
+     * @test
+     * @testdox Could not find a single action
+     */
+    public function Action_ShowAction_NotFound()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/actions/yay.action.test_not-found');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isNotFound());
+    }
 }

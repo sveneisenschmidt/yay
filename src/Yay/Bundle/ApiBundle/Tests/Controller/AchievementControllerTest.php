@@ -53,4 +53,18 @@ class AchievementControllerTest extends WebTestCase
         $this->assertArraySubsetHasKey('links', 'self', $data);
         $this->assertArraySubsetHasKey('links', 'actions', $data);
     }
+
+    /**
+     * @test
+     * @testdox Could not find a single achievement
+     */
+    public function Achievement_ShowAction_NotFound()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/achievements/yay.achievement.test_not-found');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isNotFound());
+    }
 }

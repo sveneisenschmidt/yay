@@ -5,6 +5,7 @@ namespace Yay\Bundle\ApiBundle\Controller;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Yay\Bundle\ApiBundle\Response\ResponseSerializer;
 use Yay\Component\Engine\Engine;
@@ -13,7 +14,7 @@ use Yay\Component\Entity\PlayerInterface;
 /**
  * @Route("/leaderboard")
  */
-class LeaderboardController
+class LeaderboardController extends Controller
 {
     /**
      * **Example Response:**
