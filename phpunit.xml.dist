@@ -31,5 +31,11 @@
                 <directory>src/*/Bundle/*Bundle/Resources</directory>
             </exclude>
         </whitelist>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <exclude>
+                <directory>src/Yay/Bundle/*Bundle/Tests</directory>
+                <directory>src/Yay/Component/*/Tests</directory>
+            </exclude>
+        </whitelist>
     </filter>
 </phpunit>

@@ -13,7 +13,7 @@ touch integration/mycompany.yml
 The integration setup file has a root element `integration` and four possible children nodes `actions`, `achievements`, and `validators`.
 
 | Node | Desciprion |
-|---|---|---|
+|---|---|
 | actions | Actions a player can perform. |
 | achievements | Achievments a player can earn. |
 | validators | Validators validates a players actions against any achivement and grants if validation passed the validation. ( `Validator::validate(Achievement, Actions): true||false` ) |

@@ -5,25 +5,51 @@
 ![yay](docs/src/cycle.svg)
 
 ## The Idea
-> Gamification can be applied to all technical and non-technical tasks during our daily working life.
-
-> Everything can be gamified.
+> Gamification can be applied to all technical and non-technical tasks during our daily working life. Everything can be gamified.
 
 ## The Implementation
 Yay is an **gamification engine**, exposing a web service API, for integrating any kinds of gamification features into your organisation. Yay originally started as a 36 hours hackathon project at [trivago](https://github.com/trivago) to bring gamification features to our organisation. To integrate yay into many application landscapes it offers flexible extension points to write your own integrations.
 
 ## Yay Documentation
-How-to-use, installation instructions, getting started guides, and extension documentation:
+How-to-use demo, installation instructions, configuration examples and extension documentation:
 
-* [Read the documentation](docs/documentation.md)
+* [Installation](installation.md)
+* [Configuration](configuration.md)
+* [API](api.md)
+* [Demo](demo.md)
+* [Custom Integrations](integrations.md)
+
 
 ## Installation
-
 Yay is tested and packable to run through Docker on any operating system that supports Docker.
 
-* [Installation instructions](docs/installation.md)
+* [Installation](docs/installation.md)
 * [Releases on github.com](https://github.com/sveneisenschmidt/yay/releases)
 
+## Usage
+```bash
+curl -X "POST" http://localhost:50080/api/progress/ \
+    -d "{\"player\":\"jane.doe\",\"action\":\"demo-action\"}"
+
+[
+    {
+        "name": "demo-achievement-01",
+        "label": "demo-achievement-01",
+        "description": "demo-achievement-01",
+        "points": 50,
+        "achieved_at": "2017-10-08T13:22:08+0000",
+        "links": {
+            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements",
+            "player": "http://localhost:50080/api/players/jane.doe",
+            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01"
+        }
+    }
+]
+```
+
+Documentation on usage and demo examples:
+* [API](api.md)
+* [Demo](demo.md)
 
 ## Get Yay Support and Help
 

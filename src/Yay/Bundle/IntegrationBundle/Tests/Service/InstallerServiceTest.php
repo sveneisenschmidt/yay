@@ -1,6 +1,6 @@
 <?php
 
-namespace Yay\Bundle\IntegrationBundle\Test\Service;
+namespace Yay\Bundle\IntegrationBundle\Tests\Service;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
