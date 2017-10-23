@@ -73,12 +73,12 @@ integration:
         # First level
         example-action-01:
             # Second level
-            label: Example action label"
+            label: Example action label
             description: Example actions description"
         # First level
         example-action-02:
             # Second level
-            label: Example action label"
+            label: Example action label
             description: Example actions description"
     # ...
 ```
