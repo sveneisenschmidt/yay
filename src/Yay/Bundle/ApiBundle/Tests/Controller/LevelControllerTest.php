@@ -1,7 +1,6 @@
 <?php
 
 use Yay\Bundle\ApiBundle\Test\WebTestCase;
-use Faker\Factory as FakerFactory;
 
 class LevelControllerTest extends WebTestCase
 {

@@ -26,7 +26,7 @@ class PlayerTest extends TestCase
         $instance->setName($name = $this->faker->name);
         $instance->setUsername($username = $this->faker->userName);
         $instance->setEmail($email = $this->faker->email);
-        $instance->setScore($score = rand(1,100));
+        $instance->setScore($score = rand(1, 100));
         $instance->setImageUrl($imageUrl = 'https://example.org/example.png');
 
         $this->assertEquals($name, $instance->getName());

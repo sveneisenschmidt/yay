@@ -4,15 +4,11 @@ namespace Yay\Bundle\ApiBundle\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Yay\Bundle\ApiBundle\Response\ResponseSerializer;
-use Yay\Bundle\ApiBundle\Validator\EntityValidator;
 use Yay\Component\Engine\Engine;
-use Yay\Component\Entity\PlayerInterface;
 
 /**
  * @Route("/levels")

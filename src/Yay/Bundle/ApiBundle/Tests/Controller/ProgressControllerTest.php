@@ -89,7 +89,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = json_encode([
-            'player' => 'jane.doe'
+            'player' => 'jane.doe',
         ]);
 
         $client->request('POST', '/api/progress/', [], [], [], $content);
