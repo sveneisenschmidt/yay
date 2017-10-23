@@ -36,7 +36,7 @@ class RecalculateCommandTest extends TestCase
             ->method('findPlayerAny')
             ->willReturn(new PlayerCollection([
                 $this->createMock(Player::class),
-                $this->createMock(Player::class)
+                $this->createMock(Player::class),
             ]));
 
         $engine->expects($this->exactly(2))
