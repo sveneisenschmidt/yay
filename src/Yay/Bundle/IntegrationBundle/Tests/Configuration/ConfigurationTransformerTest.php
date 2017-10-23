@@ -1,6 +1,6 @@
 <?php
 
-namespace Yay\Bundle\IntegrationBundle\Test\Configuration;
+namespace Yay\Bundle\IntegrationBundle\Tests\Configuration;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Processor;

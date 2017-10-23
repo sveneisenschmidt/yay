@@ -169,6 +169,14 @@ trait StorageTrait
     }
 
     /**
+     * @return LevelCollection
+     */
+    public function findLevelAny(): LevelCollection
+    {
+        return $this->findLevelBy([]);
+    }
+
+    /**
      * @param LevelInterface $level
      */
     public function saveLevel(LevelInterface $level)

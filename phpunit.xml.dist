@@ -26,9 +26,16 @@
         <whitelist>
             <directory>src</directory>
             <exclude>
+                <file>src/Yay/Bundle/ApiBundle/ApiBundle.php</file>
+                <file>src/Yay/Bundle/EngineBundle/EngineBundle.php</file>
+                <file>src/Yay/Bundle/IntegrationBundle/IntegrationBundle.php</file>
+                <directory>src/*/Bundle/*Bundle/DependencyInjection</directory>
+                <directory>src/*/Bundle/*Bundle/Formatter</directory>
                 <directory>src/*Bundle/Resources</directory>
                 <directory>src/*/*Bundle/Resources</directory>
                 <directory>src/*/Bundle/*Bundle/Resources</directory>
+                <directory>src/Yay/Bundle/*Bundle/Tests</directory>
+                <directory>src/Yay/Component/*/Tests</directory>
             </exclude>
         </whitelist>
     </filter>

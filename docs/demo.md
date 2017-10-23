@@ -108,7 +108,7 @@ curl -X "GET" http://localhost:50080/api/achievements/
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
     -d "{\"player\":\"jane.doe\",\"action\":\"demo-action\"}"
-x
+
 []
 ```
 

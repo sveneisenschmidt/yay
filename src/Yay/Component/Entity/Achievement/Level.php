@@ -86,7 +86,7 @@ class Level implements LevelInterface
      */
     public function getLevel(): int
     {
-        return $this->level;
+        return (int) $this->level;
     }
 
     /**
@@ -102,7 +102,7 @@ class Level implements LevelInterface
      */
     public function getPoints(): int
     {
-        return $this->points;
+        return (int) $this->points;
     }
 
     /**

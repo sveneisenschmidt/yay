@@ -1,5 +1,14 @@
 # Installation #
 
+## Requirements
+
+### Local
+* make
+* docker v17.03.0 or higher
+
+### Production
+* docker 1.13.0 or higher
+
 ## From source
 
 Local development is supported through `make` and powered by Docker. To see all provided commands run `make`. For installing the local development environment, clone from source and install the application first, then start it.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Yay\Component\HttpFoundation\Test\Request\ParamConverter;
+namespace Yay\Component\HttpFoundation\Tests\Request\ParamConverter;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;

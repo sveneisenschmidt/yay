@@ -1,13 +1,13 @@
 <?php
 
-namespace Yay\Component\HttpFoundation\Test\Request\ParamConverter;
+namespace Yay\Component\HttpFoundation\Tests\Request\ParamConverter;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
-use Yay\Component\HttpFoundation\Request\ParamConverter\JsonFieldConverter;
+use Yay\Component\HttpFoundation\Request\ParamConverter\HeaderFieldConverter;
 
-class JsonFieldConverterTest extends TestCase
+class HeaderFieldConverterTest extends TestCase
 {
     /**
      * @param string $converterName
@@ -17,7 +17,7 @@ class JsonFieldConverterTest extends TestCase
      * @return ParamConverter
      */
     public function createConfiguration(
-        string $converterName = 'JsonField',
+        string $converterName = 'HeaderField',
         string $parameterName = 'foo',
         array $options = []
     ): ParamConverter {
@@ -45,7 +45,7 @@ class JsonFieldConverterTest extends TestCase
     {
         $configuration = $this->createConfiguration();
 
-        $this->assertTrue((new JsonFieldConverter())->supports($configuration));
+        $this->assertTrue((new HeaderFieldConverter())->supports($configuration));
     }
 
     /**
@@ -53,59 +53,46 @@ class JsonFieldConverterTest extends TestCase
      */
     public function param_converter_is_not_supported(): void
     {
-        $configuration = $this->createConfiguration('JsonField2');
+        $configuration = $this->createConfiguration('HeaderField2');
 
-        $this->assertFalse((new JsonFieldConverter())->supports($configuration));
+        $this->assertFalse((new HeaderFieldConverter())->supports($configuration));
     }
 
     /**
      * @test
      */
-    public function json_field_is_applied_as_attribute(): void
+    public function header_field_is_applied_as_attribute(): void
     {
         $configuration = $this->createConfiguration();
-        $content = '{"foo": "bar"}';
-        $request = Request::create('/', 'POST', [], [], [], [], $content);
+        $request = Request::create('/', 'GET');
+        $request->headers->set('foo', 'bar');
 
-        (new JsonFieldConverter())->apply($request, $configuration);
+        (new HeaderFieldConverter())->apply($request, $configuration);
         $this->assertEquals('bar', $request->attributes->get('foo'));
     }
 
     /**
      * @test
      */
-    public function json_field_is_applied_as_attribute_with_field(): void
+    public function header_field_is_applied_as_attribute_with_field(): void
     {
-        $configuration = $this->createConfiguration('JsonField', 'foo', ['field' => 'baz']);
-        $content = '{"baz": "bar"}';
-        $request = Request::create('/', 'POST', [], [], [], [], $content);
+        $configuration = $this->createConfiguration('HeaderField', 'foo', ['field' => 'baz']);
+        $request = Request::create('/', 'GET');
+        $request->headers->set('baz', 'bar');
 
-        (new JsonFieldConverter())->apply($request, $configuration);
+        (new HeaderFieldConverter())->apply($request, $configuration);
         $this->assertEquals('bar', $request->attributes->get('foo'));
     }
 
     /**
      * @test
      */
-    public function json_field_is_not_set(): void
+    public function header_field_is_not_set(): void
     {
         $configuration = $this->createConfiguration();
-        $request = Request::create('/', 'POST');
+        $request = Request::create('/', 'GET');
 
-        (new JsonFieldConverter())->apply($request, $configuration);
-        $this->assertFalse($request->attributes->has('foo'));
-    }
-
-    /**
-     * @test
-     */
-    public function json_field_is_invalid(): void
-    {
-        $configuration = $this->createConfiguration();
-        $content = '{"baz": ';
-        $request = Request::create('/', 'POST', [], [], [], [], $content);
-
-        (new JsonFieldConverter())->apply($request, $configuration);
+        (new HeaderFieldConverter())->apply($request, $configuration);
         $this->assertFalse($request->attributes->has('foo'));
     }
 }

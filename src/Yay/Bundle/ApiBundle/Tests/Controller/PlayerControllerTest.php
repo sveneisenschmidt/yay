@@ -81,6 +81,20 @@ class PlayerControllerTest extends WebTestCase
 
     /**
      * @test
+     * @testdox Could not find a single player
+     */
+    public function Player_ShowAction_NotFound()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/players/not-found');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isNotFound());
+    }
+
+    /**
+     * @test
      * @dataProvider providePlayerData
      * @testdox Create a new player
      */
@@ -97,6 +111,20 @@ class PlayerControllerTest extends WebTestCase
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
         $this->assertPlayerData($data);
+    }
+
+    /**
+     * @test
+     * @testdox Could not create a new player
+     */
+    public function Player_CreateAction_UnprocessableEntity()
+    {
+        $client = static::createClient();
+
+        $client->request('POST', '/api/players/create', [], [], [], json_encode([]));
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isClientError());
     }
 
     /**
@@ -137,7 +165,21 @@ class PlayerControllerTest extends WebTestCase
 
     /**
      * @test
-     * @testdox Retrieve a single player's personal achievements
+     * @testdox Could not find a single player's  personal achievements
+     */
+    public function Player_PersonalAchievements_IndexAction_NotFound()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/players/john.doe/personal-achievements');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isNotFound());
+    }
+
+    /**
+     * @test
+     * @testdox Retrieve a single player's personal action
      */
     public function Player_PersonalActions_IndexAction()
     {
@@ -158,5 +200,19 @@ class PlayerControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'player', $value);
             $this->assertArraySubsetHasKey('links', 'action', $value);
         }
+    }
+
+    /**
+     * @test
+     * @testdox Could not find a single player's  personal achievements
+     */
+    public function Player_PersonalActions_IndexAction_NotFound()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/players/john.doe/personal-actions');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isNotFound());
     }
 }
