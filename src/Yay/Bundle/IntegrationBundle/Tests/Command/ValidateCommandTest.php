@@ -33,7 +33,7 @@ class ValidateCommandTest extends KernelTestCase
         $commandTester = new CommandTester($command);
 
         $commandTester->execute(array(
-            'command'  => $command->getName(),
+            'command' => $command->getName(),
             'name' => 'test',
             'path' => 'integration/test',
         ));
@@ -41,10 +41,8 @@ class ValidateCommandTest extends KernelTestCase
         $this->assertContains('[OK] Integration "test" valid', $commandTester->getDisplay());
     }
 
-
     /**
      * @test
-     *
      */
     public function execute_warn()
     {
@@ -67,7 +65,7 @@ class ValidateCommandTest extends KernelTestCase
         $commandTester = new CommandTester($command);
 
         $commandTester->execute(array(
-            'command'  => $command->getName(),
+            'command' => $command->getName(),
             'name' => 'test',
             'path' => 'integration/test',
         ));

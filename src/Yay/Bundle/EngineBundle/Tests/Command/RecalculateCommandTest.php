@@ -42,7 +42,7 @@ class RecalculateCommandTest extends KernelTestCase
         $commandTester = new CommandTester($command);
 
         $commandTester->execute(array(
-            'command'  => $command->getName(),
+            'command' => $command->getName(),
         ));
 
         $this->assertContains('[OK] Player progress recalculated', $commandTester->getDisplay());
