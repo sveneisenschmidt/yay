@@ -33,8 +33,8 @@ class DisableCommandTest extends KernelTestCase
         $commandTester = new CommandTester($command);
 
         $commandTester->execute(array(
-            'command'  => $command->getName(),
-            'name' => 'test'
+            'command' => $command->getName(),
+            'name' => 'test',
         ));
 
         $this->assertContains('[OK] Integration "test" disabled', $commandTester->getDisplay());

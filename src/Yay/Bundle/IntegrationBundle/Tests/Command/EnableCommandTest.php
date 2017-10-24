@@ -33,7 +33,7 @@ class EnableCommandTest extends KernelTestCase
         $commandTester = new CommandTester($command);
 
         $commandTester->execute(array(
-            'command'  => $command->getName(),
+            'command' => $command->getName(),
             'name' => 'test',
             'path' => 'integration/test',
         ));
