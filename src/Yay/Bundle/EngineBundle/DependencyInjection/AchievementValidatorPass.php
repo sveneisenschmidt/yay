@@ -14,10 +14,6 @@ class AchievementValidatorPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has(AchievementValidatorCollection::class)) {
-            return;
-        }
-
         $definition = $container->findDefinition(AchievementValidatorCollection::class);
         $taggedServices = $container->findTaggedServiceIds('yay.achievement_validator');
 

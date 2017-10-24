@@ -4,18 +4,9 @@ To enable the demo we need need to enable the demo integration, you can do so by
 
 ```bash
 $ make demo-import
-```
-_Output:_
 
-```bash
-Services: Creating symlink.
-- Created Symlink /data/integration/default/services.yml:/data/app/config/services/integration.default.yml.
-Entities: Persisting entities.
- 100/100 [============================] 100%
-Services: Creating symlink.
-- Created Symlink /data/integration/demo/services.yml:/data/app/config/services/integration.demo.yml.
-Entities: Persisting entities.
- 3/3 [============================] 100%
+[OK] Integration "default" enabled
+[OK] Integration "demo" enabled
 ```
 
 Now we can run the application, it will start the built-in PHP web-server. This is not recommended for produciton environments.

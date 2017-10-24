@@ -18,7 +18,7 @@ How-to-use demo, installation instructions, configuration examples and extension
 * [API](docs/api.md)
 * [Demo](docs/demo.md)
 * [Custom Integrations](docs/integrations.md)
-
+* [Development](docs/development.md)
 
 ## Installation
 Yay is tested and packable to run through Docker on any operating system that supports Docker.

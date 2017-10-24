@@ -134,7 +134,17 @@ class PlayerControllerTest extends WebTestCase
      */
     public function Player_CreateAction_Exception_NonUniqueUsername(array $data)
     {
-        $this->markTestIncomplete('Implement me');
+        $client = static::createClient();
+
+        $client->request('POST', '/api/players/create', [], [], [], json_encode($data));
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isRedirect());
+
+        $client->request('POST', '/api/players/create', [], [], [], json_encode($data));
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isServerError());
     }
 
     /**
