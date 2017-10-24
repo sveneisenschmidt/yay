@@ -6,7 +6,7 @@ services:
         autoconfigure: true
         public: false
 
-    Yay\Component\Engine\Engine: ~
+    Yay\Component\Engine\Engine: { public: true }
     Yay\Component\Engine\Storage\DoctrineStorage: ["@=service('doctrine').getManager()"]
     Yay\Component\Engine\StorageInterface: '@Yay\Component\Engine\Storage\DoctrineStorage'
     Yay\Component\Engine\AchievementValidatorCollection: ~ #[!tagged yay.achievement_validator]

@@ -42,11 +42,16 @@
         php bin/console yay:integration:disable default && \
 		php bin/console yay:integration:disable demo')
 
-.application-test: .application-clean-database
-	@$(call .docker-run,cli,'vendor/bin/phpunit')
-
-.application-test-coverage: .application-clean-database
+.application-test:
 	@$(call .docker-run,cli,'\
+		php bin/console doctrine:schema:drop --force --em=default && \
+		php bin/console doctrine:schema:create --em=default && \
+        vendor/bin/phpunit')
+
+.application-test-coverage:
+	@$(call .docker-run,cli,'\
+		php bin/console doctrine:schema:drop --force --em=default && \
+		php bin/console doctrine:schema:create --em=default && \
         phpdbg -qrr ./vendor/bin/phpunit \
             --coverage-text \
             --coverage-html=.build/report \
