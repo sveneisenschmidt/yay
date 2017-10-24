@@ -78,7 +78,7 @@ class InstallerService
     public function loadConfig(string $sourceFile): ?array
     {
         if (!$this->filesystem->exists($sourceFile)) {
-            throw new \RuntimeException(sprintf('File %s is missing.', $sourceFile));
+            throw new \RuntimeException('Could not find source file.');
         }
 
         return Yaml::parse(file_get_contents($sourceFile));

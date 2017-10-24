@@ -145,17 +145,23 @@ validators:
 ```bash
 $ make shell
 $ php bin/console yay:integration:validate mycompany integration/mycompany
+
+[OK] Integration "mycompany" valid
 ```
 
 ## 2) Enable your integration
 ```bash
 $ make shell
 $ php bin/console yay:integration:enable mycompany integration/mycompany
+
+[OK] Integration "mycompany" enabled
 ```
 
 ## 3) Disable your integration
 ```bash
 $ make shell
 $ php bin/console yay:integration:disable mycompany
+
+[OK] Integration "mycompany" disabled
 ```
 Hint: The disable routine will only remove the configuration. Entities created during the installation will not be removed due to the fact that they often share relations to other entities (e.g. players and their personal achievements.)
