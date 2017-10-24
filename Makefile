@@ -10,6 +10,7 @@ all:
 	#	cleanall				Cleans containers, images and project files including caches, logs
 	#	install					Install and build the application including development environment
 	#	test					Run application tests
+	#	test-coverage			Run application tests and generate code coverage
 	#	shell					Start an interactive shell session
 	#	demo-import				Import demo data
 	#	demo-remove				Remove demo data

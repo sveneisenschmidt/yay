@@ -66,6 +66,55 @@ class InstallerServiceTest extends TestCase
 
     /**
      * @test
+     * @expectedException \RuntimeException
+     */
+    public function load_config()
+    {
+        $storage = $this->getMockBuilder(StorageInterface::class)
+            ->getMock();
+
+        $filesystem = $this->getMockBuilder(Filesystem::class)
+            ->setMethods(['exists'])
+            ->getMock();
+
+        $filesystem->expects($this->atLeastonce())
+            ->method('exists')
+            ->willReturn(false);
+
+        $transformer = $this->getMockBuilder(ConfigurationTransformer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $installer = new InstallerService($filesystem, $storage, $transformer);
+        $installer->loadConfig('');
+    }
+
+    /**
+     * @test
+     */
+    public function transform_from_config()
+    {
+        $storage = $this->getMockBuilder(StorageInterface::class)
+            ->getMock();
+
+        $filesystem = $this->getMockBuilder(Filesystem::class)
+            ->getMock();
+
+        $transformer = $this->getMockBuilder(ConfigurationTransformer::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['transformFromUnprocessedConfig'])
+            ->getMock();
+
+        $transformer->expects($this->atLeastonce())
+            ->method('transformFromUnprocessedConfig')
+            ->willReturn([]);
+
+        $installer = new InstallerService($filesystem, $storage, $transformer);
+        $installer->transformFromConfig([]);
+    }
+
+    /**
+     * @test
      */
     public function uninstall()
     {
