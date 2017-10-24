@@ -22,13 +22,16 @@ class DoctrineStorageTest extends TestCase
 {
     /**
      * @param DoctrineStorage $storage
+     *
      * @return DoctrineStorageTrait
      */
     public function wrapStorage(DoctrineStorage $storage)
     {
         return new class($storage) {
             use StorageTrait;
-            public function __construct (DoctrineStorage $storage) {
+
+            public function __construct(DoctrineStorage $storage)
+            {
                 $this->setStorage($storage);
             }
         };
@@ -111,7 +114,7 @@ class DoctrineStorageTest extends TestCase
 
         $repository->expects($this->once())
             ->method('findBy')
-            ->willReturn(!$empty ? [ $this->createMock($class) ] : []);
+            ->willReturn(!$empty ? [$this->createMock($class)] : []);
 
         $manager = $this->getMockBuilder(EntityManagerInterface::class)
             ->disableOriginalConstructor()
@@ -362,6 +365,4 @@ class DoctrineStorageTest extends TestCase
         $object = $this->createMock(Player::class);
         $this->wrapStorage(new DoctrineStorage($manager))->refreshPlayer($object);
     }
-
-
 }
