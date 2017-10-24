@@ -2,34 +2,28 @@
 
 namespace Yay\Bundle\EngineBundle\Tests\Command;
 
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Console\Input\Input;
-use Symfony\Component\Console\Output\Output;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Console\Tester\CommandTester;
 use Yay\Bundle\EngineBundle\Command\RecalculateCommand;
 use Yay\Component\Engine\Engine;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerCollection;
 
-class RecalculateCommandTest extends TestCase
+class RecalculateCommandTest extends KernelTestCase
 {
-    /**
-     * @test
-     */
-    public function configure()
-    {
-        $command = new RecalculateCommand();
-        $this->assertEquals('yay:recalculate', $command->getName());
-    }
-
     /**
      * @test
      */
     public function execute()
     {
+        self::bootKernel();
+        $application = new Application(self::$kernel);
+        $application->add(new RecalculateCommand());
+
         $engine = $this->getMockBuilder(Engine::class)
             ->disableOriginalConstructor()
-            ->setMethods(['findPlayerAny', 'advance'])
+            ->setMethods(['advance', 'findPlayerAny'])
             ->getMock();
 
         $engine->expects($this->atLeastonce())
@@ -42,20 +36,15 @@ class RecalculateCommandTest extends TestCase
         $engine->expects($this->exactly(2))
             ->method('advance');
 
-        $container = $this->getMockBuilder(ContainerInterface::class)
-            ->disableOriginalConstructor()
-            ->setMethods(get_class_methods(ContainerInterface::class))
-            ->getMock();
+        self::$kernel->getContainer()->set(Engine::class, $engine);
 
-        $container->expects($this->atLeastonce())
-            ->method('get')
-            ->willReturn($engine);
+        $command = $application->find('yay:recalculate');
+        $commandTester = new CommandTester($command);
 
-        $command = new RecalculateCommand();
-        $command->setContainer($container);
-        $command->run(
-            $this->createMock(Input::class),
-            $this->createMock(Output::class)
-        );
+        $commandTester->execute(array(
+            'command'  => $command->getName(),
+        ));
+
+        $this->assertContains('[OK] Player progress recalculated', $commandTester->getDisplay());
     }
 }
