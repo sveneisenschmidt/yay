@@ -57,6 +57,23 @@ class DoctrineStorage implements StorageInterface
     /**
      * {@inheritdoc}
      */
+    public function refreshPlayer(PlayerInterface $player)
+    {
+        $this->manager->refresh($player);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function savePlayer(PlayerInterface $player)
+    {
+        $this->manager->persist($player);
+        $this->manager->flush();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function findAchievementDefinition(string $name): ?AchievementDefinitionInterface
     {
         return $this->manager->getRepository(AchievementDefinition::class)->find($name);
@@ -105,23 +122,6 @@ class DoctrineStorage implements StorageInterface
     public function saveActionDefinition(ActionDefinitionInterface $actionDefinition)
     {
         $this->manager->persist($actionDefinition);
-        $this->manager->flush();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function refreshPlayer(PlayerInterface $player)
-    {
-        $this->manager->refresh($player);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function savePlayer(PlayerInterface $player)
-    {
-        $this->manager->persist($player);
         $this->manager->flush();
     }
 
