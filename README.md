@@ -13,11 +13,11 @@ Yay is an **gamification engine**, exposing a web service API, for integrating a
 ## Yay Documentation
 How-to-use demo, installation instructions, configuration examples and extension documentation:
 
-* [Installation](installation.md)
-* [Configuration](configuration.md)
-* [API](api.md)
-* [Demo](demo.md)
-* [Custom Integrations](integrations.md)
+* [Installation](docs/installation.md)
+* [Configuration](docs/configuration.md)
+* [API](docs/api.md)
+* [Demo](docs/demo.md)
+* [Custom Integrations](docs/integrations.md)
 
 
 ## Installation
@@ -48,8 +48,8 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 ```
 
 Documentation on usage and demo examples:
-* [API](api.md)
-* [Demo](demo.md)
+* [API](docs/api.md)
+* [Demo](docs/demo.md)
 
 ## Get Yay Support and Help
 
