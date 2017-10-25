@@ -31,7 +31,7 @@ class Engine
     public function __construct(StorageInterface $storage, AchievementValidatorCollection $achievementValidatorCollection = null)
     {
         $this->setStorage($storage);
-        $this->achievementValidatorCollection = $achievementValidatorCollection ?: new AchievementValidatorCollection();
+        $this->achievementValidatorCollection = !$achievementValidatorCollection ? new AchievementValidatorCollection() : $achievementValidatorCollection;
     }
 
     /**
@@ -52,11 +52,11 @@ class Engine
     public function getPlayerPersonalActions(PlayerInterface $player): PersonalActionCollection
     {
         $personalActionCollection = $player->getPersonalActions();
-        if ($personalActionCollection instanceof PersonalActionCollection) {
-            return $personalActionCollection;
+        if (!$personalActionCollection instanceof PersonalActionCollection) {
+            return new PersonalActionCollection($personalActionCollection->toArray());
         }
 
-        return new PersonalActionCollection($personalActionCollection->toArray());
+        return $personalActionCollection;
     }
 
     /**

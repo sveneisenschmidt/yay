@@ -30,6 +30,8 @@
                 <directory>src/*Bundle/Resources</directory>
                 <directory>src/*/*Bundle/Resources</directory>
                 <directory>src/*/Bundle/*Bundle/Resources</directory>
+                <directory>src/Yay/Bundle/*Bundle/Test</directory>
+                <directory>src/Yay/Component/*/Test</directory>
                 <directory>src/Yay/Bundle/*Bundle/Tests</directory>
                 <directory>src/Yay/Component/*/Tests</directory>
             </exclude>
