@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 use Yay\Component\Engine\Engine;
 use Yay\Component\Engine\StorageInterface;
 use Yay\Component\Engine\AchievementValidatorCollection;
-use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\PersonalAction;
@@ -88,6 +87,5 @@ class EngineTest extends TestCase
      */
     public function get_matching_achievement_definitions()
     {
-
     }
 }
