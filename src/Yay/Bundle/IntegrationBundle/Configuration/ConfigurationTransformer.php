@@ -111,7 +111,7 @@ class ConfigurationTransformer
         ];
 
         foreach ($processedConfig['validators'] as $name => $validator) {
-            if ($validator['type'] === 'expression') {
+            if ('expression' === $validator['type']) {
                 $validator['class'] = ExpressionLanguageValidator::class;
             }
 

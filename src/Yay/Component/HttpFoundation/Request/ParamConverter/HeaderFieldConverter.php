@@ -15,7 +15,7 @@ class HeaderFieldConverter implements ParamConverterInterface
      */
     public function supports(ParamConverter $configuration): bool
     {
-        return $configuration->getConverter() === 'HeaderField';
+        return 'HeaderField' === $configuration->getConverter();
     }
 
     /**
