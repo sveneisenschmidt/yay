@@ -143,7 +143,7 @@ class EngineTest extends TestCase
 
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getPersonalActions' => $personalActionCollection,
-            'hasPersonalAchievement' => false
+            'hasPersonalAchievement' => false,
         ]);
 
         $personalAction = new PersonalAction($player, $actionDefinition);
@@ -155,7 +155,7 @@ class EngineTest extends TestCase
         $achievementDefinitionCollection->add($achievementDefinition);
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
-            'findAchievementDefinitionBy' => $achievementDefinitionCollection
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
 
         $engine = new Engine($storage);
@@ -173,7 +173,7 @@ class EngineTest extends TestCase
 
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getPersonalActions' => $personalActionCollection,
-            'hasPersonalAchievement' => true
+            'hasPersonalAchievement' => true,
         ]);
 
         $personalAction = new PersonalAction($player, $actionDefinition);
@@ -185,13 +185,13 @@ class EngineTest extends TestCase
         $achievementDefinitionCollection->add($achievementDefinition);
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
-            'findAchievementDefinitionBy' => $achievementDefinitionCollection
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
 
         $engine = new Engine($storage);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
             'supports' => true,
-            'validate' => false
+            'validate' => false,
         ]);
         $engine->getAchievementValidators()->add($validator);
 
@@ -209,7 +209,7 @@ class EngineTest extends TestCase
 
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getPersonalActions' => $personalActionCollection,
-            'hasPersonalAchievement' => false
+            'hasPersonalAchievement' => false,
         ]);
 
         $personalAction = new PersonalAction($player, $actionDefinition);
@@ -221,13 +221,13 @@ class EngineTest extends TestCase
         $achievementDefinitionCollection->add($achievementDefinition);
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
-            'findAchievementDefinitionBy' => $achievementDefinitionCollection
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
 
         $engine = new Engine($storage);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
             'supports' => false,
-            'validate' => false
+            'validate' => false,
         ]);
         $engine->getAchievementValidators()->add($validator);
 
@@ -245,7 +245,7 @@ class EngineTest extends TestCase
 
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getPersonalActions' => $personalActionCollection,
-            'hasPersonalAchievement' => false
+            'hasPersonalAchievement' => false,
         ]);
 
         $personalAction = new PersonalAction($player, $actionDefinition);
@@ -257,13 +257,13 @@ class EngineTest extends TestCase
         $achievementDefinitionCollection->add($achievementDefinition);
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
-            'findAchievementDefinitionBy' => $achievementDefinitionCollection
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
 
         $engine = new Engine($storage);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
             'supports' => true,
-            'validate' => true
+            'validate' => true,
         ]);
         $engine->getAchievementValidators()->add($validator);
 
