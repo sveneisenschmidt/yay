@@ -8,7 +8,6 @@ use Yay\Component\Engine\Engine;
 use Yay\Component\Engine\StorageInterface;
 use Yay\Component\Engine\AchievementValidatorInterface;
 use Yay\Component\Engine\AchievementValidatorCollection;
-use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 use Yay\Component\Entity\Achievement\AchievementDefinition;
 use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
