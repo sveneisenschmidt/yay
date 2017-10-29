@@ -9,7 +9,6 @@ use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
 use Yay\Component\Entity\Achievement\PersonalAchievement;
 use Yay\Component\Entity\Achievement\PersonalAction;
 use Yay\Component\Entity\Achievement\PersonalActionCollection;
-use Yay\Component\Entity\Achievement\PersonalActionInterface;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 
@@ -162,7 +161,7 @@ class Engine
     /**
      * @param PersonalActionCollection $collection
      */
-    public function collectPersonalActions(PersonalActionCollection $collection)
+    public function collectPersonalActions(PersonalActionCollection $collection): void
     {
         // Collect players to refresh them later
         $players = [];
