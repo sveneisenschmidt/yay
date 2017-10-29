@@ -15,7 +15,7 @@ class QueryStringConverter implements ParamConverterInterface
      */
     public function supports(ParamConverter $configuration): bool
     {
-        return $configuration->getConverter() === 'QueryString';
+        return 'QueryString' === $configuration->getConverter();
     }
 
     /**

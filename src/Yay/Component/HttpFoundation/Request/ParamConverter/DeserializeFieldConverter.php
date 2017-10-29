@@ -32,7 +32,7 @@ class DeserializeFieldConverter implements ParamConverterInterface
      */
     public function supports(ParamConverter $configuration): bool
     {
-        return $configuration->getConverter() === 'DeserializeField';
+        return 'DeserializeField' === $configuration->getConverter();
     }
 
     /**

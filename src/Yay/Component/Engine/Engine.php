@@ -9,7 +9,6 @@ use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
 use Yay\Component\Entity\Achievement\PersonalAchievement;
 use Yay\Component\Entity\Achievement\PersonalAction;
 use Yay\Component\Entity\Achievement\PersonalActionCollection;
-use Yay\Component\Entity\Achievement\PersonalActionInterface;
 use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 
@@ -31,7 +30,7 @@ class Engine
     public function __construct(StorageInterface $storage, AchievementValidatorCollection $achievementValidatorCollection = null)
     {
         $this->setStorage($storage);
-        $this->achievementValidatorCollection = $achievementValidatorCollection ?: new AchievementValidatorCollection();
+        $this->achievementValidatorCollection = !$achievementValidatorCollection ? new AchievementValidatorCollection() : $achievementValidatorCollection;
     }
 
     /**
@@ -52,11 +51,11 @@ class Engine
     public function getPlayerPersonalActions(PlayerInterface $player): PersonalActionCollection
     {
         $personalActionCollection = $player->getPersonalActions();
-        if ($personalActionCollection instanceof PersonalActionCollection) {
-            return $personalActionCollection;
+        if (!$personalActionCollection instanceof PersonalActionCollection) {
+            return new PersonalActionCollection($personalActionCollection->toArray());
         }
 
-        return new PersonalActionCollection($personalActionCollection->toArray());
+        return $personalActionCollection;
     }
 
     /**
@@ -87,25 +86,23 @@ class Engine
      *
      * @return AchievementDefinitionCollection
      */
-    public function getMatchingAchievementDefinitions(
-        ActionDefinitionCollection $actionDefinitionCollection
+    public function extractMatchingAchievementDefinitions(
+        ActionDefinitionCollection $actionDefinitionCollection,
+        AchievementDefinitionCollection $achievementDefinitionCollection
     ): AchievementDefinitionCollection {
-        /** @var array|AchievementDefinition[] $achievementDefinitions */
-        $achievementDefinitions = $this->getStorage()->findAchievementDefinitionBy([]);
-        $achievementDefinitionCollection = new AchievementDefinitionCollection();
-
-        foreach ($achievementDefinitions as $index => $achievementDefinition) {
+        $matchingAchievementDefinitionCollection = new AchievementDefinitionCollection();
+        foreach ($achievementDefinitionCollection as $achievementDefinition) {
             $intersection = array_intersect(
                 $achievementDefinition->getActionDefinitions()->toArray(),
                 $actionDefinitionCollection->toArray()
             );
 
             if (count($intersection) > 0) {
-                $achievementDefinitionCollection->add($achievementDefinition);
+                $matchingAchievementDefinitionCollection->add($achievementDefinition);
             }
         }
 
-        return $achievementDefinitionCollection;
+        return $matchingAchievementDefinitionCollection;
     }
 
     /**
@@ -118,26 +115,33 @@ class Engine
             $this->collectPersonalActions($collection);
         }
 
+        $achievementValidatorCollection = $this->getAchievementValidators();
         $personalActionCollection = $this->getPlayerPersonalActions($player);
         $actionDefinitionCollection = $this->extractActionDefinitions($personalActionCollection);
-        $achievementDefinitionCollection = $this->getMatchingAchievementDefinitions($actionDefinitionCollection);
-        $achievementValidators = $this->getAchievementValidators();
+        $achievementDefinitionCollection = $this->extractMatchingAchievementDefinitions(
+            $actionDefinitionCollection,
+            $this->getStorage()->findAchievementDefinitionBy([])
+        );
 
-        if ($achievementDefinitionCollection->count() < 1 ||
-            $achievementValidators->count() < 1
-        ) {
+        if ($achievementDefinitionCollection->count() < 1) {
+            return [];
+        }
+
+        if ($achievementValidatorCollection->count() < 1) {
             return [];
         }
 
         $personalAchievements = [];
-        foreach ($achievementValidators as $achievementValidator) {
+        foreach ($achievementValidatorCollection as $achievementValidator) {
             foreach ($achievementDefinitionCollection as $achievementDefinition) {
-                if (!$achievementValidator->supports($achievementDefinition)) {
-                    continue;
-                }
                 if ($player->hasPersonalAchievement($achievementDefinition)) {
                     continue;
                 }
+
+                if (!$achievementValidator->supports($achievementDefinition)) {
+                    continue;
+                }
+
                 if ($achievementValidator->validate($player, $achievementDefinition, $personalActionCollection)) {
                     $personalAchievement = new PersonalAchievement($player, $achievementDefinition);
                     $personalAchievements[] = $personalAchievement;
@@ -157,7 +161,7 @@ class Engine
     /**
      * @param PersonalActionCollection $collection
      */
-    public function collectPersonalActions(PersonalActionCollection $collection)
+    public function collectPersonalActions(PersonalActionCollection $collection): void
     {
         // Collect players to refresh them later
         $players = [];
@@ -168,7 +172,6 @@ class Engine
         }
 
         // Persist new personalActions to database
-        /** @var PersonalActionInterface $personalAction */
         foreach ($collection as $personalAction) {
             $this->savePersonalAction($personalAction);
         }
