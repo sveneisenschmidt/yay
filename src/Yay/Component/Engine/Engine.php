@@ -162,24 +162,23 @@ class Engine
     /**
      * @param PersonalActionCollection $collection
      */
-    public function collectPersonalActions(PersonalActionCollection $collection)
+    public function collectPersonalActions(PersonalActionCollection $collection): void
     {
         // Collect players to refresh them later
         $players = [];
-        foreach ($collection as $index => $personalAction) {
+        foreach ($collection as $personalAction) {
             if (!in_array($personalAction->getPlayer(), $players)) {
                 $players[] = $personalAction->getPlayer();
             }
         }
 
         // Persist new personalActions to database
-        /** @var PersonalActionInterface $personalAction */
-        foreach ($collection as $index => $personalAction) {
+        foreach ($collection as $achievementValidatorspersonalAction) {
             $this->savePersonalAction($personalAction);
         }
 
         // Refresh players
-        foreach ($players as $index => $player) {
+        foreach ($players as $player) {
             $this->refreshPlayer($player);
         }
     }
