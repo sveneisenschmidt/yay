@@ -87,25 +87,23 @@ class Engine
      *
      * @return AchievementDefinitionCollection
      */
-    public function getMatchingAchievementDefinitions(
-        ActionDefinitionCollection $actionDefinitionCollection
+    public function extractMatchingAchievementDefinitions(
+        ActionDefinitionCollection $actionDefinitionCollection,
+        AchievementDefinitionCollection $achievementDefinitionCollection
     ): AchievementDefinitionCollection {
-        /** @var array|AchievementDefinition[] $achievementDefinitions */
-        $achievementDefinitions = $this->getStorage()->findAchievementDefinitionBy([]);
-        $achievementDefinitionCollection = new AchievementDefinitionCollection();
-
-        foreach ($achievementDefinitions as $index => $achievementDefinition) {
+        $matchingAchievementDefinitionCollection = new AchievementDefinitionCollection();
+        foreach ($achievementDefinitionCollection as $achievementDefinition) {
             $intersection = array_intersect(
                 $achievementDefinition->getActionDefinitions()->toArray(),
                 $actionDefinitionCollection->toArray()
             );
 
             if (count($intersection) > 0) {
-                $achievementDefinitionCollection->add($achievementDefinition);
+                $matchingAchievementDefinitionCollection->add($achievementDefinition);
             }
         }
 
-        return $achievementDefinitionCollection;
+        return $matchingAchievementDefinitionCollection;
     }
 
     /**
@@ -118,26 +116,33 @@ class Engine
             $this->collectPersonalActions($collection);
         }
 
+        $achievementValidatorCollection = $this->getAchievementValidators();
         $personalActionCollection = $this->getPlayerPersonalActions($player);
         $actionDefinitionCollection = $this->extractActionDefinitions($personalActionCollection);
-        $achievementDefinitionCollection = $this->getMatchingAchievementDefinitions($actionDefinitionCollection);
-        $achievementValidators = $this->getAchievementValidators();
+        $achievementDefinitionCollection = $this->extractMatchingAchievementDefinitions(
+            $actionDefinitionCollection,
+            $this->getStorage()->findAchievementDefinitionBy([])
+        );
 
-        if ($achievementDefinitionCollection->count() < 1 ||
-            $achievementValidators->count() < 1
-        ) {
+        if ($achievementDefinitionCollection->count() < 1) {
+            return [];
+        }
+
+        if ($achievementValidatorCollection->count() < 1) {
             return [];
         }
 
         $personalAchievements = [];
-        foreach ($achievementValidators as $achievementValidator) {
+        foreach ($achievementValidatorCollection as $achievementValidator) {
             foreach ($achievementDefinitionCollection as $achievementDefinition) {
-                if (!$achievementValidator->supports($achievementDefinition)) {
-                    continue;
-                }
                 if ($player->hasPersonalAchievement($achievementDefinition)) {
                     continue;
                 }
+
+                if (!$achievementValidator->supports($achievementDefinition)) {
+                    continue;
+                }
+
                 if ($achievementValidator->validate($player, $achievementDefinition, $personalActionCollection)) {
                     $personalAchievement = new PersonalAchievement($player, $achievementDefinition);
                     $personalAchievements[] = $personalAchievement;
@@ -161,7 +166,7 @@ class Engine
     {
         // Collect players to refresh them later
         $players = [];
-        foreach ($collection as $personalAction) {
+        foreach ($collection as $index => $personalAction) {
             if (!in_array($personalAction->getPlayer(), $players)) {
                 $players[] = $personalAction->getPlayer();
             }
@@ -169,12 +174,12 @@ class Engine
 
         // Persist new personalActions to database
         /** @var PersonalActionInterface $personalAction */
-        foreach ($collection as $personalAction) {
+        foreach ($collection as $index => $personalAction) {
             $this->savePersonalAction($personalAction);
         }
 
         // Refresh players
-        foreach ($players as $player) {
+        foreach ($players as $index => $player) {
             $this->refreshPlayer($player);
         }
     }
