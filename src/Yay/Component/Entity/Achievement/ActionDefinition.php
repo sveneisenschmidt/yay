@@ -76,6 +76,14 @@ class ActionDefinition implements ActionDefinitionInterface
     }
 
     /**
+     * @return PersonalActionCollection
+     */
+    public function getPersonalActions(): PersonalActionCollection
+    {
+        return $this->personalActions;
+    }
+
+    /**
      * @return string
      */
     public function __toString(): string

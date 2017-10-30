@@ -50,7 +50,7 @@ class AchievementDefinition implements AchievementDefinitionInterface
     public function __construct(string $name, \DateTime $createdAt = null)
     {
         $this->name = $name;
-        $this->createdAt = ($createdAt ?: new \DateTime());
+        $this->createdAt = $createdAt ? $createdAt : new \DateTime();
         $this->actionDefinitions = new ActionDefinitionCollection();
     }
 
