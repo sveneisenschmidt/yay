@@ -21,7 +21,7 @@ class ActionDefinitionTest extends TestCase
     {
         $instance = new ActionDefinition($name = $this->faker->word);
         $this->assertEquals($name, $instance->getName());
-        $this->assertEquals($name, (string)$instance);
+        $this->assertEquals($name, (string) $instance);
 
         $instance->setLabel($label = $this->faker->word);
         $instance->setDescription($description = $this->faker->word);
