@@ -24,6 +24,4 @@ endef
 	@docker-compose -p $(PROJECT) rm --force -v || true
 
 .docker-remove-images:
-	@docker images | $(GREP) -P '$(PROJECT)' \
-		| $(SED) 's/  */ /g' | $(CUT) -d' ' -f3 \
-		| $(XARGS) -rn1 docker rmi --force || true
+	@docker rmi $(shell docker images --format '{{.Repository}}' | grep '$(PROJECT)') --force
