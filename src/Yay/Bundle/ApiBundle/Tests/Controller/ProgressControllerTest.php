@@ -47,6 +47,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertEmpty($data);
     }
+
     /**
      * @test
      * @testdox Submit a payload to update a users progress
@@ -154,7 +155,6 @@ class ProgressControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'achievement', $value);
         }
     }
-
 
     /**
      * @test
