@@ -38,7 +38,7 @@ class AchievementControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/achievements/yay.achievement.test_achievement');
+        $client->request('GET', '/api/achievements/yay.achievement.test_achievement/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -62,7 +62,7 @@ class AchievementControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/achievements/yay.achievement.test_not-found');
+        $client->request('GET', '/api/achievements/yay.achievement.test_not-found/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());

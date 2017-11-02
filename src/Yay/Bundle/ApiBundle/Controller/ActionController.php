@@ -22,7 +22,7 @@ class ActionController extends Controller
      * [{
      *     "name": "yay.action.demo_action",
      *     "links": {
-     *         "self": "http://example.org/api/actions/yay.action.demo_action",
+     *         "self": "http://example.org/api/actions/yay.action.demo_action/",
      *     }
      * }]
      * ```.
@@ -64,7 +64,7 @@ class ActionController extends Controller
      * {
      *     "name": "yay.action.demo_action",
      *     "links": {
-     *         "self": "http://example.org/api/actions/yay.action.demo_action",
+     *         "self": "http://example.org/api/actions/yay.action.demo_action/",
      *     }
      * }
      * ```.
@@ -72,7 +72,7 @@ class ActionController extends Controller
      * @Method("GET")
      *
      * @Route(
-     *     "/{name}",
+     *     "/{name}/",
      *     name="api_action_show",
      *     requirements={"name" = "[A-Za-z0-9\-\_\.]+"}
      * )

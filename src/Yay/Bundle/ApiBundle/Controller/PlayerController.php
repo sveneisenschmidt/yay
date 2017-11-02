@@ -26,9 +26,9 @@ class PlayerController extends Controller
      *     "name": "Jane Doe",
      *     "username": "jane.doe",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe",
-     *         "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements",
-     *         "personal_actions": "https://example.org/api/players/jane.doe/personal-actions"
+     *         "self": "https://example.org/api/players/jane.doe/",
+     *         "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements/",
+     *         "personal_actions": "https://example.org/api/players/jane.doe/personal-actions/"
      *     }
      * }]
      * ```.
@@ -64,16 +64,16 @@ class PlayerController extends Controller
      *     "name": "Jane Doe",
      *     "username": "jane.doe",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe",
-     *         "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements",
-     *         "personal_actions": "https://example.org/api/players/jane.doe/personal-actions"
+     *         "self": "https://example.org/api/players/jane.doe/",
+     *         "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements/",
+     *         "personal_actions": "https://example.org/api/players/jane.doe/personal-actions/"
      *     }
      * }
      * ```.
      *
      * @Method("GET")
      * @Route(
-     *     "/{username}",
+     *     "/{username}/",
      *     name="api_player_show",
      *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"}
      * )
@@ -136,15 +136,15 @@ class PlayerController extends Controller
      *     "score": 0,
      *     "links": {
      *         "self": "https://example.org/api/players/marianne58",
-     *         "personal_achievements": "https://example.org/api/players/marianne58/personal-achievements",
-     *         "personal_actions": "https://example.org/api/players/marianne58/personal-actions"
+     *         "personal_achievements": "https://example.org/api/players/marianne58/personal-achievements/",
+     *         "personal_actions": "https://example.org/api/players/marianne58/personal-actions/"
      *     }
      * }
      * ```
      *
      * @Method("POST")
      * @Route(
-     *     "/create",
+     *     "/",
      *     name="api_player_create"
      * )
      * @ApiDoc(
@@ -204,24 +204,24 @@ class PlayerController extends Controller
      *     "name": "demo-achievement-01",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe/personal-achievements",
-     *         "player": "https://example.org/api/players/jane.doe",
-     *         "achievement": "https://example.org/api/achievements/demo-achievement-01"
+     *         "self": "https://example.org/api/players/jane.doe/personal-achievements/",
+     *         "player": "https://example.org/api/players/jane.doe/",
+     *         "achievement": "https://example.org/api/achievements/demo-achievement-01/"
      *     }
      * }, {
      *     "name": "demo-achievement-02",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe/personal-achievements",
-     *         "player": "https://example.org/api/players/jane.doe",
-     *         "achievement": "https://example.org/api/achievements/demo-achievement-02"
+     *         "self": "https://example.org/api/players/jane.doe/personal-achievements/",
+     *         "player": "https://example.org/api/players/jane.doe/",
+     *         "achievement": "https://example.org/api/achievements/demo-achievement-02/"
      *     }
      * }]
      * ```.
      *
      * @Method("GET")
      * @Route(
-     *     "/{username}/personal-achievements",
+     *     "/{username}/personal-achievements/",
      *     name="api_player_personal_achievements_show",
      *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"}
      * )
@@ -274,17 +274,17 @@ class PlayerController extends Controller
      *     "name": "yay.action.demo_action",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe/personal-actions",
-     *         "player": "https://example.org/api/players/jane.doe",
-     *         "action": "https://example.org/api/actions/yay.action.demo_action"
+     *         "self": "https://example.org/api/players/jane.doe/personal-actions/",
+     *         "player": "https://example.org/api/players/jane.doe/",
+     *         "action": "https://example.org/api/actions/yay.action.demo_action/"
      *     }
      * }, {
      *     "name": "yay.action.demo_action",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe/personal-actions",
-     *         "player": "https://example.org/api/players/jane.doe",
-     *         "action": "https://example.org/api/actions/yay.action.demo_action"
+     *         "self": "https://example.org/api/players/jane.doe/personal-actions/",
+     *         "player": "https://example.org/api/players/jane.doe/",
+     *         "action": "https://example.org/api/actions/yay.action.demo_action/"
      *     }
      * }]
      * ```.
@@ -292,7 +292,7 @@ class PlayerController extends Controller
      * @Method("GET")
      *
      * @Route(
-     *     "/{username}/personal-actions",
+     *     "/{username}/personal-actions/",
      *     name="api_player_personal_actions_show",
      *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"}
      * )

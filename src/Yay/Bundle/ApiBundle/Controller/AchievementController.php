@@ -21,14 +21,14 @@ class AchievementController extends Controller
      * [{
      *     "name": "demo-achievement-01",
      *     "links": {
-     *         "self": "http://example.org/api/achievements/demo-achievement-01",
-     *         "actions": ["http://example.org/api/actions/demo-action"]
+     *         "self": "http://example.org/api/achievements/demo-achievement-01/",
+     *         "actions": ["http://example.org/api/actions/demo-action/"]
      *     }
      * }, {
      *     "name": "demo-achievement-01",
      *     "links": {
-     *         "self": "http://example.org/api/achievements/demo-achievement-01",
-     *         "actions": ["http://example.org/api/actions/demo-action"]
+     *         "self": "http://example.org/api/achievements/demo-achievement-01/",
+     *         "actions": ["http://example.org/api/actions/demo-action/"]
      *     }
      * }]
      * ```.
@@ -70,8 +70,8 @@ class AchievementController extends Controller
      * {
      *     "name": "demo-achievement-01",
      *     "links": {
-     *         "self": "http://example.org/api/achievements/demo-achievement-01",
-     *         "actions": ["http://example.org/api/actions/demo-action"]
+     *         "self": "http://example.org/api/achievements/demo-achievement-01/",
+     *         "actions": ["http://example.org/api/actions/demo-action/"]
      *     }
      * }
      * ```.
@@ -79,7 +79,7 @@ class AchievementController extends Controller
      * @Method("GET")
      *
      * @Route(
-     *     "/{name}",
+     *     "/{name}/",
      *     name="api_achievement_show",
      *     requirements={"name" = "[A-Za-z0-9\-\_\.]+"}
      * )

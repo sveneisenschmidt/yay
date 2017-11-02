@@ -24,9 +24,9 @@ class LeaderboardController extends Controller
      *     "username": "gschowalter",
      *     "points": 200,
      *     "links": {
-     *         "self": "http://example.org/api/players/gschowalter",
-     *         "personal_achievements": "http://example.org/api/players/gschowalter/personal-achievements",
-     *         "personal_actions": "http://example.org/api/players/gschowalter/personal-actions"
+     *         "self": "http://example.org/api/players/gschowalter/",
+     *         "personal_achievements": "http://example.org/api/players/gschowalter/personal-achievements/",
+     *         "personal_actions": "http://example.org/api/players/gschowalter/personal-actions/"
      *     }
      * },{
      *     "name": "Carmen Davis",
@@ -34,8 +34,8 @@ class LeaderboardController extends Controller
      *     "points": 125,
      *     "links": {
      *         "self": "http://example.org/api/players/cdavis",
-     *         "personal_achievements": "http://example.org/api/players/cdavis/personal-achievements",
-     *         "personal_actions": "http://example.org/api/players/cdavis/personal-actions"
+     *         "personal_achievements": "http://example.org/api/players/cdavis/personal-achievements/",
+     *         "personal_actions": "http://example.org/api/players/cdavis/personal-actions/"
      *     }
      * }]
      * ```.

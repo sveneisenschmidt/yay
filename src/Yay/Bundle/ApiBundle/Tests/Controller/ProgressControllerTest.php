@@ -63,7 +63,7 @@ class ProgressControllerTest extends WebTestCase
         }
 
         // (2) Get a player's achievements
-        $client->request('GET', '/api/players/jane.doe/personal-achievements');
+        $client->request('GET', '/api/players/jane.doe/personal-achievements/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());

@@ -69,7 +69,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/players/jane.doe');
+        $client->request('GET', '/api/players/jane.doe/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -87,7 +87,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/players/not-found');
+        $client->request('GET', '/api/players/not-found/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());
@@ -102,7 +102,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('POST', '/api/players/create', [], [], [], json_encode($data));
+        $client->request('POST', '/api/players/', [], [], [], json_encode($data));
         $response = $client->getResponse();
 
         $this->assertTrue($response->isRedirect());
@@ -121,7 +121,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('POST', '/api/players/create', [], [], [], json_encode([]));
+        $client->request('POST', '/api/players/', [], [], [], json_encode([]));
         $response = $client->getResponse();
 
         $this->assertTrue($response->isClientError());
@@ -136,12 +136,12 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('POST', '/api/players/create', [], [], [], json_encode($data));
+        $client->request('POST', '/api/players/', [], [], [], json_encode($data));
         $response = $client->getResponse();
 
         $this->assertTrue($response->isRedirect());
 
-        $client->request('POST', '/api/players/create', [], [], [], json_encode($data));
+        $client->request('POST', '/api/players/', [], [], [], json_encode($data));
         $response = $client->getResponse();
 
         $this->assertTrue($response->isServerError());
@@ -155,7 +155,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/players/jane.doe/personal-achievements');
+        $client->request('GET', '/api/players/jane.doe/personal-achievements/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -181,7 +181,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/players/john.doe/personal-achievements');
+        $client->request('GET', '/api/players/john.doe/personal-achievements/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());
@@ -195,7 +195,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/players/jane.doe/personal-actions');
+        $client->request('GET', '/api/players/jane.doe/personal-actions/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -220,7 +220,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/players/john.doe/personal-actions');
+        $client->request('GET', '/api/players/john.doe/personal-actions/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());
