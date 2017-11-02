@@ -47,7 +47,7 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 ]
 ```
 
-Alternatively for easier integration into third-party systems a simple webhook api is available too:
+Alternatively for easier integration into third-party systems a simple webhook api is available:
 ```bash
 curl -X "GET" http://localhost:50080/api/progress/?player=jane.doe&action=demo-action
 

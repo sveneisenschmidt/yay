@@ -341,7 +341,7 @@ player=jane.doe&actions[]=yay.action.demo_action&actions[]=yay.action.demo_actio
     "links": {
         "self": "http://example.org/api/players/gschowalter/personal-achievements/",
         "player": "http://example.org/api/players/gschowalter/",
-        "achievement": "http://example.org/api/achievements/demo-achievement-01""
+        "achievement": "http://example.org/api/achievements/demo-achievement-01/"
     }
 }, {
     "name": "demo-achievement-02",
@@ -409,7 +409,7 @@ _Submit a payload to update a users progress_
     "links": {
         "self": "http://example.org/api/players/gschowalter/personal-achievements/",
         "player": "http://example.org/api/players/gschowalter/",
-        "achievement": "http://example.org/api/achievements/demo-achievement-01""
+        "achievement": "http://example.org/api/achievements/demo-achievement-01/"
     }
 }, {
     "name": "demo-achievement-02",
@@ -417,7 +417,7 @@ _Submit a payload to update a users progress_
     "links": {
         "self": "http://example.org/api/players/gschowalter/personal-achievements/",
         "player": "http://example.org/api/players/gschowalter/",
-        "achievement": "http://example.org/api/achievements/demo-achievement-02"
+        "achievement": "http://example.org/api/achievements/demo-achievement-02/"
     }
 }]
 ```

@@ -39,7 +39,7 @@ class ProgressController extends Controller
      *     "links": {
      *         "self": "http://example.org/api/players/gschowalter/personal-achievements/",
      *         "player": "http://example.org/api/players/gschowalter/",
-     *         "achievement": "http://example.org/api/achievements/demo-achievement-01""
+     *         "achievement": "http://example.org/api/achievements/demo-achievement-01/"
      *     }
      * }, {
      *     "name": "demo-achievement-02",
@@ -152,7 +152,7 @@ class ProgressController extends Controller
      *     "links": {
      *         "self": "http://example.org/api/players/gschowalter/personal-achievements/",
      *         "player": "http://example.org/api/players/gschowalter/",
-     *         "achievement": "http://example.org/api/achievements/demo-achievement-01""
+     *         "achievement": "http://example.org/api/achievements/demo-achievement-01/"
      *     }
      * }, {
      *     "name": "demo-achievement-02",
@@ -160,7 +160,7 @@ class ProgressController extends Controller
      *     "links": {
      *         "self": "http://example.org/api/players/gschowalter/personal-achievements/",
      *         "player": "http://example.org/api/players/gschowalter/",
-     *         "achievement": "http://example.org/api/achievements/demo-achievement-02"
+     *         "achievement": "http://example.org/api/achievements/demo-achievement-02/"
      *     }
      * }]
      * ```
