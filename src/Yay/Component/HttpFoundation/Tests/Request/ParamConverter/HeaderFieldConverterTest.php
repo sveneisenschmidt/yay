@@ -33,7 +33,7 @@ class HeaderFieldConverterTest extends TestCase
                       ->willReturn($parameterName);
 
         $configuration->method('getOptions')
-                    ->willReturn($options);
+                      ->willReturn($options);
 
         return $configuration;
     }
