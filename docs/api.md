@@ -11,23 +11,23 @@ _Returns a collection of all known Achievements_
 [{
     "name": "demo-achievement-01",
     "links": {
-        "self": "http://example.org/api/achievements/demo-achievement-01",
-        "actions": ["http://example.org/api/actions/demo-action"]
+        "self": "http://example.org/api/achievements/demo-achievement-01/",
+        "actions": ["http://example.org/api/actions/demo-action/"]
     }
 }, {
     "name": "demo-achievement-01",
     "links": {
-        "self": "http://example.org/api/achievements/demo-achievement-01",
-        "actions": ["http://example.org/api/actions/demo-action"]
+        "self": "http://example.org/api/achievements/demo-achievement-01/",
+        "actions": ["http://example.org/api/actions/demo-action/"]
     }
 }]
 ```
 
 
 
-## /api/achievements/{name} ##
+## /api/achievements/{name}/ ##
 
-### `GET` /api/achievements/{name} ###
+### `GET` /api/achievements/{name}/ ###
 
 _Returns an Achievement identified by its name property_
 
@@ -36,8 +36,8 @@ _Returns an Achievement identified by its name property_
 {
     "name": "demo-achievement-01",
     "links": {
-        "self": "http://example.org/api/achievements/demo-achievement-01",
-        "actions": ["http://example.org/api/actions/demo-action"]
+        "self": "http://example.org/api/achievements/demo-achievement-01/",
+        "actions": ["http://example.org/api/actions/demo-action/"]
     }
 }
 ```
@@ -65,16 +65,16 @@ _Returns a collection of all known Actions_
 [{
     "name": "yay.action.demo_action",
     "links": {
-        "self": "http://example.org/api/actions/yay.action.demo_action",
+        "self": "http://example.org/api/actions/yay.action.demo_action/",
     }
 }]
 ```
 
 
 
-## /api/actions/{name} ##
+## /api/actions/{name}/ ##
 
-### `GET` /api/actions/{name} ###
+### `GET` /api/actions/{name}/ ###
 
 _Returns an Action identified by its name property_
 
@@ -83,7 +83,7 @@ _Returns an Action identified by its name property_
 {
     "name": "yay.action.demo_action",
     "links": {
-        "self": "http://example.org/api/actions/yay.action.demo_action",
+        "self": "http://example.org/api/actions/yay.action.demo_action/",
     }
 }
 ```
@@ -95,6 +95,34 @@ _Returns an Action identified by its name property_
 
 - Requirement: [A-Za-z0-9\-\_\.]+
 - Type: string
+
+
+
+# Levels #
+
+## /api/levels/ ##
+
+### `GET` /api/levels/ ###
+
+_Returns a collection of all known Levels_
+
+**Example Response:**
+```json
+[{
+    "name": "Level 1",
+    "label": "label-001",
+    "description": "description-001",
+    "level": 1,
+    "points": 100
+},{
+    "name": "Level 2",
+    "label": "label-002",
+    "description": "description-002",
+    "level": 2,
+    "points": 200
+}]
+```
+
 
 
 
@@ -113,9 +141,9 @@ _Returns a sorted collection of all Players that have more than 0 points, starti
     "username": "gschowalter",
     "points": 200,
     "links": {
-        "self": "http://example.org/api/players/gschowalter",
-        "personal_achievements": "http://example.org/api/players/gschowalter/personal-achievements",
-        "personal_actions": "http://example.org/api/players/gschowalter/personal-actions"
+        "self": "http://example.org/api/players/gschowalter/",
+        "personal_achievements": "http://example.org/api/players/gschowalter/personal-achievements/",
+        "personal_actions": "http://example.org/api/players/gschowalter/personal-actions/"
     }
 },{
     "name": "Carmen Davis",
@@ -123,8 +151,8 @@ _Returns a sorted collection of all Players that have more than 0 points, starti
     "points": 125,
     "links": {
         "self": "http://example.org/api/players/cdavis",
-        "personal_achievements": "http://example.org/api/players/cdavis/personal-achievements",
-        "personal_actions": "http://example.org/api/players/cdavis/personal-actions"
+        "personal_achievements": "http://example.org/api/players/cdavis/personal-achievements/",
+        "personal_actions": "http://example.org/api/players/cdavis/personal-actions/"
     }
 }]
 ```
@@ -146,18 +174,16 @@ _Returns a collection of all known Players_
     "name": "Jane Doe",
     "username": "jane.doe",
     "links": {
-        "self": "https://example.org/api/players/jane.doe",
-        "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements",
-        "personal_actions": "https://example.org/api/players/jane.doe/personal-actions"
+        "self": "https://example.org/api/players/jane.doe/",
+        "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements/",
+        "personal_actions": "https://example.org/api/players/jane.doe/personal-actions/"
     }
 }]
 ```
 
 
 
-## /api/players/create ##
-
-### `POST` /api/players/create ###
+### `POST` /api/players/ ###
 
 _Creates a new player_
 
@@ -180,17 +206,17 @@ _Creates a new player_
     "score": 0,
     "links": {
         "self": "https://example.org/api/players/marianne58",
-        "personal_achievements": "https://example.org/api/players/marianne58/personal-achievements",
-        "personal_actions": "https://example.org/api/players/marianne58/personal-actions"
+        "personal_achievements": "https://example.org/api/players/marianne58/personal-achievements/",
+        "personal_actions": "https://example.org/api/players/marianne58/personal-actions/"
     }
 }
 ```
 
 
 
-## /api/players/{username} ##
+## /api/players/{username}/ ##
 
-### `GET` /api/players/{username} ###
+### `GET` /api/players/{username}/ ###
 
 _Returns a Player identified by its username property_
 
@@ -200,9 +226,9 @@ _Returns a Player identified by its username property_
     "name": "Jane Doe",
     "username": "jane.doe",
     "links": {
-        "self": "https://example.org/api/players/jane.doe",
-        "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements",
-        "personal_actions": "https://example.org/api/players/jane.doe/personal-actions"
+        "self": "https://example.org/api/players/jane.doe/",
+        "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements/",
+        "personal_actions": "https://example.org/api/players/jane.doe/personal-actions/"
     }
 }
 ```
@@ -216,9 +242,9 @@ _Returns a Player identified by its username property_
 - Type: string
 
 
-## /api/players/{username}/personal-achievements ##
+## /api/players/{username}/personal-achievements/ ##
 
-### `GET` /api/players/{username}/personal-achievements ###
+### `GET` /api/players/{username}/personal-achievements/ ###
 
 _Returns a Player achievements identified by its username property_
 
@@ -228,17 +254,17 @@ _Returns a Player achievements identified by its username property_
     "name": "demo-achievement-01",
     "achieved_at": "2017-04-07T14:12:29+0000",
     "links": {
-        "self": "https://example.org/api/players/jane.doe/personal-achievements",
-        "player": "https://example.org/api/players/jane.doe",
-        "achievement": "https://example.org/api/achievements/demo-achievement-01"
+        "self": "https://example.org/api/players/jane.doe/personal-achievements/",
+        "player": "https://example.org/api/players/jane.doe/",
+        "achievement": "https://example.org/api/achievements/demo-achievement-01/"
     }
 }, {
     "name": "demo-achievement-02",
     "achieved_at": "2017-04-07T14:12:29+0000",
     "links": {
-        "self": "https://example.org/api/players/jane.doe/personal-achievements",
-        "player": "https://example.org/api/players/jane.doe",
-        "achievement": "https://example.org/api/achievements/demo-achievement-02"
+        "self": "https://example.org/api/players/jane.doe/personal-achievements/",
+        "player": "https://example.org/api/players/jane.doe/",
+        "achievement": "https://example.org/api/achievements/demo-achievement-02/"
     }
 }]
 ```
@@ -252,9 +278,9 @@ _Returns a Player achievements identified by its username property_
 - Type: string
 
 
-## /api/players/{username}/personal-actions ##
+## /api/players/{username}/personal-actions/ ##
 
-### `GET` /api/players/{username}/personal-actions ###
+### `GET` /api/players/{username}/personal-actions/ ###
 
 _Returns a Player achievements identified by its username property_
 
@@ -264,17 +290,17 @@ _Returns a Player achievements identified by its username property_
     "name": "yay.action.demo_action",
     "achieved_at": "2017-04-07T14:12:29+0000",
     "links": {
-        "self": "https://example.org/api/players/jane.doe/personal-actions",
-        "player": "https://example.org/api/players/jane.doe",
-        "action": "https://example.org/api/actions/yay.action.demo_action"
+        "self": "https://example.org/api/players/jane.doe/personal-actions/",
+        "player": "https://example.org/api/players/jane.doe/",
+        "action": "https://example.org/api/actions/yay.action.demo_action/"
     }
 }, {
     "name": "yay.action.demo_action",
     "achieved_at": "2017-04-07T14:12:29+0000",
     "links": {
-        "self": "https://example.org/api/players/jane.doe/personal-actions",
-        "player": "https://example.org/api/players/jane.doe",
-        "action": "https://example.org/api/actions/yay.action.demo_action"
+        "self": "https://example.org/api/players/jane.doe/personal-actions/",
+        "player": "https://example.org/api/players/jane.doe/",
+        "action": "https://example.org/api/actions/yay.action.demo_action/"
     }
 }]
 ```

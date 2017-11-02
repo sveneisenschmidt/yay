@@ -36,7 +36,7 @@ class ActionControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/actions/yay.action.test_action');
+        $client->request('GET', '/api/actions/yay.action.test_action/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -58,7 +58,7 @@ class ActionControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/actions/yay.action.test_not-found');
+        $client->request('GET', '/api/actions/yay.action.test_not-found/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());

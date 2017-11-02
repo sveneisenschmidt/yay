@@ -30,7 +30,7 @@ curl -X "GET" http://localhost:50080/api/players/
 
 There are no users created yet, let's create a user by executing the following request.
 ```bash
-curl -X "POST" http://localhost:50080/api/players/create \
+curl -X "POST" http://localhost:50080/api/players/ \
     -d "{\"name\": \"Jane Doe\",\"username\":\"jane.doe\",\"email\": \"jane.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
 
 {
@@ -39,9 +39,9 @@ curl -X "POST" http://localhost:50080/api/players/create \
     "image_url": "https://api.adorable.io/avatars/128/354",
     "score": 0,
     "links": {
-        "self": "http://localhost:50080/api/players/jane.doe",
-        "personal_achievements": "http://localhost:50080/api/players/jane.doe/personal-achievements",
-        "personal_actions": "http://localhost:50080/api/players/jane.doe/personal-actions"
+        "self": "http://localhost:50080/api/players/jane.doe/",
+        "personal_achievements": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
+        "personal_actions": "http://localhost:50080/api/players/jane.doe/personal-actions/"
     }
 }
 ```
@@ -55,7 +55,7 @@ curl -X "GET" http://localhost:50080/api/actions/
         "name": "demo-action",
         "label": "Accusamus molestias eum libero ullam libero.",
         "links": {
-            "self": "http://localhost:50080/api/actions/demo-action"
+            "self": "http://localhost:50080/api/actions/demo-action/"
         }
     }
 ]
@@ -75,9 +75,9 @@ curl -X "GET" http://localhost:50080/api/achievements/
         "label": "Facere quibusdam iure voluptas velit sapiente.",
         "points": 50,
         "links": {
-            "self": "http://localhost:50080/api/achievements/demo-achievement-01",
+            "self": "http://localhost:50080/api/achievements/demo-achievement-01/",
             "actions": [
-                "http://localhost:50080/api/actions/demo-action"
+                "http://localhost:50080/api/actions/demo-action/"
             ]
         }
     },
@@ -86,9 +86,9 @@ curl -X "GET" http://localhost:50080/api/achievements/
         "label": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
         "points": 50,
         "links": {
-            "self": "http://localhost:50080/api/achievements/demo-achievement-02",
+            "self": "http://localhost:50080/api/achievements/demo-achievement-02/",
             "actions": [
-                "http://localhost:50080/api/actions/demo-action"
+                "http://localhost:50080/api/actions/demo-action/"
             ]
         }
     }
@@ -114,9 +114,9 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-actions
         "description": "demo-action",
         "achieved_at": "2017-10-08T12:48:13+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-actions",
-            "player": "http://localhost:50080/api/players/jane.doe",
-            "action": "http://localhost:50080/api/actions/demo-action"
+            "self": "http://localhost:50080/api/players/jane.doe/personal-actions/",
+            "player": "http://localhost:50080/api/players/jane.doe/",
+            "action": "http://localhost:50080/api/actions/demo-action/"
         }
     }
 ]
@@ -135,9 +135,9 @@ curl -X "POST" http://localhost:50080/api/progress/ \
         "points": 50,
         "achieved_at": "2017-10-08T13:22:08+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements",
-            "player": "http://localhost:50080/api/players/jane.doe",
-            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01"
+            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/jane.doe/",
+            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
         }
     }
 ]
@@ -157,9 +157,9 @@ curl -X "POST" http://localhost:50080/api/progress/ \
         "points": 50,
         "achieved_at": "2017-10-08T13:23:53+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements",
-            "player": "http://localhost:50080/api/players/jane.doe",
-            "achievement": "http://localhost:50080/api/achievements/demo-achievement-02"
+            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/jane.doe/",
+            "achievement": "http://localhost:50080/api/achievements/demo-achievement-02/"
         }
     }
 ]⏎
@@ -180,9 +180,9 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-achievements
         "points": 50,
         "achieved_at": "2017-10-08T13:22:08+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements",
-            "player": "http://localhost:50080/api/players/jane.doe",
-            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01"
+            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/jane.doe/",
+            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
         }
     },
     {
@@ -192,9 +192,9 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-achievements
         "points": 50,
         "achieved_at": "2017-10-08T13:23:53+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements",
-            "player": "http://localhost:50080/api/players/jane.doe",
-            "achievement": "http://localhost:50080/api/achievements/demo-achievement-02"
+            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/jane.doe/",
+            "achievement": "http://localhost:50080/api/achievements/demo-achievement-02/"
         }
     }
 ]
