@@ -319,6 +319,63 @@ _Returns a Player achievements identified by its username property_
 
 ## /api/progress/ ##
 
+### `GET` /api/progress/ ###
+
+_Submit a payload to update a users progress_
+
+**Example Request (1):**
+```query
+player=jane.doe&action=yay.action.demo_action
+```
+
+**Example Request (2):**
+```query
+player=jane.doe&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action
+```
+
+**Example Response:**
+```json
+[{
+    "name": "demo-achievement-01",
+    "achieved_at": "2017-04-07T14:12:29+0000",
+    "links": {
+        "self": "http://example.org/api/players/gschowalter/personal-achievements/",
+        "player": "http://example.org/api/players/gschowalter/",
+        "achievement": "http://example.org/api/achievements/demo-achievement-01""
+    }
+}, {
+    "name": "demo-achievement-02",
+    "achieved_at": "2017-04-07T14:12:29+0000",
+    "links": {
+        "self": "http://example.org/api/players/gschowalter/personal-achievements/",
+        "player": "http://example.org/api/players/gschowalter/",
+        "achievement": "http://example.org/api/achievements/demo-achievement-02/"
+    }
+}]
+```
+
+
+#### Requirements ####
+
+**player**
+
+- Requirement: [a-z\.\-\_]+
+- Type: string
+- Description: Username of the Player to progress
+
+**action**
+
+- Requirement: [a-z\.\-\_]+
+- Type: string
+- Description: Action that the Player has made progress in
+
+**actions**
+
+- Requirement: Array<[a-z\.\-\_]+>
+- Type: array
+- Description: Actions that the Player has made progress in
+
+
 ### `POST` /api/progress/ ###
 
 _Submit a payload to update a users progress_
@@ -350,16 +407,16 @@ _Submit a payload to update a users progress_
     "name": "demo-achievement-01",
     "achieved_at": "2017-04-07T14:12:29+0000",
     "links": {
-        "self": "http://example.org/api/players/gschowalter/personal-achievements",
-        "player": "http://example.org/api/players/gschowalter",
-        "achievement": "http://example.org/api/achievements/demo-achievement-01"
+        "self": "http://example.org/api/players/gschowalter/personal-achievements/",
+        "player": "http://example.org/api/players/gschowalter/",
+        "achievement": "http://example.org/api/achievements/demo-achievement-01""
     }
 }, {
     "name": "demo-achievement-02",
     "achieved_at": "2017-04-07T14:12:29+0000",
     "links": {
-        "self": "http://example.org/api/players/gschowalter/personal-achievements",
-        "player": "http://example.org/api/players/gschowalter",
+        "self": "http://example.org/api/players/gschowalter/personal-achievements/",
+        "player": "http://example.org/api/players/gschowalter/",
         "achievement": "http://example.org/api/achievements/demo-achievement-02"
     }
 }]
