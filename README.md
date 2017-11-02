@@ -39,9 +39,29 @@ curl -X "POST" http://localhost:50080/api/progress/ \
         "points": 50,
         "achieved_at": "2017-10-08T13:22:08+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements",
-            "player": "http://localhost:50080/api/players/jane.doe",
-            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01"
+            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/jane.doe/",
+            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
+        }
+    }
+]
+```
+
+Alternatively for easier integration into third-party systems a simple webhook api is available:
+```bash
+curl -X "GET" http://localhost:50080/api/progress/?player=jane.doe&action=demo-action
+
+[
+    {
+        "name": "demo-achievement-01",
+        "label": "demo-achievement-01",
+        "description": "demo-achievement-01",
+        "points": 50,
+        "achieved_at": "2017-10-08T13:22:08+0000",
+        "links": {
+            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/jane.doe/",
+            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
         }
     }
 ]

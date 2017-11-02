@@ -24,8 +24,9 @@ class QueryStringConverter implements ParamConverterInterface
      */
     public function apply(Request $request, ParamConverter $configuration): void
     {
-        $source = $configuration->getName();
-        $target = $source;
+        $options = $configuration->getOptions();
+        $target = $configuration->getName();
+        $source = isset($options['field']) ? $options['field'] : $target;
 
         if (!$request->query->has($source)) {
             return;

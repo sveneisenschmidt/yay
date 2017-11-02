@@ -12,16 +12,18 @@ class QueryStringConverterTest extends TestCase
     /**
      * @param string $converterName
      * @param string $parameterName
+     * @param array  $options
      *
      * @return ParamConverter
      */
     public function createConfiguration(
         string $converterName = 'QueryString',
-        string $parameterName = 'foo'
+        string $parameterName = 'foo',
+        array $options = []
     ): ParamConverter {
         $configuration = $this->getMockBuilder(ParamConverter::class)
                               ->disableOriginalConstructor()
-                              ->setMethods(['getConverter', 'getName'])
+                              ->setMethods(['getConverter', 'getName', 'getOptions'])
                               ->getMock();
 
         $configuration->method('getConverter')
@@ -29,6 +31,9 @@ class QueryStringConverterTest extends TestCase
 
         $configuration->method('getName')
                       ->willReturn($parameterName);
+
+        $configuration->method('getOptions')
+                      ->willReturn($options);
 
         return $configuration;
     }
@@ -68,10 +73,22 @@ class QueryStringConverterTest extends TestCase
     /**
      * @test
      */
+    public function query_parameter_is_applied_as_attribute_with_field(): void
+    {
+        $configuration = $this->createConfiguration('HeaderField', 'foo', ['field' => 'baz']);
+        $request = Request::create('/', 'GET', ['baz' => 'bar']);
+
+        (new QueryStringConverter())->apply($request, $configuration);
+        $this->assertEquals('bar', $request->attributes->get('foo'));
+    }
+
+    /**
+     * @test
+     */
     public function query_parameter_is_not_set(): void
     {
         $configuration = $this->createConfiguration();
-        $request = Request::create('/', 'GET', []);
+        $request = Request::create('/', 'GET');
 
         (new QueryStringConverter())->apply($request, $configuration);
         $this->assertFalse($request->attributes->has('foo'));
