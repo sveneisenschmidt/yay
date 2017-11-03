@@ -2,29 +2,15 @@
 
 namespace Yay\Component\Engine;
 
+use Yay\Component\Engine\AchievementValidator\ValidationContext;
+use Yay\Component\Engine\AchievementValidator\ValidationHelper;
 use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
-use Yay\Component\Entity\Achievement\PersonalActionCollection;
-use Yay\Component\Entity\PlayerInterface;
 
 interface AchievementValidatorInterface
 {
-    /**
-     * @param PlayerInterface                $player
-     * @param AchievementDefinitionInterface $achievementDefinition
-     * @param PersonalActionCollection       $collection
-     *
-     * @return bool
-     */
-    public function validate(
-        PlayerInterface $player,
-        AchievementDefinitionInterface $achievementDefinition,
-        PersonalActionCollection $collection
-    ): bool;
+    public function validate(ValidationContext $validationContext, ValidationHelper $validationHelper): bool;
 
-    /**
-     * @param AchievementDefinitionInterface $achievementDefinition
-     *
-     * @return bool
-     */
     public function supports(AchievementDefinitionInterface $achievementDefinition): bool;
+
+    public function multiple(): bool;
 }

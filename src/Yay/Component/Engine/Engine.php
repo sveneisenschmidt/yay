@@ -2,6 +2,8 @@
 
 namespace Yay\Component\Engine;
 
+use Yay\Component\Engine\AchievementValidator\ValidationContext;
+use Yay\Component\Engine\AchievementValidator\ValidationHelper;
 use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\ActionDefinitionCollection;
 use Yay\Component\Entity\Achievement\AchievementDefinition;
@@ -87,7 +89,7 @@ class Engine
      * @return AchievementDefinitionCollection
      */
     public function extractMatchingAchievementDefinitions(
-        ActionDefinitionCollection $actionDefinitionCollection,
+        ActionDefinitionCollection  $actionDefinitionCollection,
         AchievementDefinitionCollection $achievementDefinitionCollection
     ): AchievementDefinitionCollection {
         $matchingAchievementDefinitionCollection = new AchievementDefinitionCollection();
@@ -134,15 +136,18 @@ class Engine
         $personalAchievements = [];
         foreach ($achievementValidatorCollection as $achievementValidator) {
             foreach ($achievementDefinitionCollection as $achievementDefinition) {
-                if ($player->hasPersonalAchievement($achievementDefinition)) {
-                    continue;
-                }
+                $validationContext = new ValidationContext($player, $achievementDefinition);
+                $validationHelper = new ValidationHelper();
 
                 if (!$achievementValidator->supports($achievementDefinition)) {
                     continue;
                 }
 
-                if ($achievementValidator->validate($player, $achievementDefinition, $personalActionCollection)) {
+                if ($player->hasPersonalAchievement($achievementDefinition) && !$achievementValidator->multiple()) {
+                    continue;
+                }
+
+                if ($achievementValidator->validate($validationContext, $validationHelper)) {
                     $personalAchievement = new PersonalAchievement($player, $achievementDefinition);
                     $personalAchievements[] = $personalAchievement;
 
