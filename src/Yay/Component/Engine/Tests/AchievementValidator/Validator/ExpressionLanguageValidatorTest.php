@@ -54,6 +54,6 @@ class ExpressionLanguageValidatorTest extends TestCase
      */
     public function expression_language_passes_filtered_personal_actions()
     {
-        $this->markTestIncomplete( 'This test has not been implemented yet.' );
+        $this->markTestIncomplete('This test has not been implemented yet.');
     }
 }
