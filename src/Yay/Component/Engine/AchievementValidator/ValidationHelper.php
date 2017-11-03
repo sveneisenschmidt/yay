@@ -13,7 +13,7 @@ class ValidationHelper
     {
         $collection = $player->getPersonalActions();
         if (!$collection instanceof PersonalActionCollection) {
-            $collection =  new PersonalActionCollection($collection->toArray());
+            $collection = new PersonalActionCollection($collection->toArray());
         }
 
         return $collection;

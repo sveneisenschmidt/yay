@@ -3,8 +3,6 @@
 namespace Yay\Component\Engine\AchievementValidator;
 
 use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
-use Yay\Component\Entity\Achievement\PersonalActionCollection;
-use Yay\Component\Entity\Achievement\PersonalActionInterface;
 use Yay\Component\Entity\PlayerInterface;
 
 class ValidationContext
