@@ -1,11 +1,11 @@
 [![Build Status](https://travis-ci.org/sveneisenschmidt/yay.svg?branch=master)](https://travis-ci.org/sveneisenschmidt/yay) [![codecov](https://codecov.io/gh/sveneisenschmidt/yay/branch/master/graph/badge.svg)](https://codecov.io/gh/sveneisenschmidt/yay) [![StyleCI](https://styleci.io/repos/85753371/shield?branch=master)](https://styleci.io/repos/85753371) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-# ![yay](docs/src/logo.svg | width=32x32) What is Yay?
+# ![yay](docs/src/logo.png) What is Yay?
 
 ## The Idea
 > Gamification can be applied to all technical and non-technical tasks during our daily working life. Everything can be gamified.
 
-![yay](docs/src/cycle.png)
+![yay](docs/src/cycle.svg)
 
 ## The Implementation
 Yay is a **gamification engine**, exposing a web service API, for integrating any kinds of gamification features into your organisation. Yay originally started as a 36 hours hackathon project at [trivago](https://github.com/trivago) to bring gamification features to our organisation. To integrate yay into many application landscapes it offers flexible extension points to write your own integrations.
