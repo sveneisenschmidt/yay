@@ -16,7 +16,7 @@ The integration setup file has a root element `integration` and four possible ch
 |---|---|
 | actions | Actions a player can perform. |
 | achievements | Achievments a player can earn. |
-| validators | Validators validates a players actions against any achivement and grants if validation passed the validation. ( `Validator::validate(Achievement, Actions): true||false` ) |
+| validators | Validators validates a players actions against any achievement and grants if validation passed the validation. ( `Validator::validate(Achievement, Actions): true||false` ) |
 
 ### Example setup file
 (See [demo integration](integration/demo))

@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use Yay\Component\Engine\AchievementValidator\Validator\ExpressionLanguageValidator;
 use Yay\Component\Engine\AchievementValidator\ValidationContext;
 use Yay\Component\Engine\AchievementValidator\ValidationHelper;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
+use Yay\Component\Entity\Achievement\PersonalActionCollection;
+use Yay\Component\Entity\PlayerInterface;
 
 class ExpressionLanguageValidatorTest extends TestCase
 {
@@ -27,9 +30,49 @@ class ExpressionLanguageValidatorTest extends TestCase
     /**
      * @test
      */
+    public function expression_language_supports_achievement()
+    {
+        $achievementDefinition1 = $this->createConfiguredMock(AchievementDefinitionInterface::class, [
+            'getName' => 'test-achievement-01'
+        ]);
+
+        $achievementDefinition2 = $this->createConfiguredMock(AchievementDefinitionInterface::class, [
+            'getName' => 'test-achievement-02'
+        ]);
+
+        $this->assertTrue(
+            (new ExpressionLanguageValidator('true'))->supports($achievementDefinition1)
+        );
+        $this->assertTrue(
+            (new ExpressionLanguageValidator('true', ['test-achievement-01']))->supports($achievementDefinition1)
+        );
+        $this->assertFalse(
+            (new ExpressionLanguageValidator('true', ['test-achievement-01']))->supports($achievementDefinition2)
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function expression_language_multiple()
+    {
+        $this->assertFalse((new ExpressionLanguageValidator('true', []))->multiple());
+        $this->assertTrue((new ExpressionLanguageValidator('true', [], true))->multiple());
+        $this->assertFalse((new ExpressionLanguageValidator('true', [], false))->multiple());
+    }
+
+    /**
+     * @test
+     */
     public function expression_language_passes_player()
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $context = $this->createConfiguredMock(ValidationContext::class, [
+            'getPlayer' => $this->createMock(PlayerInterface::class)
+        ]);
+        $helper = $this->createMock(ValidationHelper::class);
+
+        $validator = new ExpressionLanguageValidator('player ? true : false');
+        $this->assertTrue($validator->validate($context, $helper));
     }
 
     /**
@@ -37,7 +80,13 @@ class ExpressionLanguageValidatorTest extends TestCase
      */
     public function expression_language_passes_achievement()
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $context = $this->createConfiguredMock(ValidationContext::class, [
+            'getAchievementDefinition' => $this->createMock(AchievementDefinitionInterface::class)
+        ]);
+        $helper = $this->createMock(ValidationHelper::class);
+
+        $validator = new ExpressionLanguageValidator('achievement ? true : false');
+        $this->assertTrue($validator->validate($context, $helper));
     }
 
     /**
@@ -45,7 +94,13 @@ class ExpressionLanguageValidatorTest extends TestCase
      */
     public function expression_language_passes_personal_actions()
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $context = $this->createMock(ValidationContext::class);
+        $helper = $this->createConfiguredMock(ValidationHelper::class, [
+            'getPersonalActions' => $this->createMock(PersonalActionCollection::class)
+        ]);
+
+        $validator = new ExpressionLanguageValidator('personalActions ? true : false');
+        $this->assertTrue($validator->validate($context, $helper));
     }
 
     /**
@@ -53,6 +108,12 @@ class ExpressionLanguageValidatorTest extends TestCase
      */
     public function expression_language_passes_filtered_personal_actions()
     {
-        $this->markTestIncomplete('This test has not been implemented yet.');
+        $context = $this->createMock(ValidationContext::class);
+        $helper = $this->createConfiguredMock(ValidationHelper::class, [
+            'getPersonalActionsByAchievement' => $this->createMock(PersonalActionCollection::class)
+        ]);
+
+        $validator = new ExpressionLanguageValidator('filteredPersonalActions ? true : false');
+        $this->assertTrue($validator->validate($context, $helper));
     }
 }
