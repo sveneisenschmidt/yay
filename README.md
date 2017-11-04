@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/sveneisenschmidt/yay.svg?branch=master)](https://travis-ci.org/sveneisenschmidt/yay) [![codecov](https://codecov.io/gh/sveneisenschmidt/yay/branch/master/graph/badge.svg)](https://codecov.io/gh/sveneisenschmidt/yay) [![StyleCI](https://styleci.io/repos/85753371/shield?branch=master)](https://styleci.io/repos/85753371) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-# ![yay](docs/src/logo.svg|width=32x32) What is Yay?
+# ![yay](docs/src/logo.svg | width=32x32) What is Yay?
 
 ## The Idea
 > Gamification can be applied to all technical and non-technical tasks during our daily working life. Everything can be gamified.
