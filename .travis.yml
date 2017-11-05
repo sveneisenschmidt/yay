@@ -2,6 +2,11 @@ dist: trusty
 language: generic
 sudo: required
 
+addons:
+    apt:
+        packages:
+            - pv
+
 git:
     depth: 1
 
@@ -10,9 +15,9 @@ services:
 
 before_script:
     - sed -i -e 's/data:cached/data/g' docker-compose.yml && cat docker-compose.yml
-    - make install
-
+    - make install 2>&1 install.log | pv > /dev/null -t
 script: make test-coverage
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
+    - cat install.log
