@@ -5,7 +5,7 @@
 ## The Idea
 > Gamification can be applied to all technical and non-technical tasks during our daily working life. Everything can be gamified.
 
-![yay](docs/src/cycle.png)
+![yay](docs/src/cycle.svg)
 
 ## The Implementation
 Yay is a **gamification engine**, exposing a web service API, for integrating any kinds of gamification features into your organisation. Yay originally started as a 36 hours hackathon project at [trivago](https://github.com/trivago) to bring gamification features to our organisation. To integrate yay into many application landscapes it offers flexible extension points to write your own integrations.

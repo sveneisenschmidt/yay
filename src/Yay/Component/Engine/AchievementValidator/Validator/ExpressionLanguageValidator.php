@@ -4,75 +4,50 @@ namespace Yay\Component\Engine\AchievementValidator\Validator;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Yay\Component\Engine\AchievementValidatorInterface;
+use Yay\Component\Engine\AchievementValidator\ValidationContext;
 use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
-use Yay\Component\Entity\Achievement\PersonalActionCollection;
-use Yay\Component\Entity\Achievement\PersonalActionInterface;
-use Yay\Component\Entity\PlayerInterface;
 
 class ExpressionLanguageValidator implements AchievementValidatorInterface
 {
-    /**
-     * @var ExpressionLanguage
-     */
+    /* @var ExpressionLanguage */
     protected $language;
 
-    /**
-     * @var string
-     */
+    /* @var string */
     protected $expression;
 
-    /**
-     * @var array
-     */
+    /* @var array */
     protected $supports;
 
-    /**
-     * ExpressionLanguageValidator constructor.
-     *
-     * @param array  $handles
-     * @param string $expression
-     */
-    public function __construct(string $expression, $supports = [])
+    /* @var bool */
+    protected $multiple = false;
+
+    public function __construct(string $expression, array $supports = [], bool $multiple = false)
     {
         $this->language = new ExpressionLanguage();
         $this->expression = $expression;
         $this->supports = $supports;
+        $this->multiple = $multiple;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function validate(PlayerInterface $player, AchievementDefinitionInterface $achievementDefinition, PersonalActionCollection $collection): bool
+    public function validate(ValidationContext $validationContext): bool
     {
-        $filteredCollection = $collection
-            // @TODO Add documentation
-            ->filter(function (PersonalActionInterface $personalAction) use ($achievementDefinition) {
-                return in_array(
-                    $personalAction->getActionDefinition(),
-                    $achievementDefinition->getActionDefinitions()->toArray()
-                );
-            })
-            // @TODO Add documentation
-            ->filter(function (PersonalActionInterface $personalAction) use ($achievementDefinition) {
-                return $personalAction->getAchievedAt() >= $achievementDefinition->getCreatedAt();
-            });
-
         return $this->language->evaluate(
             $this->expression,
             [
-                'player' => $player,
-                'achievement' => $achievementDefinition,
-                'personalActions' => $collection,
-                'filteredPersonalActions' => $filteredCollection,
+                'player' => $validationContext->getPlayer(),
+                'achievement' => $validationContext->getAchievementDefinition(),
+                'actions' => $validationContext->getFilteredPersonalActions(),
             ]
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function supports(AchievementDefinitionInterface $achievementDefinition): bool
     {
         return empty($this->supports) ? true : in_array($achievementDefinition->getName(), $this->supports);
+    }
+
+    public function multiple(): bool
+    {
+        return $this->multiple;
     }
 }

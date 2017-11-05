@@ -16,7 +16,7 @@ The integration setup file has a root element `integration` and four possible ch
 |---|---|
 | actions | Actions a player can perform. |
 | achievements | Achievments a player can earn. |
-| validators | Validators validates a players actions against any achivement and grants if validation passed the validation. ( `Validator::validate(Achievement, Actions): true||false` ) |
+| validators | Validators validates a players actions against any achievement and grants if validation passed the validation. ( `Validator::validate(Achievement, Actions): true||false` ) |
 
 ### Example setup file
 (See [demo integration](integration/demo))
@@ -48,13 +48,13 @@ integration:
         example-achievement-validator-01:
             type: expression
             arguments:
-                - "achievement.getName() in ['example-achievement-01'] and filteredPersonalActions.count() >= 5"
+                - "achievement.getName() in ['example-achievement-01'] and actions.count() >= 5"
         # Grants achviement 'example-achievement-01' if action `example-action`
         # has been performed by the player 10 times.
         example-achievement-validator-02:
             type: expression
             arguments:
-                - "achievement.getName() in ['example-achievement-02'] and filteredPersonalActions.count() >= 10"
+                - "achievement.getName() in ['example-achievement-02'] and actions.count() >= 10"
 
 ```
 
@@ -127,7 +127,7 @@ validators:
             # Second level
             type: expression
             arguments:
-                - "achievement.getName() in ['demo-achievement-01'] and filteredPersonalActions.count() >= 5"
+                - "achievement.getName() in ['demo-achievement-01'] and actions.count() >= 5"
         # Grants achviement 'demo-achievement-01' if action `demo-action`
         # has been performed by the player 10 times.
         # First level
@@ -135,7 +135,7 @@ validators:
             # Second level
             type: expression
             arguments:
-                - "achievement.getName() in ['demo-achievement-02'] and filteredPersonalActions.count() >= 10"
+                - "achievement.getName() in ['demo-achievement-02'] and actions.count() >= 10"
     # ...
 ```
 

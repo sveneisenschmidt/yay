@@ -32,12 +32,12 @@ integration:
         test-achievement-validator-01:
             type: expression
             arguments:
-                - achievement.getName() in ['test-achievement-01'] and filteredPersonalActions.count() >= 5
+                - achievement.getName() in ['test-achievement-01'] and actions.count() >= 5
             calls:
                 - ['setFoo', ['bar']]
         test-achievement-validator-02:
             type: expression
             arguments:
-                - achievement.getName() in ['test-achievement-02'] and filteredPersonalActions.count() >= 10
+                - achievement.getName() in ['test-achievement-02'] and actions.count() >= 10
             calls:
                 - ['setFoo', ['baz']]

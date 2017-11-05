@@ -2,54 +2,37 @@
 
 namespace Yay\Component\Engine;
 
-use Yay\Component\Entity\Achievement\ActionDefinition;
+use Yay\Component\Engine\AchievementValidator\ValidationContext;
 use Yay\Component\Entity\Achievement\ActionDefinitionCollection;
-use Yay\Component\Entity\Achievement\AchievementDefinition;
+use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
 use Yay\Component\Entity\Achievement\PersonalAchievement;
-use Yay\Component\Entity\Achievement\PersonalAction;
 use Yay\Component\Entity\Achievement\PersonalActionCollection;
-use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 
 class Engine
 {
     use StorageTrait;
 
-    /**
-     * @var AchievementValidatorCollection
-     */
+    /* @var AchievementValidatorCollection */
     protected $achievementValidatorCollection;
 
-    /**
-     * Engine constructor.
-     *
-     * @param StorageInterface $storage
-     * @param array|null       $achievementValidators
-     */
-    public function __construct(StorageInterface $storage, AchievementValidatorCollection $achievementValidatorCollection = null)
-    {
+    public function __construct(
+        StorageInterface $storage,
+        AchievementValidatorCollection $achievementValidatorCollection = null
+    ) {
         $this->setStorage($storage);
         $this->achievementValidatorCollection = !$achievementValidatorCollection ? new AchievementValidatorCollection() : $achievementValidatorCollection;
     }
 
-    /**
-     * @return AchievementValidatorCollection
-     */
-    public function getAchievementValidators()
+    public function getAchievementValidators(): AchievementValidatorCollection
     {
         return $this->achievementValidatorCollection;
     }
 
-    /**
-     * Collects PersonalAction(s) from a Player, ensures that we always get a PersonalActionCollection.
-     *
-     * @param PlayerInterface $player
-     *
-     * @return PersonalActionCollection
-     */
-    public function getPlayerPersonalActions(PlayerInterface $player): PersonalActionCollection
-    {
+    public function getPlayerPersonalActions(
+        PlayerInterface $player
+    ): PersonalActionCollection {
         $personalActionCollection = $player->getPersonalActions();
         if (!$personalActionCollection instanceof PersonalActionCollection) {
             return new PersonalActionCollection($personalActionCollection->toArray());
@@ -58,15 +41,9 @@ class Engine
         return $personalActionCollection;
     }
 
-    /**
-     * Collects ActionDefinition(s) from PersonalAction(s).
-     *
-     * @param PersonalActionCollection $personalActionCollection
-     *
-     * @return ActionDefinitionCollection
-     */
-    public function extractActionDefinitions(PersonalActionCollection $personalActionCollection): ActionDefinitionCollection
-    {
+    public function extractActionDefinitions(
+        PersonalActionCollection $personalActionCollection
+    ): ActionDefinitionCollection {
         $actionDefinitionCollection = new ActionDefinitionCollection();
 
         foreach ($personalActionCollection as $personalAction) {
@@ -79,15 +56,8 @@ class Engine
         return $actionDefinitionCollection;
     }
 
-    /**
-     * Gets AchievementDefinition(s) by ActionDefinition(s).
-     *
-     * @param ActionDefinitionCollection $actionDefinitionCollection
-     *
-     * @return AchievementDefinitionCollection
-     */
     public function extractMatchingAchievementDefinitions(
-        ActionDefinitionCollection $actionDefinitionCollection,
+        ActionDefinitionCollection  $actionDefinitionCollection,
         AchievementDefinitionCollection $achievementDefinitionCollection
     ): AchievementDefinitionCollection {
         $matchingAchievementDefinitionCollection = new AchievementDefinitionCollection();
@@ -105,12 +75,10 @@ class Engine
         return $matchingAchievementDefinitionCollection;
     }
 
-    /**
-     * @param PlayerInterface          $player
-     * @param PersonalActionCollection $collection
-     */
-    public function advance(PlayerInterface $player, PersonalActionCollection $collection = null): array
-    {
+    public function advance(
+        PlayerInterface $player,
+        PersonalActionCollection $collection = null
+    ): array {
         if ($collection) {
             $this->collectPersonalActions($collection);
         }
@@ -134,15 +102,18 @@ class Engine
         $personalAchievements = [];
         foreach ($achievementValidatorCollection as $achievementValidator) {
             foreach ($achievementDefinitionCollection as $achievementDefinition) {
-                if ($player->hasPersonalAchievement($achievementDefinition)) {
-                    continue;
-                }
-
                 if (!$achievementValidator->supports($achievementDefinition)) {
                     continue;
                 }
 
-                if ($achievementValidator->validate($player, $achievementDefinition, $personalActionCollection)) {
+                if ($player->hasPersonalAchievement($achievementDefinition) &&
+                    !$achievementValidator->multiple()
+                ) {
+                    continue;
+                }
+
+                $validationContext = $this->createValidationContext($player, $achievementDefinition);
+                if ($achievementValidator->validate($validationContext)) {
                     $personalAchievement = new PersonalAchievement($player, $achievementDefinition);
                     $personalAchievements[] = $personalAchievement;
 
@@ -158,9 +129,13 @@ class Engine
         return $personalAchievements;
     }
 
-    /**
-     * @param PersonalActionCollection $collection
-     */
+    public function createValidationContext(
+        PlayerInterface $player,
+        AchievementDefinitionInterface $achievementDefinition
+    ): ValidationContext {
+        return new ValidationContext($player, $achievementDefinition);
+    }
+
     public function collectPersonalActions(PersonalActionCollection $collection): void
     {
         // Collect players to refresh them later

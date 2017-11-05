@@ -192,6 +192,7 @@ class EngineTest extends TestCase
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
             'supports' => true,
             'validate' => false,
+            'multiple' => false,
         ]);
         $engine->getAchievementValidators()->add($validator);
 
@@ -228,6 +229,7 @@ class EngineTest extends TestCase
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
             'supports' => false,
             'validate' => false,
+            'multiple' => false,
         ]);
         $engine->getAchievementValidators()->add($validator);
 
@@ -238,7 +240,7 @@ class EngineTest extends TestCase
     /**
      * @test
      */
-    public function advance_grant_achievement()
+    public function advance_grant_achievement_not_multiple()
     {
         $actionDefinition = new ActionDefinition('test-action');
         $personalActionCollection = new PersonalActionCollection();
@@ -264,8 +266,49 @@ class EngineTest extends TestCase
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
             'supports' => true,
             'validate' => true,
+            'multiple' => false,
         ]);
         $engine->getAchievementValidators()->add($validator);
+
+        $results = $engine->advance($player);
+        $this->assertNotEmpty($results);
+    }
+
+    /**
+     * @test
+     */
+    public function advance_grant_achievement_multiple()
+    {
+        $actionDefinition = new ActionDefinition('test-action');
+        $personalActionCollection = new PersonalActionCollection();
+
+        $player = $this->createConfiguredMock(PlayerInterface::class, [
+            'getPersonalActions' => $personalActionCollection,
+            'hasPersonalAchievement' => false,
+        ]);
+
+        $personalAction = new PersonalAction($player, $actionDefinition);
+        $personalActionCollection->add($personalAction);
+
+        $achievementDefinition = new AchievementDefinition('test-achievement');
+        $achievementDefinition->addActionDefinition($actionDefinition);
+        $achievementDefinitionCollection = new AchievementDefinitionCollection();
+        $achievementDefinitionCollection->add($achievementDefinition);
+
+        $storage = $this->createConfiguredMock(StorageInterface::class, [
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection,
+        ]);
+
+        $engine = new Engine($storage);
+        $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
+            'supports' => true,
+            'validate' => true,
+            'multiple' => true,
+        ]);
+        $engine->getAchievementValidators()->add($validator);
+
+        $results = $engine->advance($player);
+        $this->assertNotEmpty($results);
 
         $results = $engine->advance($player);
         $this->assertNotEmpty($results);
