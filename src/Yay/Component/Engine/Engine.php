@@ -3,16 +3,11 @@
 namespace Yay\Component\Engine;
 
 use Yay\Component\Engine\AchievementValidator\ValidationContext;
-use Yay\Component\Engine\AchievementValidator\ValidationHelper;
-use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\ActionDefinitionCollection;
-use Yay\Component\Entity\Achievement\AchievementDefinition;
 use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
 use Yay\Component\Entity\Achievement\AchievementDefinitionCollection;
 use Yay\Component\Entity\Achievement\PersonalAchievement;
-use Yay\Component\Entity\Achievement\PersonalAction;
 use Yay\Component\Entity\Achievement\PersonalActionCollection;
-use Yay\Component\Entity\Player;
 use Yay\Component\Entity\PlayerInterface;
 
 class Engine
@@ -107,7 +102,6 @@ class Engine
         $personalAchievements = [];
         foreach ($achievementValidatorCollection as $achievementValidator) {
             foreach ($achievementDefinitionCollection as $achievementDefinition) {
-
                 if (!$achievementValidator->supports($achievementDefinition)) {
                     continue;
                 }
