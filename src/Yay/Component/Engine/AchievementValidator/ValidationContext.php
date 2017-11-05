@@ -43,7 +43,8 @@ class ValidationContext
         return $collection;
     }
 
-    public function getFilteredPersonalActions(): PersonalActionCollection {
+    public function getFilteredPersonalActions(): PersonalActionCollection
+    {
         return $this->getPersonalActions()
             ->filter(function (PersonalActionInterface $personalAction) {
                 return in_array(

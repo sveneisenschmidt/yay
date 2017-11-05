@@ -6,7 +6,6 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Yay\Component\Engine\AchievementValidatorInterface;
 use Yay\Component\Engine\AchievementValidator\ValidationContext;
 use Yay\Component\Entity\Achievement\AchievementDefinitionInterface;
-use Yay\Component\Entity\Achievement\PersonalActionCollection;
 
 class ExpressionLanguageValidator implements AchievementValidatorInterface
 {
@@ -30,13 +29,14 @@ class ExpressionLanguageValidator implements AchievementValidatorInterface
         $this->multiple = $multiple;
     }
 
-    public function validate(ValidationContext $validationContext): bool {
+    public function validate(ValidationContext $validationContext): bool
+    {
         return $this->language->evaluate(
             $this->expression,
             [
                 'player' => $validationContext->getPlayer(),
                 'achievement' => $validationContext->getAchievementDefinition(),
-                'actions' => $validationContext->getFilteredPersonalActions()
+                'actions' => $validationContext->getFilteredPersonalActions(),
             ]
         );
     }
