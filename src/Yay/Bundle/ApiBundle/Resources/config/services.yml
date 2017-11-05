@@ -34,4 +34,4 @@ services:
         arguments:
             - >
                 achievement.getName() in ['yay.achievement.test_achievement'] and
-                filteredPersonalActions.count() >= 5
+                actions.count() >= 5
