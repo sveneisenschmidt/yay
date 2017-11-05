@@ -31,11 +31,11 @@ class ExpressionLanguageValidatorTest extends TestCase
     public function expression_language_supports_achievement()
     {
         $achievementDefinition1 = $this->createConfiguredMock(AchievementDefinitionInterface::class, [
-            'getName' => 'test-achievement-01'
+            'getName' => 'test-achievement-01',
         ]);
 
         $achievementDefinition2 = $this->createConfiguredMock(AchievementDefinitionInterface::class, [
-            'getName' => 'test-achievement-02'
+            'getName' => 'test-achievement-02',
         ]);
 
         $this->assertTrue(
@@ -65,7 +65,7 @@ class ExpressionLanguageValidatorTest extends TestCase
     public function expression_language_passes_player()
     {
         $context = $this->createConfiguredMock(ValidationContext::class, [
-            'getPlayer' => $this->createMock(PlayerInterface::class)
+            'getPlayer' => $this->createMock(PlayerInterface::class),
         ]);
 
         $validator = new ExpressionLanguageValidator('player ? true : false');
@@ -78,7 +78,7 @@ class ExpressionLanguageValidatorTest extends TestCase
     public function expression_language_passes_achievement()
     {
         $context = $this->createConfiguredMock(ValidationContext::class, [
-            'getAchievementDefinition' => $this->createMock(AchievementDefinitionInterface::class)
+            'getAchievementDefinition' => $this->createMock(AchievementDefinitionInterface::class),
         ]);
 
         $validator = new ExpressionLanguageValidator('achievement ? true : false');
@@ -91,7 +91,7 @@ class ExpressionLanguageValidatorTest extends TestCase
     public function expression_language_passes_actions()
     {
         $context = $this->createConfiguredMock(ValidationContext::class, [
-            'getFilteredPersonalActions' => $this->createMock(PersonalActionCollection::class)
+            'getFilteredPersonalActions' => $this->createMock(PersonalActionCollection::class),
         ]);
 
         $validator = new ExpressionLanguageValidator('actions ? true : false');
