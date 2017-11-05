@@ -21,4 +21,4 @@ script: make test-coverage
 after_success:
     -
     - bash <(curl -s https://codecov.io/bash)
-    - ll install.log && cat install.log
+    - cat install.log
