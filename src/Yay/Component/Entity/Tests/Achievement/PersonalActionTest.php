@@ -23,7 +23,7 @@ class PersonalActionTest extends TestCase
         $instance = new PersonalAction(
             $player = $this->createMock(PlayerInterface::class),
             $actionDefinition = $this->createConfiguredMock(ActionDefinitionInterface::class, [
-                'getName' => $name = 'test-action-01'
+                'getName' => $name = 'test-action-01',
             ]),
             $achievedAt = $this->faker->dateTime()
         );
@@ -65,7 +65,6 @@ class PersonalActionTest extends TestCase
         $instance->setActionDefinition($actionDefinition2);
         $this->assertSame($actionDefinition2, $instance->getActionDefinition());
     }
-
 
     /**
      * @test
