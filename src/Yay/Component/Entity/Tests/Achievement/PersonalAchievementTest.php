@@ -23,7 +23,7 @@ class PersonalAchievementTest extends TestCase
         $instance = new PersonalAchievement(
             $player = $this->createMock(PlayerInterface::class),
             $achievementDefinition = $this->createConfiguredMock(AchievementDefinitionInterface::class, [
-                'getName' => $name = 'test-achievement-01'
+                'getName' => $name = 'test-achievement-01',
             ]),
             $achievedAt = $this->faker->dateTime()
         );
@@ -65,7 +65,6 @@ class PersonalAchievementTest extends TestCase
         $instance->setAchievementDefinition($achievementDefinition2);
         $this->assertSame($achievementDefinition2, $instance->getAchievementDefinition());
     }
-
 
     /**
      * @test
