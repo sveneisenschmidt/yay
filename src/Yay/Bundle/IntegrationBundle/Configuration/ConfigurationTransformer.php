@@ -7,6 +7,8 @@ use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\AchievementDefinition;
 use Yay\Component\Entity\Achievement\Level;
 use Yay\Component\Engine\AchievementValidator\Validator\ExpressionLanguageValidator;
+use Yay\Component\Webhook\Incoming\Processor\ChainProcessor as IncomingChainProcessor;
+use Yay\Component\Webhook\Outgoing\Processor\ChainProcessor as OutgoingChainProcessor;
 
 class ConfigurationTransformer
 {
@@ -119,6 +121,30 @@ class ConfigurationTransformer
                 'class' => $validator['class'],
                 'arguments' => $validator['arguments'],
                 'tags' => ['yay.achievement_validator'],
+            ];
+        }
+
+        foreach ($processedConfig['webhooks']['incoming'] as $name => $processor) {
+            if ('chain' === $processor['type']) {
+                $processor['class'] = IncomingChainProcessor::class;
+            }
+
+            $services['services'][$name] = [
+                'class' => $processor['class'],
+                'arguments' => $processor['arguments'],
+                'tags' => ['yay.webhook_incoming.processor'],
+            ];
+        }
+
+        foreach ($processedConfig['webhooks']['outgoing'] as $name => $processor) {
+            if ('chain' === $processor['type']) {
+                $processor['class'] = OutgoingChainProcessor::class;
+            }
+
+            $services['services'][$name] = [
+                'class' => $processor['class'],
+                'arguments' => $processor['arguments'],
+                'tags' => ['yay.webhook_outgoing.processor'],
             ];
         }
 

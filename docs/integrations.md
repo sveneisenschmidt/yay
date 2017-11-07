@@ -1,6 +1,6 @@
 # Integrations #
 
-Integrations are used to extend the application with new actions, achievements and validators. Before creating your own integration it is advised to have a look at the the [demo integration](integration/demo) provided in the application's source.
+Integrations are used to extend the application with new actions, achievements and validators. Before creating your own integration it is advised to have a look at the the [demo integration](integration/demo.yml) provided in the application's source.
 
 In our example we will create a `mycompany` integration. To start please execute the following commands to create our integration setup file.
 

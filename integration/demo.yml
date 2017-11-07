@@ -18,6 +18,31 @@ integration:
             points: 100
             actions: [demo-action]
 
+    webhooks:
+        incoming:
+            # Chains multiple transformers
+            demo-chain:
+                type: chain
+                arguments:
+                    - demo-chain
+                    - [demo-github, demo-user]
+            # Maps github events to actions
+            demo-github:
+                class: \Yay\Component\Webhook\Incoming\GithubProcessor
+                arguments:
+                    - demo-github
+                    - {
+                        'pull_request.opened': demo.action
+                    }
+            # Maps github events to actions
+            demo-user:
+                class: \Yay\Component\Webhook\Incoming\StaticUserProcessor
+                arguments:
+                    - demo-user
+                    - {
+                        octocat: jane.doe
+                    }
+
     validators:
         # Grants achviement 'demo-achievement-01' if action `demo-action`
         # has been performed by the player 5 times.

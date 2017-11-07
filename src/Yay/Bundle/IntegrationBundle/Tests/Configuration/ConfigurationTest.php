@@ -20,9 +20,11 @@ class ConfigurationTest extends TestCase
         $config = (new Processor())->processConfiguration(new Configuration(), $contents);
 
         $this->assertNotEmpty($config);
+        $this->assertArrayHasKey('levels', $config);
         $this->assertArrayHasKey('actions', $config);
         $this->assertArrayHasKey('achievements', $config);
         $this->assertArrayHasKey('validators', $config);
+        $this->assertArrayHasKey('webhooks', $config);
 
         $index = 1;
         foreach ($config['levels'] as $key => $level) {
@@ -65,6 +67,16 @@ class ConfigurationTest extends TestCase
             $this->assertArrayHasKey('calls', $validator);
             ++$index;
         }
+
+        $index = 1;
+        foreach ($config['webhooks']['incoming'] as $key => $validator) {
+            $this->assertEquals(sprintf('test-webhook-incoming-processor-0%s', $index), $key);
+            $this->assertArrayHasKey('type', $validator);
+            $this->assertArrayHasKey('class', $validator);
+            $this->assertArrayHasKey('arguments', $validator);
+            $this->assertArrayHasKey('calls', $validator);
+            ++$index;
+        }
     }
 
     /**
@@ -78,8 +90,10 @@ class ConfigurationTest extends TestCase
         $config = (new Processor())->processConfiguration(new Configuration(), $contents);
 
         $this->assertNotEmpty($config);
+        $this->assertArrayHasKey('levels', $config);
         $this->assertArrayHasKey('actions', $config);
         $this->assertArrayHasKey('achievements', $config);
         $this->assertArrayHasKey('validators', $config);
+        $this->assertArrayHasKey('webhooks', $config);
     }
 }
