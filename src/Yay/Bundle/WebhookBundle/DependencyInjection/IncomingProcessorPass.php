@@ -5,7 +5,6 @@ namespace Yay\Bundle\WebhookBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Reference;
-use Yay\Component\Webhook\Incoming\ProcessorInterface;
 use Yay\Component\Webhook\Incoming\ProcessorCollection;
 
 class IncomingProcessorPass implements CompilerPassInterface

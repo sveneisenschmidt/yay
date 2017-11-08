@@ -4,7 +4,6 @@ namespace Yay\Component\Webhook\Tests\Outgoing\Processor;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ParameterBag;
 use Yay\Component\Webhook\Outgoing\Processor\NullProcessor;
 
 class NullProcessorTest extends TestCase
