@@ -29,9 +29,3 @@ services:
         tags:
             - { name: jms_serializer.event_listener, event: serializer.post_serialize, method: onPostSerialize, direction: serialization }
 
-    yay.achievement.test_achievement:
-        class: Yay\Component\Engine\AchievementValidator\Validator\ExpressionLanguageValidator
-        arguments:
-            - >
-                achievement.getName() in ['yay.achievement.test_achievement'] and
-                actions.count() >= 5

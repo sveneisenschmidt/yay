@@ -5,7 +5,7 @@ namespace Yay\Component\Webhook\Outgoing\Processor;
 use Symfony\Component\HttpFoundation\Response;
 use Yay\Component\Webhook\Outgoing\ProcessorInterface;
 
-class ChainProcessor implements ProcessorInterface
+class NullProcessor implements ProcessorInterface
 {
     /* @var string */
     protected $name;

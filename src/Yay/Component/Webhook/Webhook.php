@@ -26,7 +26,7 @@ class Webhook
         return $this->incomingProcessors;
     }
 
-    public function getOutgoingProcessors(string $name): OutgoingProcessorCollection
+    public function getOutgoingProcessors(): OutgoingProcessorCollection
     {
         return $this->outgoingProcessors;
     }

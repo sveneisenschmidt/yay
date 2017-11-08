@@ -1,0 +1,50 @@
+imports:
+    - { resource: services_dev.yml }
+
+parameters: ~
+
+services:
+    yay.webhook.incoming_processor.test-processor-01:
+        class: Yay\Component\Webhook\Incoming\Processor\ChainProcessor
+        arguments:
+            - test-processor-01
+            -
+                - '@yay.webhook.incoming_processor.test-processor-02'
+                - '@yay.webhook.incoming_processor.test-processor-03'
+        tags:
+            - { name: yay.webhook_incoming }
+
+    yay.webhook.incoming_processor.test-processor-02:
+        class: Yay\Component\Webhook\Incoming\Processor\DummyProcessor
+        arguments:
+            - test-processor-02
+            -
+                player: jane.doe,
+                actions: [test-action]
+        tags:
+            - { name: yay.webhook_incoming }
+
+    yay.webhook.incoming_processor.test-processor-03:
+        class: Yay\Component\Webhook\Incoming\Processor\DummyProcessor
+        arguments:
+            - test-processor-03
+            -
+                player: jane.doe
+        tags:
+            - { name: yay.webhook_incoming }
+
+    yay.webhook.incoming_processor.test-processor-04:
+        class: Yay\Component\Webhook\Incoming\Processor\DummyProcessor
+        arguments:
+            - test-processor-04
+            -
+                actions: [test-action]
+        tags:
+            - { name: yay.webhook_incoming }
+
+    yay.webhook.incoming_processor.test-processor-05:
+        class: Yay\Component\Webhook\Incoming\Processor\NullProcessor
+        arguments:
+            - test-processor-05
+        tags:
+            - { name: yay.webhook_incoming }

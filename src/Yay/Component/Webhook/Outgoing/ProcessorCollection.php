@@ -17,10 +17,7 @@ class ProcessorCollection extends ArrayCollection
             return $processor->getName() === $name;
         });
 
-        if (!empty($matches)) {
-            return $matches->first();
-        }
-
-        return null;
+        $processor = $matches->first();
+        return !!$processor ? $processor : null;
     }
 }

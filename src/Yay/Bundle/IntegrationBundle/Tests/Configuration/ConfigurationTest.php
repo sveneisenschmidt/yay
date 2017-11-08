@@ -77,6 +77,16 @@ class ConfigurationTest extends TestCase
             $this->assertArrayHasKey('calls', $validator);
             ++$index;
         }
+
+        $index = 1;
+        foreach ($config['webhooks']['outgoing'] as $key => $validator) {
+            $this->assertEquals(sprintf('test-webhook-outgoing-processor-0%s', $index), $key);
+            $this->assertArrayHasKey('type', $validator);
+            $this->assertArrayHasKey('class', $validator);
+            $this->assertArrayHasKey('arguments', $validator);
+            $this->assertArrayHasKey('calls', $validator);
+            ++$index;
+        }
     }
 
     /**
