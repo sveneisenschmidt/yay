@@ -1,5 +1,7 @@
 <?php
 
+namespace Yay\Bundle\ApiBundle\Tests\Controller;
+
 use Yay\Bundle\ApiBundle\Test\WebTestCase;
 use Faker\Factory as FakerFactory;
 

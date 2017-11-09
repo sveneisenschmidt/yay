@@ -1,5 +1,7 @@
 <?php
 
+namespace Yay\Bundle\ApiBundle\Tests\Controller;
+
 use Yay\Bundle\ApiBundle\Test\WebTestCase;
 
 class LeaderboardControllerTest extends WebTestCase
