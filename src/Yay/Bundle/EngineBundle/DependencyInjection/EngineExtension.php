@@ -19,6 +19,10 @@ class EngineExtension extends Extension
             $container,
             new FileLocator(__DIR__.'/../Resources/config')
         );
-        $loader->load('services.yml');
+
+        $loader->load(sprintf(
+            'services_%s.yml',
+            $container->getParameter('kernel.environment')
+        ));
     }
 }
