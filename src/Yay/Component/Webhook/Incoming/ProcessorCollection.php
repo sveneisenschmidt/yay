@@ -3,7 +3,6 @@
 namespace Yay\Component\Webhook\Incoming;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Yay\Component\Webhook\Incoming\ProcessorInterface;
 
 class ProcessorCollection extends ArrayCollection
 {
@@ -19,6 +18,7 @@ class ProcessorCollection extends ArrayCollection
         });
 
         $processor = $matches->first();
-        return !!$processor ? $processor : null;
+
+        return (bool) $processor ? $processor : null;
     }
 }

@@ -5,7 +5,6 @@ namespace Yay\Component\Webhook\Tests\Incoming\Processor;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Yay\Component\Webhook\Incoming\Processor\ProcessorInterface;
 use Yay\Component\Webhook\Incoming\Processor\DummyProcessor;
 
 class DummyProcessorTest extends TestCase

@@ -14,11 +14,11 @@ class ProcessorCollectionTest extends TestCase
     public function get_processor()
     {
         $processor1 = $this->createConfiguredMock(ProcessorInterface::class, [
-            'getName' => $name1 = 'test-processor-01'
+            'getName' => $name1 = 'test-processor-01',
         ]);
 
         $processor2 = $this->createConfiguredMock(ProcessorInterface::class, [
-            'getName' => $name2 = 'test-processor-02'
+            'getName' => $name2 = 'test-processor-02',
         ]);
 
         $collection = new ProcessorCollection();
@@ -26,7 +26,6 @@ class ProcessorCollectionTest extends TestCase
 
         $this->assertEquals($processor1, $collection->getProcessor($name1));
         $this->assertNull($collection->getProcessor($name2));
-
     }
 
     /**
@@ -35,11 +34,11 @@ class ProcessorCollectionTest extends TestCase
     public function has_processor()
     {
         $processor1 = $this->createConfiguredMock(ProcessorInterface::class, [
-            'getName' => $name1 = 'test-processor-01'
+            'getName' => $name1 = 'test-processor-01',
         ]);
 
         $processor2 = $this->createConfiguredMock(ProcessorInterface::class, [
-            'getName' => $name2 = 'test-processor-02'
+            'getName' => $name2 = 'test-processor-02',
         ]);
 
         $collection = new ProcessorCollection();

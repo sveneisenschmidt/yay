@@ -18,6 +18,7 @@ class ProcessorCollection extends ArrayCollection
         });
 
         $processor = $matches->first();
-        return !!$processor ? $processor : null;
+
+        return (bool) $processor ? $processor : null;
     }
 }
