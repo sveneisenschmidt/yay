@@ -26,7 +26,6 @@ class OutgoingProcessorPassTest extends WebTestCase
             ->method('getDefinition')
             ->willReturn($definition1);
 
-
         $builder->expects($this->once())
             ->method('findTaggedServiceIds')
             ->willReturn([$definition2, $definition3]);

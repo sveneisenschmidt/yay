@@ -3,7 +3,6 @@
 namespace Yay\Bundle\IntegrationBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Yay\Bundle\IntegrationBundle\DependencyInjection\IntegrationExtension;
 use Yay\Bundle\IntegrationBundle\IntegrationBundle;
 
