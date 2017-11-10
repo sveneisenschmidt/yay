@@ -52,8 +52,9 @@ class IncomingController extends Controller
         $action = $request->attributes->get('action');
 
         $personalAchievements = $this->advance($engine, $username, [$action]);
+
         return new Response('', Response::HTTP_OK, [
-            'X-Achievements-Granted-Count' => count($personalAchievements)
+            'X-Achievements-Granted-Count' => count($personalAchievements),
         ]);
     }
 }

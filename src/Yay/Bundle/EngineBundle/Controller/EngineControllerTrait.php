@@ -6,7 +6,6 @@ use Yay\Component\Engine\Engine;
 use Yay\Component\Entity\Achievement\PersonalAction;
 use Yay\Component\Entity\Achievement\PersonalActionCollection;
 use Yay\Component\Entity\Player;
-use Yay\Component\Entity\PlayerInterface;
 
 trait EngineControllerTrait
 {
