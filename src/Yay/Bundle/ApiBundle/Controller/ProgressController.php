@@ -11,10 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Yay\Bundle\ApiBundle\Response\ResponseSerializer;
 use Yay\Bundle\EngineBundle\Controller\EngineControllerTrait;
 use Yay\Component\Engine\Engine;
-use Yay\Component\Entity\Achievement\PersonalAction;
-use Yay\Component\Entity\Achievement\PersonalActionCollection;
 use Yay\Component\Entity\Player;
-use Yay\Component\Entity\PlayerInterface;
 
 /**
  * @Route("/progress")
