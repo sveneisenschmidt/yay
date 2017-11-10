@@ -4,6 +4,18 @@ imports:
 parameters: ~
 
 services:
+
+
+services:
+    yay.achievement.test_webhook_achievement:
+        class: Yay\Component\Engine\AchievementValidator\Validator\ExpressionLanguageValidator
+        arguments:
+            - >
+                achievement.getName() in ['yay.achievement.test_webhook_achievement'] and
+                actions.count() >= 5
+        tags:
+            - { name: yay.achievement_validator }
+
     yay.webhook.incoming_processor.test-processor-01:
         class: Yay\Component\Webhook\Incoming\Processor\ChainProcessor
         arguments:
@@ -19,8 +31,8 @@ services:
         arguments:
             - test-processor-02
             -
-                player: jane.doe,
-                actions: [test-action]
+                username: jane.doe
+                action: yay.action.test_webhook_action
         tags:
             - { name: yay.webhook_incoming }
 
@@ -29,7 +41,7 @@ services:
         arguments:
             - test-processor-03
             -
-                player: jane.doe
+                username: jane.doe
         tags:
             - { name: yay.webhook_incoming }
 
@@ -38,13 +50,15 @@ services:
         arguments:
             - test-processor-04
             -
-                actions: [test-action]
+                action: yay.action.test_webhook_action
         tags:
             - { name: yay.webhook_incoming }
 
     yay.webhook.incoming_processor.test-processor-05:
-        class: Yay\Component\Webhook\Incoming\Processor\NullProcessor
+        class: Yay\Component\Webhook\Incoming\Processor\DummyProcessor
         arguments:
             - test-processor-05
+            -
+                action: ''
         tags:
             - { name: yay.webhook_incoming }

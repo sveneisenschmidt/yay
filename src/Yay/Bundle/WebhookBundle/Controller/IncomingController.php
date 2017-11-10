@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Yay\Bundle\EngineBundle\Controller\EngineControllerTrait;
+use Yay\Component\Engine\Engine;
 use Yay\Component\Webhook\Webhook;
 
 /**
@@ -15,6 +17,8 @@ use Yay\Component\Webhook\Webhook;
  */
 class IncomingController extends Controller
 {
+    use EngineControllerTrait;
+
     /**
      * @Method("POST")
      * @Route(
@@ -23,6 +27,7 @@ class IncomingController extends Controller
      * )
      */
     public function submitPostAction(
+        Engine $engine,
         Webhook $webhook,
         Request $request,
         UrlGeneratorInterface $urlGenerator,
@@ -35,17 +40,20 @@ class IncomingController extends Controller
         $processor = $webhook->getIncomingProcessors()->getProcessor($processorName);
         $processor->process($request);
 
-        if (!$request->attributes->has('player')) {
-            throw $this->createNotFoundException('Processor does not provide player');
+        if (!$request->attributes->has('username')) {
+            throw $this->createNotFoundException('Processor(s) did not provide a username');
         }
 
-        if (!$request->attributes->has('actions')) {
-            throw $this->createNotFoundException('Processor does not provide actions');
+        if (!$request->attributes->has('action')) {
+            throw $this->createNotFoundException('Processor(s) did not provide action');
         }
 
-        return $this->redirectToRoute('api_progress_submit_get', [
-            'player' => $request->attributes->get('player'),
-            'actions' => $request->attributes->get('actions'),
-        ], 303);
+        $username = $request->attributes->get('username');
+        $action = $request->attributes->get('action');
+
+        $personalAchievements = $this->advance($engine, $username, [$action]);
+        return new Response('', Response::HTTP_OK, [
+            'X-Achievements-Granted-Count' => count($personalAchievements)
+        ]);
     }
 }

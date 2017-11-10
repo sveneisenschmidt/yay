@@ -38,7 +38,7 @@ class ActionControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/actions/yay.action.test_action/');
+        $client->request('GET', '/api/actions/yay.action.test_api_action/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());

@@ -8,12 +8,12 @@ Yay\Component\Entity\Player:
 Yay\Component\Entity\Achievement\ActionDefinition:
     action_definition:
         __construct:
-          - 'yay.action.test_api_action'
+          - 'yay.action.test_webhook_action'
 
 Yay\Component\Entity\Achievement\AchievementDefinition:
     achievement_definition:
         __construct:
-          - 'yay.achievement.test_api_achievement'
+          - 'yay.achievement.test_webhook_achievement'
         __calls:
           - addActionDefinition: [ '@action_definition' ]
         points: 50

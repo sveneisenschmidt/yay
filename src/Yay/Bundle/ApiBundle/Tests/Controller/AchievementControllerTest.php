@@ -40,7 +40,7 @@ class AchievementControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/achievements/yay.achievement.test_achievement/');
+        $client->request('GET', '/api/achievements/yay.achievement.test_api_achievement/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());

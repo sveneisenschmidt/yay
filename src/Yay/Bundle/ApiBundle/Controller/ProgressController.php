@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Yay\Bundle\ApiBundle\Response\ResponseSerializer;
+use Yay\Bundle\EngineBundle\Controller\EngineControllerTrait;
 use Yay\Component\Engine\Engine;
 use Yay\Component\Entity\Achievement\PersonalAction;
 use Yay\Component\Entity\Achievement\PersonalActionCollection;
@@ -20,6 +21,8 @@ use Yay\Component\Entity\PlayerInterface;
  */
 class ProgressController extends Controller
 {
+    use EngineControllerTrait;
+
     /**
      * **Example Request (1):**
      * ```query
@@ -92,7 +95,7 @@ class ProgressController extends Controller
      *
      * @ParamConverter(
      *     name="username",
-     *     options={"field"="player"},
+     *     options={"field"="username"},
      *     converter="QueryString"
      * )
      * @ParamConverter(
@@ -119,7 +122,14 @@ class ProgressController extends Controller
         string $action = null,
         array $actions = []
     ): Response {
-        return $this->submitAction($engine, $serializer, $username, $action, $actions);
+        if (!empty($action)) {
+            $actions[] = $action;
+        }
+
+        return $serializer->createResponse(
+            $this->advance($engine, $username, $actions),
+            ['progress.submit']
+        );
     }
 
     /**
@@ -176,7 +186,7 @@ class ProgressController extends Controller
      *     description="Submit a payload to update a users progress",
      *     requirements={
      *         {
-     *             "name"="player",
+     *             "name"="username",
      *             "dataType"="string",
      *             "requirement"="[a-z\.\-\_]+",
      *             "description"="Username of the Player to progress"
@@ -204,7 +214,7 @@ class ProgressController extends Controller
      * )
      * @ParamConverter(
      *     name="username",
-     *     options={"field"="player"},
+     *     options={"field"="username"},
      *     converter="JsonField"
      * )
      * @ParamConverter(
@@ -231,57 +241,12 @@ class ProgressController extends Controller
         string $action = null,
         array $actions = []
     ): Response {
-        return $this->submitAction($engine, $serializer, $username, $action, $actions);
-    }
-
-    /**
-     * @param Engine             $engine
-     * @param ResponseSerializer $serializer
-     * @param string             $username
-     * @param string|null        $action
-     * @param array              $actions
-     *
-     * @return Response
-     */
-    public function submitAction(
-        Engine $engine,
-        ResponseSerializer $serializer,
-        string $username,
-        string $action = null,
-        array $actions = []
-    ): Response {
         if (!empty($action)) {
             $actions[] = $action;
         }
 
-        if (empty($action) && empty($actions)) {
-            throw $this->createNotFoundException();
-        }
-
-        $players = $engine->findPlayerBy(['username' => $username]);
-        if ($players->isEmpty()) {
-            throw $this->createNotFoundException();
-        }
-
-        /** @var PlayerInterface $player */
-        $player = $players->first();
-        $personalActionCollection = new PersonalActionCollection();
-
-        foreach ($actions as $action) {
-            $actionDefinitions = $engine->findActionDefinitionBy(['name' => $action]);
-            if ($actionDefinitions->isEmpty()) {
-                continue;
-            }
-
-            $personalActionCollection->add(
-                new PersonalAction($player, $actionDefinitions->first())
-            );
-        }
-
-        $personalAchievements = $engine->advance($player, $personalActionCollection);
-
         return $serializer->createResponse(
-            $personalAchievements,
+            $this->advance($engine, $username, $actions),
             ['progress.submit']
         );
     }
