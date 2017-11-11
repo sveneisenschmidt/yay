@@ -31,3 +31,21 @@ integration:
             type: expression
             arguments:
                 - "achievement.getName() in ['demo-achievement-02'] and actions.count() >= 10"
+
+    webhooks:
+        incoming_processors:
+            # Chains multiple processors
+            demo-chain:
+                type: chain
+                arguments:
+                    - [demo-thirdparty-action, demo-thirdparty-user]
+            # Maps third party payload to action
+            demo-thirdparty-action:
+                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                arguments:
+                    - { 'third_party.action': demo.action }
+            # Maps third party payload to user
+            demo-thirdparty-user:
+                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                arguments:
+                    - { 'third_party.user': jane.doe }

@@ -41,3 +41,17 @@ integration:
                 - achievement.getName() in ['test-achievement-02'] and actions.count() >= 10
             calls:
                 - ['setFoo', ['baz']]
+
+    webhooks:
+        incoming_processors:
+            test-webhook-incoming-processor-01:
+                type: chain
+                arguments:
+                    - [test-webhook-incoming-processor-02, test-webhook-incoming-processor-03]
+            test-webhook-incoming-processor-02:
+                type: dummy
+            test-webhook-incoming-processor-03:
+                type: 'null'
+        outgoing_processors:
+            test-webhook-outgoing-processor-01:
+                type: 'null'

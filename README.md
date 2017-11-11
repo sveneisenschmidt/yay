@@ -17,8 +17,10 @@ How-to-use demo, installation instructions, configuration examples and extension
 * [Configuration](docs/configuration.md)
 * [API](docs/api.md)
 * [Demo](docs/demo.md)
-* [Custom Integrations](docs/integrations.md)
 * [Development](docs/development.md)
+* Guides
+    * [How to write your own integration](docs/guides/integrations.md)
+    * [How to configure webhooks](docs/guides/webhooks.md)
 
 ## Installation
 Yay is tested and packable to run through Docker on any operating system that supports Docker.
@@ -29,7 +31,7 @@ Yay is tested and packable to run through Docker on any operating system that su
 ## Usage
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"player\":\"jane.doe\",\"action\":\"demo-action\"}"
+    -d "{\"username\":\"jane.doe\",\"action\":\"demo-action\"}"
 
 [
     {

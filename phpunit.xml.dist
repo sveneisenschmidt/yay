@@ -17,8 +17,11 @@
         <testsuite name="Bundle Test Suite">
             <directory>src/Yay/Bundle</directory>
         </testsuite>
-        <testsuite name="Compnent Test Suite">
+        <testsuite name="Component Test Suite">
             <directory>src/Yay/Component</directory>
+        </testsuite>
+        <testsuite name="Third Party Test Suite">
+            <directory>src/Yay/ThirdParty</directory>
         </testsuite>
     </testsuites>
 
@@ -31,9 +34,10 @@
                 <directory>src/*/*Bundle/Resources</directory>
                 <directory>src/*/Bundle/*Bundle/Resources</directory>
                 <directory>src/Yay/Bundle/*Bundle/Test</directory>
-                <directory>src/Yay/Component/*/Test</directory>
                 <directory>src/Yay/Bundle/*Bundle/Tests</directory>
+                <directory>src/Yay/Component/*/Test</directory>
                 <directory>src/Yay/Component/*/Tests</directory>
+                <directory>src/Yay/ThirdParty/*/*/Tests</directory>
             </exclude>
         </whitelist>
     </filter>

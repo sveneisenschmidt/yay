@@ -1,5 +1,7 @@
 <?php
 
+namespace Yay\Bundle\ApiBundle\Tests\Controller;
+
 use Yay\Bundle\ApiBundle\Test\WebTestCase;
 
 class ProgressControllerTest extends WebTestCase
@@ -13,8 +15,8 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = http_build_query([
-            'player' => 'jane.doe',
-            'action' => 'yay.action.test_action',
+            'username' => 'jane.doe',
+            'action' => 'yay.action.test_api_action',
         ]);
 
         $client->request('GET', sprintf('/api/progress/?%s', $content));
@@ -35,8 +37,8 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = json_encode([
-            'player' => 'jane.doe',
-            'action' => 'yay.action.test_action',
+            'username' => 'jane.doe',
+            'action' => 'yay.action.test_api_action',
         ]);
 
         $client->request('POST', '/api/progress/', [], [], [], $content);
@@ -57,13 +59,13 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = http_build_query([
-            'player' => 'jane.doe',
+            'username' => 'jane.doe',
             'actions' => [
-                'yay.action.test_action',
-                'yay.action.test_action',
-                'yay.action.test_action',
-                'yay.action.test_action',
-                'yay.action.test_action',
+                'yay.action.test_api_action',
+                'yay.action.test_api_action',
+                'yay.action.test_api_action',
+                'yay.action.test_api_action',
+                'yay.action.test_api_action',
             ],
         ]);
 
@@ -111,13 +113,13 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = json_encode([
-            'player' => 'jane.doe',
+            'username' => 'jane.doe',
             'actions' => [
-                'yay.action.test_action',
-                'yay.action.test_action',
-                'yay.action.test_action',
-                'yay.action.test_action',
-                'yay.action.test_action',
+                'yay.action.test_api_action',
+                'yay.action.test_api_action',
+                'yay.action.test_api_action',
+                'yay.action.test_api_action',
+                'yay.action.test_api_action',
             ],
         ]);
 
@@ -165,7 +167,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = http_build_query([
-            'player' => 'jane.doe',
+            'username' => 'jane.doe',
         ]);
 
         $client->request('GET', sprintf('/api/progress/?%s', $content));
@@ -183,7 +185,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = json_encode([
-            'player' => 'jane.doe',
+            'username' => 'jane.doe',
         ]);
 
         $client->request('POST', '/api/progress/', [], [], [], $content);
@@ -201,8 +203,8 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = http_build_query([
-            'player' => 'john.doe',
-            'action' => 'yay.action.test_action',
+            'username' => 'john.doe',
+            'action' => 'yay.action.test_api_action',
         ]);
 
         $client->request('GET', sprintf('/api/progress/?%s', $content));
@@ -220,8 +222,8 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = json_encode([
-            'player' => 'john.doe',
-            'action' => 'yay.action.test_action',
+            'username' => 'john.doe',
+            'action' => 'yay.action.test_api_action',
         ]);
 
         $client->request('POST', '/api/progress/', [], [], [], $content);
@@ -239,7 +241,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = http_build_query([
-            'player' => 'jane.doe',
+            'username' => 'jane.doe',
             'action' => 'yay.action.unknown_test_action',
         ]);
 
@@ -261,7 +263,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = json_encode([
-            'player' => 'jane.doe',
+            'username' => 'jane.doe',
             'action' => 'yay.action.unknown_test_action',
         ]);
 

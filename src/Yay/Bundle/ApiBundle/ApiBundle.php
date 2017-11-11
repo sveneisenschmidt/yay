@@ -2,8 +2,8 @@
 
 namespace Yay\Bundle\ApiBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Yay\Bundle\ApiBundle\DependencyInjection\ApiDocPass;
 use Yay\Bundle\ApiBundle\DependencyInjection\ApiExtension;
 

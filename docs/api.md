@@ -325,12 +325,12 @@ _Submit a payload to update a users progress_
 
 **Example Request (1):**
 ```query
-player=jane.doe&action=yay.action.demo_action
+username=jane.doe&action=yay.action.demo_action
 ```
 
 **Example Request (2):**
 ```query
-player=jane.doe&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action
+username=jane.doe&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action
 ```
 
 **Example Response:**
@@ -383,7 +383,7 @@ _Submit a payload to update a users progress_
 **Example Request (1):**
 ```json
 {
-    "player": "jane.doe",
+    "username": "jane.doe",
     "action": "yay.action.demo_action"
 }
 ```
@@ -391,7 +391,7 @@ _Submit a payload to update a users progress_
 **Example Request (2):**
 ```json
 {
-    "player": "jane.doe",
+    "username": "jane.doe",
     "actions": [
         "yay.action.demo_action",
         "yay.action.demo_action",
@@ -425,7 +425,7 @@ _Submit a payload to update a users progress_
 
 #### Requirements ####
 
-**player**
+**username**
 
 - Requirement: [a-z\.\-\_]+
 - Type: string

@@ -1,0 +1,14 @@
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Yay\Bundle\WebhookBundle\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
+
+    Yay\Component\Webhook\Webhook: ~
+    Yay\Component\Webhook\Incoming\ProcessorCollection: ~
+    Yay\Component\Webhook\Outgoing\ProcessorCollection: ~

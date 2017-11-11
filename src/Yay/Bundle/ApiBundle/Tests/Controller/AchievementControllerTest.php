@@ -1,5 +1,7 @@
 <?php
 
+namespace Yay\Bundle\ApiBundle\Tests\Controller;
+
 use Yay\Bundle\ApiBundle\Test\WebTestCase;
 
 class AchievementControllerTest extends WebTestCase
@@ -38,7 +40,7 @@ class AchievementControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/achievements/yay.achievement.test_achievement/');
+        $client->request('GET', '/api/achievements/yay.achievement.test_api_achievement/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());

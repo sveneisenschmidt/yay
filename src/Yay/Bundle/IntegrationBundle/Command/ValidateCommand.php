@@ -46,7 +46,7 @@ class ValidateCommand extends ContainerAwareCommand
             (new SymfonyStyle($input, $output))->success(sprintf('Integration "%s" valid', $name));
         } catch (\Exception $e) {
             (new SymfonyStyle($input, $output))->warning(sprintf('Integration "%s" invalid', $name));
-            (new SymfonyStyle($input, $output))->error($e->getMessage());
+            (new SymfonyStyle($input, $output))->error($e);
         }
     }
 }

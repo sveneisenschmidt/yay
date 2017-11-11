@@ -7,6 +7,10 @@ use Yay\Component\Entity\Achievement\ActionDefinition;
 use Yay\Component\Entity\Achievement\AchievementDefinition;
 use Yay\Component\Entity\Achievement\Level;
 use Yay\Component\Engine\AchievementValidator\Validator\ExpressionLanguageValidator;
+use Yay\Component\Webhook\Incoming\Processor\ChainProcessor as IncomingChainProcessor;
+use Yay\Component\Webhook\Incoming\Processor\DummyProcessor as IncomingDummyProcessor;
+use Yay\Component\Webhook\Incoming\Processor\NullProcessor as IncomingNullProcessor;
+use Yay\Component\Webhook\Outgoing\Processor\NullProcessor as OutgoingNullProcessor;
 
 class ConfigurationTransformer
 {
@@ -119,6 +123,36 @@ class ConfigurationTransformer
                 'class' => $validator['class'],
                 'arguments' => $validator['arguments'],
                 'tags' => ['yay.achievement_validator'],
+            ];
+        }
+
+        foreach ($processedConfig['webhooks']['incoming_processors'] as $name => $processor) {
+            if ('chain' === $processor['type']) {
+                $processor['class'] = IncomingChainProcessor::class;
+            }
+            if ('dummy' === $processor['type']) {
+                $processor['class'] = IncomingDummyProcessor::class;
+            }
+            if ('null' === $processor['type']) {
+                $processor['class'] = IncomingNullProcessor::class;
+            }
+
+            $services['services'][$name] = [
+                'class' => $processor['class'],
+                'arguments' => array_merge([$name], $processor['arguments']),
+                'tags' => ['yay.webhook_incoming.processor'],
+            ];
+        }
+
+        foreach ($processedConfig['webhooks']['outgoing_processors'] as $name => $processor) {
+            if ('null' === $processor['type']) {
+                $processor['class'] = OutgoingNullProcessor::class;
+            }
+
+            $services['services'][$name] = [
+                'class' => $processor['class'],
+                'arguments' => array_merge([$name], $processor['arguments']),
+                'tags' => ['yay.webhook_outgoing.processor'],
             ];
         }
 

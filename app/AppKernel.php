@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Yay\Bundle\ApiBundle\ApiBundle(),
             new Yay\Bundle\EngineBundle\EngineBundle(),
             new Yay\Bundle\IntegrationBundle\IntegrationBundle(),
+            new Yay\Bundle\WebhookBundle\WebhookBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

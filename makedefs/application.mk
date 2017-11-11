@@ -44,14 +44,14 @@
 
 .application-test:
 	@$(call .docker-run,cli,'\
-		php bin/console doctrine:schema:drop --force --em=default && \
-		php bin/console doctrine:schema:create --em=default && \
+		php bin/console doctrine:schema:drop --env=test --force --em=default && \
+		php bin/console doctrine:schema:create --env=test --em=default && \
         vendor/bin/phpunit')
 
 .application-test-coverage:
 	@$(call .docker-run,cli,'\
-		php bin/console doctrine:schema:drop --force --em=default && \
-		php bin/console doctrine:schema:create --em=default && \
+		php bin/console doctrine:schema:drop  --env=test --force --em=default && \
+		php bin/console doctrine:schema:create  --env=test --em=default && \
         phpdbg -qrr ./vendor/bin/phpunit \
             --coverage-text \
             --coverage-html=.build/report \
