@@ -82,7 +82,7 @@ integration:
                 class: MyCompany\Yay\Component\Webhook\Incoming\Processor\JenkinsProcessor
             # Your company provides a second processor to ap jenkins users to Yay players
             # based on a static configuration file deployed witht he application 
-            example-mycompany-jenkinsci:
+            example-mycompany-users:
                 class: MyCompany\Yay\Component\Webhook\Incoming\Processor\StaticUserProcessor
                 arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
 ```
