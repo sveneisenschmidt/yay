@@ -139,7 +139,7 @@ Validators are declared as multi-dimensional associative arrays. Keys on the fir
 Supported properties: `type`, `arguments`, `class`. If you provide `expression` for `type` internally the property `class` gets set to `ExpressionLanguageValidator`.
 
 ```yml
-validators:
+integration:
     # ...
     validators:
         # First level
@@ -161,15 +161,36 @@ validators:
     # ...
 ```
 
-####`webhooks`.`incoming`
+#### `webhooks`.`incoming`
 
 Webhook  are declared as multi-dimensional associative arrays. Keys on the first level are the processor name, keys and values on second level are the properties of the validator. During runtime the application needs to identify a processor by it's name through a route paramteter. Internally processors implement the [ProcessorInterface](../src/Yay/Component/Webhook/Incoming/ProcessorInterface.php) interface for incoming webhooks and implement the [ProcessorInterface](../src/Yay/Component/Webhook/Outgoing/ProcessorInterface.php) interface for outgoing webhooks.
 
 Supported properties: `type`, `arguments`, `class`. If you provide `chain` for `type` the property `class` gets set to `ChainProcessor`, if you provide `dummy` it is set to `DummyProcessor` and if you provide `null` it is set to `NullProcessor` internally.
 
+```yml
+integration:
+    # ...
+    webhooks:
+        incoming_processors:
+            # Chains multiple processors into one
+            example-chain:
+                type: chain
+                arguments:
+                    - [example-mycompany-jenkinsci, example-mycompany-users]
+            # Your company provides a processor to transform Jenkins CI payloads
+            example-mycompany-jenkinsci:
+                class: MyCompany\Yay\Component\Webhook\Incoming\Processor\JenkinsProcessor
+            # Your company provides a second processor to ap jenkins users to Yay players
+            # based on a static configuration file deployed witht he application 
+            example-mycompany-jenkinsci:
+                class: MyCompany\Yay\Component\Webhook\Incoming\Processor\StaticUserProcessor
+                arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
+    # ...
+```
+
 ####`webhooks`.`outgoing`
 
-Not yet implemented.
+Coming soon.
 
 # Using your integration
 

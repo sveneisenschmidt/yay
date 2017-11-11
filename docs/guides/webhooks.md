@@ -72,6 +72,7 @@ The [ChainProcessor](../../src/Yay/Component/Webhook/Incoming/Processor/ChainPro
 integration:
     webhooks:
         incoming_processors:
+            # Chains multiple processors into one
             example-chain:
                 type: chain
                 arguments:
@@ -135,5 +136,5 @@ URL:  `/webhook/incoming/example-github/`.
 
 #### Configuration in Github 
 
-![Github Webhook Configuration](docs/src/github-webhook.png)
+![Github Webhook Configuration](../../docs/src/github-webhook.png)
 
