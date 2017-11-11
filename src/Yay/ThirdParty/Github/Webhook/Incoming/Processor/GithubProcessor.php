@@ -27,7 +27,7 @@ class GithubProcessor implements ProcessorInterface
 
         $contents = $request->getContent(false);
         $data = json_decode($contents, true, 32);
-        
+
         if ($request->headers->has('X-GitHub-Event')) {
             $action = $request->headers->get('X-GitHub-Event');
         }
@@ -37,7 +37,7 @@ class GithubProcessor implements ProcessorInterface
         }
 
         if ($data && isset($data['sender']['login'])) {
-            $username =  $data['sender']['login'];
+            $username = $data['sender']['login'];
         }
 
         if (!empty($action) && !empty($username)) {
