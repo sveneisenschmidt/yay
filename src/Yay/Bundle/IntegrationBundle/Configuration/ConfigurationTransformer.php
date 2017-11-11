@@ -127,16 +127,14 @@ class ConfigurationTransformer
         }
 
         foreach ($processedConfig['webhooks']['incoming_processors'] as $name => $processor) {
-            switch ($processor['type']) {
-                case 'chain':
-                    $processor['class'] = IncomingChainProcessor::class;
-                    break;
-                case 'dummy':
-                    $processor['class'] = IncomingDummyProcessor::class;
-                    break;
-                case 'null':
-                    $processor['class'] = IncomingNullProcessor::class;
-                    break;
+            if ($processor['type'] === 'chain') {
+                $processor['class'] = IncomingChainProcessor::class;;
+            }
+            if ($processor['type'] === 'dummy') {
+                $processor['class'] = IncomingDummyProcessor::class;;
+            }
+            if ($processor['type'] === 'null') {
+                $processor['class'] = IncomingNullProcessor::class;;
             }
 
             $services['services'][$name] = [
@@ -147,10 +145,8 @@ class ConfigurationTransformer
         }
 
         foreach ($processedConfig['webhooks']['outgoing_processors'] as $name => $processor) {
-            switch ($processor['type']) {
-                case 'null':
-                    $processor['class'] = OutgoingNullProcessor::class;
-                    break;
+            if ($processor['type'] === 'null') {
+                $processor['class'] = OutgoingNullProcessor::class;;
             }
 
             $services['services'][$name] = [
