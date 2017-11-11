@@ -24,7 +24,7 @@ class GithubProcessorTest extends TestCase
     {
         $contents = json_encode([
             'action' => 'github-action',
-            'sender' => [ 'login' => 'octocat' ],
+            'sender' => ['login' => 'octocat'],
         ]);
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
         $request->headers->set('X-GitHub-Event', 'github-event');
@@ -33,7 +33,7 @@ class GithubProcessorTest extends TestCase
         $this->assertEquals('octocat', $request->attributes->get('username'));
         $this->assertEquals('github-event.github-action', $request->attributes->get('action'));
     }
-    
+
     /**
      * @test
      */
@@ -45,7 +45,7 @@ class GithubProcessorTest extends TestCase
         (new GithubProcessor('github-processor'))->process($request);
         $this->assertFalse($request->attributes->has('username'));
         $this->assertFalse($request->attributes->has('action'));
-    }    
+    }
 
     /**
      * @test
@@ -59,5 +59,5 @@ class GithubProcessorTest extends TestCase
         (new GithubProcessor('github-processor'))->process($request);
         $this->assertFalse($request->attributes->has('username'));
         $this->assertFalse($request->attributes->has('action'));
-    }  
+    }
 }
