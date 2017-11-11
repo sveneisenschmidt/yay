@@ -43,25 +43,15 @@ integration:
                 - ['setFoo', ['baz']]
 
     webhooks:
-        incoming:
+        incoming_processors:
             test-webhook-incoming-processor-01:
                 type: chain
                 arguments:
-                    - test-chain
-                    - [test-webhook-incoming-processor]
+                    - [test-webhook-incoming-processor-02, test-webhook-incoming-processor-03]
             test-webhook-incoming-processor-02:
-                type: class
-                class: \Yay\Component\Webhook\Incoming\Processor\NullProcessor
-                arguments:
-                    - test-webhook-incoming-processor
-        outgoing:
+                type: dummy
+            test-webhook-incoming-processor-03:
+                type: 'null'
+        outgoing_processors:
             test-webhook-outgoing-processor-01:
-                type: chain
-                arguments:
-                    - test-chain
-                    - [test-webhook-outgoing-processor]
-            test-webhook-outgoing-processor-02:
-                type: class
-                class: \Yay\Component\Webhook\Outgoing\Processor\NullProcessor
-                arguments:
-                    - test-webhook-outgoing-processor
+                type: 'null'

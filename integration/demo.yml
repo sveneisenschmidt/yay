@@ -18,31 +18,6 @@ integration:
             points: 100
             actions: [demo-action]
 
-    webhooks:
-        incoming:
-            # Chains multiple transformers
-            demo-chain:
-                type: chain
-                arguments:
-                    - demo-chain
-                    - [demo-github, demo-user]
-            # Maps github events to actions
-            demo-github:
-                class: \Yay\Component\Webhook\Incoming\GithubProcessor
-                arguments:
-                    - demo-github
-                    - {
-                        'pull_request.opened': demo.action
-                    }
-            # Maps github events to actions
-            demo-user:
-                class: \Yay\Component\Webhook\Incoming\StaticUserProcessor
-                arguments:
-                    - demo-user
-                    - {
-                        octocat: jane.doe
-                    }
-
     validators:
         # Grants achviement 'demo-achievement-01' if action `demo-action`
         # has been performed by the player 5 times.
@@ -56,3 +31,21 @@ integration:
             type: expression
             arguments:
                 - "achievement.getName() in ['demo-achievement-02'] and actions.count() >= 10"
+
+    webhooks:
+        incoming_processors:
+            # Chains multiple processors
+            demo-chain:
+                type: chain
+                arguments:
+                    - [demo-thirdparty-action, demo-thirdparty-user]
+            # Maps third party payload to action
+            demo-thirdparty-action:
+                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                arguments:
+                    - { 'third_party.action': demo.action }
+            # Maps third party payload to user
+            demo-thirdparty-user:
+                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                arguments:
+                    - { 'third_party.user': jane.doe }

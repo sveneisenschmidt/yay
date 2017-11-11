@@ -1,4 +1,6 @@
-# Integrations #
+# Guides #
+
+## How to write your own integration ##
 
 Integrations are used to extend the application with new actions, achievements and validators. Before creating your own integration it is advised to have a look at the the [demo integration](integration/demo.yml) provided in the application's source.
 
@@ -8,7 +10,7 @@ In our example we will create a `mycompany` integration. To start please execute
 touch integration/mycompany.yml
 ```
 
-## Integration setup
+### Integration setup
 
 The integration setup file has a root element `integration` and four possible children nodes `actions`, `achievements`, and `validators`.
 
@@ -17,8 +19,9 @@ The integration setup file has a root element `integration` and four possible ch
 | actions | Actions a player can perform. |
 | achievements | Achievments a player can earn. |
 | validators | Validators validates a players actions against any achievement and grants if validation passed the validation. ( `Validator::validate(Achievement, Actions): true||false` ) |
+| webhooks | Processors that listen to incoming and outgoign webhooks to process paylaods to push username and actions into the engine |
 
-### Example setup file
+####Example setup file
 (See [demo integration](integration/demo))
 
 ```yml
@@ -56,11 +59,30 @@ integration:
             arguments:
                 - "achievement.getName() in ['example-achievement-02'] and actions.count() >= 10"
 
+    webhooks:
+        incoming_processors:
+            # Chains multiple processors
+            example-chain:
+                type: chain
+                arguments:
+                    - [example-thirdparty-action, example-thirdparty-user]
+            # Maps third party payload to action
+            example-thirdparty-action:
+                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                arguments:
+                    - { 'third_party.action': demo.action }
+            # Maps third party payload to user
+            example-thirdparty-user:
+                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                arguments:
+                    - { 'third_party.user': jane.doe  }
+
+
 ```
 
-## Structure
+### Structure
 
-### `actions`
+####`actions`
 
 Actions are declared as multi-dimensional associative arrays. Keys on the first level are the actions name, keys and values on second level are the properties of the action. Internally actions are of type [ActionDefinition](../src/Yay/Component/Entity/Achievement/ActionDefinition.php) and need to be imported to the database during installation.
 
@@ -83,7 +105,7 @@ integration:
     # ...
 ```
 
-### `achievements`
+####`achievements`
 
 Achievements are declared as multi-dimensional associative arrays. Keys on the first level are the achievements name, keys and values on second level are the properties of the achievement. The `actions` property takes a list of actions defined under `actions` or in a different integration, so they can get referenced while validation. Internally achievements are of type [AchievementDefinition](..src/Yay/Component/Entity/Achievement/AchievementDefinition.php) and need to be imported to the database during installation.
 
@@ -94,14 +116,14 @@ integration:
     # ...
     achievements:
         # First level
-        demo-achievement-01:
+        example-achievement-01:
             # Second level
             label: Demo example label
             description: Demo example description
             points: 50
             actions: ["example-action"]
         # First level
-        demo-achievement-02:
+        example-achievement-02:
             # Second level
             label: Demo example label
             description: Demo example description
@@ -110,38 +132,48 @@ integration:
     # ...
 ```
 
-### `validators`
+####`validators`
 
-Validators are declared as multi-dimensional associative arrays. Keys on the first level are the validators name, keys and values on second level are the properties of the validator. During runtime the application needs to know when to grant an achievement after certain set of actions have been performed by a player. To provide this functioanilty the application uses validators that are able to tell if achievement criterias are met. Internally validators are implementing the [AchievementValidatorInterface](../src/Yay/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of achievements.
+Validators are declared as multi-dimensional associative arrays. Keys on the first level are the validators name, keys and values on second level are the properties of the validator. During runtime the application needs to know when to grant an achievement after certain set of actions have been performed by a player. To provide this functioanilty the application uses validators that are able to tell if achievement criterias are met. Internally validators implement the [AchievementValidatorInterface](../src/Yay/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of achievements.
 
-Supported properties: `type`, `arguments`, `class`. If you provide `expression` for `type` internally the property `class` gets set to `AchievementValidatorInterface`.
+Supported properties: `type`, `arguments`, `class`. If you provide `expression` for `type` internally the property `class` gets set to `ExpressionLanguageValidator`.
 
 ```yml
 validators:
     # ...
     validators:
         # First level
-        # Grants achviement 'demo-achievement-01' if action `demo-action`
+        # Grants achviement 'example-achievement-01' if action `example-action`
         # has been performed by the player 5 times.
-        demo-achievement-validator-01:
+        example-achievement-validator-01:
             # Second level
             type: expression
             arguments:
-                - "achievement.getName() in ['demo-achievement-01'] and actions.count() >= 5"
-        # Grants achviement 'demo-achievement-01' if action `demo-action`
+                - "achievement.getName() in ['example-achievement-01'] and actions.count() >= 5"
+        # Grants achviement 'example-achievement-01' if action `example-action`
         # has been performed by the player 10 times.
         # First level
-        demo-achievement-validator-02:
+        example-achievement-validator-02:
             # Second level
             type: expression
             arguments:
-                - "achievement.getName() in ['demo-achievement-02'] and actions.count() >= 10"
+                - "achievement.getName() in ['example-achievement-02'] and actions.count() >= 10"
     # ...
 ```
 
+####`webhooks`.`incoming`
+
+Webhook  are declared as multi-dimensional associative arrays. Keys on the first level are the processor name, keys and values on second level are the properties of the validator. During runtime the application needs to identify a processor by it's name through a route paramteter. Internally processors implement the [ProcessorInterface](../src/Yay/Component/Webhook/Incoming/ProcessorInterface.php) interface for incoming webhooks and implement the [ProcessorInterface](../src/Yay/Component/Webhook/Outgoing/ProcessorInterface.php) interface for outgoing webhooks.
+
+Supported properties: `type`, `arguments`, `class`. If you provide `chain` for `type` the property `class` gets set to `ChainProcessor`, if you provide `dummy` it is set to `DummyProcessor` and if you provide `null` it is set to `NullProcessor` internally.
+
+####`webhooks`.`outgoing`
+
+Not yet implemented.
+
 # Using your integration
 
-## 1) Validate your integration
+### 1) Validate your integration
 ```bash
 $ make shell
 $ php bin/console yay:integration:validate mycompany integration/mycompany
@@ -149,7 +181,7 @@ $ php bin/console yay:integration:validate mycompany integration/mycompany
 [OK] Integration "mycompany" valid
 ```
 
-## 2) Enable your integration
+### 2) Enable your integration
 ```bash
 $ make shell
 $ php bin/console yay:integration:enable mycompany integration/mycompany
@@ -157,7 +189,7 @@ $ php bin/console yay:integration:enable mycompany integration/mycompany
 [OK] Integration "mycompany" enabled
 ```
 
-## 3) Disable your integration
+### 3) Disable your integration
 ```bash
 $ make shell
 $ php bin/console yay:integration:disable mycompany

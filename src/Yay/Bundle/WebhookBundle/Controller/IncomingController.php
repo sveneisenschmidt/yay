@@ -20,7 +20,7 @@ class IncomingController extends Controller
     use EngineControllerTrait;
 
     /**
-     * @Method("POST")
+     * @Method({"GET", "POST"})
      * @Route(
      *     "/{processorName}/",
      *     name="webhook_incoming_submit_post"

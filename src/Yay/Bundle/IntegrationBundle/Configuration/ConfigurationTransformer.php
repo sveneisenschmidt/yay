@@ -8,7 +8,9 @@ use Yay\Component\Entity\Achievement\AchievementDefinition;
 use Yay\Component\Entity\Achievement\Level;
 use Yay\Component\Engine\AchievementValidator\Validator\ExpressionLanguageValidator;
 use Yay\Component\Webhook\Incoming\Processor\ChainProcessor as IncomingChainProcessor;
-use Yay\Component\Webhook\Outgoing\Processor\ChainProcessor as OutgoingChainProcessor;
+use Yay\Component\Webhook\Incoming\Processor\DummyProcessor as IncomingDummyProcessor;
+use Yay\Component\Webhook\Incoming\Processor\NullProcessor as IncomingNullProcessor;
+use Yay\Component\Webhook\Outgoing\Processor\NullProcessor as OutgoingNullProcessor;
 
 class ConfigurationTransformer
 {
@@ -124,26 +126,36 @@ class ConfigurationTransformer
             ];
         }
 
-        foreach ($processedConfig['webhooks']['incoming'] as $name => $processor) {
-            if ('chain' === $processor['type']) {
-                $processor['class'] = IncomingChainProcessor::class;
+        foreach ($processedConfig['webhooks']['incoming_processors'] as $name => $processor) {
+            switch ($processor['type']) {
+                case 'chain':
+                    $processor['class'] = IncomingChainProcessor::class;
+                    break;
+                case 'dummy':
+                    $processor['class'] = IncomingDummyProcessor::class;
+                    break;
+                case 'null':
+                    $processor['class'] = IncomingNullProcessor::class;
+                    break;
             }
 
             $services['services'][$name] = [
                 'class' => $processor['class'],
-                'arguments' => $processor['arguments'],
+                'arguments' => array_merge([$name], $processor['arguments']),
                 'tags' => ['yay.webhook_incoming.processor'],
             ];
         }
 
-        foreach ($processedConfig['webhooks']['outgoing'] as $name => $processor) {
-            if ('chain' === $processor['type']) {
-                $processor['class'] = OutgoingChainProcessor::class;
+        foreach ($processedConfig['webhooks']['outgoing_processors'] as $name => $processor) {
+            switch ($processor['type']) {
+                case 'null':
+                    $processor['class'] = OutgoingNullProcessor::class;
+                    break;
             }
 
             $services['services'][$name] = [
                 'class' => $processor['class'],
-                'arguments' => $processor['arguments'],
+                'arguments' => array_merge([$name], $processor['arguments']),
                 'tags' => ['yay.webhook_outgoing.processor'],
             ];
         }

@@ -200,4 +200,4 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-achievements
 ]
 ```
 
-And that's all for the demo.
+And that's all for the demo. Yay!

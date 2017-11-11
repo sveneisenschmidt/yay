@@ -71,6 +71,6 @@ class ValidateCommandTest extends KernelTestCase
         ));
 
         $this->assertContains('[WARNING] Integration "test" invalid', $commandTester->getDisplay());
-        $this->assertContains('[ERROR] Test exception', $commandTester->getDisplay());
+        $this->assertContains('[ERROR] Exception: Test exception', $commandTester->getDisplay());
     }
 }
