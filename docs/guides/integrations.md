@@ -82,7 +82,7 @@ integration:
 
 ### Structure
 
-####`actions`
+#### `actions`
 
 Actions are declared as multi-dimensional associative arrays. Keys on the first level are the actions name, keys and values on second level are the properties of the action. Internally actions are of type [ActionDefinition](../src/Yay/Component/Entity/Achievement/ActionDefinition.php) and need to be imported to the database during installation.
 
@@ -105,7 +105,7 @@ integration:
     # ...
 ```
 
-####`achievements`
+#### `achievements`
 
 Achievements are declared as multi-dimensional associative arrays. Keys on the first level are the achievements name, keys and values on second level are the properties of the achievement. The `actions` property takes a list of actions defined under `actions` or in a different integration, so they can get referenced while validation. Internally achievements are of type [AchievementDefinition](..src/Yay/Component/Entity/Achievement/AchievementDefinition.php) and need to be imported to the database during installation.
 
@@ -132,7 +132,7 @@ integration:
     # ...
 ```
 
-####`validators`
+#### `validators`
 
 Validators are declared as multi-dimensional associative arrays. Keys on the first level are the validators name, keys and values on second level are the properties of the validator. During runtime the application needs to know when to grant an achievement after certain set of actions have been performed by a player. To provide this functioanilty the application uses validators that are able to tell if achievement criterias are met. Internally validators implement the [AchievementValidatorInterface](../src/Yay/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of achievements.
 
@@ -188,7 +188,7 @@ integration:
     # ...
 ```
 
-####`webhooks`.`outgoing`
+#### `webhooks`.`outgoing`
 
 Coming soon.
 

@@ -62,7 +62,7 @@ class MyProcessor implements ProcessorInterface
 }
 ```
 
-### Buit-in incoming processors
+### Built-in incoming processors
 
 #### `ChainProcessor`
 
@@ -118,11 +118,11 @@ integration:
 ```
 URL:  `/webhook/incoming/example-null/`.
 
-### Example GitHub
+### Third party incoming processors
 
-Infamous git platform GitHub use the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to conntect their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay is able to process it as well.
+#### `GitHub`
 
-#### Configuration in Yay
+The [GitProcessor](../../src/Yay/ThirdParty/Github/Webhook/Incoming/Processor/NullProcessor.php) processes Github's webhook payloads to extract `username` and `actions`.
 
 ```yml
 integration:
@@ -133,6 +133,26 @@ integration:
                 class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
 ```
 URL:  `/webhook/incoming/example-github/`.
+
+### Example GitHub
+
+Infamous git platform GitHub use the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to conntect their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay is able to process it as well.
+
+#### Configuration in Yay
+
+```yml
+integration:
+    webhooks:
+        incoming_processors:
+            example-processor:
+                type: chain
+                arguments: 
+                    - [ example-github ]
+            example-github:
+                type: class
+                class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
+```
+URL:  `/webhook/incoming/example-processor/`.
 
 #### Configuration in Github 
 
