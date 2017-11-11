@@ -122,7 +122,7 @@ URL:  `/webhook/incoming/example-null/`.
 
 #### `GitHub`
 
-The [GitProcessor](../../src/Yay/ThirdParty/Github/Webhook/Incoming/Processor/NullProcessor.php) processes Github's webhook payloads to extract `username` and `actions`.
+The [GitHubProcessor](../../src/Yay/ThirdParty/Github/Webhook/Incoming/Processor/GitHubProcessor.php) processes Github's webhook payloads to extract `username` and `actions`.
 
 ```yml
 integration:
