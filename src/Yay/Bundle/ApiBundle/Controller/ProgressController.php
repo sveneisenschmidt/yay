@@ -23,12 +23,12 @@ class ProgressController extends Controller
     /**
      * **Example Request (1):**
      * ```query
-     * player=jane.doe&action=yay.action.demo_action
+     * username=jane.doe&action=yay.action.demo_action
      * ```.
      *
      * **Example Request (2):**
      * ```query
-     * player=jane.doe&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action
+     * username=jane.doe&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action
      * ```
      *
      * **Example Response:**
@@ -92,7 +92,6 @@ class ProgressController extends Controller
      *
      * @ParamConverter(
      *     name="username",
-     *     options={"field"="username"},
      *     converter="QueryString"
      * )
      * @ParamConverter(
@@ -133,7 +132,7 @@ class ProgressController extends Controller
      * **Example Request (1):**
      * ```json
      * {
-     *     "player": "jane.doe",
+     *     "username": "jane.doe",
      *     "action": "yay.action.demo_action"
      * }
      * ```.
@@ -141,7 +140,7 @@ class ProgressController extends Controller
      * **Example Request (2):**
      * ```json
      * {
-     *     "player": "jane.doe",
+     *     "username": "jane.doe",
      *     "actions": [
      *         "yay.action.demo_action",
      *         "yay.action.demo_action",
@@ -211,7 +210,6 @@ class ProgressController extends Controller
      * )
      * @ParamConverter(
      *     name="username",
-     *     options={"field"="username"},
      *     converter="JsonField"
      * )
      * @ParamConverter(

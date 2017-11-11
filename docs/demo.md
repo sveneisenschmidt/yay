@@ -98,7 +98,7 @@ curl -X "GET" http://localhost:50080/api/achievements/
 4\) Let our player `jane.doe` perform the action `demo-action` one time.
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"player\":\"jane.doe\",\"action\":\"demo-action\"}"
+    -d "{\"username\":\"jane.doe\",\"action\":\"demo-action\"}"
 
 []
 ```
@@ -125,7 +125,7 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-actions
 Now let us get our first achievement. For this, perform four more times our `demo.action` action.
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"player\":\"jane.doe\",\"actions\":[\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\"]}"
+    -d "{\"username\":\"jane.doe\",\"actions\":[\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\"]}"
 
 [
     {
@@ -147,7 +147,7 @@ Et voilà, we earned our first achievement!
 5\) Now let us go further, Let the player perform five times more the `demo-action` action.
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"player\":\"jane.doe\",\"actions\":[\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\"]}"
+    -d "{\"username\":\"jane.doe\",\"actions\":[\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\"]}"
 
 [
     {

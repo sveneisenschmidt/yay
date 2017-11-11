@@ -31,7 +31,7 @@ Yay is tested and packable to run through Docker on any operating system that su
 ## Usage
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"player\":\"jane.doe\",\"action\":\"demo-action\"}"
+    -d "{\"username\":\"jane.doe\",\"action\":\"demo-action\"}"
 
 [
     {
