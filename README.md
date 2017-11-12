@@ -5,8 +5,8 @@
 ## The Idea
 > Gamification can be applied to all technical and non-technical tasks during our daily working life. Everything can be gamified.
 
-<p style="text-align: center;">
-    <img title="Yay!" src="docs/src/cycle.svg" style="max-width: 250px;">
+<p align="center">
+    <img title="Yay!" src="docs/src/cycle.svg" width="375">
 </p>
 
 ## The Implementation
