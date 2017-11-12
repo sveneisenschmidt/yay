@@ -12,6 +12,15 @@ class ChainProcessorTest extends TestCase
     /**
      * @test
      */
+    public function set_get_name()
+    {
+        $processor = new ChainProcessor('test', []);
+        $this->assertEquals('test', $processor->getName());
+    }
+
+    /**
+     * @test
+     */
     public function chain_processor_executes_all_processors()
     {
         $processor1 = $this->getMockBuilder(ProcessorInterface::class)

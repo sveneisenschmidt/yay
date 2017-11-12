@@ -113,16 +113,33 @@ The [NullProcessor](../../src/Yay/Component/Webhook/Incoming/Processor/NullProce
 integration:
     webhooks:
         incoming_processors:
-            example-dummy:
+            example-null:
                 type: 'null'
 ```
 URL:  `/webhook/incoming/example-null/`.
+
+#### `NullProcessor`
+
+The [NullProcessor](../../src/Yay/Component/Webhook/Incoming/Processor/NullProcessor.php) does nothing. Its `process` method is empty. It is used for testing.
+
+```yml
+integration:
+    webhooks:
+        incoming_processors:
+            example-static-map:
+                type: static-map
+                arguments:
+                    - username
+                    - 
+                        - octocat: jane.doe
+```
+URL:  `/webhook/incoming/example-static-map/`.
 
 ### Third party incoming processors
 
 #### `GitHub`
 
-The [GitHubProcessor](../../src/Yay/ThirdParty/Github/Webhook/Incoming/Processor/GitHubProcessor.php) processes Github's webhook payloads to extract `username` and `actions`.
+The [GithubProcessor](../../src/Yay/ThirdParty/Github/Webhook/Incoming/Processor/GithubProcessor.php) processes Github's webhook payloads to extract `username` and `actions`.
 
 ```yml
 integration:
@@ -151,6 +168,12 @@ integration:
             example-github:
                 type: class
                 class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
+            example-users:
+                type: static-map
+                arguments:
+                    - username
+                    - 
+                        - octocat: jane.doe
 ```
 URL:  `/webhook/incoming/example-processor/`.
 
