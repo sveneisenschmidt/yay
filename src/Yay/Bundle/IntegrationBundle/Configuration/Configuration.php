@@ -121,7 +121,7 @@ class Configuration implements ConfigurationInterface
                                     ->scalarNode('type')
                                         ->defaultValue('class')
                                         ->validate()
-                                        ->ifNotInArray(['chain', 'class', 'null', 'dummy'])
+                                        ->ifNotInArray(['chain', 'class', 'null', 'dummy', 'static-map'])
                                             ->thenInvalid('Invalid type %s')
                                         ->end()
                                     ->end()

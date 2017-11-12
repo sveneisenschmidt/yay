@@ -52,6 +52,8 @@ integration:
                 type: dummy
             test-webhook-incoming-processor-03:
                 type: 'null'
+            test-webhook-incoming-processor-04:
+                type: 'static-map'
         outgoing_processors:
             test-webhook-outgoing-processor-01:
                 type: 'null'

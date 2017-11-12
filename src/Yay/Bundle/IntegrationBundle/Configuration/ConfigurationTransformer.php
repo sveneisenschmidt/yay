@@ -10,6 +10,7 @@ use Yay\Component\Engine\AchievementValidator\Validator\ExpressionLanguageValida
 use Yay\Component\Webhook\Incoming\Processor\ChainProcessor as IncomingChainProcessor;
 use Yay\Component\Webhook\Incoming\Processor\DummyProcessor as IncomingDummyProcessor;
 use Yay\Component\Webhook\Incoming\Processor\NullProcessor as IncomingNullProcessor;
+use Yay\Component\Webhook\Incoming\Processor\StaticMapProcessor as IncomingStaticMapProcessor;
 use Yay\Component\Webhook\Outgoing\Processor\NullProcessor as OutgoingNullProcessor;
 
 class ConfigurationTransformer
@@ -135,6 +136,9 @@ class ConfigurationTransformer
             }
             if ('null' === $processor['type']) {
                 $processor['class'] = IncomingNullProcessor::class;
+            }
+            if ('static-map' === $processor['type']) {
+                $processor['class'] = IncomingStaticMapProcessor::class;
             }
 
             $services['services'][$name] = [
