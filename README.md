@@ -33,19 +33,19 @@ Yay is tested and packable to run through Docker on any operating system that su
 ## Usage
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"demo-action\"}"
+    -d "{\"username\":\"jane.doe\",\"action\":\"example-action\"}"
 
 [
     {
-        "name": "demo-achievement-01",
-        "label": "demo-achievement-01",
-        "description": "demo-achievement-01",
+        "name": "example-achievement-01",
+        "label": "example-achievement-01",
+        "description": "example-achievement-01",
         "points": 50,
         "achieved_at": "2017-10-08T13:22:08+0000",
         "links": {
             "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
             "player": "http://localhost:50080/api/players/jane.doe/",
-            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
+            "achievement": "http://localhost:50080/api/achievements/example-achievement-01/"
         }
     }
 ]
@@ -57,14 +57,14 @@ Additionally Yay supports integrating third party applications via webhooks. For
 integration:
     webhooks:
         incoming_processors:
-            demo-processor:
+            example-processor:
                 type: chain
                 arguments: 
-                    - [ example-github, demo-users ]
-            demo-github:
+                    - [ example-github, example-users ]
+            example-github:
                 type: class
                 class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
-            demo-users:
+            example-users:
                 type: static-map
                 arguments:
                     - username
