@@ -30,20 +30,20 @@ class ValidationContextTest extends TestCase
     /**
      * @test
      */
-   public function get_personal_actions()
-   {
+    public function get_personal_actions()
+    {
         $player = $this->createConfiguredMock(PlayerInterface::class, [
-            'getPersonalActions' => new ArrayCollection([])
+            'getPersonalActions' => new ArrayCollection([]),
         ]);
         $achievementDefinition = $this->createMock(AchievementDefinitionInterface::class);
         $context = new ValidationContext($player, $achievementDefinition);
 
         $this->assertInstanceOf(PersonalActionCollection::class, $context->getPersonalActions());
-   }
-   
+    }
+
     /**
-    * @test
-    */
+     * @test
+     */
     public function get_filtered_personal_actions()
     {
         $date = new \DateTime();
@@ -54,16 +54,16 @@ class ValidationContextTest extends TestCase
         $personalActions = [];
         $personalActions[] = $this->createConfiguredMock(PersonalActionInterface::class, [
             'getActionDefinition' => $actionDefinitions[0],
-            'getAchievedAt' => $date
+            'getAchievedAt' => $date,
         ]);
 
         $player = $this->createConfiguredMock(PlayerInterface::class, [
-            'getPersonalActions' => new ArrayCollection($personalActions)
+            'getPersonalActions' => new ArrayCollection($personalActions),
         ]);
-        
+
         $achievementDefinition = $this->createConfiguredMock(AchievementDefinitionInterface::class, [
             'getActionDefinitions' => new ArrayCollection($actionDefinitions),
-            'getCreatedAt' => $date
+            'getCreatedAt' => $date,
         ]);
 
         $context = new ValidationContext($player, $achievementDefinition);

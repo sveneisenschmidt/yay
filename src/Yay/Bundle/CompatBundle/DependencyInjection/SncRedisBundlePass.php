@@ -4,7 +4,6 @@ namespace Yay\Bundle\CompatBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\Reference;
 
 class SncRedisBundlePass implements CompilerPassInterface
 {
