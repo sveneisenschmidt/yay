@@ -4,7 +4,6 @@ namespace Yay\Bundle\CompatBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\Reference;
 
 class JMSSerializerBundlePass implements CompilerPassInterface
 {
@@ -18,7 +17,7 @@ class JMSSerializerBundlePass implements CompilerPassInterface
             'jms_serializer.stopwatch_subscriber',
             'jms_serializer.datetime_handler',
             'jms_serializer.array_collection_handler',
-            'jms_serializer.constraint_violation_handler'
+            'jms_serializer.constraint_violation_handler',
         ];
 
         foreach ($definitions as $definition) {

@@ -8,7 +8,6 @@ use Yay\Bundle\CompatBundle\DependencyInjection\CompatExtension;
 use Yay\Bundle\CompatBundle\DependencyInjection\JMSSerializerBundlePass;
 use Yay\Bundle\CompatBundle\DependencyInjection\SncRedisBundlePass;
 
-
 class CompatBundle extends Bundle
 {
     /**
