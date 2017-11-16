@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
+            new Yay\Bundle\CompatBundle\CompatBundle(),
             new Yay\Bundle\ApiBundle\ApiBundle(),
             new Yay\Bundle\EngineBundle\EngineBundle(),
             new Yay\Bundle\IntegrationBundle\IntegrationBundle(),
@@ -28,7 +29,6 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new Symfony\Bundle\WebServerBundle\WebServerBundle();
         }

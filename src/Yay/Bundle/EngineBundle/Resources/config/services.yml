@@ -6,6 +6,10 @@ services:
         autoconfigure: true
         public: false
 
+    Yay\Bundle\EngineBundle\Command\:
+        resource: '../../Command'
+        tags: ['console.command']
+
     Yay\Component\Engine\Engine: { public: true }
     Yay\Component\Engine\Storage\DoctrineStorage: ["@=service('doctrine').getManager()"]
     Yay\Component\Engine\StorageInterface: '@Yay\Component\Engine\Storage\DoctrineStorage'

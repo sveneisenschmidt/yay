@@ -1,6 +1,6 @@
 # JMS Serializer
 jms_serializer:
-    enable_short_alias: true
+#    enable_short_alias: true
     metadata:
         cache: file
         debug: "%kernel.debug%"

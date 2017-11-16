@@ -1,0 +1,18 @@
+
+services:
+
+  compat.snc_redis.command.flush_all:
+    class: Snc\RedisBundle\Command\RedisFlushallCommand
+    tags: ['console.command']
+
+  compat.snc_redis.command.flush_db:
+    class: Snc\RedisBundle\Command\RedisFlushdbCommand
+    tags: ['console.command']
+
+  compat.nelmio_apidoc.command.dump:
+    class: Nelmio\ApiDocBundle\Command\DumpCommand
+    tags: ['console.command']
+
+  compat.nelmio_apidoc.command.swagger_dump:
+    class: Nelmio\ApiDocBundle\Command\SwaggerDumpCommand
+    tags: ['console.command']

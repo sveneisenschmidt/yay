@@ -4,6 +4,10 @@ services:
         autoconfigure: true
         public: false
 
+    Yay\Bundle\IntegrationBundle\Command\:
+        resource: '../../Command'
+        tags: ['console.command']
+
     Yay\Bundle\IntegrationBundle\Service\InstallerService:
         public: true
 
