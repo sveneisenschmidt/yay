@@ -18,6 +18,7 @@ class JMSSerializerBundlePass implements CompilerPassInterface
             'jms_serializer.datetime_handler',
             'jms_serializer.array_collection_handler',
             'jms_serializer.constraint_violation_handler',
+            'jms_serializer.metadata_driver',
         ];
 
         foreach ($definitions as $definition) {
