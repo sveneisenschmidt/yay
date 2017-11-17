@@ -1,11 +1,17 @@
 .application-remove-cache-dev:
-	@$(call .docker-run,cli,'php bin/console cache:clear --env=dev --no-warmup')
+	@$(call .docker-run,cli,'\
+        php bin/console cache:clear --env=dev --no-warmup && \
+        php bin/console cache:warmup --env=dev')
 
 .application-remove-cache-test:
-	@$(call .docker-run,cli,'php bin/console cache:clear --env=test --no-warmup')
+	@$(call .docker-run,cli,'\
+        php bin/console cache:clear --env=test --no-warmup && \
+        php bin/console cache:warmup --env=test')
 
 .application-remove-cache-prod:
-	@$(call .docker-run,cli,'php bin/console cache:clear --env=prod --no-warmup')
+	@$(call .docker-run,cli,'\
+        php bin/console cache:clear --env=prod --no-warmup && \
+        php bin/console cache:warmup --env=prod')
 
 .application-install-dependencies:
 	@mkdir -p .build .build/cache vendor var/logs var/cache var/sessions || true

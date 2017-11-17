@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Yay\Bundle\CompatBundle\DependencyInjection\CompatExtension;
 use Yay\Bundle\CompatBundle\DependencyInjection\JMSSerializerBundlePass;
 use Yay\Bundle\CompatBundle\DependencyInjection\SncRedisBundlePass;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 
 class CompatBundle extends Bundle
 {
@@ -15,8 +16,8 @@ class CompatBundle extends Bundle
      */
     public function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new JMSSerializerBundlePass());
-        $container->addCompilerPass(new SncRedisBundlePass());
+        $container->addCompilerPass(new JMSSerializerBundlePass(), PassConfig::TYPE_AFTER_REMOVING, -255);
+        $container->addCompilerPass(new SncRedisBundlePass(), PassConfig::TYPE_AFTER_REMOVING, -255);
     }
 
     /**
