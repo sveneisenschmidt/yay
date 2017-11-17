@@ -11,6 +11,7 @@
     <php>
         <ini name="error_reporting" value="-1" />
         <server name="KERNEL_DIR" value="app/" />
+        <server name="KERNEL_CLASS" value="AppKernel" />
     </php>
 
     <testsuites>
@@ -38,6 +39,7 @@
                 <directory>src/Yay/Component/*/Test</directory>
                 <directory>src/Yay/Component/*/Tests</directory>
                 <directory>src/Yay/ThirdParty/*/*/Tests</directory>
+                <directory>src/Yay/Bundle/CompatBundle</directory>
             </exclude>
         </whitelist>
     </filter>
