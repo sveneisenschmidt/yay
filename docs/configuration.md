@@ -4,7 +4,7 @@ The application is configured through environment variables, these will be provi
 
 | Variable | Default Value | Description |
 |---|---|---|
-| APP_ENV | | Application environment, used inside Docker. |
+| APP_ENV | dev | Application environment, used inside Docker. |
 | DATABASE_HOST | | IP or hostname of database. |
 | DATABASE_PORT | 3306 | Port of the host where the database is running on. |
 | DATABASE_NAME | | Name of database. |

@@ -12,6 +12,7 @@ web:
         - ./:/data:cached
     working_dir: "/data"
     environment:
+        APP_ENV: dev
         DATABASE_HOST: mysqldb
         DATABASE_NAME: dev
         DATABASE_USER: root
@@ -29,6 +30,7 @@ cli:
         - ./:/data:cached
     working_dir: "/data"
     environment:
+        APP_ENV: dev
         DATABASE_HOST: mysqldb
         DATABASE_NAME: dev
         DATABASE_USER: root
