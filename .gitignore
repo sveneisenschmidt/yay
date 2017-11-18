@@ -24,3 +24,4 @@
 /app/config/integration/*
 !app/config/integration/.gitkeep
 coverage.xml
+/dist/docker-run.sh
