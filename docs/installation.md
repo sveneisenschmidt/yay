@@ -36,18 +36,15 @@ docker build -t sveneisenschmidt/yay .
 
 2\) Create a new folder, or preferably clone a repository that contains your own Dockerfile and integrations to extend yay.
 
-Let's assume you have a folder called 'mycompany-yay', now here a new Dockerfile that will have a custom entrypoint.
+Let's assume you have a folder called 'mycompany-yay', now here a new Dockerfile that will have a custom command. The dockerfile has a default `CMD` that will load a `docker-run.sh` file from the `dist` folder.
 ```Dockerfile
 FROM sveneisenschmidt/yay
 
-COPY ./entrypoint.sh /data/entrypoint.sh
-
-WORKDIR /data
-
-ENTRYPOINT ["entrypoint.sh"]
+COPY ./docker-run.sh /data/dist/docker-run.sh
 ```
 
-By providing your own entrypoint.sh it is possible to install custom integrations at startup and customize the web server used.
+By providing your own `dist/docker-run.sh` it is possible to install custom integrations at startup and customize the web server used. With this approach even more sophisticated installation routines are possible. Try it out!
+
 ```bash
 #!/bin/bash
 
@@ -57,7 +54,7 @@ php bin/console yay:integration:install integration/demo --env=${APP_ENV}
 php bin/console server:run 0.0.0.0:80 --env=${APP_ENV}
 ```
 
-This entrypoint file will install the `default` integration, the `demo` integration and run the php development web server on port `80`.
+The script will install the `default` integration, the `demo` integration and run the php development web server on port `80`.
 
 Now you are prepared to build your own docker image.
 ```bash

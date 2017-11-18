@@ -32,3 +32,5 @@ COPY ./ ./data
 WORKDIR /data
 
 RUN composer install --ignore-platform-reqs
+
+CMD ["dist/docker-run.dist.sh"]
