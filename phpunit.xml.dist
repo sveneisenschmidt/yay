@@ -10,8 +10,10 @@
 >
     <php>
         <ini name="error_reporting" value="-1" />
-        <server name="KERNEL_DIR" value="app/" />
-        <server name="KERNEL_CLASS" value="AppKernel" />
+        <env name="KERNEL_DIR" value="app/" />
+        <env name="KERNEL_CLASS" value="AppKernel" />
+        <env name="APP_ENV" value="test" force="true"/>
+        <env name="APP_DEBUG" value="1" force="true"/>
     </php>
 
     <testsuites>
