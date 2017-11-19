@@ -17,6 +17,7 @@ class ActionDefinition implements ActionDefinitionInterface
      * @var array|PersonalActionInterface[]
      */
     protected $personalActions;
+
     public function __construct(string $name)
     {
         $this->personalActions = new PersonalActionCollection();

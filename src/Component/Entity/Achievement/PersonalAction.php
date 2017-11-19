@@ -17,6 +17,7 @@ class PersonalAction implements PersonalActionInterface
 
     /** @var PlayerInterface */
     protected $player;
+
     public function __construct(
         PlayerInterface $player,
         ActionDefinitionInterface $actionDefinition,
