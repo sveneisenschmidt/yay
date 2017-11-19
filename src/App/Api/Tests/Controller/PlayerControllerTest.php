@@ -7,9 +7,7 @@ use Faker\Factory as FakerFactory;
 
 class PlayerControllerTest extends WebTestCase
 {
-    /**
-     * Provides faked player data.
-     */
+    /* Provides faked player data. */
     public function providePlayerData(): array
     {
         $faker = FakerFactory::create();
@@ -78,9 +76,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertTrue($response->isNotFound());
     }
 
-    /**
-     * @dataProvider providePlayerData
-     */
+    /* @dataProvider providePlayerData */
     public function test_Player_CreateAction(array $data): void
     {
         $client = static::createClient();
@@ -106,9 +102,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertTrue($response->isClientError());
     }
 
-    /**
-     * @dataProvider providePlayerData
-     */
+    /* @dataProvider providePlayerData */
     public function test_Player_CreateAction_Exception_NonUniqueUsername(array $data): void
     {
         $client = static::createClient();

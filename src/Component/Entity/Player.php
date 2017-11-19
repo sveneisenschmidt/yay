@@ -10,34 +10,22 @@ use Component\Entity\Achievement\PersonalActionCollection;
 
 class Player implements PlayerInterface
 {
-    /**
-     * @var int
-     */
+    /* @var int */
     protected $id;
 
-    /**
-     * @var string
-     */
+    /* @var string */
     protected $name;
 
-    /**
-     * @var string
-     */
+    /* @var string */
     protected $username;
 
-    /**
-     * @var string
-     */
+    /* @var string */
     protected $email;
 
-    /**
-     * @var string
-     */
+    /* @var string */
     protected $imageUrl;
 
-    /**
-     * @var PersonalActionCollection
-     */
+    /* @var PersonalActionCollection */
     protected $personalActions;
 
     /**
@@ -45,9 +33,7 @@ class Player implements PlayerInterface
      */
     protected $personalAchievements;
 
-    /**
-     * @var int
-     */
+    /* @var int */
     protected $score = 0;
 
     public function __construct()

@@ -13,9 +13,7 @@ use Component\Entity\PlayerInterface;
 
 class LinkListener
 {
-    /**
-     * @var UrlGeneratorInterface
-     */
+    /* @var UrlGeneratorInterface */
     protected $urlGenerator;
 
     public function __construct(UrlGeneratorInterface $urlGenerator)

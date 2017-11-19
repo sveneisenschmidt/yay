@@ -21,9 +21,7 @@ use Component\Entity\PlayerInterface;
 
 class DoctrineStorage implements StorageInterface
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /* @var EntityManagerInterface */
     protected $manager;
 
     public function __construct(EntityManagerInterface $manager)

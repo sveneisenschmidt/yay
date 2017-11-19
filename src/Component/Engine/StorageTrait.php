@@ -15,9 +15,7 @@ use Component\Entity\PlayerInterface;
 
 trait StorageTrait
 {
-    /**
-     * @var StorageInterface
-     */
+    /* @var StorageInterface */
     protected $storage;
 
     public function setStorage(StorageInterface $storage): void

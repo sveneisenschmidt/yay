@@ -60,9 +60,7 @@ class InstallerService
         return (new NativeLoader())->loadData($data)->getObjects();
     }
 
-    /**
-     * @throws RuntimeException
-     */
+    /* @throws RuntimeException */
     public function installServices(array $data, string $targetFile): void
     {
         $contents = Yaml::dump($data, 32);
@@ -99,9 +97,7 @@ class InstallerService
         );
     }
 
-    /**
-     * @throws RuntimeException
-     */
+    /* @throws RuntimeException */
     public function uninstallService(string $targetFile): void
     {
         if ($this->filesystem->exists($targetFile)) {
@@ -109,9 +105,7 @@ class InstallerService
         }
     }
 
-    /**
-     * @throws \Exception
-     */
+    /* @throws \Exception */
     public function validate(
         string $name,
         string $sourceFile
