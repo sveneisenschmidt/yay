@@ -2,11 +2,11 @@
 
 ## Webhooks ##
 
-Webhooks are the super glue that conntect the outside world with your Yay instance. 
+Webhooks are the super glue that conntect the outside world with your Yay instance.
 
 ### Internals
 
-Processors implement the [ProcessorInterface](../../src/Yay/Component/Webhook/Incoming/ProcessorInterface.php) interface for incoming webhooks and implement the [ProcessorInterface](../../src/Yay/Component/Webhook/Outgoing/ProcessorInterface.php) interface for outgoing webhooks.
+Processors implement the [ProcessorInterface](../../src/Component/Webhook/Incoming/ProcessorInterface.php) interface for incoming webhooks and implement the [ProcessorInterface](../../src/Component/Webhook/Outgoing/ProcessorInterface.php) interface for outgoing webhooks.
 
 #### Incoming processors
 
@@ -66,7 +66,7 @@ class MyProcessor implements ProcessorInterface
 
 #### `ChainProcessor`
 
-The [ChainProcessor](../../src/Yay/Component/Webhook/Incoming/Processor/ChainProcessor.php) is able to chain multiple processors to maximize flexibility. It is configured in your integration configuration.
+The [ChainProcessor](../../src/Component/Webhook/Incoming/Processor/ChainProcessor.php) is able to chain multiple processors to maximize flexibility. It is configured in your integration configuration.
 
 ```yml
 integration:
@@ -81,7 +81,7 @@ integration:
             example-mycompany-jenkinsci:
                 class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
             # Your company provides a second processor to ap jenkins users to Yay players
-            # based on a static configuration file deployed witht he application 
+            # based on a static configuration file deployed witht he application
             example-mycompany-users:
                 class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
                 arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
@@ -90,7 +90,7 @@ URL:  `/webhook/incoming/example-chain/`.
 
 #### `DummyProcessor`
 
-The [DummyProcessor](../../src/Yay/Component/Webhook/Incoming/Processor/DummyProcessor.php) is able to push key, value pairs to the request object, useful for fallback or default configuration.
+The [DummyProcessor](../../src/Component/Webhook/Incoming/Processor/DummyProcessor.php) is able to push key, value pairs to the request object, useful for fallback or default configuration.
 
 ```yml
 integration:
@@ -99,7 +99,7 @@ integration:
             example-dummy:
                 type: dummy
                 arguments:
-                    - 
+                    -
                         - username: jane.doe
                         - aciton: example.action
 ```
@@ -107,7 +107,7 @@ URL:  `/webhook/incoming/example-dummy/`.
 
 #### `NullProcessor`
 
-The [NullProcessor](../../src/Yay/Component/Webhook/Incoming/Processor/NullProcessor.php) does nothing. Its `process` method is empty. It is used for testing.
+The [NullProcessor](../../src/Component/Webhook/Incoming/Processor/NullProcessor.php) does nothing. Its `process` method is empty. It is used for testing.
 
 ```yml
 integration:
@@ -120,7 +120,7 @@ URL:  `/webhook/incoming/example-null/`.
 
 #### `NullProcessor`
 
-The [NullProcessor](../../src/Yay/Component/Webhook/Incoming/Processor/NullProcessor.php) does nothing. Its `process` method is empty. It is used for testing.
+The [NullProcessor](../../src/Component/Webhook/Incoming/Processor/NullProcessor.php) does nothing. Its `process` method is empty. It is used for testing.
 
 ```yml
 integration:
@@ -130,7 +130,7 @@ integration:
                 type: static-map
                 arguments:
                     - username
-                    - 
+                    -
                         - octocat: jane.doe
 ```
 URL:  `/webhook/incoming/example-static-map/`.
@@ -139,7 +139,7 @@ URL:  `/webhook/incoming/example-static-map/`.
 
 #### `GitHub`
 
-The [GithubProcessor](../../src/Yay/ThirdParty/Github/Webhook/Incoming/Processor/GithubProcessor.php) processes Github's webhook payloads to extract `username` and `actions`.
+The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/GithubProcessor.php) processes Github's webhook payloads to extract `username` and `actions`.
 
 ```yml
 integration:
@@ -163,7 +163,7 @@ integration:
         incoming_processors:
             example-processor:
                 type: chain
-                arguments: 
+                arguments:
                     - [ example-github ]
             example-github:
                 type: class
@@ -172,12 +172,12 @@ integration:
                 type: static-map
                 arguments:
                     - username
-                    - 
+                    -
                         - octocat: jane.doe
 ```
 URL:  `/webhook/incoming/example-processor/`.
 
-#### Configuration in Github 
+#### Configuration in Github
 
 ![Github Webhook Configuration](../../docs/src/github-webhook.png)
 
