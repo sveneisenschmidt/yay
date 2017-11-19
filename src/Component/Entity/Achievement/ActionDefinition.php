@@ -4,19 +4,13 @@ namespace Component\Entity\Achievement;
 
 class ActionDefinition implements ActionDefinitionInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $label = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $description = '';
 
     /**
@@ -24,9 +18,6 @@ class ActionDefinition implements ActionDefinitionInterface
      */
     protected $personalActions;
 
-    /**
-     * ActionDefinition constructor.
-     */
     public function __construct(string $name)
     {
         $this->personalActions = new PersonalActionCollection();
@@ -58,13 +49,11 @@ class ActionDefinition implements ActionDefinitionInterface
         $this->description = $description;
     }
 
-    /**/
     public function getPersonalActions(): PersonalActionCollection
     {
         return $this->personalActions;
     }
 
-    /**/
     public function __toString(): string
     {
         return $this->name;

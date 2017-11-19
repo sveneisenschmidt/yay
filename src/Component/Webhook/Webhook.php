@@ -7,10 +7,10 @@ use Component\Webhook\Outgoing\ProcessorCollection as OutgoingProcessorCollectio
 
 class Webhook
 {
-    /* @var IncomingProcessorCollection */
+    /** @var IncomingProcessorCollection */
     protected $incomingProcessors;
 
-    /* @var OutgoingProcessorCollection */
+    /** @var OutgoingProcessorCollection */
     protected $outgoingProcessors;
 
     public function __construct(

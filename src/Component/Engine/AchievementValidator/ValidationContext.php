@@ -9,10 +9,10 @@ use Component\Entity\PlayerInterface;
 
 class ValidationContext
 {
-    /* @var AchievementDefinitionInterface */
+    /** @var AchievementDefinitionInterface */
     protected $achievementDefinition;
 
-    /* @var PlayerInterface */
+    /** @var PlayerInterface */
     protected $player;
 
     public function __construct(

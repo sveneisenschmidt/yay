@@ -7,7 +7,7 @@ use Component\Webhook\Incoming\ProcessorInterface;
 
 class GithubProcessor implements ProcessorInterface
 {
-    /* @var string */
+    /** @var string */
     protected $name;
 
     public function __construct(string $name)

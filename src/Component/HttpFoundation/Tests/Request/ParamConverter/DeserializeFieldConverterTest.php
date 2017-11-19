@@ -48,7 +48,6 @@ class DeserializeFieldConverterTest extends TestCase
         return $configuration;
     }
 
-    /**/
     public function createSerializer(): SerializerInterface
     {
         return SerializerBuilder::create()->build();

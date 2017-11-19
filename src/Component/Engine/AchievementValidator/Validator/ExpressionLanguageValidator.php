@@ -9,16 +9,16 @@ use Component\Entity\Achievement\AchievementDefinitionInterface;
 
 class ExpressionLanguageValidator implements AchievementValidatorInterface
 {
-    /* @var ExpressionLanguage */
+    /** @var ExpressionLanguage */
     protected $language;
 
-    /* @var string */
+    /** @var string */
     protected $expression;
 
-    /* @var array */
+    /** @var array */
     protected $supports;
 
-    /* @var bool */
+    /** @var bool */
     protected $multiple = false;
 
     public function __construct(string $expression, array $supports = [], bool $multiple = false)
