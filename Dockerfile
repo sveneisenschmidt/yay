@@ -8,7 +8,8 @@ RUN apk add --no-cache --virtual .persistent-deps \
     curl \
     icu-dev \
     libmcrypt-dev \
-    libxml2-dev
+    libxml2-dev \
+    git
 
 RUN docker-php-ext-install \
     pdo_mysql \
