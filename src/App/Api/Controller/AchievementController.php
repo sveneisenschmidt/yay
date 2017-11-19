@@ -28,14 +28,7 @@ class AchievementController extends Controller
      *     "name": "demo-achievement-01",
      *     "links": {
      *         "self": "http://example.org/api/achievements/demo-achievement-01/",
-     *         "actions": ["http://example.org/api/ac
-     *
-     *
-     *
-     *
-     *
-     *
-     * tions/demo-action/"]
+     *         "actions": ["http://example.org/api/actions/demo-action/"]
      *     }
      * }]
      * ```.
