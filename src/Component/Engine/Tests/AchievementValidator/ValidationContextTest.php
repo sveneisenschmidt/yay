@@ -13,10 +13,7 @@ use Component\Entity\Achievement\ActionDefinitionInterface;
 
 class ValidationContextTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function set_get_construct()
+    public function test_set_get_construct(): void
     {
         $context = new ValidationContext(
             $player = $this->createMock(PlayerInterface::class),
@@ -27,10 +24,7 @@ class ValidationContextTest extends TestCase
         $this->assertSame($achievementDefinition, $context->getAchievementDefinition());
     }
 
-    /**
-     * @test
-     */
-    public function get_personal_actions()
+    public function test_get_personal_actions(): void
     {
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getPersonalActions' => new ArrayCollection([]),
@@ -41,10 +35,7 @@ class ValidationContextTest extends TestCase
         $this->assertInstanceOf(PersonalActionCollection::class, $context->getPersonalActions());
     }
 
-    /**
-     * @test
-     */
-    public function get_filtered_personal_actions()
+    public function test_get_filtered_personal_actions(): void
     {
         $date = new \DateTime();
 

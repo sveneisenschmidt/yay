@@ -8,19 +8,13 @@ use Component\Webhook\Incoming\Processor\NullProcessor;
 
 class NullProcessorTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function set_get_name()
+    public function test_set_get_name(): void
     {
         $processor = new NullProcessor('test');
         $this->assertEquals('test', $processor->getName());
     }
 
-    /**
-     * @test
-     */
-    public function does_not_modify_request()
+    public function test_does_not_modify_request(): void
     {
         $request1 = $this->createMock(Request::class);
         $request2 = clone $request1;

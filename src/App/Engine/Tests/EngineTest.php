@@ -10,10 +10,7 @@ use App\Engine\Engine;
 
 class EngineTest extends WebTestCase
 {
-    /**
-     * @test
-     */
-    public function build()
+    public function test_build(): void
     {
         $builder = $this->getMockBuilder(ContainerBuilder::class)
             ->disableOriginalConstructor()
@@ -30,10 +27,7 @@ class EngineTest extends WebTestCase
         (new Engine())->build($builder);
     }
 
-    /**
-     * @test
-     */
-    public function get_container_extension()
+    public function test_get_container_extension(): void
     {
         $this->assertInstanceOf(
             EngineExtension::class,

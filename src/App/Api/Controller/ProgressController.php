@@ -102,14 +102,6 @@ class ProgressController extends Controller
      *     name="actions",
      *     converter="QueryString"
      * )
-     *
-     * @param Engine             $engine
-     * @param ResponseSerializer $serializer
-     * @param string             $player
-     * @param string|null        $action
-     * @param array              $actions
-     *
-     * @return Response
      */
     public function submitGetAction(
         Engine $engine,
@@ -220,15 +212,7 @@ class ProgressController extends Controller
      *     name="actions",
      *     converter="JsonField"
      * )
-     *
-     * @param Engine             $engine
-     * @param ResponseSerializer $serializer
-     * @param string             $username
-     * @param string|null        $action
-     * @param array              $actions
-     *
-     * @return Response
-     */
+    */
     public function submitPostAction(
         Engine $engine,
         ResponseSerializer $serializer,

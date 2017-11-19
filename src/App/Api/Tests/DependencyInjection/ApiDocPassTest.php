@@ -10,10 +10,7 @@ use App\Api\Formatter\MarkdownFormatter;
 
 class ApiDocPassTest extends WebTestCase
 {
-    /**
-     * @test
-     */
-    public function process()
+    public function test_process(): void
     {
         $definition = new ChildDefinition(\stdClass::class);
 

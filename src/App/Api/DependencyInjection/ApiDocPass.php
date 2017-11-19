@@ -9,7 +9,6 @@ use App\Api\Formatter\MarkdownFormatter;
 class ApiDocPass implements CompilerPassInterface
 {
     /**
-     * @param ContainerBuilder $container
      */
     public function process(ContainerBuilder $container)
     {

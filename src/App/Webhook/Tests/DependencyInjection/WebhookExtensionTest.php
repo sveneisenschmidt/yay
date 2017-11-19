@@ -8,10 +8,7 @@ use App\Webhook\DependencyInjection\WebhookExtension;
 
 class WebhookExtensionTest extends WebTestCase
 {
-    /**
-     * @test
-     */
-    public function load()
+    public function test_load(): void
     {
         $builder = $this->getMockBuilder(ContainerBuilder::class)
             ->setMethods(['getParameter'])

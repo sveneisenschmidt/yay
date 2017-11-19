@@ -8,10 +8,7 @@ use Component\Webhook\Outgoing\Processor\NullProcessor;
 
 class NullProcessorTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function does_not_modify_response()
+    public function test_does_not_modify_response(): void
     {
         $response1 = $this->createMock(Response::class);
         $response2 = clone $response1;

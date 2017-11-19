@@ -10,11 +10,6 @@ use Component\HttpFoundation\Request\ParamConverter\QueryStringConverter;
 class QueryStringConverterTest extends TestCase
 {
     /**
-     * @param string $converterName
-     * @param string $parameterName
-     * @param array  $options
-     *
-     * @return ParamConverter
      */
     public function createConfiguration(
         string $converterName = 'QueryString',
@@ -38,30 +33,21 @@ class QueryStringConverterTest extends TestCase
         return $configuration;
     }
 
-    /**
-     * @test
-     */
-    public function param_converter_is_supported(): void
+    public function test_param_converter_is_supported(): void
     {
         $configuration = $this->createConfiguration();
 
         $this->assertTrue((new QueryStringConverter())->supports($configuration));
     }
 
-    /**
-     * @test
-     */
-    public function param_converter_is_not_supported(): void
+    public function test_param_converter_is_not_supported(): void
     {
         $configuration = $this->createConfiguration('QueryString2');
 
         $this->assertFalse((new QueryStringConverter())->supports($configuration));
     }
 
-    /**
-     * @test
-     */
-    public function query_parameter_is_applied_as_attribute(): void
+    public function test_query_parameter_is_applied_as_attribute(): void
     {
         $configuration = $this->createConfiguration();
         $request = Request::create('/', 'GET', ['foo' => 'bar']);
@@ -70,10 +56,7 @@ class QueryStringConverterTest extends TestCase
         $this->assertEquals('bar', $request->attributes->get('foo'));
     }
 
-    /**
-     * @test
-     */
-    public function query_parameter_is_applied_as_attribute_with_field(): void
+    public function test_query_parameter_is_applied_as_attribute_with_field(): void
     {
         $configuration = $this->createConfiguration('HeaderField', 'foo', ['field' => 'baz']);
         $request = Request::create('/', 'GET', ['baz' => 'bar']);
@@ -82,10 +65,7 @@ class QueryStringConverterTest extends TestCase
         $this->assertEquals('bar', $request->attributes->get('foo'));
     }
 
-    /**
-     * @test
-     */
-    public function query_parameter_is_not_set(): void
+    public function test_query_parameter_is_not_set(): void
     {
         $configuration = $this->createConfiguration();
         $request = Request::create('/', 'GET');

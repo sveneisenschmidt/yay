@@ -8,7 +8,6 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 class JMSSerializerBundlePass implements CompilerPassInterface
 {
     /**
-     * @param ContainerBuilder $container
      */
     public function process(ContainerBuilder $container)
     {

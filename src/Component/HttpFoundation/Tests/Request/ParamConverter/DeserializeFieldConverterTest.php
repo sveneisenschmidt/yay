@@ -27,11 +27,6 @@ class DeserializeFieldConverterFixture
 class DeserializeFieldConverterTest extends TestCase
 {
     /**
-     * @param string $converterName
-     * @param string $parameterName
-     * @param array  $options
-     *
-     * @return ParamConverter
      */
     public function createConfiguration(
         string $converterName = 'DeserializeField',
@@ -55,18 +50,13 @@ class DeserializeFieldConverterTest extends TestCase
         return $configuration;
     }
 
-    /**
-     * @return SerializerInterface
-     */
+    /**/
     public function createSerializer(): SerializerInterface
     {
         return SerializerBuilder::create()->build();
     }
 
-    /**
-     * @test
-     */
-    public function param_converter_is_supported(): void
+    public function test_param_converter_is_supported(): void
     {
         $configuration = $this->createConfiguration();
         $serializer = $this->createSerializer();
@@ -74,10 +64,7 @@ class DeserializeFieldConverterTest extends TestCase
         $this->assertTrue((new DeserializeFieldConverter($serializer))->supports($configuration));
     }
 
-    /**
-     * @test
-     */
-    public function param_converter_is_not_supported(): void
+    public function test_param_converter_is_not_supported(): void
     {
         $configuration = $this->createConfiguration('DeserializeField2');
         $serializer = $this->createSerializer();
@@ -85,10 +72,7 @@ class DeserializeFieldConverterTest extends TestCase
         $this->assertFalse((new DeserializeFieldConverter($serializer))->supports($configuration));
     }
 
-    /**
-     * @test
-     */
-    public function object_is_deserialized_and_applied_as_attribute(): void
+    public function test_object_is_deserialized_and_applied_as_attribute(): void
     {
         $options = ['group' => 'test1', 'type' => DeserializeFieldConverterFixture::class];
         $configuration = $this->createConfiguration('DeserializeField', 'foo', $options);
@@ -100,10 +84,7 @@ class DeserializeFieldConverterTest extends TestCase
         $this->assertEquals('baz1', $request->attributes->get('foo')->bar1);
     }
 
-    /**
-     * @test
-     */
-    public function object_is_deserialized_with_different_group_and_applied_as_attribute(): void
+    public function test_object_is_deserialized_with_different_group_and_applied_as_attribute(): void
     {
         $options = ['group' => 'test2', 'type' => DeserializeFieldConverterFixture::class];
         $configuration = $this->createConfiguration('DeserializeField', 'foo', $options);
@@ -115,10 +96,7 @@ class DeserializeFieldConverterTest extends TestCase
         $this->assertEquals('baz2', $request->attributes->get('foo')->bar2);
     }
 
-    /**
-     * @test
-     */
-    public function object_is_not_set(): void
+    public function test_object_is_not_set(): void
     {
         $configuration = $this->createConfiguration();
         $serializer = $this->createSerializer();
@@ -128,10 +106,7 @@ class DeserializeFieldConverterTest extends TestCase
         $this->assertFalse($request->attributes->has('foo'));
     }
 
-    /**
-     * @test
-     */
-    public function object_is_deserialized_option_group_is_missing(): void
+    public function test_object_is_deserialized_option_group_is_missing(): void
     {
         $options = ['type' => DeserializeFieldConverterFixture::class];
         $configuration = $this->createConfiguration('DeserializeField', 'foo', $options);
@@ -142,10 +117,7 @@ class DeserializeFieldConverterTest extends TestCase
         $this->assertFalse($request->attributes->has('foo'));
     }
 
-    /**
-     * @test
-     */
-    public function object_is_deserialized_option_type_is_missing(): void
+    public function test_object_is_deserialized_option_type_is_missing(): void
     {
         $options = ['group' => 'test'];
         $configuration = $this->createConfiguration('DeserializeField', 'foo', $options);

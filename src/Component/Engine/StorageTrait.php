@@ -20,167 +20,98 @@ trait StorageTrait
      */
     protected $storage;
 
-    /**
-     * @param StorageInterface $storage
-     */
-    public function setStorage(StorageInterface $storage)
+    public function setStorage(StorageInterface $storage): void
     {
         $this->storage = $storage;
     }
 
-    /**
-     * @return StorageInterface
-     */
     public function getStorage(): StorageInterface
     {
         return $this->storage;
     }
 
-    /**
-     * @param int $id
-     *
-     * @return PlayerInterface|null
-     */
     public function findPlayer(int $id): ?PlayerInterface
     {
         return $this->getStorage()->findPlayer($id);
     }
 
-    /**
-     * @param PlayerInterface $player
-     */
-    public function savePlayer(PlayerInterface $player)
+    public function savePlayer(PlayerInterface $player): void
     {
-        return $this->getStorage()->savePlayer($player);
+        $this->getStorage()->savePlayer($player);
     }
 
-    /**
-     * @param array $criteria
-     *
-     * @return PlayerCollection
-     */
     public function findPlayerBy(array $criteria = []): PlayerCollection
     {
         return $this->getStorage()->findPlayerBy($criteria);
     }
 
-    /**
-     * @return PlayerCollection
-     */
     public function findPlayerAny(): PlayerCollection
     {
         return $this->findPlayerBy([]);
     }
 
-    /**
-     * @param array $criteria
-     *
-     * @return AchievementDefinitionCollection
-     */
     public function findAchievementDefinitionBy(array $criteria = []): AchievementDefinitionCollection
     {
         return $this->getStorage()->findAchievementDefinitionBy($criteria);
     }
 
-    /**
-     * @return AchievementDefinitionCollection
-     */
     public function findAchievementDefinitionAny(): AchievementDefinitionCollection
     {
         return $this->findAchievementDefinitionBy([]);
     }
 
-    /**
-     * @param AchievementDefinitionInterface $achievementDefinition
-     */
-    public function saveAchievementDefinition(AchievementDefinitionInterface $achievementDefinition)
+    public function saveAchievementDefinition(AchievementDefinitionInterface $achievementDefinition): void
     {
         $this->getStorage()->saveAchievementDefinition($achievementDefinition);
     }
 
-    /**
-     * @param array $criteria
-     *
-     * @return ActionDefinitionCollection
-     */
     public function findActionDefinitionBy(array $criteria = []): ActionDefinitionCollection
     {
         return $this->getStorage()->findActionDefinitionBy($criteria);
     }
 
-    /**
-     * @return ActionDefinitionCollection
-     */
     public function findActionDefinitionAny(): ActionDefinitionCollection
     {
         return $this->findActionDefinitionBy([]);
     }
 
-    /**
-     * @param ActionDefinitionInterface $actionDefinition
-     */
-    public function saveActionDefinition(ActionDefinitionInterface $actionDefinition)
+    public function saveActionDefinition(ActionDefinitionInterface $actionDefinition): void
     {
         $this->getStorage()->saveActionDefinition($actionDefinition);
     }
 
-    /**
-     * @param PersonalActionInterface $personalAction
-     */
-    public function savePersonalAction(PersonalActionInterface $personalAction)
+    public function savePersonalAction(PersonalActionInterface $personalAction): void
     {
         $this->getStorage()->savePersonalAction($personalAction);
     }
 
-    /**
-     * @param PersonalAchievementInterface $personalAchievement
-     */
-    public function savePersonalAchievement(PersonalAchievementInterface $personalAchievement)
+    public function savePersonalAchievement(PersonalAchievementInterface $personalAchievement): void
     {
         $this->getStorage()->savePersonalAchievement($personalAchievement);
     }
 
-    /**
-     * @param PlayerInterface $player
-     */
-    public function refreshPlayer(PlayerInterface $player)
+    public function refreshPlayer(PlayerInterface $player): void
     {
         $this->getStorage()->refreshPlayer($player);
     }
 
-    /**
-     * @param string $name
-     *
-     * @return LevelInterface|null
-     */
     public function findLevel(string $name): ?LevelInterface
     {
         return $this->getStorage()->findLevel($name);
     }
 
-    /**
-     * @param array $criteria
-     *
-     * @return LevelCollection
-     */
     public function findLevelBy(array $criteria = []): LevelCollection
     {
         return $this->getStorage()->findLevelBy($criteria);
     }
 
-    /**
-     * @return LevelCollection
-     */
     public function findLevelAny(): LevelCollection
     {
         return $this->findLevelBy([]);
     }
 
-    /**
-     * @param LevelInterface $level
-     */
-    public function saveLevel(LevelInterface $level)
+    public function saveLevel(LevelInterface $level): void
     {
-        return $this->getStorage()->saveLevel($level);
+        $this->getStorage()->saveLevel($level);
     }
 }

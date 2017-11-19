@@ -17,18 +17,13 @@ class DeserializeFieldConverter implements ParamConverterInterface
 
     /**
      * DeserializeFieldConverter constructor.
-     *
-     * @param SerializerInterface $serializer
-     */
+    */
     public function __construct(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
     }
 
     /**
-     * @param ParamConverter $configuration
-     *
-     * @return bool
      */
     public function supports(ParamConverter $configuration): bool
     {
@@ -36,8 +31,6 @@ class DeserializeFieldConverter implements ParamConverterInterface
     }
 
     /**
-     * @param Request        $request
-     * @param ParamConverter $configuration
      */
     public function apply(Request $request, ParamConverter $configuration): void
     {

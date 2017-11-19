@@ -53,12 +53,7 @@ class LeaderboardController extends Controller
      *         200 = "Returned when successful"
      *     }
      * )
-     *
-     * @param Engine             $engine
-     * @param ResponseSerializer $serializer
-     *
-     * @return Response
-     */
+    */
     public function indexAction(
         Engine $engine,
         ResponseSerializer $serializer

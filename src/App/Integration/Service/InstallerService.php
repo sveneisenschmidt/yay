@@ -14,24 +14,18 @@ use Component\Entity\Achievement\Level;
 class InstallerService
 {
     /**
-     * @param Filesystem
      */
     protected $filesystem;
 
     /**
-     * @param StorageInterface
      */
     protected $storage;
 
     /**
-     * @param ConfigurationTransformer
      */
     protected $transformer;
 
     /**
-     * @param Filesystem               $filesystem
-     * @param StorageInterface         $storage
-     * @param ConfigurationTransformer $transformer
      */
     public function __construct(
         Filesystem $filesystem,
@@ -44,9 +38,6 @@ class InstallerService
     }
 
     /**
-     * @param string $name
-     * @param string $sourceFile
-     * @param string $targetDirectory
      */
     public function install(
         string $name,
@@ -61,20 +52,14 @@ class InstallerService
     }
 
     /**
-     * @param array $config
-     *
-     * @return array
-     */
+    */
     public function transformFromConfig(array $config): array
     {
         return $this->transformer->transformFromUnprocessedConfig($config);
     }
 
     /**
-     * @param string $sourceFile
-     *
-     * @return array
-     */
+    */
     public function loadConfig(string $sourceFile): ?array
     {
         if (!$this->filesystem->exists($sourceFile)) {
@@ -85,18 +70,13 @@ class InstallerService
     }
 
     /**
-     * @param string $file
-     *
-     * @return array
-     */
+    */
     public function loadEntities(array $data): array
     {
         return (new NativeLoader())->loadData($data)->getObjects();
     }
 
     /**
-     * @param array  $data
-     * @param string $targetFile
      *
      * @throws RuntimeException
      */
@@ -107,7 +87,6 @@ class InstallerService
     }
 
     /**
-     * @param array $data
      */
     public function installEntities(array $data): void
     {
@@ -133,8 +112,6 @@ class InstallerService
     }
 
     /**
-     * @param string $name
-     * @param string $targetDirectory
      */
     public function uninstall(string $name, string $targetDirectory): void
     {
@@ -144,7 +121,6 @@ class InstallerService
     }
 
     /**
-     * @param string $targetFile
      *
      * @throws RuntimeException
      */
@@ -156,8 +132,6 @@ class InstallerService
     }
 
     /**
-     * @param string $name
-     * @param string $sourceFile
      *
      * @throws \Exception
      */

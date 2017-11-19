@@ -9,10 +9,8 @@ class PlayerControllerTest extends WebTestCase
 {
     /**
      * Provides faked player data.
-     *
-     * @return array
-     */
-    public function providePlayerData()
+    */
+    public function providePlayerData(): array
     {
         $faker = FakerFactory::create();
 
@@ -29,7 +27,6 @@ class PlayerControllerTest extends WebTestCase
     }
 
     /**
-     * @param array $data
      */
     public function assertPlayerData(array $data)
     {
@@ -42,11 +39,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertArraySubsetHasKey('links', 'personal_actions', $data);
     }
 
-    /**
-     * @test
-     * @testdox Retrieve all players
-     */
-    public function Player_IndexAction()
+    public function test_Player_IndexAction(): void
     {
         $client = static::createClient();
 
@@ -63,11 +56,7 @@ class PlayerControllerTest extends WebTestCase
         }
     }
 
-    /**
-     * @test
-     * @testdox Retrieve a single player
-     */
-    public function Player_ShowAction()
+    public function test_Player_ShowAction(): void
     {
         $client = static::createClient();
 
@@ -81,11 +70,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertPlayerData($data);
     }
 
-    /**
-     * @test
-     * @testdox Could not find a single player
-     */
-    public function Player_ShowAction_NotFound()
+    public function test_Player_ShowAction_NotFound(): void
     {
         $client = static::createClient();
 
@@ -96,11 +81,9 @@ class PlayerControllerTest extends WebTestCase
     }
 
     /**
-     * @test
      * @dataProvider providePlayerData
-     * @testdox Create a new player
      */
-    public function Player_CreateAction(array $data)
+    public function test_Player_CreateAction(array $data): void
     {
         $client = static::createClient();
 
@@ -115,11 +98,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertPlayerData($data);
     }
 
-    /**
-     * @test
-     * @testdox Could not create a new player
-     */
-    public function Player_CreateAction_UnprocessableEntity()
+    public function test_Player_CreateAction_UnprocessableEntity(): void
     {
         $client = static::createClient();
 
@@ -130,11 +109,9 @@ class PlayerControllerTest extends WebTestCase
     }
 
     /**
-     * @test
      * @dataProvider providePlayerData
-     * @testdox Create a new player
      */
-    public function Player_CreateAction_Exception_NonUniqueUsername(array $data)
+    public function test_Player_CreateAction_Exception_NonUniqueUsername(array $data): void
     {
         $client = static::createClient();
 
@@ -149,11 +126,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertTrue($response->isServerError());
     }
 
-    /**
-     * @test
-     * @testdox Retrieve a single player's personal achievements
-     */
-    public function Player_PersonalAchievements_IndexAction()
+    public function test_Player_PersonalAchievements_IndexAction(): void
     {
         $client = static::createClient();
 
@@ -175,11 +148,7 @@ class PlayerControllerTest extends WebTestCase
         }
     }
 
-    /**
-     * @test
-     * @testdox Could not find a single player's  personal achievements
-     */
-    public function Player_PersonalAchievements_IndexAction_NotFound()
+    public function test_Player_PersonalAchievements_IndexAction_NotFound(): void
     {
         $client = static::createClient();
 
@@ -189,11 +158,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertTrue($response->isNotFound());
     }
 
-    /**
-     * @test
-     * @testdox Retrieve a single player's personal action
-     */
-    public function Player_PersonalActions_IndexAction()
+    public function test_Player_PersonalActions_IndexAction(): void
     {
         $client = static::createClient();
 
@@ -214,11 +179,7 @@ class PlayerControllerTest extends WebTestCase
         }
     }
 
-    /**
-     * @test
-     * @testdox Could not find a single player's  personal achievements
-     */
-    public function Player_PersonalActions_IndexAction_NotFound()
+    public function test_Player_PersonalActions_IndexAction_NotFound(): void
     {
         $client = static::createClient();
 

@@ -10,7 +10,6 @@ use Component\Webhook\Incoming\ProcessorCollection;
 class IncomingProcessorPass implements CompilerPassInterface
 {
     /**
-     * @param ContainerBuilder $container
      */
     public function process(ContainerBuilder $container)
     {

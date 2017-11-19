@@ -10,7 +10,6 @@ use Component\Engine\AchievementValidatorCollection;
 class AchievementValidatorPass implements CompilerPassInterface
 {
     /**
-     * @param ContainerBuilder $container
      */
     public function process(ContainerBuilder $container)
     {

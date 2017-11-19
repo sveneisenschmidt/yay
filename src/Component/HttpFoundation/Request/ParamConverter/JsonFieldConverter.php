@@ -9,9 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 class JsonFieldConverter implements ParamConverterInterface
 {
     /**
-     * @param ParamConverter $configuration
-     *
-     * @return bool
      */
     public function supports(ParamConverter $configuration): bool
     {
@@ -19,8 +16,6 @@ class JsonFieldConverter implements ParamConverterInterface
     }
 
     /**
-     * @param Request        $request
-     * @param ParamConverter $configuration
      */
     public function apply(Request $request, ParamConverter $configuration): void
     {

@@ -13,10 +13,7 @@ use Component\Entity\Achievement\Level;
 
 class ConfigurationTransformerTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function transform_from_file(): void
+    public function test_transform_from_file(): void
     {
         $file = sprintf('%s/Fixture/%s.yml', __DIR__, __FUNCTION__);
         $config = Yaml::parse(file_get_contents($file));

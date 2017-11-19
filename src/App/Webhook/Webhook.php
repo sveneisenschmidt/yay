@@ -12,9 +12,6 @@ use Component\Webhook\Outgoing\ProcessorInterface as OutgoingProcessorInterface;
 
 class Webhook extends Bundle
 {
-    /**
-     * @param ContainerBuilder $container
-     */
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new IncomingProcessorPass());
@@ -26,10 +23,7 @@ class Webhook extends Bundle
             ->addTag('yay.webhook_outgoing');
     }
 
-    /**
-     * @return WebhookExtension
-     */
-    public function getContainerExtension()
+    public function getContainerExtension(): WebhookExtension
     {
         return new WebhookExtension();
     }

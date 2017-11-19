@@ -9,17 +9,14 @@ use Nelmio\Alice\Loader\NativeLoader;
 
 abstract class WebTestCase extends BaseWebTestCase
 {
-    /**
-     * @setup
-     */
-    public function setUp()
+    public function setUp(): void
     {
         $client = static::createClient();
         $container = $client->getContainer();
 
         $directory = $container->get('kernel')->locateResource('@Api');
-        $fixture1 = sprintf('%s/Resources/fixtures/Test.%s.yml', $directory, $this->getName());
-        $fixture2 = sprintf('%s/Resources/fixtures/Test.%s.yml', $directory, 'Default');
+        $fixture1 = sprintf('%s/Resources/fixtures/%s.yml', $directory, $this->getName());
+        $fixture2 = sprintf('%s/Resources/fixtures/%s.yml', $directory, 'test_default');
 
         $manager = $container
             ->get('doctrine')
@@ -35,10 +32,7 @@ abstract class WebTestCase extends BaseWebTestCase
         $manager->flush();
     }
 
-    /**
-     * @teardown
-     */
-    public function tearDown()
+    public function tearDown(): void
     {
         $manager = static::createClient()
             ->getContainer()
@@ -49,18 +43,14 @@ abstract class WebTestCase extends BaseWebTestCase
         $purger->purge();
     }
 
-    /**
-     * Asserts that an array subset has a specified key.
-     *
-     * @param mixed             $subsetKey
-     * @param mixed             $key
-     * @param array|ArrayAccess $array
-     * @param string            $message
-     */
-    public function assertArraySubsetHasKey($subsetKey, $key, $array, $message = '')
-    {
-        parent::assertArrayHasKey($subsetKey, $array, $message = '');
+    public function assertArraySubsetHasKey(
+        string $subsetKey,
+        string $key,
+        array $array,
+        string $message = ''
+    ): void {
+        parent::assertArrayHasKey($subsetKey, $array, $message);
         $subset = $array[$subsetKey];
-        parent::assertArrayHasKey($key, $subset, $message = '');
+        parent::assertArrayHasKey($key, $subset, $message);
     }
 }

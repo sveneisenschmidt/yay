@@ -7,71 +7,27 @@ use Component\Entity\Achievement\AchievementDefinitionInterface;
 
 interface PlayerInterface
 {
-    /**
-     * @return string
-     */
     public function getName(): string;
 
-    /**
-     * @return mixed
-     */
     public function getUsername(): string;
 
-    /**
-     * @param string $email
-     *
-     * @return mixed
-     */
     public function getEmail(): string;
 
-    /**
-     * @param string $name
-     *
-     * @return mixed
-     */
-    public function setName(string $name);
+    public function setName(string $name): void;
 
-    /**
-     * @param string $username
-     *
-     * @return mixed
-     */
-    public function setUsername(string $username);
+    public function setUsername(string $username): void;
 
-    /**
-     * @param string $email
-     *
-     * @return mixed
-     */
-    public function setEmail(string $email);
+    public function setEmail(string $email): void;
 
-    /**
-     * @return CollectionInterface
-     */
     public function getPersonalActions(): CollectionInterface;
 
-    /**
-     * @return CollectionInterface
-     */
     public function getPersonalAchievements(): CollectionInterface;
 
-    /**
-     * @return bool
-     */
     public function hasPersonalAchievement(AchievementDefinitionInterface $achievementDefinition): bool;
 
-    /**
-     * @return int
-     */
     public function getScore(): int;
 
-    /**
-     * @return int
-     */
     public function refreshScore(): int;
 
-    /**
-     * @return string
-     */
     public function getImageUrl(): string;
 }

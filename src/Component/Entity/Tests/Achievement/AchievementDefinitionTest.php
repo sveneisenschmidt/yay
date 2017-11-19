@@ -10,15 +10,12 @@ use Component\Entity\Achievement\ActionDefinitionCollection;
 
 class AchievementDefinitionTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = FakerFactory::create();
     }
 
-    /**
-     * @test
-     */
-    public function set_get_scalar()
+    public function test_set_get_scalar(): void
     {
         $instance = new AchievementDefinition($name = $this->faker->word);
         $this->assertEquals($name, $instance->getName());
@@ -32,20 +29,14 @@ class AchievementDefinitionTest extends TestCase
         $this->assertEquals($description, $instance->getDescription());
     }
 
-    /**
-     * @test
-     */
-    public function get_action_definitions()
+    public function test_get_action_definitions(): void
     {
         $instance = new AchievementDefinition($name = $this->faker->word);
         $this->assertInstanceOf(ActionDefinitionCollection::class, $instance->getActionDefinitions());
         $this->assertInstanceOf(\DateTime::class, $instance->getCreatedAt());
     }
 
-    /**
-     * @test
-     */
-    public function has_add_action_definition()
+    public function test_has_add_action_definition(): void
     {
         $instance = new AchievementDefinition($name1 = $this->faker->word);
         $actionDefinition = new ActionDefinition($name2 = $this->faker->word);
