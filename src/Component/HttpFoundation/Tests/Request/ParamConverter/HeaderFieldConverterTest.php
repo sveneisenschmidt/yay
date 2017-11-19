@@ -9,8 +9,6 @@ use Component\HttpFoundation\Request\ParamConverter\HeaderFieldConverter;
 
 class HeaderFieldConverterTest extends TestCase
 {
-    /**
-     */
     public function createConfiguration(
         string $converterName = 'HeaderField',
         string $parameterName = 'foo',

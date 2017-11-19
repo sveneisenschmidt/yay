@@ -9,8 +9,6 @@ use Component\Webhook\Outgoing\ProcessorCollection;
 
 class OutgoingProcessorPass implements CompilerPassInterface
 {
-    /**
-     */
     public function process(ContainerBuilder $container)
     {
         $definition = $container->findDefinition(ProcessorCollection::class);

@@ -9,8 +9,6 @@ use Component\Engine\AchievementValidatorCollection;
 
 class AchievementValidatorPass implements CompilerPassInterface
 {
-    /**
-     */
     public function process(ContainerBuilder $container)
     {
         $definition = $container->findDefinition(AchievementValidatorCollection::class);

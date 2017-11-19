@@ -10,8 +10,6 @@ use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 
 class WebhookExtension extends Extension
 {
-    /**
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader(

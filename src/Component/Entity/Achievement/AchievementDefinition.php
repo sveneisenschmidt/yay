@@ -43,7 +43,7 @@ class AchievementDefinition implements AchievementDefinitionInterface
 
     /**
      * AchievementDefinition constructor.
-    */
+     */
     public function __construct(string $name, \DateTime $createdAt = null)
     {
         $this->name = $name;
@@ -66,8 +66,6 @@ class AchievementDefinition implements AchievementDefinitionInterface
         return $this->createdAt;
     }
 
-    /**
-     */
     public function addActionDefinition(ActionDefinitionInterface $actionDefinition)
     {
         if (!$this->hasActionDefinition($actionDefinition)) {
@@ -75,8 +73,6 @@ class AchievementDefinition implements AchievementDefinitionInterface
         }
     }
 
-    /**
-     */
     public function hasActionDefinition(ActionDefinitionInterface $actionDefinition)
     {
         $callback = function ($index, ActionDefinitionInterface $item) use ($actionDefinition) {
@@ -91,8 +87,6 @@ class AchievementDefinition implements AchievementDefinitionInterface
         return $this->label;
     }
 
-    /**
-     */
     public function setLabel(string $label): void
     {
         $this->label = $label;
@@ -103,8 +97,6 @@ class AchievementDefinition implements AchievementDefinitionInterface
         return $this->description;
     }
 
-    /**
-     */
     public function setDescription(string $description): void
     {
         $this->description = $description;
@@ -117,7 +109,7 @@ class AchievementDefinition implements AchievementDefinitionInterface
 
     /**
      * Set the {@see $points} property.
-    */
+     */
     public function setPoints(string $points): void
     {
         $this->points = $points;

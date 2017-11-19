@@ -9,8 +9,6 @@ use Component\HttpFoundation\Request\ParamConverter\QueryStringConverter;
 
 class QueryStringConverterTest extends TestCase
 {
-    /**
-     */
     public function createConfiguration(
         string $converterName = 'QueryString',
         string $parameterName = 'foo',

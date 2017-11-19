@@ -2,7 +2,6 @@
 
 namespace App\Api\Test;
 
-use ArrayAccess;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Nelmio\Alice\Loader\NativeLoader;

@@ -88,7 +88,7 @@ class ActionController extends Controller
      *         404 = "Returned when the action is not found"
      *     }
      * )
-    */
+     */
     public function showAction(
         Engine $engine,
         ResponseSerializer $serializer,

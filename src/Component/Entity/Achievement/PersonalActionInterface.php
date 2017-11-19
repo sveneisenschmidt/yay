@@ -6,8 +6,6 @@ use Component\Entity\PlayerInterface;
 
 interface PersonalActionInterface
 {
-    /**
-     */
     public function setPlayer(PlayerInterface $player);
 
     /**/
@@ -19,12 +17,8 @@ interface PersonalActionInterface
     /**/
     public function getActionDefinition(): ActionDefinitionInterface;
 
-    /**
-     */
     public function setActionDefinition(ActionDefinitionInterface $actionDefinition);
 
-    /**
-     */
     public function setAchievedAt(\DateTime $achievedAt);
 
     /**/

@@ -27,8 +27,6 @@ class ValidateCommand extends ContainerAwareCommand
             );
     }
 
-    /**
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $name = $input->getArgument('name');

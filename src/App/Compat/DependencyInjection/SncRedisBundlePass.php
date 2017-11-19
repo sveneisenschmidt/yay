@@ -7,8 +7,6 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 class SncRedisBundlePass implements CompilerPassInterface
 {
-    /**
-     */
     public function process(ContainerBuilder $container)
     {
         $definitions = [

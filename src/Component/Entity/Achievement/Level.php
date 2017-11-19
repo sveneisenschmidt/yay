@@ -56,8 +56,6 @@ class Level implements LevelInterface
         return $this->description;
     }
 
-    /**
-     */
     public function setDescription(string $description): void
     {
         $this->description = $description;

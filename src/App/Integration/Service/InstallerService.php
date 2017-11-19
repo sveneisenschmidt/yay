@@ -13,20 +13,12 @@ use Component\Entity\Achievement\Level;
 
 class InstallerService
 {
-    /**
-     */
     protected $filesystem;
 
-    /**
-     */
     protected $storage;
 
-    /**
-     */
     protected $transformer;
 
-    /**
-     */
     public function __construct(
         Filesystem $filesystem,
         StorageInterface $storage,
@@ -37,8 +29,6 @@ class InstallerService
         $this->transformer = $transformer;
     }
 
-    /**
-     */
     public function install(
         string $name,
         string $sourceFile,
@@ -51,15 +41,11 @@ class InstallerService
         $this->installEntities($configs['entities.yml']);
     }
 
-    /**
-    */
     public function transformFromConfig(array $config): array
     {
         return $this->transformer->transformFromUnprocessedConfig($config);
     }
 
-    /**
-    */
     public function loadConfig(string $sourceFile): ?array
     {
         if (!$this->filesystem->exists($sourceFile)) {
@@ -69,15 +55,12 @@ class InstallerService
         return Yaml::parse(file_get_contents($sourceFile));
     }
 
-    /**
-    */
     public function loadEntities(array $data): array
     {
         return (new NativeLoader())->loadData($data)->getObjects();
     }
 
     /**
-     *
      * @throws RuntimeException
      */
     public function installServices(array $data, string $targetFile): void
@@ -86,8 +69,6 @@ class InstallerService
         $this->filesystem->dumpFile($targetFile, $contents);
     }
 
-    /**
-     */
     public function installEntities(array $data): void
     {
         foreach ($this->loadEntities($data) as $object) {
@@ -111,8 +92,6 @@ class InstallerService
         }
     }
 
-    /**
-     */
     public function uninstall(string $name, string $targetDirectory): void
     {
         $this->uninstallService(
@@ -121,7 +100,6 @@ class InstallerService
     }
 
     /**
-     *
      * @throws RuntimeException
      */
     public function uninstallService(string $targetFile): void
@@ -132,7 +110,6 @@ class InstallerService
     }
 
     /**
-     *
      * @throws \Exception
      */
     public function validate(

@@ -28,7 +28,7 @@ class PersonalAchievement implements PersonalAchievementInterface
 
     /**
      * AchievementPersonalAction constructor.
-    */
+     */
     public function __construct(
         PlayerInterface $player,
         AchievementDefinitionInterface $achievementDefinition,

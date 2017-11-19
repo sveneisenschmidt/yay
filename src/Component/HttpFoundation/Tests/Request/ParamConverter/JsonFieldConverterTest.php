@@ -9,8 +9,6 @@ use Component\HttpFoundation\Request\ParamConverter\JsonFieldConverter;
 
 class JsonFieldConverterTest extends TestCase
 {
-    /**
-     */
     public function createConfiguration(
         string $converterName = 'JsonField',
         string $parameterName = 'foo',

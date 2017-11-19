@@ -17,21 +17,17 @@ class DeserializeFieldConverter implements ParamConverterInterface
 
     /**
      * DeserializeFieldConverter constructor.
-    */
+     */
     public function __construct(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
     }
 
-    /**
-     */
     public function supports(ParamConverter $configuration): bool
     {
         return 'DeserializeField' === $configuration->getConverter();
     }
 
-    /**
-     */
     public function apply(Request $request, ParamConverter $configuration): void
     {
         $options = $configuration->getOptions();

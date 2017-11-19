@@ -8,15 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HeaderFieldConverter implements ParamConverterInterface
 {
-    /**
-     */
     public function supports(ParamConverter $configuration): bool
     {
         return 'HeaderField' === $configuration->getConverter();
     }
 
-    /**
-     */
     public function apply(Request $request, ParamConverter $configuration): void
     {
         $options = $configuration->getOptions();
