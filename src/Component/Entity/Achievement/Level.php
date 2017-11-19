@@ -4,19 +4,19 @@ namespace Component\Entity\Achievement;
 
 class Level implements LevelInterface
 {
-    /* @var string */
+    /** @var string */
     protected $name;
 
-    /* @var string */
+    /** @var string */
     protected $label = '';
 
-    /* @var string */
+    /** @var string */
     protected $description = '';
 
-    /* @var int */
+    /** @var int */
     protected $level;
 
-    /* @var int */
+    /** @var int */
     protected $points;
 
     public function __construct(string $name, int $level, int $points)

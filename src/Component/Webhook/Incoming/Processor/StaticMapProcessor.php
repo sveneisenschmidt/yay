@@ -7,13 +7,13 @@ use Component\Webhook\Incoming\ProcessorInterface;
 
 class StaticMapProcessor implements ProcessorInterface
 {
-    /* @var string */
+    /** @var string */
     protected $name;
 
-    /* @var string */
+    /** @var string */
     protected $key;
 
-    /* @var array */
+    /** @var array */
     protected $map;
 
     public function __construct(string $name, string $key, array $map)

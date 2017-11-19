@@ -7,10 +7,10 @@ use Component\Webhook\Incoming\ProcessorInterface;
 
 class ChainProcessor implements ProcessorInterface
 {
-    /* @var string */
+    /** @var string */
     protected $name;
 
-    /* @var array|ProcessorInterface[] */
+    /** @var array|ProcessorInterface[] */
     protected $processors;
 
     public function __construct(string $name, array $processors = [])

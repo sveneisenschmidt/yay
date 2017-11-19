@@ -6,19 +6,19 @@ use Doctrine\Common\Collections\Collection as CollectionInterface;
 
 class AchievementDefinition implements AchievementDefinitionInterface
 {
-    /* @var string */
+    /** @var string */
     protected $name;
 
-    /* @var string */
+    /** @var string */
     protected $label = '';
 
-    /* @var int */
+    /** @var int */
     protected $points;
 
-    /* @var string */
+    /** @var string */
     protected $description = '';
 
-    /* @var \DateTime */
+    /** @var \DateTime */
     protected $createdAt;
 
     /**

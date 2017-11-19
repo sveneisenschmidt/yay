@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DeserializeFieldConverter implements ParamConverterInterface
 {
-    /* @var SerializerInterface */
+    /** @var SerializerInterface */
     protected $serializer;
 
     public function __construct(SerializerInterface $serializer)

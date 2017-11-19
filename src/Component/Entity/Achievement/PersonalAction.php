@@ -6,16 +6,16 @@ use Component\Entity\PlayerInterface;
 
 class PersonalAction implements PersonalActionInterface
 {
-    /* @var int */
+    /** @var int */
     protected $id;
 
-    /* @var \DateTime */
+    /** @var \DateTime */
     protected $achievedAt;
 
-    /* @var ActionDefinitionInterface */
+    /** @var ActionDefinitionInterface */
     protected $actionDefinition;
 
-    /* @var PlayerInterface */
+    /** @var PlayerInterface */
     protected $player;
     public function __construct(
         PlayerInterface $player,

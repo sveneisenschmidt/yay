@@ -58,7 +58,7 @@ class InstallerServiceTest extends TestCase
         $installer->installServices($sourceFile, $targetFile);
     }
 
-    /* @expectedException \RuntimeException */
+    /** @expectedException \RuntimeException */
     public function test_load_config(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
