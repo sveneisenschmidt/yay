@@ -32,10 +32,12 @@
         <whitelist>
             <directory>src</directory>
             <exclude>
-                <directory>src/App/*/Formatter</directory>
-                <directory>src/App/*/Resources</directory>
-                <directory>src/App/*/Test</directory>
-                <directory>src/App/Compat/*</directory>
+                <file>src/App/Kernel.php</file>
+                <directory>src/*/*/Formatter</directory>
+                <directory>src/*/*/Resources</directory>
+                <directory>src/*/*/Tests</directory>
+                <directory>src/*/*/Test</directory>
+                <directory>src/App/Compat</directory>
             </exclude>
         </whitelist>
     </filter>
