@@ -129,8 +129,6 @@ class LinkListener
         ]);
     }
 
-    /**
-     */
     public function handlePersonalAction(GenericSerializationVisitor $visitor, PersonalActionInterface $personalAction)
     {
         $visitor->setData('links', [

@@ -26,7 +26,7 @@ class ActionDefinition implements ActionDefinitionInterface
 
     /**
      * ActionDefinition constructor.
-    */
+     */
     public function __construct(string $name)
     {
         $this->personalActions = new PersonalActionCollection();
@@ -43,8 +43,6 @@ class ActionDefinition implements ActionDefinitionInterface
         return $this->label;
     }
 
-    /**
-     */
     public function setLabel(string $label): void
     {
         $this->label = $label;
@@ -55,8 +53,6 @@ class ActionDefinition implements ActionDefinitionInterface
         return $this->description;
     }
 
-    /**
-     */
     public function setDescription(string $description): void
     {
         $this->description = $description;

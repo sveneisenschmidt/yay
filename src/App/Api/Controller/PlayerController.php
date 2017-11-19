@@ -156,7 +156,7 @@ class PlayerController extends Controller
      *     options={"type"="Component\Entity\Player", "group"="player.create"},
      *     converter="DeserializeField"
      * )
-    */
+     */
     public function createAction(
         Engine $engine,
         EntityValidator $validator,
@@ -293,7 +293,7 @@ class PlayerController extends Controller
      *         404 = "Returned when the player is not found"
      *     }
      * )
-    */
+     */
     public function indexPersonalActionsAction(
         Engine $engine,
         ResponseSerializer $serializer,

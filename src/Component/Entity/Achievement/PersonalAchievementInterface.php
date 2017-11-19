@@ -6,8 +6,6 @@ use Component\Entity\PlayerInterface;
 
 interface PersonalAchievementInterface
 {
-    /**
-     */
     public function setAchievementDefinition(AchievementDefinitionInterface $achievementDefinition);
 
     /**/

@@ -28,7 +28,7 @@ class PersonalAction implements PersonalActionInterface
 
     /**
      * AchievementPersonalAction constructor.
-    */
+     */
     public function __construct(
         PlayerInterface $player,
         ActionDefinitionInterface $actionDefinition,

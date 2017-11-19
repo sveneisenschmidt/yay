@@ -15,16 +15,12 @@ use Component\Webhook\Outgoing\Processor\NullProcessor as OutgoingNullProcessor;
 
 class ConfigurationTransformer
 {
-    /**
-     */
     public function __construct(Processor $processor, Configuration $configuration)
     {
         $this->processor = $processor;
         $this->configuration = $configuration;
     }
 
-    /**
-    */
     public function transformFromUnprocessedConfig(array $unprocessedConfig): array
     {
         $processedConfig = $this->processor->processConfiguration($this->configuration, $unprocessedConfig);
@@ -33,8 +29,6 @@ class ConfigurationTransformer
         return $transformedConfigs;
     }
 
-    /**
-    */
     public function transformFromProcessedConfig(array $processedConfig): array
     {
         return [
@@ -43,8 +37,6 @@ class ConfigurationTransformer
         ];
     }
 
-    /**
-    */
     public function transformToEntities(array $processedConfig): array
     {
         $entities = [];
@@ -91,8 +83,6 @@ class ConfigurationTransformer
         return $entities;
     }
 
-    /**
-    */
     public function transformToServices(array $processedConfig): array
     {
         $services = [

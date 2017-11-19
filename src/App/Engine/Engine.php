@@ -10,8 +10,6 @@ use Component\Engine\AchievementValidatorInterface;
 
 class Engine extends Bundle
 {
-    /**
-     */
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new AchievementValidatorPass());

@@ -26,8 +26,6 @@ class DeserializeFieldConverterFixture
 
 class DeserializeFieldConverterTest extends TestCase
 {
-    /**
-     */
     public function createConfiguration(
         string $converterName = 'DeserializeField',
         string $parameterName = 'foo',

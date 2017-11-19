@@ -9,7 +9,7 @@ class PlayerControllerTest extends WebTestCase
 {
     /**
      * Provides faked player data.
-    */
+     */
     public function providePlayerData(): array
     {
         $faker = FakerFactory::create();
@@ -26,8 +26,6 @@ class PlayerControllerTest extends WebTestCase
         ];
     }
 
-    /**
-     */
     public function assertPlayerData(array $data)
     {
         $this->assertArrayHasKey('name', $data);

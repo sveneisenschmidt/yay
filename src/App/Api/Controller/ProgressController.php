@@ -212,7 +212,7 @@ class ProgressController extends Controller
      *     name="actions",
      *     converter="JsonField"
      * )
-    */
+     */
     public function submitPostAction(
         Engine $engine,
         ResponseSerializer $serializer,
