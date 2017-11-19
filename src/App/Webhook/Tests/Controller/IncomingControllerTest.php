@@ -6,10 +6,7 @@ use App\Webhook\Test\WebTestCase;
 
 class IncomingControllerTest extends WebTestCase
 {
-    /**
-     * @test
-     */
-    public function Incoming_SubmitPostAction_Chain_Processor()
+    public function test_Incoming_SubmitPostAction_Chain_Processor(): void
     {
         $client = static::createClient();
 
@@ -23,10 +20,7 @@ class IncomingControllerTest extends WebTestCase
         $this->assertEquals(0, $response->headers->get('X-Achievements-Granted-Count'));
     }
 
-    /**
-     * @test
-     */
-    public function Incoming_SubmitPostAction_Chain_Processor_Many()
+    public function test_Incoming_SubmitPostAction_Chain_Processor_Many(): void
     {
         $client = static::createClient();
 
@@ -65,10 +59,7 @@ class IncomingControllerTest extends WebTestCase
         $this->assertEquals(1, $response->headers->get('X-Achievements-Granted-Count'));
     }
 
-    /**
-     * @test
-     */
-    public function Incoming_SubmitPostAction_Valid_Processor()
+    public function test_Incoming_SubmitPostAction_Valid_Processor(): void
     {
         $client = static::createClient();
 
@@ -85,10 +76,7 @@ class IncomingControllerTest extends WebTestCase
         $this->assertEquals(0, $response->headers->get('X-Achievements-Granted-Count'));
     }
 
-    /**
-     * @test
-     */
-    public function Incoming_SubmitPostAction_Invalid_Processor()
+    public function test_Incoming_SubmitPostAction_Invalid_Processor(): void
     {
         $client = static::createClient();
 
@@ -101,10 +89,7 @@ class IncomingControllerTest extends WebTestCase
         $this->assertTrue($response->isNotFound());
     }
 
-    /**
-     * @test
-     */
-    public function Incoming_SubmitPostAction_Invalid_Processor_No_Player()
+    public function test_Incoming_SubmitPostAction_Invalid_Processor_No_Player(): void
     {
         $client = static::createClient();
 
@@ -117,10 +102,7 @@ class IncomingControllerTest extends WebTestCase
         $this->assertTrue($response->isNotFound());
     }
 
-    /**
-     * @test
-     */
-    public function Incoming_SubmitPostAction_Invalid_Processor_No_Action()
+    public function test_Incoming_SubmitPostAction_Invalid_Processor_No_Action(): void
     {
         $client = static::createClient();
 
@@ -133,10 +115,7 @@ class IncomingControllerTest extends WebTestCase
         $this->assertTrue($response->isNotFound());
     }
 
-    /**
-     * @test
-     */
-    public function Incoming_SubmitPostAction_Unknown_Processor()
+    public function test_Incoming_SubmitPostAction_Unknown_Processor(): void
     {
         $client = static::createClient();
 

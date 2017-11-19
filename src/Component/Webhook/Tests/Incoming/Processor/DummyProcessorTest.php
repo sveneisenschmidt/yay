@@ -9,19 +9,13 @@ use Component\Webhook\Incoming\Processor\DummyProcessor;
 
 class DummyProcessorTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function set_get_name()
+    public function test_set_get_name(): void
     {
         $processor = new DummyProcessor('test', []);
         $this->assertEquals('test', $processor->getName());
     }
 
-    /**
-     * @test
-     */
-    public function dummy_values_get_added()
+    public function test_dummy_values_get_added(): void
     {
         $attributes = new ParameterBag();
         $request = $this->createMock(Request::class);

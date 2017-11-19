@@ -6,11 +6,7 @@ use App\Api\Test\WebTestCase;
 
 class LeaderboardControllerTest extends WebTestCase
 {
-    /**
-     * @test
-     * @testdox Retrieve all players
-     */
-    public function Leaderboard_IndexAction()
+    public function test_Leaderboard_IndexAction(): void
     {
         $client = static::createClient();
 

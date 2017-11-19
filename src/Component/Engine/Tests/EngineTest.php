@@ -18,10 +18,7 @@ use Component\Entity\Achievement\PersonalActionCollection;
 
 class EngineTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function get_achievement_validators_empty()
+    public function test_get_achievement_validators_empty(): void
     {
         $storage = $this->createMock(StorageInterface::class);
         $engine = new Engine($storage);
@@ -29,10 +26,7 @@ class EngineTest extends TestCase
         $this->assertNotNull($engine->getAchievementValidators());
     }
 
-    /**
-     * @test
-     */
-    public function get_achievement_validators_construct()
+    public function test_get_achievement_validators_construct(): void
     {
         $storage = $this->createMock(StorageInterface::class);
         $achievementValidatorCollection = new AchievementValidatorCollection();
@@ -42,10 +36,7 @@ class EngineTest extends TestCase
         $this->assertSame($achievementValidatorCollection, $engine->getAchievementValidators());
     }
 
-    /**
-     * @test
-     */
-    public function get_player_personal_actions()
+    public function test_get_player_personal_actions(): void
     {
         $collection = new PersonalActionCollection();
         $player = $this->createConfiguredMock(PlayerInterface::class, ['getPersonalActions' => $collection]);
@@ -55,10 +46,7 @@ class EngineTest extends TestCase
         $this->assertSame($collection, $engine->getPlayerPersonalActions($player));
     }
 
-    /**
-     * @test
-     */
-    public function get_player_personal_actions_from_arraycollection()
+    public function test_get_player_personal_actions_from_arraycollection(): void
     {
         $player = $this->createConfiguredMock(PlayerInterface::class, ['getPersonalActions' => new ArrayCollection()]);
         $storage = $this->createMock(StorageInterface::class);
@@ -68,10 +56,7 @@ class EngineTest extends TestCase
         $this->assertInstanceOf(PersonalActionCollection::class, $collection);
     }
 
-    /**
-     * @test
-     */
-    public function extract_action_definitions()
+    public function test_extract_action_definitions(): void
     {
         $player = $this->createMock(PlayerInterface::class);
 
@@ -86,10 +71,7 @@ class EngineTest extends TestCase
         $this->assertCount(3, $actionDefinitionCollection);
     }
 
-    /**
-     * @test
-     */
-    public function extract_matching_achievement_definitions()
+    public function test_extract_matching_achievement_definitions(): void
     {
         $actionDefinition1 = new ActionDefinition('test-action-1');
         $actionDefinitionCollection1 = new ActionDefinitionCollection();
@@ -133,10 +115,7 @@ class EngineTest extends TestCase
         $this->assertCount(2, $collection3);
     }
 
-    /**
-     * @test
-     */
-    public function advance_no_validators()
+    public function test_advance_no_validators(): void
     {
         $actionDefinition = new ActionDefinition('test-action');
         $personalActionCollection = new PersonalActionCollection();
@@ -163,10 +142,7 @@ class EngineTest extends TestCase
         $this->assertEmpty($results);
     }
 
-    /**
-     * @test
-     */
-    public function advance_has_personal_achievement()
+    public function test_advance_has_personal_achievement(): void
     {
         $actionDefinition = new ActionDefinition('test-action');
         $personalActionCollection = new PersonalActionCollection();
@@ -200,10 +176,7 @@ class EngineTest extends TestCase
         $this->assertEmpty($results);
     }
 
-    /**
-     * @test
-     */
-    public function advance_no_supported_validator()
+    public function test_advance_no_supported_validator(): void
     {
         $actionDefinition = new ActionDefinition('test-action');
         $personalActionCollection = new PersonalActionCollection();
@@ -237,10 +210,7 @@ class EngineTest extends TestCase
         $this->assertEmpty($results);
     }
 
-    /**
-     * @test
-     */
-    public function advance_grant_achievement_not_multiple()
+    public function test_advance_grant_achievement_not_multiple(): void
     {
         $actionDefinition = new ActionDefinition('test-action');
         $personalActionCollection = new PersonalActionCollection();
@@ -274,10 +244,7 @@ class EngineTest extends TestCase
         $this->assertNotEmpty($results);
     }
 
-    /**
-     * @test
-     */
-    public function advance_grant_achievement_multiple()
+    public function test_advance_grant_achievement_multiple(): void
     {
         $actionDefinition = new ActionDefinition('test-action');
         $personalActionCollection = new PersonalActionCollection();

@@ -10,10 +10,7 @@ use App\Integration\Service\InstallerService;
 
 class DisableCommandTest extends KernelTestCase
 {
-    /**
-     * @test
-     */
-    public function execute()
+    public function test_execute(): void
     {
         self::bootKernel();
         $application = new Application(self::$kernel);

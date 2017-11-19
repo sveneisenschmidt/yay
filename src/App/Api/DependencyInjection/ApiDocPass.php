@@ -8,9 +8,6 @@ use App\Api\Formatter\MarkdownFormatter;
 
 class ApiDocPass implements CompilerPassInterface
 {
-    /**
-     * @param ContainerBuilder $container
-     */
     public function process(ContainerBuilder $container)
     {
         $definition = $container->getDefinition('nelmio_api_doc.formatter.markdown_formatter');

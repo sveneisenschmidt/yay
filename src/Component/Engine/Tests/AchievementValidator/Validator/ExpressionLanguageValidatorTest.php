@@ -11,10 +11,7 @@ use Component\Entity\PlayerInterface;
 
 class ExpressionLanguageValidatorTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function expression_language_is_executed()
+    public function test_expression_language_is_executed(): void
     {
         $context = $this->createMock(ValidationContext::class);
 
@@ -25,10 +22,7 @@ class ExpressionLanguageValidatorTest extends TestCase
         $this->assertTrue($validator2->validate($context));
     }
 
-    /**
-     * @test
-     */
-    public function expression_language_supports_achievement()
+    public function test_expression_language_supports_achievement(): void
     {
         $achievementDefinition1 = $this->createConfiguredMock(AchievementDefinitionInterface::class, [
             'getName' => 'test-achievement-01',
@@ -49,20 +43,14 @@ class ExpressionLanguageValidatorTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function expression_language_multiple()
+    public function test_expression_language_multiple(): void
     {
         $this->assertFalse((new ExpressionLanguageValidator('true', []))->multiple());
         $this->assertTrue((new ExpressionLanguageValidator('true', [], true))->multiple());
         $this->assertFalse((new ExpressionLanguageValidator('true', [], false))->multiple());
     }
 
-    /**
-     * @test
-     */
-    public function expression_language_passes_player()
+    public function test_expression_language_passes_player(): void
     {
         $context = $this->createConfiguredMock(ValidationContext::class, [
             'getPlayer' => $this->createMock(PlayerInterface::class),
@@ -72,10 +60,7 @@ class ExpressionLanguageValidatorTest extends TestCase
         $this->assertTrue($validator->validate($context));
     }
 
-    /**
-     * @test
-     */
-    public function expression_language_passes_achievement()
+    public function test_expression_language_passes_achievement(): void
     {
         $context = $this->createConfiguredMock(ValidationContext::class, [
             'getAchievementDefinition' => $this->createMock(AchievementDefinitionInterface::class),
@@ -85,10 +70,7 @@ class ExpressionLanguageValidatorTest extends TestCase
         $this->assertTrue($validator->validate($context));
     }
 
-    /**
-     * @test
-     */
-    public function expression_language_passes_actions()
+    public function test_expression_language_passes_actions(): void
     {
         $context = $this->createConfiguredMock(ValidationContext::class, [
             'getFilteredPersonalActions' => $this->createMock(PersonalActionCollection::class),

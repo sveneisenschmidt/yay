@@ -22,10 +22,6 @@ class DisableCommand extends ContainerAwareCommand
             );
     }
 
-    /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $name = $input->getArgument('name');

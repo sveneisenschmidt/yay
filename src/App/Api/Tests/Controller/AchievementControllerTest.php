@@ -6,11 +6,7 @@ use App\Api\Test\WebTestCase;
 
 class AchievementControllerTest extends WebTestCase
 {
-    /**
-     * @test
-     * @testdox Retrieve all achievements
-     */
-    public function Achievement_IndexAction()
+    public function test_Achievement_IndexAction(): void
     {
         $client = static::createClient();
 
@@ -32,11 +28,7 @@ class AchievementControllerTest extends WebTestCase
         }
     }
 
-    /**
-     * @test
-     * @testdox Retrieve a single achievement
-     */
-    public function Achievement_ShowAction()
+    public function test_Achievement_ShowAction(): void
     {
         $client = static::createClient();
 
@@ -56,11 +48,7 @@ class AchievementControllerTest extends WebTestCase
         $this->assertArraySubsetHasKey('links', 'actions', $data);
     }
 
-    /**
-     * @test
-     * @testdox Could not find a single achievement
-     */
-    public function Achievement_ShowAction_NotFound()
+    public function test_Achievement_ShowAction_NotFound(): void
     {
         $client = static::createClient();
 

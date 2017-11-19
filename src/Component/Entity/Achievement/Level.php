@@ -29,11 +29,6 @@ class Level implements LevelInterface
      */
     protected $points;
 
-    /**
-     * ActionDefinition constructor.
-     *
-     * @param string $name
-     */
     public function __construct(string $name, int $level, int $points)
     {
         $this->name = $name;
@@ -41,74 +36,47 @@ class Level implements LevelInterface
         $this->points = $points;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * @param string $label
-     */
-    public function setLabel(string $label)
+    public function setLabel(string $label): void
     {
         $this->label = $label;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     */
-    public function setDescription(string $description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
-    /**
-     * @return int
-     */
     public function getLevel(): int
     {
         return (int) $this->level;
     }
 
-    /**
-     * @param int $level
-     */
-    public function setLevel(int $level)
+    public function setLevel(int $level): void
     {
         $this->level = $level;
     }
 
-    /**
-     * @return int
-     */
     public function getPoints(): int
     {
         return (int) $this->points;
     }
 
-    /**
-     * @param int $points
-     */
-    public function setPoints(int $points)
+    public function setPoints(int $points): void
     {
         $this->points = $points;
     }

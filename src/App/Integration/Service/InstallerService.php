@@ -13,26 +13,12 @@ use Component\Entity\Achievement\Level;
 
 class InstallerService
 {
-    /**
-     * @param Filesystem
-     */
     protected $filesystem;
 
-    /**
-     * @param StorageInterface
-     */
     protected $storage;
 
-    /**
-     * @param ConfigurationTransformer
-     */
     protected $transformer;
 
-    /**
-     * @param Filesystem               $filesystem
-     * @param StorageInterface         $storage
-     * @param ConfigurationTransformer $transformer
-     */
     public function __construct(
         Filesystem $filesystem,
         StorageInterface $storage,
@@ -43,11 +29,6 @@ class InstallerService
         $this->transformer = $transformer;
     }
 
-    /**
-     * @param string $name
-     * @param string $sourceFile
-     * @param string $targetDirectory
-     */
     public function install(
         string $name,
         string $sourceFile,
@@ -60,21 +41,11 @@ class InstallerService
         $this->installEntities($configs['entities.yml']);
     }
 
-    /**
-     * @param array $config
-     *
-     * @return array
-     */
     public function transformFromConfig(array $config): array
     {
         return $this->transformer->transformFromUnprocessedConfig($config);
     }
 
-    /**
-     * @param string $sourceFile
-     *
-     * @return array
-     */
     public function loadConfig(string $sourceFile): ?array
     {
         if (!$this->filesystem->exists($sourceFile)) {
@@ -84,20 +55,12 @@ class InstallerService
         return Yaml::parse(file_get_contents($sourceFile));
     }
 
-    /**
-     * @param string $file
-     *
-     * @return array
-     */
     public function loadEntities(array $data): array
     {
         return (new NativeLoader())->loadData($data)->getObjects();
     }
 
     /**
-     * @param array  $data
-     * @param string $targetFile
-     *
      * @throws RuntimeException
      */
     public function installServices(array $data, string $targetFile): void
@@ -106,9 +69,6 @@ class InstallerService
         $this->filesystem->dumpFile($targetFile, $contents);
     }
 
-    /**
-     * @param array $data
-     */
     public function installEntities(array $data): void
     {
         foreach ($this->loadEntities($data) as $object) {
@@ -132,10 +92,6 @@ class InstallerService
         }
     }
 
-    /**
-     * @param string $name
-     * @param string $targetDirectory
-     */
     public function uninstall(string $name, string $targetDirectory): void
     {
         $this->uninstallService(
@@ -144,8 +100,6 @@ class InstallerService
     }
 
     /**
-     * @param string $targetFile
-     *
      * @throws RuntimeException
      */
     public function uninstallService(string $targetFile): void
@@ -156,9 +110,6 @@ class InstallerService
     }
 
     /**
-     * @param string $name
-     * @param string $sourceFile
-     *
      * @throws \Exception
      */
     public function validate(

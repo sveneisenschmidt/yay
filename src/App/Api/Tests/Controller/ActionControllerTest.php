@@ -6,11 +6,7 @@ use App\Api\Test\WebTestCase;
 
 class ActionControllerTest extends WebTestCase
 {
-    /**
-     * @test
-     * @testdox Retrieve all actions
-     */
-    public function Action_IndexAction()
+    public function test_Action_IndexAction(): void
     {
         $client = static::createClient();
 
@@ -30,11 +26,7 @@ class ActionControllerTest extends WebTestCase
         }
     }
 
-    /**
-     * @test
-     * @testdox Retrieve a single action
-     */
-    public function Action_ShowAction()
+    public function test_Action_ShowAction(): void
     {
         $client = static::createClient();
 
@@ -52,11 +44,7 @@ class ActionControllerTest extends WebTestCase
         $this->assertArraySubsetHasKey('links', 'self', $data);
     }
 
-    /**
-     * @test
-     * @testdox Could not find a single action
-     */
-    public function Action_ShowAction_NotFound()
+    public function test_Action_ShowAction_NotFound(): void
     {
         $client = static::createClient();
 

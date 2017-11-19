@@ -9,13 +9,6 @@ use Component\HttpFoundation\Request\ParamConverter\HeaderFieldConverter;
 
 class HeaderFieldConverterTest extends TestCase
 {
-    /**
-     * @param string $converterName
-     * @param string $parameterName
-     * @param array  $options
-     *
-     * @return ParamConverter
-     */
     public function createConfiguration(
         string $converterName = 'HeaderField',
         string $parameterName = 'foo',
@@ -38,30 +31,21 @@ class HeaderFieldConverterTest extends TestCase
         return $configuration;
     }
 
-    /**
-     * @test
-     */
-    public function param_converter_is_supported(): void
+    public function test_param_converter_is_supported(): void
     {
         $configuration = $this->createConfiguration();
 
         $this->assertTrue((new HeaderFieldConverter())->supports($configuration));
     }
 
-    /**
-     * @test
-     */
-    public function param_converter_is_not_supported(): void
+    public function test_param_converter_is_not_supported(): void
     {
         $configuration = $this->createConfiguration('HeaderField2');
 
         $this->assertFalse((new HeaderFieldConverter())->supports($configuration));
     }
 
-    /**
-     * @test
-     */
-    public function header_field_is_applied_as_attribute(): void
+    public function test_header_field_is_applied_as_attribute(): void
     {
         $configuration = $this->createConfiguration();
         $request = Request::create('/', 'GET');
@@ -71,10 +55,7 @@ class HeaderFieldConverterTest extends TestCase
         $this->assertEquals('bar', $request->attributes->get('foo'));
     }
 
-    /**
-     * @test
-     */
-    public function header_field_is_applied_as_attribute_with_field(): void
+    public function test_header_field_is_applied_as_attribute_with_field(): void
     {
         $configuration = $this->createConfiguration('HeaderField', 'foo', ['field' => 'baz']);
         $request = Request::create('/', 'GET');
@@ -84,10 +65,7 @@ class HeaderFieldConverterTest extends TestCase
         $this->assertEquals('bar', $request->attributes->get('foo'));
     }
 
-    /**
-     * @test
-     */
-    public function header_field_is_not_set(): void
+    public function test_header_field_is_not_set(): void
     {
         $configuration = $this->createConfiguration();
         $request = Request::create('/', 'GET');

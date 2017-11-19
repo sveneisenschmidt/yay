@@ -28,10 +28,6 @@ class PersonalAchievement implements PersonalAchievementInterface
 
     /**
      * AchievementPersonalAction constructor.
-     *
-     * @param PlayerInterface                $user
-     * @param AchievementDefinitionInterface $achievementDefinition
-     * @param \DateTime|null                 $achievedAt
      */
     public function __construct(
         PlayerInterface $player,
@@ -44,57 +40,36 @@ class PersonalAchievement implements PersonalAchievementInterface
         $player->refreshScore();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAchievedAt(): \DateTime
     {
         return $this->achievedAt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAchievementDefinition(): AchievementDefinitionInterface
     {
         return $this->achievementDefinition;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setAchievedAt(\DateTime $achievedAt)
+    public function setAchievedAt(\DateTime $achievedAt): void
     {
         $this->achievedAt = $achievedAt;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setAchievementDefinition(AchievementDefinitionInterface $achievementDefinition)
+    public function setAchievementDefinition(AchievementDefinitionInterface $achievementDefinition): void
     {
         $this->achievementDefinition = $achievementDefinition;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setPlayer(PlayerInterface $player)
+    public function setPlayer(PlayerInterface $player): void
     {
         $this->player = $player;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPlayer(): PlayerInterface
     {
         return $this->player;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function __toString(): string
     {
         return $this->getAchievementDefinition()->getName();

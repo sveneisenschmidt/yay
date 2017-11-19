@@ -10,9 +10,6 @@ use Component\Engine\AchievementValidatorInterface;
 
 class Engine extends Bundle
 {
-    /**
-     * @param ContainerBuilder $container
-     */
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new AchievementValidatorPass());
@@ -20,10 +17,7 @@ class Engine extends Bundle
             ->addTag('yay.achievement_validator');
     }
 
-    /**
-     * @return EngineExtension
-     */
-    public function getContainerExtension()
+    public function getContainerExtension(): EngineExtension
     {
         return new EngineExtension();
     }

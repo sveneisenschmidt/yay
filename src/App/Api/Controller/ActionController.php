@@ -42,11 +42,6 @@ class ActionController extends Controller
      *         200 = "Returned when successful"
      *     }
      * )
-     *
-     * @param Engine             $engine
-     * @param ResponseSerializer $serializer
-     *
-     * @return Response
      */
     public function indexAction(
         Engine $engine,
@@ -93,12 +88,6 @@ class ActionController extends Controller
      *         404 = "Returned when the action is not found"
      *     }
      * )
-     *
-     * @param Engine             $engine
-     * @param ResponseSerializer $serializer
-     * @param string             $username
-     *
-     * @return Response
      */
     public function showAction(
         Engine $engine,

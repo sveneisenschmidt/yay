@@ -8,19 +8,13 @@ use ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor;
 
 class GithubProcessorTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function set_get_name()
+    public function test_set_get_name(): void
     {
         $processor = new GithubProcessor($name = 'github-processor');
         $this->assertEquals('github-processor', $processor->getName());
     }
 
-    /**
-     * @test
-     */
-    public function process_payload()
+    public function test_process_payload(): void
     {
         $contents = json_encode([
             'action' => 'github-action',
@@ -34,10 +28,7 @@ class GithubProcessorTest extends TestCase
         $this->assertEquals('github-event.github-action', $request->attributes->get('action'));
     }
 
-    /**
-     * @test
-     */
-    public function process_empty_payload_but_event()
+    public function test_process_empty_payload_but_event(): void
     {
         $contents = json_encode([]);
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
@@ -47,10 +38,7 @@ class GithubProcessorTest extends TestCase
         $this->assertFalse($request->attributes->has('action'));
     }
 
-    /**
-     * @test
-     */
-    public function process_empty_payload()
+    public function test_process_empty_payload(): void
     {
         $contents = json_encode([]);
         $request = Request::create('/', 'POST', [], [], [], [], $contents);

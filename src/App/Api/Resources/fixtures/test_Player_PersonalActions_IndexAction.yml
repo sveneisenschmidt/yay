@@ -1,5 +1,5 @@
 include:
-  - Test.Default.yml
+  - test_default.yml
 
 Component\Entity\Achievement\PersonalAction:
     personalAction{1..5}:

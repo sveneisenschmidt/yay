@@ -6,11 +6,7 @@ use App\Api\Test\WebTestCase;
 
 class LevelControllerTest extends WebTestCase
 {
-    /**
-     * @test
-     * @testdox Retrieve all levels
-     */
-    public function Level_IndexAction()
+    public function test_Level_IndexAction(): void
     {
         $client = static::createClient();
 

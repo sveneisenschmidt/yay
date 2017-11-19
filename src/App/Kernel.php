@@ -5,7 +5,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class Kernel extends BaseKernel
 {
-    public function registerBundles()
+    public function registerBundles(): array
     {
         $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
@@ -36,17 +36,17 @@ class Kernel extends BaseKernel
         return $bundles;
     }
 
-    public function getRootDir()
+    public function getRootDir(): string
     {
         return __DIR__;
     }
 
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return $this->getRootDir().'/../../var/cache/'.$this->getEnvironment();
     }
 
-    public function getLogDir()
+    public function getLogDir(): string
     {
         return $this->getRootDir().'/../../var/logs';
     }

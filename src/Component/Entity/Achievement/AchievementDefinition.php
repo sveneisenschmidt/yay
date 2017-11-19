@@ -43,9 +43,6 @@ class AchievementDefinition implements AchievementDefinitionInterface
 
     /**
      * AchievementDefinition constructor.
-     *
-     * @param string    $name
-     * @param \DateTime $createdAt
      */
     public function __construct(string $name, \DateTime $createdAt = null)
     {
@@ -54,33 +51,21 @@ class AchievementDefinition implements AchievementDefinitionInterface
         $this->actionDefinitions = new ActionDefinitionCollection();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getActionDefinitions(): CollectionInterface
     {
         return $this->actionDefinitions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param ActionDefinitionInterface $actionDefinition
-     */
     public function addActionDefinition(ActionDefinitionInterface $actionDefinition)
     {
         if (!$this->hasActionDefinition($actionDefinition)) {
@@ -88,11 +73,6 @@ class AchievementDefinition implements AchievementDefinitionInterface
         }
     }
 
-    /**
-     * @param ActionDefinitionInterface $actionDefinition
-     *
-     * @return bool
-     */
     public function hasActionDefinition(ActionDefinitionInterface $actionDefinition)
     {
         $callback = function ($index, ActionDefinitionInterface $item) use ($actionDefinition) {
@@ -102,41 +82,26 @@ class AchievementDefinition implements AchievementDefinitionInterface
         return $this->actionDefinitions->exists($callback);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * @param string $label
-     */
-    public function setLabel(string $label)
+    public function setLabel(string $label): void
     {
         $this->label = $label;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     */
-    public function setDescription(string $description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPoints(): int
     {
         return (int) $this->points;
@@ -144,10 +109,8 @@ class AchievementDefinition implements AchievementDefinitionInterface
 
     /**
      * Set the {@see $points} property.
-     *
-     * @param int $points
      */
-    public function setPoints(string $points)
+    public function setPoints(string $points): void
     {
         $this->points = $points;
     }

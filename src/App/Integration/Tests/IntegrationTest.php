@@ -8,10 +8,7 @@ use App\Integration\Integration;
 
 class IntegrationTest extends WebTestCase
 {
-    /**
-     * @test
-     */
-    public function get_container_extension()
+    public function test_get_container_extension(): void
     {
         $this->assertInstanceOf(
             IntegrationExtension::class,

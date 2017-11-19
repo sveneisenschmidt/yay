@@ -9,13 +9,6 @@ use Component\HttpFoundation\Request\ParamConverter\JsonFieldConverter;
 
 class JsonFieldConverterTest extends TestCase
 {
-    /**
-     * @param string $converterName
-     * @param string $parameterName
-     * @param array  $options
-     *
-     * @return ParamConverter
-     */
     public function createConfiguration(
         string $converterName = 'JsonField',
         string $parameterName = 'foo',
@@ -38,30 +31,21 @@ class JsonFieldConverterTest extends TestCase
         return $configuration;
     }
 
-    /**
-     * @test
-     */
-    public function param_converter_is_supported(): void
+    public function test_param_converter_is_supported(): void
     {
         $configuration = $this->createConfiguration();
 
         $this->assertTrue((new JsonFieldConverter())->supports($configuration));
     }
 
-    /**
-     * @test
-     */
-    public function param_converter_is_not_supported(): void
+    public function test_param_converter_is_not_supported(): void
     {
         $configuration = $this->createConfiguration('JsonField2');
 
         $this->assertFalse((new JsonFieldConverter())->supports($configuration));
     }
 
-    /**
-     * @test
-     */
-    public function json_field_is_applied_as_attribute(): void
+    public function test_json_field_is_applied_as_attribute(): void
     {
         $configuration = $this->createConfiguration();
         $content = '{"foo": "bar"}';
@@ -71,10 +55,7 @@ class JsonFieldConverterTest extends TestCase
         $this->assertEquals('bar', $request->attributes->get('foo'));
     }
 
-    /**
-     * @test
-     */
-    public function json_field_is_applied_as_attribute_with_field(): void
+    public function test_json_field_is_applied_as_attribute_with_field(): void
     {
         $configuration = $this->createConfiguration('JsonField', 'foo', ['field' => 'baz']);
         $content = '{"baz": "bar"}';
@@ -84,10 +65,7 @@ class JsonFieldConverterTest extends TestCase
         $this->assertEquals('bar', $request->attributes->get('foo'));
     }
 
-    /**
-     * @test
-     */
-    public function json_field_is_not_set(): void
+    public function test_json_field_is_not_set(): void
     {
         $configuration = $this->createConfiguration();
         $request = Request::create('/', 'POST');
@@ -96,10 +74,7 @@ class JsonFieldConverterTest extends TestCase
         $this->assertFalse($request->attributes->has('foo'));
     }
 
-    /**
-     * @test
-     */
-    public function json_field_is_invalid(): void
+    public function test_json_field_is_invalid(): void
     {
         $configuration = $this->createConfiguration();
         $content = '{"baz": ';
