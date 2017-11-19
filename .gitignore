@@ -6,7 +6,7 @@
 /web/bundles/
 /node_modules
 /.idea
-/app/config/integration/*
-!app/config/integration/.gitkeep
+/config/integration/*
+!config/integration/.gitkeep
 coverage.xml
 /dist/docker-run.sh
