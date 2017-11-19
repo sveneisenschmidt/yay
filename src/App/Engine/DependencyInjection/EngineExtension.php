@@ -21,15 +21,16 @@ class EngineExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
         );
 
-        $files =  [
+        $files = [
             'services.yml',
-            sprintf('services_%s.yml', $container->getParameter('kernel.environment'))
+            sprintf('services_%s.yml', $container->getParameter('kernel.environment')),
         ];
 
         foreach ($files as $file) {
             try {
                 $loader->load($file);
-            } catch (FileLocatorFileNotFoundException $e) {}
+            } catch (FileLocatorFileNotFoundException $e) {
+            }
         }
     }
 }
