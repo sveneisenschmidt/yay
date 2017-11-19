@@ -1,0 +1,16 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Integration\Command\:
+        resource: '../../Command'
+        tags: ['console.command']
+
+    App\Integration\Service\InstallerService:
+        public: true
+
+    Symfony\Component\Config\Definition\Processor: ~
+    App\Integration\Configuration\Configuration: ~
+    App\Integration\Configuration\ConfigurationTransformer: ~

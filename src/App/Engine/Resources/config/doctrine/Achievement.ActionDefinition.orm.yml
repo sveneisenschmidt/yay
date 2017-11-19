@@ -1,0 +1,19 @@
+Component\Entity\Achievement\ActionDefinition:
+  type: entity
+  table: action_definition
+  # Primary Key
+  id:
+    name:
+      type: string
+  # Columns
+  fields:
+    label:
+      type: string
+    description:
+      type: string
+  # Relationships
+  oneToMany:
+    personalActions:
+      targetEntity: 'Component\Entity\Achievement\PersonalAction'
+      mappedBy: actionDefinition
+      cascade: [ 'persist', 'refresh' ]

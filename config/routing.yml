@@ -1,0 +1,11 @@
+ApiBundle:
+    resource: "@Api/Resources/config/routing.yml"
+    prefix:   /api
+
+WebhookBundle:
+    resource: "@Webhook/Resources/config/routing.yml"
+    prefix:   /webhook
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

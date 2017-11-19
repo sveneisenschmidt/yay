@@ -1,0 +1,18 @@
+Component\Entity\Achievement\Level:
+  type: entity
+  table: level
+  # Primary Key
+  id:
+    name:
+      type: string
+  # Columns
+  fields:
+    level:
+      type: integer
+      unique: true
+    points:
+      type: integer
+    label:
+      type: string
+    description:
+      type: string

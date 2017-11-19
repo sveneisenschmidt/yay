@@ -1,0 +1,8 @@
+Component\Entity\Achievement\Level:
+    level{1..5}:
+        __construct:
+            - 'level-<current()>'
+            - <identity((int)$current)>
+            - <numberBetween(1000, 2000)>
+        label: label-<current()>
+        description: description-<current()>

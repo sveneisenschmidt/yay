@@ -21,7 +21,7 @@ Processors are then available as part of a webhook route `/webhook/incoming/{pro
 
 ```php
 // ProcessorInterface.php
-namespace Yay\Component\Webhook\Incoming;
+namespace Component\Webhook\Incoming;
 use Symfony\Component\HttpFoundation\Request;
 
 interface ProcessorInterface
@@ -32,7 +32,7 @@ interface ProcessorInterface
 }
 
 // MyProcesor.php
-use Yay\Component\Webhook\Incoming\ProcessorInterface
+use Component\Webhook\Incoming\ProcessorInterface
 use Symfony\Component\HttpFoundation\Request;
 
 class MyProcessor implements ProcessorInterface
@@ -79,11 +79,11 @@ integration:
                     - [example-mycompany-jenkinsci, example-mycompany-users]
             # Your company provides a processor to transform Jenkins CI payloads
             example-mycompany-jenkinsci:
-                class: MyCompany\Yay\Component\Webhook\Incoming\Processor\JenkinsProcessor
+                class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
             # Your company provides a second processor to ap jenkins users to Yay players
             # based on a static configuration file deployed witht he application 
             example-mycompany-users:
-                class: MyCompany\Yay\Component\Webhook\Incoming\Processor\StaticUserProcessor
+                class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
                 arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
 ```
 URL:  `/webhook/incoming/example-chain/`.

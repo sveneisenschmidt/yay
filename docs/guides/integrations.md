@@ -68,12 +68,12 @@ integration:
                     - [example-thirdparty-action, example-thirdparty-user]
             # Maps third party payload to action
             example-thirdparty-action:
-                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                class: \Component\Webhook\Incoming\DummyProcessor
                 arguments:
                     - { 'third_party.action': demo.action }
             # Maps third party payload to user
             example-thirdparty-user:
-                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                class: \Component\Webhook\Incoming\DummyProcessor
                 arguments:
                     - { 'third_party.user': jane.doe  }
 
@@ -84,7 +84,7 @@ integration:
 
 #### `actions`
 
-Actions are declared as multi-dimensional associative arrays. Keys on the first level are the actions name, keys and values on second level are the properties of the action. Internally actions are of type [ActionDefinition](../src/Yay/Component/Entity/Achievement/ActionDefinition.php) and need to be imported to the database during installation.
+Actions are declared as multi-dimensional associative arrays. Keys on the first level are the actions name, keys and values on second level are the properties of the action. Internally actions are of type [ActionDefinition](../../src/Component/Entity/Achievement/ActionDefinition.php) and need to be imported to the database during installation.
 
 Supported properties: `label`, `description`.
 
@@ -107,7 +107,7 @@ integration:
 
 #### `achievements`
 
-Achievements are declared as multi-dimensional associative arrays. Keys on the first level are the achievements name, keys and values on second level are the properties of the achievement. The `actions` property takes a list of actions defined under `actions` or in a different integration, so they can get referenced while validation. Internally achievements are of type [AchievementDefinition](..src/Yay/Component/Entity/Achievement/AchievementDefinition.php) and need to be imported to the database during installation.
+Achievements are declared as multi-dimensional associative arrays. Keys on the first level are the achievements name, keys and values on second level are the properties of the achievement. The `actions` property takes a list of actions defined under `actions` or in a different integration, so they can get referenced while validation. Internally achievements are of type [AchievementDefinition](..src/Component/Entity/Achievement/AchievementDefinition.php) and need to be imported to the database during installation.
 
 Supported properties: `label`, `description`, `points`, `actions`.
 
@@ -134,7 +134,7 @@ integration:
 
 #### `validators`
 
-Validators are declared as multi-dimensional associative arrays. Keys on the first level are the validators name, keys and values on second level are the properties of the validator. During runtime the application needs to know when to grant an achievement after certain set of actions have been performed by a player. To provide this functioanilty the application uses validators that are able to tell if achievement criterias are met. Internally validators implement the [AchievementValidatorInterface](../src/Yay/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of achievements.
+Validators are declared as multi-dimensional associative arrays. Keys on the first level are the validators name, keys and values on second level are the properties of the validator. During runtime the application needs to know when to grant an achievement after certain set of actions have been performed by a player. To provide this functioanilty the application uses validators that are able to tell if achievement criterias are met. Internally validators implement the [AchievementValidatorInterface](../../src/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of achievements.
 
 Supported properties: `type`, `arguments`, `class`. If you provide `expression` for `type` internally the property `class` gets set to `ExpressionLanguageValidator`.
 
@@ -163,7 +163,7 @@ integration:
 
 #### `webhooks`.`incoming`
 
-Webhook  are declared as multi-dimensional associative arrays. Keys on the first level are the processor name, keys and values on second level are the properties of the validator. During runtime the application needs to identify a processor by it's name through a route paramteter. Internally processors implement the [ProcessorInterface](../src/Yay/Component/Webhook/Incoming/ProcessorInterface.php) interface for incoming webhooks and implement the [ProcessorInterface](../src/Yay/Component/Webhook/Outgoing/ProcessorInterface.php) interface for outgoing webhooks.
+Webhook  are declared as multi-dimensional associative arrays. Keys on the first level are the processor name, keys and values on second level are the properties of the validator. During runtime the application needs to identify a processor by it's name through a route paramteter. Internally processors implement the [ProcessorInterface](../../src/Component/Webhook/Incoming/ProcessorInterface.php) interface for incoming webhooks and implement the [ProcessorInterface](../../src/Component/Webhook/Outgoing/ProcessorInterface.php) interface for outgoing webhooks.
 
 Supported properties: `type`, `arguments`, `class`. If you provide `chain` for `type` the property `class` gets set to `ChainProcessor`, if you provide `dummy` it is set to `DummyProcessor` and if you provide `null` it is set to `NullProcessor` internally.
 
@@ -179,11 +179,11 @@ integration:
                     - [example-mycompany-jenkinsci, example-mycompany-users]
             # Your company provides a processor to transform Jenkins CI payloads
             example-mycompany-jenkinsci:
-                class: MyCompany\Yay\Component\Webhook\Incoming\Processor\JenkinsProcessor
+                class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
             # Your company provides a second processor to ap jenkins users to Yay players
-            # based on a static configuration file deployed witht he application 
+            # based on a static configuration file deployed witht he application
             example-mycompany-jenkinsci:
-                class: MyCompany\Yay\Component\Webhook\Incoming\Processor\StaticUserProcessor
+                class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
                 arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
     # ...
 ```

@@ -1,0 +1,29 @@
+Component\Entity\Achievement\PersonalAchievement:
+  type: entity
+  table: personal_achievement
+  # Primary Key
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  # Columns
+  fields:
+    achievedAt:
+      type: datetime
+  # Relationships
+  manyToOne:
+    achievementDefinition:
+      targetEntity: 'Component\Entity\Achievement\AchievementDefinition'
+      inversedBy: personalAchievements
+      cascade: [ 'persist', 'refresh' ]
+      joinColumn:
+        name: achievement_definition
+        referencedColumnName: name
+    player:
+      targetEntity: 'Component\Entity\Player'
+      inversedBy: personalAchievements
+      cascade: [ 'persist', 'refresh' ]
+      joinColumn:
+        name: player_id
+        referencedColumnName: id

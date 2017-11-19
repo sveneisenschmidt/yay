@@ -1,0 +1,14 @@
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Webhook\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
+
+    Component\Webhook\Webhook: ~
+    Component\Webhook\Incoming\ProcessorCollection: ~
+    Component\Webhook\Outgoing\ProcessorCollection: ~
