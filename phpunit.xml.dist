@@ -5,26 +5,26 @@
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
          backupGlobals="false"
          colors="true"
-         bootstrap="app/autoload.php"
+         bootstrap="vendor/autoload.php"
          stopOnFailure="false"
 >
     <php>
         <ini name="error_reporting" value="-1" />
-        <env name="KERNEL_DIR" value="app/" />
-        <env name="KERNEL_CLASS" value="AppKernel" />
+        <env name="KERNEL_DIR" value="src/App" />
+        <env name="KERNEL_CLASS" value="Kernel" />
         <env name="APP_ENV" value="test" force="true"/>
         <env name="APP_DEBUG" value="1" force="true"/>
     </php>
 
     <testsuites>
-        <testsuite name="Bundle Test Suite">
-            <directory>src/Yay/Bundle</directory>
+        <testsuite name="App Test Suite">
+            <directory>src/App</directory>
         </testsuite>
         <testsuite name="Component Test Suite">
-            <directory>src/Yay/Component</directory>
+            <directory>src/Component</directory>
         </testsuite>
         <testsuite name="Third Party Test Suite">
-            <directory>src/Yay/ThirdParty</directory>
+            <directory>src/ThirdParty</directory>
         </testsuite>
     </testsuites>
 
@@ -32,16 +32,10 @@
         <whitelist>
             <directory>src</directory>
             <exclude>
-                <directory>src/*/Bundle/*Bundle/Formatter</directory>
-                <directory>src/*Bundle/Resources</directory>
-                <directory>src/*/*Bundle/Resources</directory>
-                <directory>src/*/Bundle/*Bundle/Resources</directory>
-                <directory>src/Yay/Bundle/*Bundle/Test</directory>
-                <directory>src/Yay/Bundle/*Bundle/Tests</directory>
-                <directory>src/Yay/Component/*/Test</directory>
-                <directory>src/Yay/Component/*/Tests</directory>
-                <directory>src/Yay/ThirdParty/*/*/Tests</directory>
-                <directory>src/Yay/Bundle/CompatBundle</directory>
+                <directory>src/App/*/Formatter</directory>
+                <directory>src/App/*/Resources</directory>
+                <directory>src/App/*/Test</directory>
+                <directory>src/App/Compat/*</directory>
             </exclude>
         </whitelist>
     </filter>

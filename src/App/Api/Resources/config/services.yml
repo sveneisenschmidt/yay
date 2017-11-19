@@ -1,0 +1,32 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    # Services
+    App\Api\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
+
+    App\Api\Response\ResponseSerializer: ~
+    App\Api\Validator\EntityValidator: ~
+
+    Component\HttpFoundation\Request\ParamConverter\QueryStringConverter:
+        tags:
+            - { name: request.param_converter, priority: -2, converter: QueryString }
+    Component\HttpFoundation\Request\ParamConverter\HeaderFieldConverter:
+        tags:
+            - { name: request.param_converter, priority: -2, converter: HeaderField }
+    Component\HttpFoundation\Request\ParamConverter\JsonFieldConverter:
+        tags:
+            - { name: request.param_converter, priority: -2, converter: JsonField }
+    Component\HttpFoundation\Request\ParamConverter\DeserializeFieldConverter:
+        tags:
+            - { name: request.param_converter, priority: -2, converter: DeserializeField }
+
+    App\Api\Serializer\EventListener\LinkListener:
+        public: true
+        tags:
+            - { name: jms_serializer.event_listener, event: serializer.post_serialize, method: onPostSerialize, direction: serialization }
+

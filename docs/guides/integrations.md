@@ -68,12 +68,12 @@ integration:
                     - [example-thirdparty-action, example-thirdparty-user]
             # Maps third party payload to action
             example-thirdparty-action:
-                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                class: \Component\Webhook\Incoming\DummyProcessor
                 arguments:
                     - { 'third_party.action': demo.action }
             # Maps third party payload to user
             example-thirdparty-user:
-                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                class: \Component\Webhook\Incoming\DummyProcessor
                 arguments:
                     - { 'third_party.user': jane.doe  }
 
@@ -179,11 +179,11 @@ integration:
                     - [example-mycompany-jenkinsci, example-mycompany-users]
             # Your company provides a processor to transform Jenkins CI payloads
             example-mycompany-jenkinsci:
-                class: MyCompany\Yay\Component\Webhook\Incoming\Processor\JenkinsProcessor
+                class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
             # Your company provides a second processor to ap jenkins users to Yay players
             # based on a static configuration file deployed witht he application 
             example-mycompany-jenkinsci:
-                class: MyCompany\Yay\Component\Webhook\Incoming\Processor\StaticUserProcessor
+                class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
                 arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
     # ...
 ```

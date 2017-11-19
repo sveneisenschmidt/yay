@@ -1,0 +1,56 @@
+services:
+    yay.achievement.test_webhook_achievement:
+        class: Component\Engine\AchievementValidator\Validator\ExpressionLanguageValidator
+        arguments:
+            - >
+                achievement.getName() in ['yay.achievement.test_webhook_achievement'] and
+                actions.count() >= 5
+        tags:
+            - { name: yay.achievement_validator }
+
+    yay.webhook.incoming_processor.test-processor-01:
+        class: Component\Webhook\Incoming\Processor\ChainProcessor
+        arguments:
+            - test-processor-01
+            -
+                - '@yay.webhook.incoming_processor.test-processor-02'
+                - '@yay.webhook.incoming_processor.test-processor-03'
+        tags:
+            - { name: yay.webhook_incoming }
+
+    yay.webhook.incoming_processor.test-processor-02:
+        class: Component\Webhook\Incoming\Processor\DummyProcessor
+        arguments:
+            - test-processor-02
+            -
+                username: jane.doe
+                action: yay.action.test_webhook_action
+        tags:
+            - { name: yay.webhook_incoming }
+
+    yay.webhook.incoming_processor.test-processor-03:
+        class: Component\Webhook\Incoming\Processor\DummyProcessor
+        arguments:
+            - test-processor-03
+            -
+                username: jane.doe
+        tags:
+            - { name: yay.webhook_incoming }
+
+    yay.webhook.incoming_processor.test-processor-04:
+        class: Component\Webhook\Incoming\Processor\DummyProcessor
+        arguments:
+            - test-processor-04
+            -
+                action: yay.action.test_webhook_action
+        tags:
+            - { name: yay.webhook_incoming }
+
+    yay.webhook.incoming_processor.test-processor-05:
+        class: Component\Webhook\Incoming\Processor\DummyProcessor
+        arguments:
+            - test-processor-05
+            -
+                action: ''
+        tags:
+            - { name: yay.webhook_incoming }

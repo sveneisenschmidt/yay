@@ -1,0 +1,9 @@
+services:
+    yay.achievement.test_api_achievement:
+        class: Component\Engine\AchievementValidator\Validator\ExpressionLanguageValidator
+        arguments:
+            - >
+                achievement.getName() in ['yay.achievement.test_api_achievement'] and
+                actions.count() >= 5
+        tags:
+            - { name: yay.achievement_validator }

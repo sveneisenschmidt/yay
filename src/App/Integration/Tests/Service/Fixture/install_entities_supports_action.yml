@@ -1,0 +1,6 @@
+Component\Entity\Achievement\ActionDefinition:
+    action{1..2}:
+        __construct:
+            - 'action-<current()>'
+        label: label-<current()>
+        description: description-<current()>

@@ -1,7 +1,0 @@
-Yay\Component\Entity\Achievement\AchievementDefinition:
-    achievement{1..2}:
-        __construct:
-            - 'achievement-<current()>'
-        label: label-<current()>
-        description: description-<current()>
-        points: <current()>

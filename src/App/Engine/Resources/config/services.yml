@@ -1,0 +1,16 @@
+parameters: ~
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Engine\Command\:
+        resource: '../../Command'
+        tags: ['console.command']
+
+    Component\Engine\Engine: { public: true }
+    Component\Engine\Storage\DoctrineStorage: ["@=service('doctrine').getManager()"]
+    Component\Engine\StorageInterface: '@Component\Engine\Storage\DoctrineStorage'
+    Component\Engine\AchievementValidatorCollection: ~ #[!tagged yay.achievement_validator]

@@ -1,3 +1,0 @@
-Annotations:
-    resource: "@ApiBundle/Controller"
-    type:     annotation

@@ -1,3 +1,0 @@
-Annotations:
-    resource: "@WebhookBundle/Controller"
-    type:     annotation

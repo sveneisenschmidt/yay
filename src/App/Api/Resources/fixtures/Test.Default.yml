@@ -1,0 +1,21 @@
+Component\Entity\Player:
+    player:
+        username: 'jane.doe'
+        name: '<firstName()> <lastName()>'
+        email: '<email()>'
+        imageUrl: 'https://placehold.it/512x512/007daa/ffffff'
+
+Component\Entity\Achievement\ActionDefinition:
+    action_definition:
+        __construct:
+          - 'yay.action.test_api_action'
+
+Component\Entity\Achievement\AchievementDefinition:
+    achievement_definition:
+        __construct:
+          - 'yay.achievement.test_api_achievement'
+        __calls:
+          - addActionDefinition: [ '@action_definition' ]
+        points: 50
+
+

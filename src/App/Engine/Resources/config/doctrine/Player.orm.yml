@@ -1,0 +1,33 @@
+Component\Entity\Player:
+  type: entity
+  table: player
+  # Primary Key
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  # Columns
+  fields:
+    name:
+      type: string
+    username:
+      type: string
+      unique: true
+    email:
+      type: string
+      unique: true
+    score:
+      type: integer
+    imageUrl:
+      type: string
+  # Relationships
+  oneToMany:
+    personalActions:
+      targetEntity: 'Component\Entity\Achievement\PersonalAction'
+      mappedBy: player
+      cascade: [ 'persist', 'refresh' ]
+    personalAchievements:
+      targetEntity: 'Component\Entity\Achievement\PersonalAchievement'
+      mappedBy: player
+      cascade: [ 'persist', 'refresh' ]
