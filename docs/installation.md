@@ -36,20 +36,20 @@ docker build -t sveneisenschmidt/yay .
 
 2\) Create a new folder, or preferably clone a repository that contains your own Dockerfile and integrations to extend yay.
 
-Let's assume you have a folder called 'mycompany-yay', now here a new Dockerfile that will have a custom command. The dockerfile has a default `CMD` that will load a `docker-run.sh` file from the `dist` folder.
+Let's assume you have a folder called 'mycompany-yay', now here a new Dockerfile that will have a custom command. The dockerfile has a default `CMD` that will load a `docker-run.sh` file from the `root` folder if present.
 ```Dockerfile
 FROM sveneisenschmidt/yay
 
-COPY ./docker-run.sh /data/dist/docker-run.sh
+COPY ./custom-docker-run.sh docker-run.sh
 ```
 
-By providing your own `dist/docker-run.sh` it is possible to install custom integrations at startup and customize the web server used. With this approach even more sophisticated installation routines are possible. Try it out!
+By providing your own `docker-run.sh` it is possible to install custom integrations at startup and customize the web server used. With this approach even more sophisticated installation routines are possible. Try it out!
 
 ```bash
 #!/bin/bash
 
-php bin/console yay:integration:install integration/default --env=${APP_ENV}
-php bin/console yay:integration:install integration/demo --env=${APP_ENV}
+php bin/console yay:integration:enable default integration/default --env=${APP_ENV}
+php bin/console yay:integration:enable demo integration/demo --env=${APP_ENV}
 
 php bin/console server:run 0.0.0.0:80 --env=${APP_ENV}
 ```

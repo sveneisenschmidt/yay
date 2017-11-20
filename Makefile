@@ -14,6 +14,7 @@ all:
 	#	shell					Start an interactive shell session
 	#	demo-import				Import demo data
 	#	demo-remove				Remove demo data
+	#	demo-publish			Publish demo docker image to sveneisenschmidt/yay-api-demo
 	#	watch-logs				Watch all log files
 	#	watch-redis				Watch all redis queries
 
@@ -53,6 +54,15 @@ test-coverage: .application-test-coverage
 demo-import: .application-demo-import
 
 demo-remove: .application-demo-remove
+
+demo-publish: install .clean-project
+	cp dist/docker-run.demo.sh docker-run.sh
+	chmod +x docker-run.sh
+	docker build -t sveneisenschmidt/yay-api-demo .
+	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:$(shell git log -1 --format=%h)
+	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:latest
+	docker push sveneisenschmidt/yay-api-demo
+	rm docker-run.sh
 
 watch-logs: .application-watch-logs
 

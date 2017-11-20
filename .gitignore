@@ -9,4 +9,4 @@
 /config/integration/*
 !config/integration/.gitkeep
 coverage.xml
-/dist/docker-run.sh
+/docker-run.sh
