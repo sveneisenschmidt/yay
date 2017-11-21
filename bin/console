@@ -6,7 +6,15 @@ use Symfony\Component\Console\Input\ArgvInput;
 
 set_time_limit(0);
 
-require __DIR__.'/../vendor/autoload.php';
+$loader = require __DIR__.'/../vendor/autoload.php';
+
+if (isset($_ENV['APP_ENV'])) {
+    $_SERVER['APP_ENV'] = $_ENV['APP_ENV'];
+}
+
+if (isset($_ENV['APP_DEBUG'])) {
+    $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'];
+}
 
 if (!class_exists(Application::class)) {
     throw new \RuntimeException('You need to add "symfony/framework-bundle" as a Composer dependency.');
