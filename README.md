@@ -13,7 +13,7 @@
 Yay is a **gamification engine**, exposing a web service API, to bring everyone the joy of gamification and integrating any kinds of gamification features into your organisation. Yay originally started as a 36 hours hackathon project at [trivago](https://github.com/trivago) to bring gamification features to our organisation. To integrate yay into many application landscapes it offers flexible extension points to write your own integrations.
 
 ## The demo
-See Yay in action at [https://yay-demo.sloppy.zone/api/doc](https://yay-demo.sloppy.zone/api/doc) - hosted by the awesome [https://sloppy.io](sloppy.io) platform. ([Docker hub image](https://hub.docker.com/r/sveneisenschmidt/yay-demo/), [Docker CMD script](dist/docker-run.demo.sh), [Docker build command](Makefile#L58))
+See Yay in action at [https://yay-demo.sloppy.zone/api/doc](https://yay-demo.sloppy.zone/api/doc) - hosted by the awesome [https://sloppy.io](sloppy.io) platform. ([Docker hub image](https://hub.docker.com/r/sveneisenschmidt/yay-demo/), [Docker CMD script](dist/docker-run.demo.sh), [Docker build command](Makefile))
 
 ## Yay Documentation
 How-to-use demo, installation instructions, configuration examples and extension documentation:
