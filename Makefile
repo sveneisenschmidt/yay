@@ -63,7 +63,7 @@ default-publish:
 	chmod +x docker-run.sh
 	docker build -t sveneisenschmidt/yay .
 	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
-	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)-latest
+	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)
 	docker push sveneisenschmidt/yay
 	rm docker-run.sh
 
@@ -73,7 +73,7 @@ demo-publish:
 	chmod +x docker-run.sh
 	docker build -t sveneisenschmidt/yay-demo .
 	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
-	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)-latest
+	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)
 	docker push sveneisenschmidt/yay-demo
 	rm docker-run.sh
 

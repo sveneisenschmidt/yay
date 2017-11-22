@@ -38,14 +38,14 @@ jobs:
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
       - DOCKER_ENV=dev make default-publish
-    - stage: "Build Docker Image: yay-api-demo:stable"
+    - stage: "Build Docker Image: yay-demo:stable"
       if: branch = master AND type IN (push) AND fork = false
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
       - DOCKER_ENV=stable make demo-publish
-    - stage: "Build Docker Image: yay-api-demo:dev"
+    - stage: "Build Docker Image: yay-demo:dev"
       if: branch != master AND type IN (push) AND fork = false
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
