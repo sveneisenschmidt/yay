@@ -32,7 +32,7 @@ Create a new folder, or preferably clone a repository that contains your own Doc
 Let's assume you have a folder called 'mycompany-yay', it will hold our Dockerfile that will have a custom command. The default docker image has a default `CMD` that will load a `docker-run.sh` file from the `root` folder if present.
 
 ```Dockerfile
-FROM sveneisenschmidt/yay-api:stable-latest
+FROM sveneisenschmidt/yay:stable-latest
 
 # Bake your custom integration into the image
 COPY ./integration ./data/integration
@@ -72,3 +72,7 @@ $ docker run \
     -e REDIS_HOST=10.0.0.2 \
     -e REDIS_PORT=6379
 ```
+
+### Automated build
+
+Ready-to-use Docker images `sveneisenschmidt/yay` and `sveneisenschmidt/yay-demo` are built automatically via Travis CI ([.travis.yml](.travis.yml)).

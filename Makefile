@@ -13,9 +13,10 @@ all:
 	#	test					Run application tests
 	#	test-coverage			Run application tests and generate code coverage
 	#	shell					Start an interactive shell session
+	#	default-publish			Publish demo docker image to sveneisenschmidt/yay
 	#	demo-import				Import demo data
 	#	demo-remove				Remove demo data
-	#	demo-publish			Publish demo docker image to sveneisenschmidt/yay-api-demo
+	#	demo-publish			Publish demo docker image to sveneisenschmidt/yay-demo
 	#	watch-logs				Watch all log files
 	#	watch-redis				Watch all redis queries
 
@@ -60,20 +61,20 @@ default-publish:
 	rm -rf vendor var/* config/integration/*
 	cp dist/docker-run.default.sh docker-run.sh
 	chmod +x docker-run.sh
-	docker build -t sveneisenschmidt/yay-api .
-	docker tag sveneisenschmidt/yay-api sveneisenschmidt/yay-api:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
-	docker tag sveneisenschmidt/yay-api sveneisenschmidt/yay-api:$(DOCKER_ENV)-latest
-	docker push sveneisenschmidt/yay-api
+	docker build -t sveneisenschmidt/yay .
+	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
+	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)-latest
+	docker push sveneisenschmidt/yay
 	rm docker-run.sh
 
 demo-publish:
 	rm -rf vendor var/* config/integration/*
 	cp dist/docker-run.demo.sh docker-run.sh
 	chmod +x docker-run.sh
-	docker build -t sveneisenschmidt/yay-api-demo .
-	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
-	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:$(DOCKER_ENV)-latest
-	docker push sveneisenschmidt/yay-api-demo
+	docker build -t sveneisenschmidt/yay-demo .
+	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
+	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)-latest
+	docker push sveneisenschmidt/yay-demo
 	rm docker-run.sh
 
 watch-logs: .application-watch-logs
