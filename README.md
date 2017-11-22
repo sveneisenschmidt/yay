@@ -31,7 +31,19 @@ How-to-use demo, installation instructions, configuration examples and extension
 Yay is tested and packable to run through Docker on any operating system that supports Docker.
 
 * [Installation](docs/installation.md)
-* [Releases on github.com](https://github.com/sveneisenschmidt/yay/releases)
+* [Images on Docker Hub](https://hub.docker.com/r/sveneisenschmidt/yay/tags/)
+
+```Dockerfile
+FROM sveneisenschmidt/yay:stable
+
+# Bake your custom integration into the image
+COPY ./integration/mycompany.yml ./data/integration/mycompany.yml
+
+# Bake your custom run script into the image
+# Example: dist/docker-run.demo.sh
+#   
+COPY ./mycompany-docker-run.sh docker-run.sh
+```
 
 ## Usage
 ```bash

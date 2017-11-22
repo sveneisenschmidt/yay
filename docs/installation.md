@@ -32,13 +32,15 @@ Create a new folder, or preferably clone a repository that contains your own Doc
 Let's assume you have a folder called 'mycompany-yay', it will hold our Dockerfile that will have a custom command. The default docker image has a default `CMD` that will load a `docker-run.sh` file from the `root` folder if present.
 
 ```Dockerfile
-FROM sveneisenschmidt/yay:stable-latest
+FROM sveneisenschmidt/yay:stable
 
 # Bake your custom integration into the image
-COPY ./integration ./data/integration
+COPY ./integration/mycompany.yml ./data/integration/mycompany.yml
 
 # Bake your custom run script into the image
-COPY ./custom-docker-run.sh docker-run.sh
+# Example: dist/docker-run.demo.sh
+#   
+COPY ./mycompany-docker-run.sh docker-run.sh
 ```
 
 By providing your own `docker-run.sh` it is possible to install custom integrations at startup and customize the web server used. With this approach even more sophisticated installation routines are possible. Try it out!
