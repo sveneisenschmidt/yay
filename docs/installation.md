@@ -51,7 +51,7 @@ By providing your own `docker-run.sh` it is possible to install custom integrati
 php bin/console yay:integration:enable default integration/default --env=${APP_ENV}
 php bin/console yay:integration:enable demo integration/demo --env=${APP_ENV}
 
-php bin/console server:run 0.0.0.0:80 --env=${APP_ENV}
+apache2-foreground
 ```
 
 The script will install the `default` integration, the `demo` integration and run the php development web server on port `80`.
