@@ -59,8 +59,8 @@ demo-publish: install .clean-project
 	cp dist/docker-run.demo.sh docker-run.sh
 	chmod +x docker-run.sh
 	docker build -t sveneisenschmidt/yay-api-demo .
-	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:$(shell git log -1 --format=%h)
-	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:latest
+	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:dev-$(shell git log -1 --format=%h)
+	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:dev-latest
 	docker push sveneisenschmidt/yay-api-demo
 	rm docker-run.sh
 
