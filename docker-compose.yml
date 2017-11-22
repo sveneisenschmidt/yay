@@ -11,7 +11,7 @@ web:
     working_dir: "/var/www/html"
     environment:
         APP_MODE: web
-        APP_ENV: prod
+        APP_ENV: dev
         APP_DEBUG: 1
         DATABASE_HOST: mysqldb
         DATABASE_NAME: dev
@@ -31,7 +31,7 @@ cli:
     working_dir: "/var/www/html"
     environment:
         APP_MODE: web
-        APP_ENV: prod
+        APP_ENV: dev
         APP_DEBUG: 1
         DATABASE_HOST: mysqldb
         DATABASE_NAME: dev
