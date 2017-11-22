@@ -42,11 +42,11 @@ class InstallerService
         $config = $this->loadConfig($sourceFile);
         $configs = $this->transformFromConfig($config);
 
-        if ($mode === self::MODE_ALL || $mode === self::MODE_CONFIG) {
+        if (self::MODE_ALL === $mode || self::MODE_CONFIG === $mode) {
             $this->installServices($configs['services.yml'], sprintf('%s/%s.yml', $targetDirectory, $name));
         }
 
-        if ($mode === self::MODE_ALL || $mode === self::MODE_DATA) {
+        if (self::MODE_ALL === $mode || self::MODE_DATA === $mode) {
             $this->installEntities($configs['entities.yml']);
         }
     }
