@@ -25,19 +25,19 @@ class EnableCommand extends ContainerAwareCommand
                 'path',
                 InputArgument::REQUIRED,
                 'The path to all integration specific configuration files'
-            )    
+            )
             ->addOption(
                 'config-only',
                 null,
                 InputOption::VALUE_NONE,
                 'Import only configuration, no database actions will be executed'
-            )    
+            )
             ->addOption(
                 'data-only',
                 null,
                 InputOption::VALUE_NONE,
                 'Import only database fixtures, no filesystem actions will be executed'
-            );;
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -47,7 +47,7 @@ class EnableCommand extends ContainerAwareCommand
 
         if ($input->getOption('config-only')) {
             $mode = InstallerService::MODE_CONFIG;
-        } else if ($input->getOption('data-only')) {
+        } elseif ($input->getOption('data-only')) {
             $mode = InstallerService::MODE_DATA;
         } else {
             $mode = InstallerService::MODE_ALL;
@@ -62,10 +62,10 @@ class EnableCommand extends ContainerAwareCommand
 
         (new SymfonyStyle($input, $output))->success(
             sprintf(
-                'Integration "%s" enabled. (Mode: %s)', 
-                $name, 
-                ($mode == InstallerService::MODE_DATA) ? 'MODE_DATA' :
-                    (($mode == InstallerService::MODE_CONFIG) ? 'MODE_CONFIG' : 'MODE_ALL')
+                'Integration "%s" enabled. (Mode: %s)',
+                $name,
+                (InstallerService::MODE_DATA == $mode) ? 'MODE_DATA' :
+                    ((InstallerService::MODE_CONFIG == $mode) ? 'MODE_CONFIG' : 'MODE_ALL')
             )
         );
     }

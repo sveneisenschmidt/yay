@@ -61,7 +61,7 @@ class EnableCommandTest extends KernelTestCase
             'command' => $command->getName(),
             'name' => 'test',
             'path' => 'integration/test',
-            '--config-only' => '1'
+            '--config-only' => '1',
         ]);
 
         $this->assertContains('[OK] Integration "test" enabled. (Mode: MODE_CONFIG)', $commandTester->getDisplay());
@@ -90,9 +90,9 @@ class EnableCommandTest extends KernelTestCase
             'command' => $command->getName(),
             'name' => 'test',
             'path' => 'integration/test',
-            '--data-only' => '1'
+            '--data-only' => '1',
         ]);
 
         $this->assertContains('[OK] Integration "test" enabled. (Mode: MODE_DATA)', $commandTester->getDisplay());
-    }    
+    }
 }
