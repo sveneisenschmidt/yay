@@ -22,15 +22,37 @@ jobs:
       script: make test-coverage
       after_success:
       - bash <(curl -s https://codecov.io/bash)
-    - stage: "Build"
+      - cat "$TRAVIS_BUILD_DIR"/install.log
+    - stage: "Build Image: yay-api:stable"
+      before_script:
+      - sed -i -e 's/data:cached/data/g' docker-compose.yml
       after_success:
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       - if [ "$TRAVIS_BRANCH" == "master" ]; then
-        DOCKER_ENV=stable make demo-publish;
         DOCKER_ENV=stable make default-publish; 
         fi
+    - stage: "Build Docker Image: yay-api:dev"
+      before_script:
+      - sed -i -e 's/data:cached/data/g' docker-compose.yml
+      after_success:
+      - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       - if [ "$TRAVIS_BRANCH" != "master" ]; then
-        DOCKER_ENV=dev make demo-publish;
-        DOCKER_ENV=dev make default-publish; 
+        DOCKER_ENV=stable make default-publish; 
         fi
-      - cat "$TRAVIS_BUILD_DIR"/install.log
+    - stage: "Build Docker Image: yay-api-demo:stable"
+      before_script:
+      - sed -i -e 's/data:cached/data/g' docker-compose.yml
+      after_success:
+      - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+      - if [ "$TRAVIS_BRANCH" == "master" ]; then
+        DOCKER_ENV=stable make demo-publish; 
+        fi
+    - stage: "Build Docker Image: yay-api-demo:dev"
+      before_script:
+      - sed -i -e 's/data:cached/data/g' docker-compose.yml
+      after_success:
+      - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+      - if [ "$TRAVIS_BRANCH" != "master" ]; then
+        DOCKER_ENV=stable make demo-publish; 
+        fi
+
