@@ -23,10 +23,10 @@ after_success:
     - bash <(curl -s https://codecov.io/bash)
     - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      DOCKER_HUB_ENV=stable make demo-publish;
-      DOCKER_HUB_ENV=stable make default-publish;
+      DOCKER_ENV=stable make demo-publish;
+      DOCKER_ENV=stable make default-publish;
     - if [ "$TRAVIS_BRANCH" 1= "master" ]; then
-      DOCKER_HUB_ENV=dev make demo-publish;
-      DOCKER_HUB_ENV=dev make default-publish;
+      DOCKER_ENV=dev make demo-publish;
+      DOCKER_ENV=dev make default-publish;
       fi
     - cat "$TRAVIS_BUILD_DIR"/install.log
