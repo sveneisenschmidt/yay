@@ -17,7 +17,7 @@ jobs:
   include:
     - stage: "Test"
       before_script:
-      - sed -i -e 's/data:cached/data/g' docker-compose.yml && cat docker-compose.yml
+      - sed -i -e 's/data:cached/data/g' docker-compose.yml
       - make install 2>&1 "$TRAVIS_BUILD_DIR"/install.log | pv > /dev/null -t
       script: make test-coverage
       after_success:
@@ -27,9 +27,10 @@ jobs:
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       - if [ "$TRAVIS_BRANCH" == "master" ]; then
         DOCKER_ENV=stable make demo-publish;
-        DOCKER_ENV=stable make default-publish;
+        DOCKER_ENV=stable make default-publish; 
+        fi
       - if [ "$TRAVIS_BRANCH" != "master" ]; then
         DOCKER_ENV=dev make demo-publish;
-        DOCKER_ENV=dev make default-publish;
+        DOCKER_ENV=dev make default-publish; 
         fi
       - cat "$TRAVIS_BUILD_DIR"/install.log
