@@ -24,4 +24,6 @@ after_success:
     - cat install.log
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
       DOCKER_HUB_ENV=stable make demo-publish
+      else
+      DOCKER_HUB_ENV=dev make demo-publish
       fi
