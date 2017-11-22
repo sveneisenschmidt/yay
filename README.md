@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sveneisenschmidt/yay.svg?branch=master)](https://travis-ci.org/sveneisenschmidt/yay) [![codecov](https://codecov.io/gh/sveneisenschmidt/yay/branch/master/graph/badge.svg)](https://codecov.io/gh/sveneisenschmidt/yay) [![StyleCI](https://styleci.io/repos/85753371/shield?branch=master)](https://styleci.io/repos/85753371) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://travis-ci.org/sveneisenschmidt/yay.svg?branch=master)](https://travis-ci.org/sveneisenschmidt/yay) [![codecov](https://codecov.io/gh/sveneisenschmidt/yay/branch/master/graph/badge.svg)](https://codecov.io/gh/sveneisenschmidt/yay) [![StyleCI](https://styleci.io/repos/85753371/shield?branch=master)](https://styleci.io/repos/85753371) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Docker Hub](https://img.shields.io/badge/Docker_Hub-.../yay:stable-green.svg)](https://hub.docker.com/r/sveneisenschmidt/yay/) [![Docker Hub](https://img.shields.io/badge/Docker_Hub-.../yay:dev-orange.svg)](https://hub.docker.com/r/sveneisenschmidt/yay/) [![Docker Hub](https://img.shields.io/badge/Docker_Hub-.../yay--demo:stable-green.svg)](https://hub.docker.com/r/sveneisenschmidt/yay-demo/) [![Docker Hub](https://img.shields.io/badge/Docker_Hub-.../yay--demo:dev-orange.svg)](https://hub.docker.com/r/sveneisenschmidt/yay-demo/)
 
 # ![yay](docs/src/logo.png) What is Yay?
 
@@ -10,7 +10,10 @@
 </p>
 
 ## The Implementation
-Yay is a **gamification engine**, exposing a web service API, for integrating any kinds of gamification features into your organisation. Yay originally started as a 36 hours hackathon project at [trivago](https://github.com/trivago) to bring gamification features to our organisation. To integrate yay into many application landscapes it offers flexible extension points to write your own integrations.
+Yay is a **gamification engine**, exposing a web service API, to bring everyone the joy of gamification and integrating any kinds of gamification features into your organisation. Yay originally started as a 36 hours hackathon project at [trivago](https://github.com/trivago) to bring gamification features to our organisation. To integrate yay into many application landscapes it offers flexible extension points to write your own integrations.
+
+## The demo
+See Yay in action at [https://yay-demo.sloppy.zone/api/doc](https://yay-demo.sloppy.zone/api/doc) - hosted by the awesome [https://sloppy.io](sloppy.io) platform. ([Docker hub image](https://hub.docker.com/r/sveneisenschmidt/yay-demo/), [Docker CMD script](dist/docker-run.demo.sh), [Docker build command](Makefile#L58))
 
 ## Yay Documentation
 How-to-use demo, installation instructions, configuration examples and extension documentation:
@@ -28,7 +31,19 @@ How-to-use demo, installation instructions, configuration examples and extension
 Yay is tested and packable to run through Docker on any operating system that supports Docker.
 
 * [Installation](docs/installation.md)
-* [Releases on github.com](https://github.com/sveneisenschmidt/yay/releases)
+* [Images on Docker Hub](https://hub.docker.com/r/sveneisenschmidt/yay/tags/)
+
+```Dockerfile
+FROM sveneisenschmidt/yay:stable
+
+# Bake your custom integration into the image
+COPY ./integration/mycompany.yml ./data/integration/mycompany.yml
+
+# Bake your custom run script into the image
+# Example: dist/docker-run.demo.sh
+#   
+COPY ./mycompany-docker-run.sh docker-run.sh
+```
 
 ## Usage
 ```bash

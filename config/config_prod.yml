@@ -1,12 +1,6 @@
 imports:
     - { resource: config.yml }
 
-framework:
-    assets:
-        version: '%assets_version%'
-        version_format: '%%s?version=%%s'
-        base_path:  ~
-
 monolog:
     handlers:
         main:

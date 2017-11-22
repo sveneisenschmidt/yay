@@ -1,0 +1,15 @@
+.travis.yml
+.editorconfig
+.gitignore
+.styleci.yml
+var
+vendor
+Makefile
+Dockerfile
+docker-compose.yml
+LICENSE
+phpuni.xml.dist
+README.md
+codecov.yml
+coverage.xml
+docs

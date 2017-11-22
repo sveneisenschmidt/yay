@@ -35,6 +35,64 @@ class EnableCommandTest extends KernelTestCase
             'path' => 'integration/test',
         ));
 
-        $this->assertContains('[OK] Integration "test" enabled', $commandTester->getDisplay());
+        $this->assertContains('[OK] Integration "test" enabled. (Mode: MODE_ALL)', $commandTester->getDisplay());
+    }
+
+    public function test_execute_flag_config_only(): void
+    {
+        self::bootKernel();
+        $application = new Application(self::$kernel);
+        $application->add(new EnableCommand());
+
+        $installer = $this->getMockBuilder(InstallerService::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['install'])
+            ->getMock();
+
+        $installer->expects($this->once())
+            ->method('install');
+
+        self::$kernel->getContainer()->set(InstallerService::class, $installer);
+
+        $command = $application->find('yay:integration:enable');
+        $commandTester = new CommandTester($command);
+
+        $commandTester->execute([
+            'command' => $command->getName(),
+            'name' => 'test',
+            'path' => 'integration/test',
+            '--config-only' => '1',
+        ]);
+
+        $this->assertContains('[OK] Integration "test" enabled. (Mode: MODE_CONFIG)', $commandTester->getDisplay());
+    }
+
+    public function test_execute_flag_data_only(): void
+    {
+        self::bootKernel();
+        $application = new Application(self::$kernel);
+        $application->add(new EnableCommand());
+
+        $installer = $this->getMockBuilder(InstallerService::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['install'])
+            ->getMock();
+
+        $installer->expects($this->once())
+            ->method('install');
+
+        self::$kernel->getContainer()->set(InstallerService::class, $installer);
+
+        $command = $application->find('yay:integration:enable');
+        $commandTester = new CommandTester($command);
+
+        $commandTester->execute([
+            'command' => $command->getName(),
+            'name' => 'test',
+            'path' => 'integration/test',
+            '--data-only' => '1',
+        ]);
+
+        $this->assertContains('[OK] Integration "test" enabled. (Mode: MODE_DATA)', $commandTester->getDisplay());
     }
 }

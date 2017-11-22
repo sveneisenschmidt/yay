@@ -25,3 +25,4 @@ endef
 
 .docker-remove-images:
 	@docker rmi $(shell docker images --format '{{.Repository}}' | grep '$(PROJECT)') --force
+

@@ -1,5 +1,9 @@
 FROM php:7.2-rc-alpine
 
+LABEL org.label-schema.name="yay" \
+      org.label-schema.url="https://github.com/sveneisenschmidt/yay" \
+      org.label-schema.vcs-url="https://github.com/sveneisenschmidt/yay.git"
+
 ENV COMPOSER_DISABLE_XDEBUG_WARN 1
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
@@ -33,4 +37,4 @@ WORKDIR /data
 
 RUN composer install --ignore-platform-reqs
 
-CMD ["dist/docker-run.dist.sh"]
+CMD ["./docker-run.dist.sh"]
