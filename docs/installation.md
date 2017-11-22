@@ -27,29 +27,29 @@ The application responds now to API requests from `http://localhost:50800`. To s
 
 It is encouraged to create your own distribution based on a docker image which includes your own or third-party integrations. As a first step use the application sources and Dockerfile to create a docker image and use it via `FROM` as basis for your own `Dockerfile`.
 
-First build a docker image from the official sources please note that this uses the stub `Dockerfile` and is not running standalone.
+Create a new folder, or preferably clone a repository that contains your own Dockerfile and integrations to extend yay.
 
-1\) Build a docker image based on the stub for further extension.
-```bash
-docker build -t sveneisenschmidt/yay .
-```
+Let's assume you have a folder called 'mycompany-yay', it will hold our Dockerfile that will have a custom command. The default docker image has a default `CMD` that will load a `docker-run.sh` file from the `root` folder if present.
 
-2\) Create a new folder, or preferably clone a repository that contains your own Dockerfile and integrations to extend yay.
-
-Let's assume you have a folder called 'mycompany-yay', now here a new Dockerfile that will have a custom command. The dockerfile has a default `CMD` that will load a `docker-run.sh` file from the `dist` folder.
 ```Dockerfile
-FROM sveneisenschmidt/yay
+FROM sveneisenschmidt/yay:stable
 
-COPY ./docker-run.sh /data/dist/docker-run.sh
+# Bake your custom integration into the image
+COPY ./integration/mycompany.yml ./data/integration/mycompany.yml
+
+# Bake your custom run script into the image
+# Example: dist/docker-run.demo.sh
+#   
+COPY ./mycompany-docker-run.sh docker-run.sh
 ```
 
-By providing your own `dist/docker-run.sh` it is possible to install custom integrations at startup and customize the web server used. With this approach even more sophisticated installation routines are possible. Try it out!
+By providing your own `docker-run.sh` it is possible to install custom integrations at startup and customize the web server used. With this approach even more sophisticated installation routines are possible. Try it out!
 
 ```bash
 #!/bin/bash
 
-php bin/console yay:integration:install integration/default --env=${APP_ENV}
-php bin/console yay:integration:install integration/demo --env=${APP_ENV}
+php bin/console yay:integration:enable default integration/default --env=${APP_ENV}
+php bin/console yay:integration:enable demo integration/demo --env=${APP_ENV}
 
 php bin/console server:run 0.0.0.0:80 --env=${APP_ENV}
 ```
@@ -74,3 +74,7 @@ $ docker run \
     -e REDIS_HOST=10.0.0.2 \
     -e REDIS_PORT=6379
 ```
+
+### Automated build
+
+Ready-to-use Docker images `sveneisenschmidt/yay` and `sveneisenschmidt/yay-demo` are built automatically via Travis CI ([.travis.yml](.travis.yml)).

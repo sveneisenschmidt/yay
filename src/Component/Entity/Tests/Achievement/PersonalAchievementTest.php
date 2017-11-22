@@ -10,15 +10,12 @@ use Component\Entity\Achievement\AchievementDefinitionInterface;
 
 class PersonalAchievementTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = FakerFactory::create();
     }
 
-    /**
-     * @test
-     */
-    public function set_get_scalar()
+    public function test_set_get_scalar(): void
     {
         $instance = new PersonalAchievement(
             $player = $this->createMock(PlayerInterface::class),
@@ -34,10 +31,7 @@ class PersonalAchievementTest extends TestCase
         $this->assertEquals($name, (string) $instance);
     }
 
-    /**
-     * @test
-     */
-    public function set_get_player()
+    public function test_set_get_player(): void
     {
         $instance = new PersonalAchievement(
             $player1 = $this->createMock(PlayerInterface::class),
@@ -50,10 +44,7 @@ class PersonalAchievementTest extends TestCase
         $this->assertSame($player2, $instance->getPlayer());
     }
 
-    /**
-     * @test
-     */
-    public function set_get_achievement_definition()
+    public function test_set_get_achievement_definition(): void
     {
         $instance = new PersonalAchievement(
             $player = $this->createMock(PlayerInterface::class),
@@ -66,10 +57,7 @@ class PersonalAchievementTest extends TestCase
         $this->assertSame($achievementDefinition2, $instance->getAchievementDefinition());
     }
 
-    /**
-     * @test
-     */
-    public function set_get_achieved_at()
+    public function test_set_get_achieved_at(): void
     {
         $instance = new PersonalAchievement(
             $player = $this->createMock(PlayerInterface::class),

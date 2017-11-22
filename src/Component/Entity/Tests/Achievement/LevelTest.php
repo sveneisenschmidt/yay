@@ -8,15 +8,12 @@ use Component\Entity\Achievement\Level;
 
 class LevelTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = FakerFactory::create();
     }
 
-    /**
-     * @test
-     */
-    public function set_get_scalar()
+    public function test_set_get_scalar(): void
     {
         $instance = new Level(
             $name = $this->faker->word,

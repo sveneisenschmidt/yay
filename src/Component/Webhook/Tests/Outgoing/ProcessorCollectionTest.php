@@ -8,10 +8,7 @@ use Component\Webhook\Outgoing\ProcessorInterface;
 
 class ProcessorCollectionTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function get_processor()
+    public function test_get_processor(): void
     {
         $processor1 = $this->createConfiguredMock(ProcessorInterface::class, [
             'getName' => $name1 = 'test-processor-01',
@@ -28,10 +25,7 @@ class ProcessorCollectionTest extends TestCase
         $this->assertNull($collection->getProcessor($name2));
     }
 
-    /**
-     * @test
-     */
-    public function has_processor()
+    public function test_has_processor(): void
     {
         $processor1 = $this->createConfiguredMock(ProcessorInterface::class, [
             'getName' => $name1 = 'test-processor-01',

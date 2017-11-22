@@ -13,36 +13,26 @@ use Component\Entity\PlayerInterface;
 
 class LinkListener
 {
-    /**
-     * @var UrlGeneratorInterface
-     */
+    /** @var UrlGeneratorInterface */
     protected $urlGenerator;
 
-    /**
-     * LinkListener constructor.
-     *
-     * @param UrlGeneratorInterface $urlGenerator
-     */
     public function __construct(UrlGeneratorInterface $urlGenerator)
     {
         $this->urlGenerator = $urlGenerator;
     }
 
-    /**
-     * @param       $routeName
-     * @param array $routeParams
-     *
-     * @return string
-     */
-    public function generateRoute($routeName, array $routeParams = []): string
-    {
-        return $this->urlGenerator->generate($routeName, $routeParams, UrlGeneratorInterface::ABSOLUTE_URL);
+    public function generateRoute(
+        string $routeName,
+        array $routeParams = []
+    ): string {
+        return $this->urlGenerator->generate(
+            $routeName,
+            $routeParams,
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
     }
 
-    /**
-     * @param ObjectEvent $event
-     */
-    public function onPostSerialize(ObjectEvent $event)
+    public function onPostSerialize(ObjectEvent $event): void
     {
         /** @var GenericSerializationVisitor $visitor */
         $visitor = $event->getVisitor();
@@ -68,12 +58,10 @@ class LinkListener
         }
     }
 
-    /**
-     * @param GenericSerializationVisitor $visitor
-     * @param PlayerInterface             $player
-     */
-    public function handlePlayer(GenericSerializationVisitor $visitor, PlayerInterface $player)
-    {
+    public function handlePlayer(
+        GenericSerializationVisitor $visitor,
+        PlayerInterface $player
+    ): void {
         $visitor->setData('links', [
             'self' => $this->generateRoute(
                 'api_player_show',
@@ -90,12 +78,10 @@ class LinkListener
         ]);
     }
 
-    /**
-     * @param GenericSerializationVisitor    $visitor
-     * @param AchievementDefinitionInterface $achievementDefinition
-     */
-    public function handleAchievementDefinition(GenericSerializationVisitor $visitor, AchievementDefinitionInterface $achievementDefinition)
-    {
+    public function handleAchievementDefinition(
+        GenericSerializationVisitor $visitor,
+        AchievementDefinitionInterface $achievementDefinition
+    ): void {
         $visitor->setData('links', [
             'self' => $this->generateRoute(
                 'api_achievement_show',
@@ -110,12 +96,10 @@ class LinkListener
         ]);
     }
 
-    /**
-     * @param GenericSerializationVisitor $visitor
-     * @param ActionDefinitionInterface   $achievementDefinition
-     */
-    public function handleActionDefinition(GenericSerializationVisitor $visitor, ActionDefinitionInterface $actionDefinition)
-    {
+    public function handleActionDefinition(
+        GenericSerializationVisitor $visitor,
+        ActionDefinitionInterface $actionDefinition
+    ): void {
         $visitor->setData('links', [
             'self' => $this->generateRoute(
                 'api_action_show',
@@ -124,11 +108,8 @@ class LinkListener
         ]);
     }
 
-    /**
-     * @param GenericSerializationVisitor $visitor
-     * @param ActionDefinitionInterface   $achievementDefinition
-     */
-    public function handlePersonalAchievement(GenericSerializationVisitor $visitor, PersonalAchievementInterface $personalAchievement)
+    public function handlePersonalAchievement(
+        GenericSerializationVisitor $visitor, PersonalAchievementInterface $personalAchievement)
     {
         $visitor->setData('links', [
             'self' => $this->generateRoute(
@@ -146,10 +127,6 @@ class LinkListener
         ]);
     }
 
-    /**
-     * @param GenericSerializationVisitor $visitor
-     * @param PersonalActionInterface     $achievementDefinition
-     */
     public function handlePersonalAction(GenericSerializationVisitor $visitor, PersonalActionInterface $personalAction)
     {
         $visitor->setData('links', [

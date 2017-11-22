@@ -9,10 +9,7 @@ use Component\Webhook\Outgoing\ProcessorCollection as OutgoingProcessorCollectio
 
 class WebhookTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function pass_collectors()
+    public function test_pass_collectors(): void
     {
         $collection1 = new IncomingProcessorCollection();
         $collection2 = new OutgoingProcessorCollection();

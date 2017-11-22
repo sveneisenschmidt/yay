@@ -9,10 +9,7 @@ use App\Engine\DependencyInjection\AchievementValidatorPass;
 
 class AchievementValidatorPassTest extends WebTestCase
 {
-    /**
-     * @test
-     */
-    public function process()
+    public function test_process(): void
     {
         $definition1 = new ChildDefinition(\stdClass::class);
         $definition2 = new ChildDefinition(\stdClass::class);

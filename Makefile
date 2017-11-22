@@ -1,5 +1,6 @@
 # Config
 PROJECT := yay
+DOCKER_ENV ?= dev
 
 all:
 	#	start					Start the application
@@ -12,8 +13,10 @@ all:
 	#	test					Run application tests
 	#	test-coverage			Run application tests and generate code coverage
 	#	shell					Start an interactive shell session
+	#	default-publish			Publish demo docker image to sveneisenschmidt/yay
 	#	demo-import				Import demo data
 	#	demo-remove				Remove demo data
+	#	demo-publish			Publish demo docker image to sveneisenschmidt/yay-demo
 	#	watch-logs				Watch all log files
 	#	watch-redis				Watch all redis queries
 
@@ -53,6 +56,26 @@ test-coverage: .application-test-coverage
 demo-import: .application-demo-import
 
 demo-remove: .application-demo-remove
+
+default-publish:
+	rm -rf vendor var/* config/integration/*
+	cp dist/docker-run.default.sh docker-run.sh
+	chmod +x docker-run.sh
+	docker build -t sveneisenschmidt/yay .
+	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
+	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)
+	docker push sveneisenschmidt/yay
+	rm docker-run.sh
+
+demo-publish:
+	rm -rf vendor var/* config/integration/*
+	cp dist/docker-run.demo.sh docker-run.sh
+	chmod +x docker-run.sh
+	docker build -t sveneisenschmidt/yay-demo .
+	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
+	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)
+	docker push sveneisenschmidt/yay-demo
+	rm docker-run.sh
 
 watch-logs: .application-watch-logs
 

@@ -6,9 +6,6 @@ use Nelmio\ApiDocBundle\Formatter\MarkdownFormatter as BaseMarkdownFormatter;
 
 class MarkdownFormatter extends BaseMarkdownFormatter
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function renderOne(array $data)
     {
         $markdown = sprintf("### `%s` %s ###\n", $data['method'], $data['uri']);

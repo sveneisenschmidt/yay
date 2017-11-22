@@ -10,10 +10,7 @@ use App\Integration\Service\InstallerService;
 
 class ValidateCommandTest extends KernelTestCase
 {
-    /**
-     * @test
-     */
-    public function execute_ok()
+    public function test_execute_ok(): void
     {
         self::bootKernel();
         $application = new Application(self::$kernel);
@@ -41,10 +38,7 @@ class ValidateCommandTest extends KernelTestCase
         $this->assertContains('[OK] Integration "test" valid', $commandTester->getDisplay());
     }
 
-    /**
-     * @test
-     */
-    public function execute_warn()
+    public function test_execute_warn(): void
     {
         self::bootKernel();
         $application = new Application(self::$kernel);

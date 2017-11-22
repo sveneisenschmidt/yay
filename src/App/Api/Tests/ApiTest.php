@@ -9,10 +9,7 @@ use App\Api\Api;
 
 class ApiTest extends WebTestCase
 {
-    /**
-     * @test
-     */
-    public function build()
+    public function test_build(): void
     {
         $builder = $this->getMockBuilder(ContainerBuilder::class)
             ->disableOriginalConstructor()
@@ -25,10 +22,7 @@ class ApiTest extends WebTestCase
         (new Api())->build($builder);
     }
 
-    /**
-     * @test
-     */
-    public function get_container_extension()
+    public function test_get_container_extension(): void
     {
         $this->assertInstanceOf(
             ApiExtension::class,

@@ -11,19 +11,13 @@ use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 
 class Compat extends Bundle
 {
-    /**
-     * @param ContainerBuilder $container
-     */
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new JMSSerializerBundlePass(), PassConfig::TYPE_AFTER_REMOVING, -255);
         $container->addCompilerPass(new SncRedisBundlePass(), PassConfig::TYPE_AFTER_REMOVING, -255);
     }
 
-    /**
-     * @return CompatExtension
-     */
-    public function getContainerExtension()
+    public function getContainerExtension(): CompatExtension
     {
         return new CompatExtension();
     }

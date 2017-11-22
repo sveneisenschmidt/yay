@@ -12,10 +12,7 @@ use Component\Entity\PlayerCollection;
 
 class RecalculateCommandTest extends KernelTestCase
 {
-    /**
-     * @test
-     */
-    public function execute()
+    public function test_execute(): void
     {
         self::bootKernel();
         $application = new Application(self::$kernel);

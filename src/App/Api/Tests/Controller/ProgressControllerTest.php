@@ -6,11 +6,7 @@ use App\Api\Test\WebTestCase;
 
 class ProgressControllerTest extends WebTestCase
 {
-    /**
-     * @test
-     * @testdox Submit a payload to update a users progress
-     */
-    public function Progress_SubmitGetAction_ValidUser_OneAction()
+    public function test_Progress_SubmitGetAction_ValidUser_OneAction(): void
     {
         $client = static::createClient();
 
@@ -28,11 +24,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertEmpty($data);
     }
 
-    /**
-     * @test
-     * @testdox Submit a payload to update a users progress
-     */
-    public function Progress_SubmitPostAction_ValidUser_OneAction()
+    public function test_Progress_SubmitPostAction_ValidUser_OneAction(): void
     {
         $client = static::createClient();
 
@@ -50,11 +42,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertEmpty($data);
     }
 
-    /**
-     * @test
-     * @testdox Submit a payload to update a users progress
-     */
-    public function Progress_SubmitGetAction_ValidUser_ManyAction()
+    public function test_Progress_SubmitGetAction_ValidUser_ManyAction(): void
     {
         $client = static::createClient();
 
@@ -104,11 +92,7 @@ class ProgressControllerTest extends WebTestCase
         }
     }
 
-    /**
-     * @test
-     * @testdox Submit a payload to update a users progress
-     */
-    public function Progress_SubmitPostAction_ValidUser_ManyAction()
+    public function test_Progress_SubmitPostAction_ValidUser_ManyAction(): void
     {
         $client = static::createClient();
 
@@ -158,11 +142,7 @@ class ProgressControllerTest extends WebTestCase
         }
     }
 
-    /**
-     * @test
-     * @testdox Submit a payload, but missing actions, to update a users progress
-     */
-    public function Progress_SubmitGetAction_ValidUser_NoAction()
+    public function test_Progress_SubmitGetAction_ValidUser_NoAction(): void
     {
         $client = static::createClient();
 
@@ -176,11 +156,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertTrue($response->isNotFound());
     }
 
-    /**
-     * @test
-     * @testdox Submit a payload, but missing actions, to update a users progress
-     */
-    public function Progress_SubmitPostAction_ValidUser_NoAction()
+    public function test_Progress_SubmitPostAction_ValidUser_NoAction(): void
     {
         $client = static::createClient();
 
@@ -194,11 +170,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertTrue($response->isNotFound());
     }
 
-    /**
-     * @test
-     * @testdox Submit a payload, but unkown player, to update a users progress
-     */
-    public function Progress_SubmitGetAction_ValidUser_UnknownPlayer()
+    public function test_Progress_SubmitGetAction_ValidUser_UnknownPlayer(): void
     {
         $client = static::createClient();
 
@@ -213,11 +185,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertTrue($response->isNotFound());
     }
 
-    /**
-     * @test
-     * @testdox Submit a payload, but unkown player, to update a users progress
-     */
-    public function Progress_SubmitPostAction_ValidUser_UnknownPlayer()
+    public function test_Progress_SubmitPostAction_ValidUser_UnknownPlayer(): void
     {
         $client = static::createClient();
 
@@ -232,11 +200,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertTrue($response->isNotFound());
     }
 
-    /**
-     * @test
-     * @testdox Submit a payload, but missing actions, to update a users progress
-     */
-    public function Progress_SubmitGetAction_ValidUser_UnknownAction()
+    public function test_Progress_SubmitGetAction_ValidUser_UnknownAction(): void
     {
         $client = static::createClient();
 
@@ -254,11 +218,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertEmpty($data);
     }
 
-    /**
-     * @test
-     * @testdox Submit a payload, but missing actions, to update a users progress
-     */
-    public function Progress_SubmitPostAction_ValidUser_UnknownAction()
+    public function test_Progress_SubmitPostAction_ValidUser_UnknownAction(): void
     {
         $client = static::createClient();
 

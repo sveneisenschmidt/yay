@@ -20,12 +20,7 @@ use Component\Entity\PlayerCollection;
 
 class DoctrineStorageTest extends TestCase
 {
-    /**
-     * @param DoctrineStorage $storage
-     *
-     * @return DoctrineStorageTrait
-     */
-    public function wrapStorage(DoctrineStorage $storage)
+    public function wrapStorage(DoctrineStorage $storage): object
     {
         return new class($storage) {
             use StorageTrait;
@@ -37,11 +32,7 @@ class DoctrineStorageTest extends TestCase
         };
     }
 
-    /**
-     * @param string $class
-     * @param bool   $empty
-     */
-    public function createManagerMockSave()
+    public function createManagerMockSave(): EntityManagerInterface
     {
         $manager = $this->getMockBuilder(EntityManagerInterface::class)
             ->disableOriginalConstructor()
@@ -57,11 +48,7 @@ class DoctrineStorageTest extends TestCase
         return $manager;
     }
 
-    /**
-     * @param string $class
-     * @param bool   $empty
-     */
-    public function createManagerMockRefresh()
+    public function createManagerMockRefresh(): EntityManagerInterface
     {
         $manager = $this->getMockBuilder(EntityManagerInterface::class)
             ->disableOriginalConstructor()
@@ -74,11 +61,7 @@ class DoctrineStorageTest extends TestCase
         return $manager;
     }
 
-    /**
-     * @param string $class
-     * @param bool   $empty
-     */
-    public function createManagerMockOne($class, $empty = false)
+    public function createManagerMockOne(string $class, bool $empty = false): EntityManagerInterface
     {
         $repository = $this->getMockBuilder(ObjectRepository::class)
             ->disableOriginalConstructor()
@@ -101,11 +84,7 @@ class DoctrineStorageTest extends TestCase
         return $manager;
     }
 
-    /**
-     * @param string $class
-     * @param bool   $empty
-     */
-    public function createManagerMockMany($class, $empty = false)
+    public function createManagerMockMany(string $class, bool $empty = false): EntityManagerInterface
     {
         $repository = $this->getMockBuilder(ObjectRepository::class)
             ->disableOriginalConstructor()
@@ -128,30 +107,21 @@ class DoctrineStorageTest extends TestCase
         return $manager;
     }
 
-    /**
-     * @test
-     */
-    public function find_player()
+    public function test_find_player(): void
     {
         $manager = $this->createManagerMockOne(Player::class);
         $object = $this->wrapStorage(new DoctrineStorage($manager))->findPlayer($primaryKey = rand(1, 100));
         $this->assertInstanceOf(Player::class, $object);
     }
 
-    /**
-     * @test
-     */
-    public function find_player_empty()
+    public function test_find_player_empty(): void
     {
         $manager = $this->createManagerMockOne(Player::class, true);
         $object = $this->wrapStorage(new DoctrineStorage($manager))->findPlayer($primaryKey = rand(1, 100));
         $this->assertNull($object);
     }
 
-    /**
-     * @test
-     */
-    public function find_player_by()
+    public function test_find_player_by(): void
     {
         $manager = $this->createManagerMockMany(Player::class);
         $objects = $this->wrapStorage(new DoctrineStorage($manager))->findPlayerBy([]);
@@ -159,10 +129,7 @@ class DoctrineStorageTest extends TestCase
         $this->assertGreaterThan(0, count($objects));
     }
 
-    /**
-     * @test
-     */
-    public function find_player_by_empty()
+    public function test_find_player_by_empty(): void
     {
         $manager = $this->createManagerMockMany(Player::class, true);
         $objects = $this->wrapStorage(new DoctrineStorage($manager))->findPlayerBy([]);
@@ -170,30 +137,21 @@ class DoctrineStorageTest extends TestCase
         $this->assertEquals(0, count($objects));
     }
 
-    /**
-     * @test
-     */
-    public function find_achievement_definition()
+    public function test_find_achievement_definition(): void
     {
         $manager = $this->createManagerMockOne(AchievementDefinition::class);
         $object = (new DoctrineStorage($manager))->findAchievementDefinition($primaryKey = rand(1, 100));
         $this->assertInstanceOf(AchievementDefinition::class, $object);
     }
 
-    /**
-     * @test
-     */
-    public function find_achievement_definition_empty()
+    public function test_find_achievement_definition_empty(): void
     {
         $manager = $this->createManagerMockOne(AchievementDefinition::class, true);
         $object = (new DoctrineStorage($manager))->findAchievementDefinition($primaryKey = rand(1, 100));
         $this->assertNull($object);
     }
 
-    /**
-     * @test
-     */
-    public function find_achievement_definition_by()
+    public function test_find_achievement_definition_by(): void
     {
         $manager = $this->createManagerMockMany(AchievementDefinition::class);
         $objects = $this->wrapStorage(new DoctrineStorage($manager))->findAchievementDefinitionBy([]);
@@ -201,10 +159,7 @@ class DoctrineStorageTest extends TestCase
         $this->assertGreaterThan(0, count($objects));
     }
 
-    /**
-     * @test
-     */
-    public function find_achievement_definition_by_empty()
+    public function test_find_achievement_definition_by_empty(): void
     {
         $manager = $this->createManagerMockMany(AchievementDefinition::class, true);
         $objects = $this->wrapStorage(new DoctrineStorage($manager))->findAchievementDefinitionBy([]);
@@ -212,30 +167,21 @@ class DoctrineStorageTest extends TestCase
         $this->assertEquals(0, count($objects));
     }
 
-    /**
-     * @test
-     */
-    public function find_action_definition()
+    public function test_find_action_definition(): void
     {
         $manager = $this->createManagerMockOne(ActionDefinition::class);
         $object = (new DoctrineStorage($manager))->findActionDefinition($primaryKey = rand(1, 100));
         $this->assertInstanceOf(ActionDefinition::class, $object);
     }
 
-    /**
-     * @test
-     */
-    public function find_action_definition_empty()
+    public function test_find_action_definition_empty(): void
     {
         $manager = $this->createManagerMockOne(ActionDefinition::class, true);
         $object = (new DoctrineStorage($manager))->findActionDefinition($primaryKey = rand(1, 100));
         $this->assertNull($object);
     }
 
-    /**
-     * @test
-     */
-    public function find_action_definition_by()
+    public function test_find_action_definition_by(): void
     {
         $manager = $this->createManagerMockMany(ActionDefinition::class);
         $objects = $this->wrapStorage(new DoctrineStorage($manager))->findActionDefinitionBy([]);
@@ -243,10 +189,7 @@ class DoctrineStorageTest extends TestCase
         $this->assertGreaterThan(0, count($objects));
     }
 
-    /**
-     * @test
-     */
-    public function find_action_definition_by_empty()
+    public function test_find_action_definition_by_empty(): void
     {
         $manager = $this->createManagerMockMany(ActionDefinition::class, true);
         $objects = $this->wrapStorage(new DoctrineStorage($manager))->findActionDefinitionBy([]);
@@ -254,30 +197,21 @@ class DoctrineStorageTest extends TestCase
         $this->assertEquals(0, count($objects));
     }
 
-    /**
-     * @test
-     */
-    public function find_level()
+    public function test_find_level(): void
     {
         $manager = $this->createManagerMockOne(Level::class);
         $object = $this->wrapStorage(new DoctrineStorage($manager))->findLevel($primaryKey = rand(1, 100));
         $this->assertInstanceOf(Level::class, $object);
     }
 
-    /**
-     * @test
-     */
-    public function find_level_empty()
+    public function test_find_level_empty(): void
     {
         $manager = $this->createManagerMockOne(Level::class, true);
         $object = $this->wrapStorage(new DoctrineStorage($manager))->findLevel($primaryKey = rand(1, 100));
         $this->assertNull($object);
     }
 
-    /**
-     * @test
-     */
-    public function find_level_by()
+    public function test_find_level_by(): void
     {
         $manager = $this->createManagerMockMany(Level::class);
         $objects = $this->wrapStorage(new DoctrineStorage($manager))->findLevelBy([]);
@@ -285,10 +219,7 @@ class DoctrineStorageTest extends TestCase
         $this->assertGreaterThan(0, count($objects));
     }
 
-    /**
-     * @test
-     */
-    public function find_level_by_empty()
+    public function test_find_level_by_empty(): void
     {
         $manager = $this->createManagerMockMany(Level::class, true);
         $objects = $this->wrapStorage(new DoctrineStorage($manager))->findLevelBy([]);
@@ -296,70 +227,49 @@ class DoctrineStorageTest extends TestCase
         $this->assertEquals(0, count($objects));
     }
 
-    /**
-     * @test
-     */
-    public function save_player()
+    public function test_save_player(): void
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(Player::class);
         $this->wrapStorage(new DoctrineStorage($manager))->savePlayer($object);
     }
 
-    /**
-     * @test
-     */
-    public function save_achievement_definition()
+    public function test_save_achievement_definition(): void
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(AchievementDefinition::class);
         $this->wrapStorage(new DoctrineStorage($manager))->saveAchievementDefinition($object);
     }
 
-    /**
-     * @test
-     */
-    public function save_action_definition()
+    public function test_save_action_definition(): void
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(ActionDefinition::class);
         $this->wrapStorage(new DoctrineStorage($manager))->saveActionDefinition($object);
     }
 
-    /**
-     * @test
-     */
-    public function save_personal_action()
+    public function test_save_personal_action(): void
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(PersonalAction::class);
         $this->wrapStorage(new DoctrineStorage($manager))->savePersonalAction($object);
     }
 
-    /**
-     * @test
-     */
-    public function save_personal_achievement()
+    public function test_save_personal_achievement(): void
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(PersonalAchievement::class);
         $this->wrapStorage(new DoctrineStorage($manager))->savePersonalAchievement($object);
     }
 
-    /**
-     * @test
-     */
-    public function save_level()
+    public function test_save_level(): void
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(Level::class);
         $this->wrapStorage(new DoctrineStorage($manager))->saveLevel($object);
     }
 
-    /**
-     * @test
-     */
-    public function refresh_player()
+    public function test_refresh_player(): void
     {
         $manager = $this->createManagerMockRefresh();
         $object = $this->createMock(Player::class);

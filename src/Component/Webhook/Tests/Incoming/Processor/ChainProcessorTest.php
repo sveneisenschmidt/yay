@@ -9,19 +9,13 @@ use Component\Webhook\Incoming\Processor\ChainProcessor;
 
 class ChainProcessorTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function set_get_name()
+    public function test_set_get_name(): void
     {
         $processor = new ChainProcessor('test', []);
         $this->assertEquals('test', $processor->getName());
     }
 
-    /**
-     * @test
-     */
-    public function chain_processor_executes_all_processors()
+    public function test_chain_processor_executes_all_processors(): void
     {
         $processor1 = $this->getMockBuilder(ProcessorInterface::class)
             ->disableOriginalConstructor()

@@ -18,10 +18,6 @@ class RecalculateCommand extends ContainerAwareCommand
         ;
     }
 
-    /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $engine = $this->getContainer()->get(Engine::class);

@@ -15,94 +15,33 @@ use Component\Entity\PlayerInterface;
 
 interface StorageInterface
 {
-    /**
-     * @param int $id
-     *
-     * @return PlayerInterface|null
-     */
     public function findPlayer(int $id): ?PlayerInterface;
 
-    /**
-     * @param array $criteria
-     *
-     * @return PlayerCollection
-     */
     public function findPlayerBy(array $criteria = []): PlayerCollection;
 
-    /**
-     * @param PlayerInterface $player
-     */
-    public function refreshPlayer(PlayerInterface $player);
+    public function refreshPlayer(PlayerInterface $player): void;
 
-    /**
-     * @param PlayerInterface $player
-     */
-    public function savePlayer(PlayerInterface $player);
+    public function savePlayer(PlayerInterface $player): void;
 
-    /**
-     * @param string $name
-     *
-     * @return AchievementDefinitionCollection
-     */
-    public function findAchievementDefinition(string $name);
+    public function findAchievementDefinition(string $name): ?AchievementDefinitionInterface;
 
-    /**
-     * @param array $criteria
-     *
-     * @return AchievementDefinitionCollection
-     */
     public function findAchievementDefinitionBy(array $criteria = []): AchievementDefinitionCollection;
 
-    /**
-     * @param AchievementDefinitionInterface $achievementDefinition
-     */
-    public function saveAchievementDefinition(AchievementDefinitionInterface $achievementDefinition);
+    public function saveAchievementDefinition(AchievementDefinitionInterface $achievementDefinition): void;
 
-    /**
-     * @param string $name
-     *
-     * @return ActionDefinitionInterface|null
-     */
     public function findActionDefinition(string $name): ?ActionDefinitionInterface;
 
-    /**
-     * @param array $criteria
-     *
-     * @return ActionDefinitionCollection
-     */
     public function findActionDefinitionBy(array $criteria = []): ActionDefinitionCollection;
 
-    /**
-     * @param ActionDefinitionInterface $actionDefinition
-     */
-    public function saveActionDefinition(ActionDefinitionInterface $actionDefinition);
+    public function saveActionDefinition(ActionDefinitionInterface $actionDefinition): void;
 
-    /**
-     * @param PersonalActionInterface $personalAction
-     */
-    public function savePersonalAction(PersonalActionInterface $personalAction);
+    public function savePersonalAction(PersonalActionInterface $personalAction): void;
 
-    /**
-     * @param PersonalAchievementInterface $personalAchievement
-     */
-    public function savePersonalAchievement(PersonalAchievementInterface $personalAchievement);
+    public function savePersonalAchievement(PersonalAchievementInterface $personalAchievement): void;
 
-    /**
-     * @param string $name
-     *
-     * @return LevelInterface|null
-     */
     public function findLevel(string $name): ?LevelInterface;
 
-    /**
-     * @param array $criteria
-     *
-     * @return LevelCollection
-     */
     public function findLevelBy(): LevelCollection;
 
-    /**
-     * @param LevelInterface $level
-     */
     public function saveLevel(LevelInterface $level);
 }

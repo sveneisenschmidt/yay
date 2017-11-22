@@ -9,15 +9,12 @@ use Component\Entity\Achievement\PersonalActionCollection;
 
 class ActionDefinitionTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = FakerFactory::create();
     }
 
-    /**
-     * @test
-     */
-    public function set_get_scalar()
+    public function test_set_get_scalar(): void
     {
         $instance = new ActionDefinition($name = $this->faker->word);
         $this->assertEquals($name, $instance->getName());
@@ -29,10 +26,7 @@ class ActionDefinitionTest extends TestCase
         $this->assertEquals($description, $instance->getDescription());
     }
 
-    /**
-     * @test
-     */
-    public function get_personal_actions()
+    public function test_get_personal_actions(): void
     {
         $instance = new ActionDefinition($name = $this->faker->word);
         $this->assertInstanceOf(PersonalActionCollection::class, $instance->getPersonalActions());

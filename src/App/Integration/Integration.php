@@ -8,17 +8,11 @@ use App\Integration\DependencyInjection\IntegrationExtension;
 
 class Integration extends Bundle
 {
-    /**
-     * @param ContainerBuilder $container
-     */
     public function build(ContainerBuilder $container)
     {
     }
 
-    /**
-     * @return IntegrationExtension
-     */
-    public function getContainerExtension()
+    public function getContainerExtension(): IntegrationExtension
     {
         return new IntegrationExtension();
     }

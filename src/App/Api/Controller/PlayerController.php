@@ -93,12 +93,6 @@ class PlayerController extends Controller
      *         404 = "Returned when the player is not found"
      *     }
      * )
-     *
-     * @param Engine             $engine
-     * @param ResponseSerializer $serializer
-     * @param string             $username
-     *
-     * @return Response
      */
     public function showAction(
         Engine $engine,
@@ -162,14 +156,6 @@ class PlayerController extends Controller
      *     options={"type"="Component\Entity\Player", "group"="player.create"},
      *     converter="DeserializeField"
      * )
-     *
-     * @param Engine                $engine
-     * @param EntityValidator       $validator
-     * @param ResponseSerializer    $serializer
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param PlayerInterface       $player
-     *
-     * @return Response
      */
     public function createAction(
         Engine $engine,
@@ -241,12 +227,6 @@ class PlayerController extends Controller
      *         404 = "Returned when the player is not found"
      *     }
      * )
-     *
-     * @param Engine             $engine
-     * @param ResponseSerializer $serializer
-     * @param string             $username
-     *
-     * @return Response
      */
     public function indexPersonalAchievementsAction(
         Engine $engine,
@@ -313,12 +293,6 @@ class PlayerController extends Controller
      *         404 = "Returned when the player is not found"
      *     }
      * )
-     *
-     * @param Engine             $engine
-     * @param ResponseSerializer $serializer
-     * @param string             $username
-     *
-     * @return Response
      */
     public function indexPersonalActionsAction(
         Engine $engine,

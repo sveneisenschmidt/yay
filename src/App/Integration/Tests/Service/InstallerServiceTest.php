@@ -11,10 +11,7 @@ use Component\Engine\StorageInterface;
 
 class InstallerServiceTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function install()
+    public function test_install(): void
     {
         $installer = $this->getMockBuilder(InstallerService::class)
             ->disableOriginalConstructor()
@@ -38,10 +35,55 @@ class InstallerServiceTest extends TestCase
         $installer->install('a', 'b', 'c');
     }
 
-    /**
-     * @test
-     */
-    public function install_service()
+    public function test_install_mode_config(): void
+    {
+        $installer = $this->getMockBuilder(InstallerService::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['installServices', 'installEntities', 'loadConfig', 'transformFromConfig'])
+            ->getMock();
+
+        $installer->expects($this->atLeastonce())
+            ->method('installServices');
+
+        $installer->expects($this->never())
+            ->method('installEntities');
+
+        $installer->expects($this->atLeastonce())
+            ->method('loadConfig')
+            ->willReturn([]);
+
+        $installer->expects($this->atLeastonce())
+            ->method('transformFromConfig')
+            ->willReturn(['services.yml' => [], 'entities.yml' => []]);
+
+        $installer->install('a', 'b', 'c', InstallerService::MODE_CONFIG);
+    }
+
+    public function test_install_mode_data(): void
+    {
+        $installer = $this->getMockBuilder(InstallerService::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['installServices', 'installEntities', 'loadConfig', 'transformFromConfig'])
+            ->getMock();
+
+        $installer->expects($this->never())
+            ->method('installServices');
+
+        $installer->expects($this->atLeastonce())
+            ->method('installEntities');
+
+        $installer->expects($this->atLeastonce())
+            ->method('loadConfig')
+            ->willReturn([]);
+
+        $installer->expects($this->atLeastonce())
+            ->method('transformFromConfig')
+            ->willReturn(['services.yml' => [], 'entities.yml' => []]);
+
+        $installer->install('a', 'b', 'c', InstallerService::MODE_DATA);
+    }
+
+    public function test_install_service(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
             ->getMock();
@@ -64,11 +106,8 @@ class InstallerServiceTest extends TestCase
         $installer->installServices($sourceFile, $targetFile);
     }
 
-    /**
-     * @test
-     * @expectedException \RuntimeException
-     */
-    public function load_config()
+    /** @expectedException \RuntimeException */
+    public function test_load_config(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
             ->getMock();
@@ -89,10 +128,7 @@ class InstallerServiceTest extends TestCase
         $installer->loadConfig('');
     }
 
-    /**
-     * @test
-     */
-    public function transform_from_config()
+    public function test_transform_from_config(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
             ->getMock();
@@ -113,10 +149,7 @@ class InstallerServiceTest extends TestCase
         $installer->transformFromConfig([]);
     }
 
-    /**
-     * @test
-     */
-    public function uninstall()
+    public function test_uninstall(): void
     {
         $installer = $this->getMockBuilder(InstallerService::class)
             ->disableOriginalConstructor()
@@ -129,10 +162,7 @@ class InstallerServiceTest extends TestCase
         $installer->uninstall('a', 'b');
     }
 
-    /**
-     * @test
-     */
-    public function uninstall_service()
+    public function test_uninstall_service(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
             ->getMock();
@@ -157,10 +187,7 @@ class InstallerServiceTest extends TestCase
         $installer->uninstallService($targetFile);
     }
 
-    /**
-     * @test
-     */
-    public function uninstall_service_not_exists()
+    public function test_uninstall_service_not_exists(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
             ->getMock();
@@ -184,10 +211,7 @@ class InstallerServiceTest extends TestCase
         $installer->uninstall(__FUNCTION__, sys_get_temp_dir());
     }
 
-    /**
-     * @test
-     */
-    public function load_entities(): void
+    public function test_load_entities(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
             ->getMock();
@@ -206,10 +230,7 @@ class InstallerServiceTest extends TestCase
         $this->assertCount(5, $objects);
     }
 
-    /**
-     * @test
-     */
-    public function install_entities_supports_level()
+    public function test_install_entities_supports_level(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
             ->setMethods(get_class_methods(StorageInterface::class))
@@ -232,10 +253,7 @@ class InstallerServiceTest extends TestCase
         $installer->installEntities($objects);
     }
 
-    /**
-     * @test
-     */
-    public function install_entities_supports_action()
+    public function test_install_entities_supports_action(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
             ->setMethods(get_class_methods(StorageInterface::class))
@@ -258,10 +276,7 @@ class InstallerServiceTest extends TestCase
         $installer->installEntities($objects);
     }
 
-    /**
-     * @test
-     */
-    public function install_entities_supports_achievement()
+    public function test_install_entities_supports_achievement(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
             ->setMethods(get_class_methods(StorageInterface::class))
@@ -284,10 +299,7 @@ class InstallerServiceTest extends TestCase
         $installer->installEntities($objects);
     }
 
-    /**
-     * @test
-     */
-    public function validate()
+    public function test_validate(): void
     {
         $installer = $this->getMockBuilder(InstallerService::class)
             ->disableOriginalConstructor()

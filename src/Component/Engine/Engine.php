@@ -14,7 +14,7 @@ class Engine
 {
     use StorageTrait;
 
-    /* @var AchievementValidatorCollection */
+    /** @var AchievementValidatorCollection */
     protected $achievementValidatorCollection;
 
     public function __construct(

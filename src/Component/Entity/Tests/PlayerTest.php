@@ -11,15 +11,12 @@ use Component\Entity\Player;
 
 class PlayerTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = FakerFactory::create();
     }
 
-    /**
-     * @test
-     */
-    public function set_get_scalar()
+    public function test_set_get_scalar(): void
     {
         $instance = new Player();
 
@@ -36,10 +33,7 @@ class PlayerTest extends TestCase
         $this->assertEquals($imageUrl, $instance->getImageUrl());
     }
 
-    /**
-     * @test
-     */
-    public function set_get_personal_actions()
+    public function test_set_get_personal_actions(): void
     {
         $instance = new Player();
         $action = $this->createMock(PersonalAction::class);
@@ -50,10 +44,7 @@ class PlayerTest extends TestCase
         $this->assertEquals($action, $instance->getPersonalActions()->first());
     }
 
-    /**
-     * @test
-     */
-    public function set_get_personal_achievement()
+    public function test_set_get_personal_achievement(): void
     {
         $instance = new Player();
         $achievement = $this->createMock(PersonalAchievement::class);
@@ -64,10 +55,7 @@ class PlayerTest extends TestCase
         $this->assertEquals($achievement, $instance->getPersonalAchievements()->first());
     }
 
-    /**
-     * @test
-     */
-    public function has_personal_achievement()
+    public function test_has_personal_achievement(): void
     {
         $instance = new Player();
         $definition = new AchievementDefinition($name = 'definition');
@@ -78,10 +66,7 @@ class PlayerTest extends TestCase
         $this->assertTrue($instance->hasPersonalAchievement($definition));
     }
 
-    /**
-     * @test
-     */
-    public function refresh_score()
+    public function test_refresh_score(): void
     {
         $instance = new Player();
         $definition = new AchievementDefinition($name = 'definition');

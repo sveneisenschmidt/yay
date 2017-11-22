@@ -7,10 +7,10 @@ use Component\Webhook\Incoming\ProcessorInterface;
 
 class DummyProcessor implements ProcessorInterface
 {
-    /* @var string */
+    /** @var string */
     protected $name;
 
-    /* @var data */
+    /** @var data */
     protected $data;
 
     public function __construct(string $name, array $data = [])

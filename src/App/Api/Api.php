@@ -9,18 +9,12 @@ use App\Api\DependencyInjection\ApiExtension;
 
 class Api extends Bundle
 {
-    /**
-     * @param ContainerBuilder $container
-     */
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new ApiDocPass());
     }
 
-    /**
-     * @return ApiExtension
-     */
-    public function getContainerExtension()
+    public function getContainerExtension(): ApiExtension
     {
         return new ApiExtension();
     }

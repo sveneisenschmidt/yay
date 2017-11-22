@@ -2,7 +2,9 @@
 	vendor,\
 	var/cache/*,\
 	var/logs/*,\
-	var/sessions/*
+	var/sessions/* \
+	config/integration/* \
+	docker-run.sh
 
 .clean-containers: \
 	stop \
@@ -22,4 +24,3 @@
 
 .clean-database: \
 	.application-clean-database
-

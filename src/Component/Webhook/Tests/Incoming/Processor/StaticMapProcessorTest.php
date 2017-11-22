@@ -9,19 +9,13 @@ use Component\Webhook\Incoming\Processor\StaticMapProcessor;
 
 class StaticMapProcessorTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function set_get_name()
+    public function test_set_get_name(): void
     {
         $processor = new StaticMapProcessor('test', 'test', []);
         $this->assertEquals('test', $processor->getName());
     }
 
-    /**
-     * @test
-     */
-    public function does_replace_value()
+    public function test_does_replace_value(): void
     {
         $request = $this->createMock(Request::class);
         $request->attributes = new ParameterBag();
@@ -36,10 +30,7 @@ class StaticMapProcessorTest extends TestCase
         $this->assertEquals('baz', $request->attributes->get('foo'));
     }
 
-    /**
-     * @test
-     */
-    public function does_nothing()
+    public function test_does_nothing(): void
     {
         $request = $this->createMock(Request::class);
         $request->attributes = new ParameterBag();

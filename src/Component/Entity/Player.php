@@ -10,34 +10,22 @@ use Component\Entity\Achievement\PersonalActionCollection;
 
 class Player implements PlayerInterface
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $username;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $email;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $imageUrl;
 
-    /**
-     * @var PersonalActionCollection
-     */
+    /** @var PersonalActionCollection */
     protected $personalActions;
 
     /**
@@ -45,89 +33,55 @@ class Player implements PlayerInterface
      */
     protected $personalAchievements;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $score = 0;
 
-    /**
-     * Player constructor.
-     */
     public function __construct()
     {
         $this->personalActions = new ArrayCollection();
         $this->personalAchievements = new ArrayCollection();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setUsername(string $username)
+    public function setUsername(string $username): void
     {
         $this->username = $username;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setEmail(string $email)
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPersonalActions(): CollectionInterface
     {
         return $this->personalActions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPersonalAchievements(): CollectionInterface
     {
         return $this->personalAchievements;
     }
 
-    /**
-     * @param AchievementDefinitionInterface $achievementDefinition
-     *
-     * @return bool
-     */
     public function hasPersonalAchievement(AchievementDefinitionInterface $achievementDefinition): bool
     {
         /** @var PersonalAchievementInterface $personalAchievement */
@@ -140,25 +94,16 @@ class Player implements PlayerInterface
         return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getScore(): int
     {
         return $this->score;
     }
 
-    /**
-     * @param int $score
-     */
-    public function setScore(int $score)
+    public function setScore(int $score): void
     {
         $this->score = $score;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function refreshScore(): int
     {
         $score = 0;
@@ -171,18 +116,12 @@ class Player implements PlayerInterface
         return $this->getScore();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getImageUrl(): string
     {
         return $this->imageUrl;
     }
 
-    /**
-     * @param string $imageUrl
-     */
-    public function setImageUrl(string $imageUrl)
+    public function setImageUrl(string $imageUrl): void
     {
         $this->imageUrl = $imageUrl;
     }

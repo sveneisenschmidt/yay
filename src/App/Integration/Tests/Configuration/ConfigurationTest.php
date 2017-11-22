@@ -9,10 +9,7 @@ use App\Integration\Configuration\Configuration;
 
 class ConfigurationTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function validate_full_configuration(): void
+    public function test_validate_full_configuration(): void
     {
         $file = sprintf('%s/Fixture/%s.yml', __DIR__, __FUNCTION__);
         $contents = Yaml::parse(file_get_contents($file));
@@ -89,10 +86,7 @@ class ConfigurationTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
-    public function validate_empty_configuration(): void
+    public function test_validate_empty_configuration(): void
     {
         $file = sprintf('%s/Fixture/%s.yml', __DIR__, __FUNCTION__);
         $contents = Yaml::parse(file_get_contents($file));

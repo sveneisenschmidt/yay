@@ -1,6 +1,6 @@
 include:
-  - Test.Default.yml
-  - Test.Player_PersonalActions_IndexAction.yml
+  - test_default.yml
+  - test_Player_PersonalActions_IndexAction.yml
 
 Component\Entity\Achievement\PersonalAchievement:
     achievement:
