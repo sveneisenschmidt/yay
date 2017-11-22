@@ -29,7 +29,7 @@
 
 .application-demo-import: \
 	.application-clean-database \
-	.application-demo-import-fixtures \
+	.application-enable-demo \
 	.application-remove-cache-dev
 
 .application-demo-remove: \

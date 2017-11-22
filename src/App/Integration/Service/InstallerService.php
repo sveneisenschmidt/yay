@@ -13,6 +13,10 @@ use Component\Entity\Achievement\Level;
 
 class InstallerService
 {
+    const MODE_ALL = 0;
+    const MODE_CONFIG = 1;
+    const MODE_DATA = 2;
+
     protected $filesystem;
 
     protected $storage;
@@ -32,13 +36,19 @@ class InstallerService
     public function install(
         string $name,
         string $sourceFile,
-        string $targetDirectory
+        string $targetDirectory,
+        int $mode = self::MODE_ALL
     ): void {
         $config = $this->loadConfig($sourceFile);
         $configs = $this->transformFromConfig($config);
 
-        $this->installServices($configs['services.yml'], sprintf('%s/%s.yml', $targetDirectory, $name));
-        $this->installEntities($configs['entities.yml']);
+        if ($mode === self::MODE_ALL || $mode === self::MODE_CONFIG) {
+            $this->installServices($configs['services.yml'], sprintf('%s/%s.yml', $targetDirectory, $name));
+        }
+
+        if ($mode === self::MODE_ALL || $mode === self::MODE_DATA) {
+            $this->installEntities($configs['entities.yml']);
+        }
     }
 
     public function transformFromConfig(array $config): array

@@ -35,6 +35,54 @@ class InstallerServiceTest extends TestCase
         $installer->install('a', 'b', 'c');
     }
 
+    public function test_install_mode_config(): void
+    {
+        $installer = $this->getMockBuilder(InstallerService::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['installServices', 'installEntities', 'loadConfig', 'transformFromConfig'])
+            ->getMock();
+
+        $installer->expects($this->atLeastonce())
+            ->method('installServices');
+
+        $installer->expects($this->never())
+            ->method('installEntities');
+
+        $installer->expects($this->atLeastonce())
+            ->method('loadConfig')
+            ->willReturn([]);
+
+        $installer->expects($this->atLeastonce())
+            ->method('transformFromConfig')
+            ->willReturn(['services.yml' => [], 'entities.yml' => []]);
+
+        $installer->install('a', 'b', 'c', InstallerService::MODE_CONFIG);
+    }
+
+    public function test_install_mode_data(): void
+    {
+        $installer = $this->getMockBuilder(InstallerService::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['installServices', 'installEntities', 'loadConfig', 'transformFromConfig'])
+            ->getMock();
+
+        $installer->expects($this->never())
+            ->method('installServices');
+
+        $installer->expects($this->atLeastonce())
+            ->method('installEntities');
+
+        $installer->expects($this->atLeastonce())
+            ->method('loadConfig')
+            ->willReturn([]);
+
+        $installer->expects($this->atLeastonce())
+            ->method('transformFromConfig')
+            ->willReturn(['services.yml' => [], 'entities.yml' => []]);
+
+        $installer->install('a', 'b', 'c', InstallerService::MODE_DATA);
+    }
+
     public function test_install_service(): void
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
