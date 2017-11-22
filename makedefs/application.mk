@@ -29,13 +29,11 @@
 
 .application-demo-import: \
 	.application-clean-database \
-	.application-enable-demo \
-	.application-remove-cache-dev
+	.application-demo-import-fixtures
 
 .application-demo-remove: \
 	.application-demo-remove-fixtures \
-	.application-clean-database \
-	.application-remove-cache-dev
+	.application-clean-database
 
 .application-demo-import-fixtures:
 	@$(call .docker-run,cli,'\

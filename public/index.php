@@ -4,6 +4,8 @@ use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Dotenv\Dotenv;
 
+umask(0000); 
+
 $loader = require __DIR__.'/../vendor/autoload.php';
 
 if (isset($_ENV['APP_ENV'])) {
