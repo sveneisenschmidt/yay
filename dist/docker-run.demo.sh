@@ -6,7 +6,7 @@ then
     php bin/console doctrine:schema:create --em=default --env=${APP_ENV};
     php bin/console yay:integration:enable default integration/default --env=${APP_ENV};
     php bin/console yay:integration:enable demo integration/demo --env=${APP_ENV};
-    tail -f var/logs/*.log;
+    while sleep 3600; do :; done;
 fi
 
 if [ "${APP_MODE}" == "web" ]
