@@ -1,5 +1,6 @@
 # Config
 PROJECT := yay
+DOCKER_HUB_ENV ?= dev
 
 all:
 	#	start					Start the application
@@ -59,8 +60,8 @@ demo-publish: install .clean-project
 	cp dist/docker-run.demo.sh docker-run.sh
 	chmod +x docker-run.sh
 	docker build -t sveneisenschmidt/yay-api-demo .
-	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:dev-$(shell git log -1 --format=%h)
-	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:dev-latest
+	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:$(DOCKER_HUB_ENV)-$(shell git log -1 --format=%h)
+	docker tag sveneisenschmidt/yay-api-demo sveneisenschmidt/yay-api-demo:$(DOCKER_HUB_ENV)-latest
 	docker push sveneisenschmidt/yay-api-demo
 	rm docker-run.sh
 

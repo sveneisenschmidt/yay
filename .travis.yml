@@ -16,9 +16,12 @@ services:
 before_script:
     - sed -i -e 's/data:cached/data/g' docker-compose.yml && cat docker-compose.yml
     - make install 2>&1 install.log | pv > /dev/null -t
+
 script: make test-coverage
 
 after_success:
-    -
     - bash <(curl -s https://codecov.io/bash)
     - cat install.log
+    - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      DOCKER_HUB_ENV=stable make demo-publish
+      fi
