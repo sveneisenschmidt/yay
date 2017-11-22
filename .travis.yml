@@ -37,7 +37,7 @@ jobs:
       after_success:
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       - if [ "$TRAVIS_BRANCH" != "master" ]; then
-        DOCKER_ENV=stable make default-publish; 
+        DOCKER_ENV=dev make default-publish; 
         fi
     - stage: "Build Docker Image: yay-api-demo:stable"
       before_script:
@@ -53,6 +53,6 @@ jobs:
       after_success:
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       - if [ "$TRAVIS_BRANCH" != "master" ]; then
-        DOCKER_ENV=stable make demo-publish; 
+        DOCKER_ENV=dev make demo-publish; 
         fi
 

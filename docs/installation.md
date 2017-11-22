@@ -27,19 +27,17 @@ The application responds now to API requests from `http://localhost:50800`. To s
 
 It is encouraged to create your own distribution based on a docker image which includes your own or third-party integrations. As a first step use the application sources and Dockerfile to create a docker image and use it via `FROM` as basis for your own `Dockerfile`.
 
-First build a docker image from the official sources please note that this uses the stub `Dockerfile` and is not running standalone.
+Create a new folder, or preferably clone a repository that contains your own Dockerfile and integrations to extend yay.
 
-1\) Build a docker image based on the stub for further extension.
-```bash
-docker build -t sveneisenschmidt/yay .
-```
+Let's assume you have a folder called 'mycompany-yay', it will hold our Dockerfile that will have a custom command. The default docker image has a default `CMD` that will load a `docker-run.sh` file from the `root` folder if present.
 
-2\) Create a new folder, or preferably clone a repository that contains your own Dockerfile and integrations to extend yay.
-
-Let's assume you have a folder called 'mycompany-yay', now here a new Dockerfile that will have a custom command. The dockerfile has a default `CMD` that will load a `docker-run.sh` file from the `root` folder if present.
 ```Dockerfile
-FROM sveneisenschmidt/yay
+FROM sveneisenschmidt/yay-api:stable-latest
 
+# Bake your custom integration into the image
+COPY ./integration ./data/integration
+
+# Bake your custom run script into the image
 COPY ./custom-docker-run.sh docker-run.sh
 ```
 
