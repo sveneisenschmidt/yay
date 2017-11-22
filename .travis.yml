@@ -25,28 +25,28 @@ jobs:
       - bash <(curl -s https://codecov.io/bash)
       - cat "$TRAVIS_BUILD_DIR"/install.log
     - stage: "Build Image: yay-api:stable"
-      if: branch = master
+      if: branch = master AND type IN (push) AND fork = false
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
       - DOCKER_ENV=stable make default-publish
     - stage: "Build Docker Image: yay-api:dev"
-      if: branch != master
+      if: branch != master AND type IN (push) AND fork = false
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
       - DOCKER_ENV=dev make default-publish
     - stage: "Build Docker Image: yay-api-demo:stable"
-      if: branch = master
+      if: branch = master AND type IN (push) AND fork = false
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
       - DOCKER_ENV=stable make demo-publish
     - stage: "Build Docker Image: yay-api-demo:dev"
-      if: branch != master
+      if: branch != master AND type IN (push) AND fork = false
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
