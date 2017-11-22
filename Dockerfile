@@ -20,8 +20,8 @@ RUN docker-php-ext-install \
     zip
 
 COPY ./ /var/www/html
-COPY ./dist/apache2/vhost.conf /etc/apache2/sites-enabled/99-vhost.conf
-COPY ./dist/php/php.ini $PHP_INI_DIR/conf.d/99-custom.ini
+COPY ./dist/apache2/vhost.conf /etc/apache2/sites-enabled/000-default.conf
+COPY ./dist/php/php.ini $PHP_INI_DIR/conf.d/999-custom.ini
 
 RUN a2enmod rewrite
 
