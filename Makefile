@@ -56,6 +56,15 @@ demo-import: .application-demo-import
 
 demo-remove: .application-demo-remove
 
+default-publish: install .clean-project
+	cp dist/docker-run.default.sh docker-run.sh
+	chmod +x docker-run.sh
+	docker build -t sveneisenschmidt/yay-api .
+	docker tag sveneisenschmidt/yay-api sveneisenschmidt/yay-api:$(DOCKER_HUB_ENV)-$(shell git log -1 --format=%h)
+	docker tag sveneisenschmidt/yay-api sveneisenschmidt/yay-api:$(DOCKER_HUB_ENV)-latest
+	docker push sveneisenschmidt/yay-api
+	rm docker-run.sh
+
 demo-publish: install .clean-project
 	cp dist/docker-run.demo.sh docker-run.sh
 	chmod +x docker-run.sh
