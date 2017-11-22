@@ -1,18 +1,14 @@
-FROM php:7.2-rc-alpine
+FROM php:7.2-rc-apache
 
 LABEL org.label-schema.name="yay" \
       org.label-schema.url="https://github.com/sveneisenschmidt/yay" \
       org.label-schema.vcs-url="https://github.com/sveneisenschmidt/yay.git"
 
-ENV COMPOSER_DISABLE_XDEBUG_WARN 1
-ENV COMPOSER_ALLOW_SUPERUSER 1
-
-RUN apk add --no-cache --virtual .persistent-deps \
-    bash \
-    curl \
-    icu-dev \
-    libmcrypt-dev \
-    libxml2-dev
+RUN apt-get -y update && \
+    apt-get install -y \
+        libicu-dev \
+        libxml2-dev \
+        zlib1g-dev
 
 RUN docker-php-ext-install \
     pdo_mysql \
@@ -23,18 +19,17 @@ RUN docker-php-ext-install \
     opcache \
     zip
 
-RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory.ini
+COPY ./ /var/www/html
+COPY ./dist/apache2/vhost.conf /etc/apache2/sites-enabled/000-default.conf
+COPY ./dist/php/php.ini $PHP_INI_DIR/conf.d/999-custom.ini
 
-RUN cd /tmp && \
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+RUN a2enmod rewrite
+
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \
-    php -r "unlink('composer-setup.php');" && \
-    rm -rf /tmp/*
-
-COPY ./ ./data
-
-WORKDIR /data
-
+    php -r "unlink('composer-setup.php');" 
+ENV COMPOSER_DISABLE_XDEBUG_WARN 1
+ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN composer install --ignore-platform-reqs
 
 CMD ["./docker-run.dist.sh"]

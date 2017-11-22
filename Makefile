@@ -58,7 +58,7 @@ demo-import: .application-demo-import
 demo-remove: .application-demo-remove
 
 default-publish:
-	rm -rf vendor var/* config/integration/*
+	rm -rf var/* config/integration/*
 	cp dist/docker-run.default.sh docker-run.sh
 	chmod +x docker-run.sh
 	docker build -t sveneisenschmidt/yay .
@@ -68,7 +68,7 @@ default-publish:
 	rm docker-run.sh
 
 demo-publish:
-	rm -rf vendor var/* config/integration/*
+	rm -rf var/* config/integration/*
 	cp dist/docker-run.demo.sh docker-run.sh
 	chmod +x docker-run.sh
 	docker build -t sveneisenschmidt/yay-demo .

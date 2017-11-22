@@ -1,16 +1,14 @@
 # Web Server
 web:
     build: ./
-    command: "php bin/console server:run 0.0.0.0:80"
     ports:
         - "50080:80"
-        - "58080:8080"
     links:
         - mysqldb
         - redis
     volumes:
-        - ./:/data:cached
-    working_dir: "/data"
+        - ./:/var/www/html:cached
+    working_dir: "/var/www/html"
     environment:
         APP_MODE: web
         APP_ENV: dev
@@ -29,8 +27,8 @@ cli:
         - mysqldb
         - redis
     volumes:
-        - ./:/data:cached
-    working_dir: "/data"
+        - ./:/var/www/html:cached
+    working_dir: "/var/www/html"
     environment:
         APP_MODE: web
         APP_ENV: dev
