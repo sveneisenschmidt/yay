@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5432de667c300ebf2cf754d3204b40c7",
+    "content-hash": "e43325f31ffde5e85d88c700aa7e6e04",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1030,16 +1030,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "1.9.1",
+            "version": "1.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "e708d6ef549044974b60a57fdcec2fa165436d57"
+                "reference": "995270cddce65b9c14a58c11cf77116d28d9336c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/e708d6ef549044974b60a57fdcec2fa165436d57",
-                "reference": "e708d6ef549044974b60a57fdcec2fa165436d57",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/995270cddce65b9c14a58c11cf77116d28d9336c",
+                "reference": "995270cddce65b9c14a58c11cf77116d28d9336c",
                 "shasum": ""
             },
             "require": {
@@ -1109,7 +1109,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2017-10-27T07:15:54+00:00"
+            "time": "2017-11-22T16:45:19+00:00"
         },
         {
             "name": "jms/serializer-bundle",
@@ -2638,16 +2638,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.4.0-BETA4",
+            "version": "v3.4.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "23ab29f4c77a2e08ad9cdbe3757f3ff58b835d2d"
+                "reference": "fcfcaa2e1cd2538bb5f17f6e4e871c46ec28ba0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/23ab29f4c77a2e08ad9cdbe3757f3ff58b835d2d",
-                "reference": "23ab29f4c77a2e08ad9cdbe3757f3ff58b835d2d",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/fcfcaa2e1cd2538bb5f17f6e4e871c46ec28ba0d",
+                "reference": "fcfcaa2e1cd2538bb5f17f6e4e871c46ec28ba0d",
                 "shasum": ""
             },
             "require": {
@@ -2745,7 +2745,7 @@
                 "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
                 "phpdocumentor/reflection-docblock": "^3.0|^4.0",
                 "predis/predis": "~1.0",
-                "symfony/phpunit-bridge": "~3.2",
+                "symfony/phpunit-bridge": "~3.4|~4.0",
                 "symfony/security-acl": "~2.8|~3.0"
             },
             "type": "library",
@@ -2789,7 +2789,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-11-12T17:27:06+00:00"
+            "time": "2017-11-21T17:53:33+00:00"
         },
         {
             "name": "twig/twig",
@@ -4408,16 +4408,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v4.0.0-BETA4",
+            "version": "v4.0.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "0f07fce09c17f76193c4b011eae23fec38ec5f5e"
+                "reference": "cce9da8de6a15211e4f9797d455033b7de74612d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/0f07fce09c17f76193c4b011eae23fec38ec5f5e",
-                "reference": "0f07fce09c17f76193c4b011eae23fec38ec5f5e",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/cce9da8de6a15211e4f9797d455033b7de74612d",
+                "reference": "cce9da8de6a15211e4f9797d455033b7de74612d",
                 "shasum": ""
             },
             "require": {
@@ -4466,7 +4466,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-11-07T14:34:02+00:00"
+            "time": "2017-11-21T09:59:36+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -4562,10 +4562,10 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "symfony/symfony": 10,
-        "snc/redis-bundle": 20,
         "roave/security-advisories": 20,
-        "symfony/phpunit-bridge": 10
+        "snc/redis-bundle": 20,
+        "symfony/symfony": 5,
+        "symfony/phpunit-bridge": 5
     },
     "prefer-stable": false,
     "prefer-lowest": false,
