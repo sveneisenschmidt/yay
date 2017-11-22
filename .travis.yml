@@ -18,34 +18,38 @@ jobs:
     - stage: "Test"
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
-      - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       - make install 2>&1 "$TRAVIS_BUILD_DIR"/install.log | pv > /dev/null -t
-      script: make test-coverage
+      script:
+      - make test-coverage
       after_success:
       - bash <(curl -s https://codecov.io/bash)
       - cat "$TRAVIS_BUILD_DIR"/install.log
     - stage: "Build Image: yay-api:stable"
+      if: branch = master
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      after_success:
-      - if [ "$TRAVIS_BRANCH" == "master" ]; then DOCKER_ENV=stable make default-publish; fi
+      script:
+      - DOCKER_ENV=stable make default-publish
     - stage: "Build Docker Image: yay-api:dev"
+      if: branch != master
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      after_success:
-      - if [ "$TRAVIS_BRANCH" != "master" ]; then DOCKER_ENV=dev make default-publish; fi
+      script:
+      - DOCKER_ENV=dev make default-publish
     - stage: "Build Docker Image: yay-api-demo:stable"
+      if: branch = master
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      after_success:
-      - if [ "$TRAVIS_BRANCH" == "master" ]; then DOCKER_ENV=stable make demo-publish; fi
+      script:
+      - DOCKER_ENV=stable make demo-publish
     - stage: "Build Docker Image: yay-api-demo:dev"
+      if: branch != master
       before_script:
       - sed -i -e 's/data:cached/data/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      after_success:
-      - if [ "$TRAVIS_BRANCH" != "master" ]; then DOCKER_ENV=dev make demo-publish; fi
+      script:
+      - DOCKER_ENV=dev make demo-publish
 
