@@ -25,7 +25,7 @@ jobs:
       - bash <(curl -s https://codecov.io/bash)
       - cat "$TRAVIS_BUILD_DIR"/install.log
     - stage: "Build Docker Images (stable)"
-      if: branch = master AND type IN (push) AND fork = false
+      if: branch = master AND type IN (push, api, cron) AND fork = false
       before_script:
       - sed -i -e 's/var\/www\/html:cached/var\/www\/html/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
@@ -33,7 +33,7 @@ jobs:
       - DOCKER_ENV=stable make default-publish
       - DOCKER_ENV=stable make demo-publish
     - stage: "Build Docker Images (dev)"
-      if: branch != master AND type IN (push) AND fork = false
+      if: branch != master AND type IN (push, api, cron) AND fork = false
       before_script:
       - sed -i -e 's/var\/www\/html:cached/var\/www\/html/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
