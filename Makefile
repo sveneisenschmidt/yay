@@ -56,7 +56,8 @@ demo-import: .application-demo-import
 
 demo-remove: .application-demo-remove
 
-default-publish: install .clean-project
+default-publish:
+	rm -rf vendor var/* config/integration/*
 	cp dist/docker-run.default.sh docker-run.sh
 	chmod +x docker-run.sh
 	docker build -t sveneisenschmidt/yay-api .
@@ -65,7 +66,8 @@ default-publish: install .clean-project
 	docker push sveneisenschmidt/yay-api
 	rm docker-run.sh
 
-demo-publish: install .clean-project
+demo-publish:
+	rm -rf vendor var/* config/integration/*
 	cp dist/docker-run.demo.sh docker-run.sh
 	chmod +x docker-run.sh
 	docker build -t sveneisenschmidt/yay-api-demo .
