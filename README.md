@@ -24,10 +24,10 @@ How-to-use demo, installation instructions, configuration examples and extension
 * [Demo](docs/demo.md)
 * [Development](docs/development.md)
 * Guides
+    * [How to run Yay on sloppy.io with yay-recipes-sloppy](https://github.com/sveneisenschmidt/yay-recipes-sloppy)
     * [How to write and configure your integration](docs/guides/integrations.md)
     * [How to write and configure your webhooks](docs/guides/webhooks.md)
-
-## Installation
+## Yay Installation
 Yay is tested and packable to run through Docker on any operating system that supports Docker.
 
 * [Installation](docs/installation.md)
@@ -45,7 +45,7 @@ COPY ./integration/mycompany.yml ./data/integration/mycompany.yml
 COPY ./mycompany-docker-run.sh docker-run.sh
 ```
 
-## Usage
+## Yay Usage
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
     -d "{\"username\":\"jane.doe\",\"action\":\"example-action\"}"
