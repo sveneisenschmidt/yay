@@ -4,7 +4,7 @@ use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Dotenv\Dotenv;
 
-umask(0000); 
+umask(0000);
 
 $loader = require __DIR__.'/../vendor/autoload.php';
 
@@ -17,7 +17,6 @@ if (isset($_ENV['APP_DEBUG'])) {
 }
 
 if ($_SERVER['APP_DEBUG'] ?? ('prod' !== ($_SERVER['APP_ENV'] ?? 'dev'))) {
-    umask(0000);
     Debug::enable();
 }
 
