@@ -17,6 +17,9 @@ services:
 jobs:
   include:
     - stage: "Test"
+      before_install:
+      - echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
+      - sudo service docker restart
       before_script:
       - make install 2>&1 "$TRAVIS_BUILD_DIR"/install.log | pv > /dev/null -t
       script:
@@ -26,6 +29,9 @@ jobs:
       - cat "$TRAVIS_BUILD_DIR"/install.log
     - stage: "Build Docker Images (stable)"
       if: branch = master AND type IN (push, api, cron) AND fork = false
+      before_install:
+      - echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
+      - sudo service docker restart
       before_script:
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
@@ -33,6 +39,9 @@ jobs:
       - DOCKER_ENV=stable make demo-publish
     - stage: "Build Docker Images (dev)"
       if: branch != master AND type IN (push, api, cron) AND fork = false
+      before_install:
+      - echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
+      - sudo service docker restart
       before_script:
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
