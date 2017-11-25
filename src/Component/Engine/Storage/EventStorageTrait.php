@@ -3,14 +3,13 @@
 namespace Component\Engine\Storage;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Component\Engine\Storage\StorageTrait;
 use Component\Engine\Events;
 use Component\Engine\Event\ObjectEvent;
 use Component\Entity\PlayerInterface;
 use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionInterface;
 
-trait EventStorageTrait 
+trait EventStorageTrait
 {
     use StorageTrait {
         savePlayer              as invokeSavePlayer;
@@ -37,14 +36,14 @@ trait EventStorageTrait
         $this->invokeSavePlayer($player);
         $this->eventDispatcher->dispatch(Events::POST_SAVE, $event);
     }
-    
+
     public function savePersonalAchievement(PersonalAchievementInterface $personalAchievement): void
     {
         $this->eventDispatcher->dispatch(Events::PRE_SAVE, $event = new ObjectEvent($personalAchievement));
         $this->invokeSavePersonalAchievement($personalAchievement);
         $this->eventDispatcher->dispatch(Events::POST_SAVE, $event);
     }
-    
+
     public function savePersonalAction(PersonalActionInterface $personalAction): void
     {
         $this->eventDispatcher->dispatch(Events::PRE_SAVE, $event = new ObjectEvent($personalAction));

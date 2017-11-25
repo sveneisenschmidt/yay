@@ -2,7 +2,6 @@
 
 namespace Component\Engine\Storage;
 
-use Component\Engine\Storage\StorageInterface;
 use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Achievement\ActionDefinitionInterface;
 use Component\Entity\Achievement\AchievementDefinitionCollection;

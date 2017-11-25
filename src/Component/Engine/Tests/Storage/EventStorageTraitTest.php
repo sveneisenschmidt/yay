@@ -13,14 +13,14 @@ use Component\Entity\Achievement\PersonalActionInterface;
 class EventStorageTraitTest extends TestCase
 {
     public function createInstaceWithStorage(
-        StorageInterface $storage, 
+        StorageInterface $storage,
         EventDispatcherInterface $eventDispatcher
     ): object {
         return new class($storage, $eventDispatcher) {
             use EventStorageTrait;
 
             public function __construct(
-                StorageInterface $storage, 
+                StorageInterface $storage,
                 EventDispatcherInterface $eventDispatcher
             ) {
                 $this->setStorage($storage);
@@ -28,7 +28,7 @@ class EventStorageTraitTest extends TestCase
             }
         };
     }
-    
+
     public function test_set_get_event_dispatcher(): void
     {
         $storage = $this->createMock(StorageInterface::class);
@@ -60,7 +60,7 @@ class EventStorageTraitTest extends TestCase
         $object = $this->createMock(PersonalAchievementInterface::class);
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
         $instance->savePersonalAchievement($object);
-    }    
+    }
 
     public function test_save_personal_action(): void
     {
@@ -72,5 +72,5 @@ class EventStorageTraitTest extends TestCase
         $object = $this->createMock(PersonalActionInterface::class);
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
         $instance->savePersonalAction($object);
-    }    
+    }
 }
