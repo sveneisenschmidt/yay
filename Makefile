@@ -68,8 +68,8 @@ default-publish:
 		docker push sveneisenschmidt/yay:latest; \
 	fi
 	if [ "$(DOCKER_ENV)" == "dev" ]; then \
-		docker tag sveneisenschmidt/yay:$(DOCKER_ENV) sveneisenschmidt/yay:dev-$(shell git rev-parse --abbrev-ref HEAD) && \
-		docker push sveneisenschmidt/yay:dev-$(shell git rev-parse --abbrev-ref HEAD); \
+		docker tag sveneisenschmidt/yay:$(DOCKER_ENV) sveneisenschmidt/yay:dev-$(DOCKER_BRANCH) && \
+		docker push sveneisenschmidt/yay:dev-$(DOCKER_BRANCH); \
 	fi
 	rm docker-run.sh
 
