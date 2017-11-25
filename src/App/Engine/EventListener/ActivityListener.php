@@ -7,6 +7,7 @@ use Component\Engine\Event\ObjectEvent;
 use Component\Engine\Storage\StorageInterface;
 use Component\Engine\Storage\StorageTrait;
 use Component\Entity\Achievement\PersonalAchievement;
+use Component\Entity\Achievement\PersonalAction;
 
 class ActivityListener
 {
@@ -17,23 +18,29 @@ class ActivityListener
         $this->setStorage($storage);
     }
 
-    public function onPreSave(ObjectEvent $event): void
+    public function onGrantPersonalAction(ObjectEvent $event): void
     {
+        /** @var PersonalAction $personalAction */
+        $personalAction = $event->getObject();
+
+        $activity = new Activity(Activity::PERSONAL_ACTION_GRANTED, [
+            'player' => $personalAction->getPlayer()->getUsername(),
+            'action' => $personalAction->getActionDefinition()->getName(),
+            'achieved_at' => $personalAction->getAchievedAt()->format('c')
+        ]);
+
+        $this->getStorage()->saveActivity($activity);
     }
 
-    public function onPostSave(ObjectEvent $event): void
-    {
-    }
-
-    public function onGrantAchievement(ObjectEvent $event): void
+    public function onGrantPersonalAchievement(ObjectEvent $event): void
     {
         /** @var PersonalAchievement $personalAchievement */
         $personalAchievement = $event->getObject();
 
-        $activity = new Activity(Activity::ACHIEVEMENT_GRANTED, [
+        $activity = new Activity(Activity::PERSONAL_ACHIEVEMENT_GRANTED, [
             'player' => $personalAchievement->getPlayer()->getUsername(),
             'achievement' => $personalAchievement->getAchievementDefinition()->getName(),
-            'achieved_at' => $personalAchievement->getAchievedAt()
+            'achieved_at' => $personalAchievement->getAchievedAt()->format('c')
         ]);
 
         $this->getStorage()->saveActivity($activity);

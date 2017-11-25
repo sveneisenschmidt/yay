@@ -98,6 +98,49 @@ _Returns an Action identified by its name property_
 
 
 
+# Activities #
+
+## /api/activities/ ##
+
+### `GET` /api/activities/ ###
+
+_Returns a collection of activities_
+
+**Example Response:**
+```json
+[{
+    "name": "personal_action_granted",
+    "data": {
+        "action": "demo-action",
+        "player": "jane.doe",
+        "achieved_at": "2017-11-25T21:06:57+00:00"
+    },
+    "created_at": "2017-11-25T21:06:57+00:00",
+    "links": {
+        "self": "http://localhost:50080/api/activities/",
+        "player": "http://localhost:50080/api/players/jane.doe/",
+        "action": "http://localhost:50080/api/actions/demo-action/"
+    }
+},
+{
+    "name": "personal_achievement_granted",
+    "data": {
+        "action": "demo-achievement-01",
+        "player": "jane.doe",
+        "achieved_at": "2017-11-25T21:06:57+00:00"
+    },
+    "created_at": "2017-11-25T21:06:57+00:00",
+    "links": {
+        "self": "http://localhost:50080/api/activities/",
+        "player": "http://localhost:50080/api/players/jane.doe/",
+        "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
+    }
+}]
+```
+
+
+
+
 # Levels #
 
 ## /api/levels/ ##

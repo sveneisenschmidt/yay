@@ -18,6 +18,8 @@ use Component\Entity\Player;
 use Component\Entity\PlayerCollection;
 use Component\Entity\PlayerInterface;
 use Component\Entity\ActivityInterface;
+use Component\Entity\Activity;
+use Component\Entity\ActivityCollection;
 
 class DoctrineStorage implements StorageInterface
 {
@@ -123,4 +125,21 @@ class DoctrineStorage implements StorageInterface
         $this->manager->persist($activity);
         $this->manager->flush();
     }
+    
+    public function findActivity(int $id): ?ActivityInterface
+    {
+        return $this->manager->getRepository(Activity::class)->find($id);
+    }
+
+    public function findActivityBy(array $criteria = []): ActivityCollection
+    {
+        $result = $this->manager->getRepository(Activity::class)->findBy($criteria);
+        
+        return new ActivityCollection($result);
+    }
+    
+    public function findActivityAny(): ActivityCollection
+    {
+        return $this->findActivityBy([]);
+    }    
 }

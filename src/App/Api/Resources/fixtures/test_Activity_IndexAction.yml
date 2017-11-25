@@ -1,0 +1,25 @@
+include:
+  - test_default.yml
+  - test_Player_PersonalActions_IndexAction.yml
+
+Component\Entity\Achievement\PersonalAchievement:
+    achievement:
+        __construct:
+          - '@player'
+          - '@achievement_definition'
+
+Component\Entity\Activity:
+  activity1:
+      __construct:
+          - personal_action_granted
+          - 
+            player: jane.doe
+            action: yay.action.test_api_action
+            achieved_at: <iso8601()>
+  activity2:
+      __construct:
+          - personal_achievement_granted
+          - 
+            player: jane.doe
+            achievement: yay.achievement.test_api_achievement
+            achieved_at: <iso8601()>

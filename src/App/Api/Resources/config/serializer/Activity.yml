@@ -1,0 +1,15 @@
+Component\Entity\Activity:
+  exclusion_policy: ALL
+  accessor_order: custom
+  custom_accessor_order: [name, data, ...]
+  properties:
+    name:
+      groups:
+        - 'activity.index'
+    createdAt:
+      groups:
+        - 'activity.index'
+    data:
+      groups:
+        - 'activity.index'
+

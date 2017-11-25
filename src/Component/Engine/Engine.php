@@ -125,7 +125,7 @@ class Engine
 
                     $this->savePersonalAchievement($personalAchievement);
                     $this->refreshPlayer($player);
-                    $this->eventDispatcher->dispatch(Events::GRANT_ACHIEVEMENT, new ObjectEvent($personalAchievement));
+                    $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACHIEVEMENT, new ObjectEvent($personalAchievement));
                 }
             }
         }
@@ -156,6 +156,7 @@ class Engine
         // Persist new personalActions to database
         foreach ($collection as $personalAction) {
             $this->savePersonalAction($personalAction);
+            $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACTION, new ObjectEvent($personalAction));
         }
 
         // Refresh players

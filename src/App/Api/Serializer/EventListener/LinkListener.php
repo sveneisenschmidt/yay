@@ -10,6 +10,8 @@ use Component\Entity\Achievement\ActionDefinitionInterface;
 use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionInterface;
 use Component\Entity\PlayerInterface;
+use Component\Entity\ActivityInterface;
+use Component\Entity\Activity;
 
 class LinkListener
 {
@@ -55,6 +57,10 @@ class LinkListener
 
         if ($event->getObject() instanceof PersonalActionInterface) {
             $this->handlePersonalAction($visitor, $event->getObject());
+        }
+        
+        if ($event->getObject() instanceof ActivityInterface) {
+            $this->handleActivity($visitor, $event->getObject());
         }
     }
 
@@ -144,4 +150,41 @@ class LinkListener
             ),
         ]);
     }
+
+    public function handleActivity(GenericSerializationVisitor $visitor, ActivityInterface $activity)
+    {
+        if ($activity->getName() == Activity::PERSONAL_ACTION_GRANTED) {
+            $visitor->setData('links', [
+                'self' => $this->generateRoute(
+                    'api_activity_index',
+                    []
+                ),
+                'player' => $this->generateRoute(
+                    'api_player_show',
+                    ['username' => $activity->getData()['player']]
+                ),
+                'action' => $this->generateRoute(
+                    'api_action_show',
+                    ['name' => $activity->getData()['action']]
+                ),
+            ]);
+        }
+
+        if ($activity->getName() == Activity::PERSONAL_ACHIEVEMENT_GRANTED) {
+            $visitor->setData('links', [
+                'self' => $this->generateRoute(
+                    'api_activity_index',
+                    []
+                ),
+                'player' => $this->generateRoute(
+                    'api_player_show',
+                    ['username' => $activity->getData()['player']]
+                ),
+                'achievement' => $this->generateRoute(
+                    'api_achievement_show',
+                    ['name' => $activity->getData()['achievement']]
+                ),
+            ]);
+        }
+    }   
 }

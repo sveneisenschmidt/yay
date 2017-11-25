@@ -13,6 +13,7 @@ use Component\Entity\Achievement\LevelInterface;
 use Component\Entity\PlayerCollection;
 use Component\Entity\PlayerInterface;
 use Component\Entity\ActivityInterface;
+use Component\Entity\ActivityCollection;
 
 trait StorageTrait
 {
@@ -117,5 +118,20 @@ trait StorageTrait
     public function saveActivity(ActivityInterface $activity): void
     {
         $this->getStorage()->saveActivity($activity);
+    }
+    
+    public function findActivity(int $id): ?ActivityInterface
+    {
+        return $this->getStorage()->findActivity($id);
+    }
+
+    public function findActivityBy(array $criteria = []): ActivityCollection
+    {
+        return $this->getStorage()->findActivityBy($criteria);
+    }
+    
+    public function findActivityAny(): ActivityCollection
+    {
+        return $this->findActivityBy([]);
     }
 }

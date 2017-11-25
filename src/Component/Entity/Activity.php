@@ -5,7 +5,8 @@ use Component\Entity\ActivityInterface;
 
 class Activity implements ActivityInterface
 {
-    const ACHIEVEMENT_GRANTED = 'achievement_granted';
+    const PERSONAL_ACTION_GRANTED = 'personal_action_granted';
+    const PERSONAL_ACHIEVEMENT_GRANTED = 'personal_achievement_granted';
     const PLAYER_CREATED = 'player_created';
 
     /** @var int */

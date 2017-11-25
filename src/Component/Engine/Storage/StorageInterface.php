@@ -13,6 +13,7 @@ use Component\Entity\Achievement\LevelInterface;
 use Component\Entity\PlayerCollection;
 use Component\Entity\PlayerInterface;
 use Component\Entity\ActivityInterface;
+use Component\Entity\ActivityCollection;
 
 interface StorageInterface
 {
@@ -47,4 +48,8 @@ interface StorageInterface
     public function saveLevel(LevelInterface $level);
 
     public function saveActivity(ActivityInterface $activity): void;
+    
+    public function findActivity(int $id): ?ActivityInterface;
+
+    public function findActivityBy(array $criteria = []): ActivityCollection;
 }
