@@ -58,36 +58,10 @@ demo-import: .application-demo-import
 demo-remove: .application-demo-remove
 
 default-publish:
-	rm -rf var/* config/integration/*
-	cp dist/docker-run.default.sh docker-run.sh
-	chmod +x docker-run.sh
-	docker build --squash --compress -t sveneisenschmidt/yay:$(DOCKER_ENV) .
-	docker push sveneisenschmidt/yay:$(DOCKER_ENV)
-	if [ "$(DOCKER_ENV)" == "stable" ]; then \
-		docker tag sveneisenschmidt/yay:$(DOCKER_ENV) sveneisenschmidt/yay:latest && \
-		docker push sveneisenschmidt/yay:latest; \
-	fi
-	if [ "$(DOCKER_ENV)" == "dev" ]; then \
-		docker tag sveneisenschmidt/yay:$(DOCKER_ENV) sveneisenschmidt/yay:dev-$(DOCKER_BRANCH) && \
-		docker push sveneisenschmidt/yay:dev-$(DOCKER_BRANCH); \
-	fi
-	rm docker-run.sh
+	@$(call .publish,dist/docker-run.default.sh,yay,$(DOCKER_ENV),$(DOCKER_BRANCH))
 
 demo-publish:
-	rm -rf var/* config/integration/*
-	cp dist/docker-run.demo.sh docker-run.sh
-	chmod +x docker-run.sh
-	docker build --squash --compress -t sveneisenschmidt/yay-demo:$(DOCKER_ENV) .
-	docker push sveneisenschmidt/yay-demo:$(DOCKER_ENV)
-	if [ "$(DOCKER_ENV)" == "stable" ]; then \
-		docker tag sveneisenschmidt/yay-demo:$(DOCKER_ENV) sveneisenschmidt/yay-demo:latest && \
-		docker push sveneisenschmidt/yay-demo:latest; \
-	fi
-	if [ "$(DOCKER_ENV)" == "dev" ]; then \
-		docker tag sveneisenschmidt/yay-demo:$(DOCKER_ENV) sveneisenschmidt/yay-demo:dev-$(DOCKER_BRANCH) && \
-		docker push sveneisenschmidt/yay-demo:dev-$(DOCKER_BRANCH); \
-	fi
-	rm docker-run.sh
+	@$(call .publish,dist/docker-run.demo.sh,yay-demo,$(DOCKER_ENV),$(DOCKER_BRANCH))
 
 watch-logs: .application-watch-logs
 
