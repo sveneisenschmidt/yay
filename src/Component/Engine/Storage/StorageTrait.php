@@ -119,7 +119,7 @@ trait StorageTrait
     {
         $this->getStorage()->saveActivity($activity);
     }
-    
+
     public function findActivity(int $id): ?ActivityInterface
     {
         return $this->getStorage()->findActivity($id);
@@ -129,7 +129,7 @@ trait StorageTrait
     {
         return $this->getStorage()->findActivityBy($criteria);
     }
-    
+
     public function findActivityAny(): ActivityCollection
     {
         return $this->findActivityBy([]);

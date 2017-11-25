@@ -119,13 +119,13 @@ class DoctrineStorage implements StorageInterface
         $this->manager->persist($level);
         $this->manager->flush();
     }
-    
+
     public function saveActivity(ActivityInterface $activity): void
     {
         $this->manager->persist($activity);
         $this->manager->flush();
     }
-    
+
     public function findActivity(int $id): ?ActivityInterface
     {
         return $this->manager->getRepository(Activity::class)->find($id);
@@ -134,12 +134,12 @@ class DoctrineStorage implements StorageInterface
     public function findActivityBy(array $criteria = []): ActivityCollection
     {
         $result = $this->manager->getRepository(Activity::class)->findBy($criteria);
-        
+
         return new ActivityCollection($result);
     }
-    
+
     public function findActivityAny(): ActivityCollection
     {
         return $this->findActivityBy([]);
-    }    
+    }
 }

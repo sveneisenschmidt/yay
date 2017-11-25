@@ -24,7 +24,7 @@ class ActivityControllerTest extends WebTestCase
             $this->assertArrayHasKey('created_at', $value);
             $this->assertArrayHasKey('data', $value);
 
-            if ($value['name'] == Activity::PERSONAL_ACHIEVEMENT_GRANTED) {
+            if (Activity::PERSONAL_ACHIEVEMENT_GRANTED == $value['name']) {
                 $this->assertArraySubsetHasKey('data', 'player', $value);
                 $this->assertArraySubsetHasKey('data', 'achievement', $value);
                 $this->assertArraySubsetHasKey('data', 'achieved_at', $value);
@@ -33,12 +33,12 @@ class ActivityControllerTest extends WebTestCase
                 $this->assertArraySubsetHasKey('links', 'player', $value);
                 $this->assertArraySubsetHasKey('links', 'achievement', $value);
             }
-            
-            if ($value['name'] == Activity::PERSONAL_ACTION_GRANTED) {
+
+            if (Activity::PERSONAL_ACTION_GRANTED == $value['name']) {
                 $this->assertArraySubsetHasKey('data', 'player', $value);
                 $this->assertArraySubsetHasKey('data', 'action', $value);
                 $this->assertArraySubsetHasKey('data', 'achieved_at', $value);
-                
+
                 $this->assertArraySubsetHasKey('links', 'self', $value);
                 $this->assertArraySubsetHasKey('links', 'player', $value);
                 $this->assertArraySubsetHasKey('links', 'action', $value);

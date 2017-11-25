@@ -26,7 +26,7 @@ class ActivityListener
         $activity = new Activity(Activity::PERSONAL_ACTION_GRANTED, [
             'player' => $personalAction->getPlayer()->getUsername(),
             'action' => $personalAction->getActionDefinition()->getName(),
-            'achieved_at' => $personalAction->getAchievedAt()->format('c')
+            'achieved_at' => $personalAction->getAchievedAt()->format('c'),
         ]);
 
         $this->getStorage()->saveActivity($activity);
@@ -40,7 +40,7 @@ class ActivityListener
         $activity = new Activity(Activity::PERSONAL_ACHIEVEMENT_GRANTED, [
             'player' => $personalAchievement->getPlayer()->getUsername(),
             'achievement' => $personalAchievement->getAchievementDefinition()->getName(),
-            'achieved_at' => $personalAchievement->getAchievedAt()->format('c')
+            'achieved_at' => $personalAchievement->getAchievedAt()->format('c'),
         ]);
 
         $this->getStorage()->saveActivity($activity);

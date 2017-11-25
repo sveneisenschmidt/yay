@@ -96,7 +96,7 @@ class Engine
             $actionDefinitionCollection,
             $this->getStorage()->findAchievementDefinitionBy([])
         );
-        
+
         if ($achievementDefinitionCollection->count() < 1) {
             return [];
         }

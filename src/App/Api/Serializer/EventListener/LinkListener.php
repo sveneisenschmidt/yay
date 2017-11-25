@@ -58,7 +58,7 @@ class LinkListener
         if ($event->getObject() instanceof PersonalActionInterface) {
             $this->handlePersonalAction($visitor, $event->getObject());
         }
-        
+
         if ($event->getObject() instanceof ActivityInterface) {
             $this->handleActivity($visitor, $event->getObject());
         }
@@ -153,7 +153,7 @@ class LinkListener
 
     public function handleActivity(GenericSerializationVisitor $visitor, ActivityInterface $activity)
     {
-        if ($activity->getName() == Activity::PERSONAL_ACTION_GRANTED) {
+        if (Activity::PERSONAL_ACTION_GRANTED == $activity->getName()) {
             $visitor->setData('links', [
                 'self' => $this->generateRoute(
                     'api_activity_index',
@@ -170,7 +170,7 @@ class LinkListener
             ]);
         }
 
-        if ($activity->getName() == Activity::PERSONAL_ACHIEVEMENT_GRANTED) {
+        if (Activity::PERSONAL_ACHIEVEMENT_GRANTED == $activity->getName()) {
             $visitor->setData('links', [
                 'self' => $this->generateRoute(
                     'api_activity_index',
@@ -186,5 +186,5 @@ class LinkListener
                 ),
             ]);
         }
-    }   
+    }
 }

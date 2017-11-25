@@ -48,7 +48,7 @@ interface StorageInterface
     public function saveLevel(LevelInterface $level);
 
     public function saveActivity(ActivityInterface $activity): void;
-    
+
     public function findActivity(int $id): ?ActivityInterface;
 
     public function findActivityBy(array $criteria = []): ActivityCollection;

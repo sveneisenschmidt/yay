@@ -16,7 +16,7 @@ class ActivityTest extends TestCase
     public function test_set_get_scalar(): void
     {
         $instance = new Activity(
-            $name = $this->faker->name, 
+            $name = $this->faker->name,
             $data = [1, 2, 3],
             $createdAt = $this->faker->dateTime()
         );
