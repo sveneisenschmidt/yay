@@ -58,24 +58,10 @@ demo-import: .application-demo-import
 demo-remove: .application-demo-remove
 
 default-publish:
-	rm -rf var/* config/integration/*
-	cp dist/docker-run.default.sh docker-run.sh
-	chmod +x docker-run.sh
-	docker build -t sveneisenschmidt/yay .
-	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
-	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)
-	docker push sveneisenschmidt/yay
-	rm docker-run.sh
+	@$(call .publish,dist/docker-run.default.sh,sveneisenschmidt/yay,$(DOCKER_ENV),$(DOCKER_BRANCH))
 
 demo-publish:
-	rm -rf var/* config/integration/*
-	cp dist/docker-run.demo.sh docker-run.sh
-	chmod +x docker-run.sh
-	docker build -t sveneisenschmidt/yay-demo .
-	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
-	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)
-	docker push sveneisenschmidt/yay-demo
-	rm docker-run.sh
+	@$(call .publish,dist/docker-run.demo.sh,sveneisenschmidt/yay-demo,$(DOCKER_ENV),$(DOCKER_BRANCH))
 
 watch-logs: .application-watch-logs
 
