@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Component\Engine\Storage\DoctrineStorage;
-use Component\Engine\StorageTrait;
+use Component\Engine\Storage\StorageTrait;
 use Component\Entity\Achievement\ActionDefinition;
 use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Achievement\AchievementDefinition;

@@ -7,7 +7,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 use App\Integration\Configuration\ConfigurationTransformer;
 use App\Integration\Service\InstallerService;
-use Component\Engine\StorageInterface;
+use Component\Engine\Storage\StorageInterface;
 
 class InstallerServiceTest extends TestCase
 {

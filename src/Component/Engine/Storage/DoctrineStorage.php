@@ -3,7 +3,7 @@
 namespace Component\Engine\Storage;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Component\Engine\StorageInterface;
+use Component\Engine\Storage\StorageInterface;
 use Component\Entity\Achievement\ActionDefinition;
 use Component\Entity\Achievement\ActionDefinitionInterface;
 use Component\Entity\Achievement\ActionDefinitionCollection;

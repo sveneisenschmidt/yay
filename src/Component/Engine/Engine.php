@@ -2,6 +2,9 @@
 
 namespace Component\Engine;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Component\Engine\Storage\EventStorageTrait;
+use Component\Engine\Storage\StorageInterface;
 use Component\Engine\AchievementValidator\ValidationContext;
 use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Achievement\AchievementDefinitionInterface;
@@ -9,19 +12,22 @@ use Component\Entity\Achievement\AchievementDefinitionCollection;
 use Component\Entity\Achievement\PersonalAchievement;
 use Component\Entity\Achievement\PersonalActionCollection;
 use Component\Entity\PlayerInterface;
+use Component\Engine\Event\ObjectEvent;
 
 class Engine
 {
-    use StorageTrait;
+    use EventStorageTrait;
 
     /** @var AchievementValidatorCollection */
     protected $achievementValidatorCollection;
 
     public function __construct(
         StorageInterface $storage,
+        EventDispatcherInterface $eventDispatcher,
         AchievementValidatorCollection $achievementValidatorCollection = null
     ) {
         $this->setStorage($storage);
+        $this->setEventDispatcher($eventDispatcher);
         $this->achievementValidatorCollection = !$achievementValidatorCollection ? new AchievementValidatorCollection() : $achievementValidatorCollection;
     }
 
@@ -119,6 +125,7 @@ class Engine
 
                     $this->savePersonalAchievement($personalAchievement);
                     $this->refreshPlayer($player);
+                    $this->eventDispatcher->dispatch(Events::GRANT_ACHIEVEMENT, new ObjectEvent($personalAchievement));
                 }
             }
         }

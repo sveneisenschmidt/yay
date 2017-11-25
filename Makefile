@@ -28,6 +28,7 @@ restart: stop start
 
 start:
 	@$(call .docker-upd,web)
+	@sleep 5
 	# http://localhost:50080
 
 start-attached:

@@ -1,6 +1,6 @@
 <?php
 
-namespace Component\Engine;
+namespace Component\Engine\Storage;
 
 use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Achievement\ActionDefinitionInterface;
