@@ -1,6 +1,6 @@
 # Demo #
 
-To enable the demo we need need to enable the demo integration, you can do so by using the built-in make command `make demo-import` for your local dev environment or executing the appropriate console command (`php bin/console yay:integration:enable integration/demo`), we choose the former.
+To run the demo we need to enable the demo integration, you can do so by using the built-in make command `make demo-import` for your local dev environment or executing the appropriate console command (`php bin/console yay:integration:enable integration/demo`), we choose the former.
 
 ```bash
 $ make demo-import

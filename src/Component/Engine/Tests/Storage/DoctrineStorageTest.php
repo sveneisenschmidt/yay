@@ -314,4 +314,12 @@ class DoctrineStorageTest extends TestCase
         $this->assertInstanceOf(ActivityCollection::class, $objects);
         $this->assertEquals(0, count($objects));
     }
+
+    public function test_find_activity_any(): void
+    {
+        $manager = $this->createManagerMockMany(Activity::class, true);
+        $objects = $this->wrapStorage(new DoctrineStorage($manager))->findActivityAny();
+        $this->assertInstanceOf(ActivityCollection::class, $objects);
+        $this->assertEquals(0, count($objects));
+    }
 }

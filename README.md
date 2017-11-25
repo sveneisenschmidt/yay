@@ -23,6 +23,7 @@ How-to-use demo, installation instructions, configuration examples and extension
 * [API](docs/api.md)
 * [Demo](docs/demo.md)
 * [Development](docs/development.md)
+* [Events](docs/events.md)
 * Guides
     * [How to run Yay on sloppy.io with yay-recipes-sloppy](https://github.com/sveneisenschmidt/yay-recipes-sloppy)
     * [How to write and configure your integration](docs/guides/integrations.md)
