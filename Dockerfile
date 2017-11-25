@@ -4,6 +4,12 @@ LABEL org.label-schema.name="yay" \
       org.label-schema.url="https://github.com/sveneisenschmidt/yay" \
       org.label-schema.vcs-url="https://github.com/sveneisenschmidt/yay.git"
 
+ENV APACHE_DOCUMENT_ROOT /data
+ENV COMPOSER_DISABLE_XDEBUG_WARN 1
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+WORKDIR /data
+
 RUN apt-get -y update && \
     apt-get install -y \
         libicu-dev \
@@ -18,16 +24,11 @@ RUN docker-php-ext-install \
     mbstring \
     opcache \
     zip
-
-COPY ./ /var/www/html
+COPY ./ /data
 COPY ./dist/apache2/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 COPY ./dist/php/php.ini $PHP_INI_DIR/conf.d/999-custom.ini
 
 RUN a2enmod rewrite
-
-ENV COMPOSER_DISABLE_XDEBUG_WARN 1
-
-ENV COMPOSER_ALLOW_SUPERUSER 1
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \
