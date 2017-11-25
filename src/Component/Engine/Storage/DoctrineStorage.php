@@ -17,6 +17,7 @@ use Component\Entity\Achievement\Level;
 use Component\Entity\Player;
 use Component\Entity\PlayerCollection;
 use Component\Entity\PlayerInterface;
+use Component\Entity\ActivityInterface;
 
 class DoctrineStorage implements StorageInterface
 {
@@ -114,6 +115,12 @@ class DoctrineStorage implements StorageInterface
     public function saveLevel(LevelInterface $level): void
     {
         $this->manager->persist($level);
+        $this->manager->flush();
+    }
+    
+    public function saveActivity(ActivityInterface $activity): void
+    {
+        $this->manager->persist($activity);
         $this->manager->flush();
     }
 }

@@ -1,0 +1,17 @@
+Component\Entity\Activity:
+  type: entity
+  table: activity
+  # Primary Key
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  # Columns
+  fields:
+    createdAt:
+      type: datetime
+    name:
+      type: string
+    data:
+      type: json

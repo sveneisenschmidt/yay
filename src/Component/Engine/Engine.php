@@ -28,7 +28,7 @@ class Engine
     ) {
         $this->setStorage($storage);
         $this->setEventDispatcher($eventDispatcher);
-        $this->achievementValidatorCollection = !$achievementValidatorCollection ? new AchievementValidatorCollection() : $achievementValidatorCollection;
+        $this->achievementValidatorCollection = empty($achievementValidatorCollection) ? new AchievementValidatorCollection() : $achievementValidatorCollection;
     }
 
     public function getAchievementValidators(): AchievementValidatorCollection
@@ -96,7 +96,7 @@ class Engine
             $actionDefinitionCollection,
             $this->getStorage()->findAchievementDefinitionBy([])
         );
-
+        
         if ($achievementDefinitionCollection->count() < 1) {
             return [];
         }
@@ -119,7 +119,7 @@ class Engine
                 }
 
                 $validationContext = $this->createValidationContext($player, $achievementDefinition);
-                if ($achievementValidator->validate($validationContext)) {
+                if ($valid = $achievementValidator->validate($validationContext)) {
                     $personalAchievement = new PersonalAchievement($player, $achievementDefinition);
                     $personalAchievements[] = $personalAchievement;
 

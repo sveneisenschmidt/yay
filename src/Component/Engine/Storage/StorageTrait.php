@@ -12,6 +12,7 @@ use Component\Entity\Achievement\LevelCollection;
 use Component\Entity\Achievement\LevelInterface;
 use Component\Entity\PlayerCollection;
 use Component\Entity\PlayerInterface;
+use Component\Entity\ActivityInterface;
 
 trait StorageTrait
 {
@@ -111,5 +112,10 @@ trait StorageTrait
     public function saveLevel(LevelInterface $level): void
     {
         $this->getStorage()->saveLevel($level);
+    }
+
+    public function saveActivity(ActivityInterface $activity): void
+    {
+        $this->getStorage()->saveActivity($activity);
     }
 }
