@@ -7,8 +7,7 @@ web:
         - mysqldb
         - redis
     volumes:
-        - ./:/var/www/html:cached
-    working_dir: "/var/www/html"
+        - ./:/data:cached
     environment:
         APP_MODE: web
         APP_ENV: dev
@@ -27,8 +26,7 @@ cli:
         - mysqldb
         - redis
     volumes:
-        - ./:/var/www/html:cached
-    working_dir: "/var/www/html"
+        - ./:/data:cached
     environment:
         APP_MODE: web
         APP_ENV: dev
