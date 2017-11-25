@@ -58,10 +58,10 @@ demo-import: .application-demo-import
 demo-remove: .application-demo-remove
 
 default-publish:
-	@$(call .publish,dist/docker-run.default.sh,yay,$(DOCKER_ENV),$(DOCKER_BRANCH))
+	@$(call .publish,dist/docker-run.default.sh,sveneisenschmidt/yay,$(DOCKER_ENV),$(DOCKER_BRANCH))
 
 demo-publish:
-	@$(call .publish,dist/docker-run.demo.sh,yay-demo,$(DOCKER_ENV),$(DOCKER_BRANCH))
+	@$(call .publish,dist/docker-run.demo.sh,sveneisenschmidt/yay-demo,$(DOCKER_ENV),$(DOCKER_BRANCH))
 
 watch-logs: .application-watch-logs
 
