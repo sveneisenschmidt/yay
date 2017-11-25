@@ -25,11 +25,15 @@ COPY ./dist/php/php.ini $PHP_INI_DIR/conf.d/999-custom.ini
 
 RUN a2enmod rewrite
 
+ENV COMPOSER_DISABLE_XDEBUG_WARN 1
+
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \
-    php -r "unlink('composer-setup.php');" 
-ENV COMPOSER_DISABLE_XDEBUG_WARN 1
-ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN composer install --ignore-platform-reqs
+    php -r "unlink('composer-setup.php');" && \
+    composer install --ignore-platform-reqs
+
+RUN rm -rf ./.build/* ./var/* 
 
 CMD ["./docker-run.dist.sh"]

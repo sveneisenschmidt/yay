@@ -61,20 +61,21 @@ default-publish:
 	rm -rf var/* config/integration/*
 	cp dist/docker-run.default.sh docker-run.sh
 	chmod +x docker-run.sh
-	docker build -t sveneisenschmidt/yay .
-	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
+	docker build --squash --compress -t sveneisenschmidt/yay:$(DOCKER_ENV) .
 	docker tag sveneisenschmidt/yay sveneisenschmidt/yay:$(DOCKER_ENV)
-	docker push sveneisenschmidt/yay
+	docker push sveneisenschmidt/yay:$(DOCKER_ENV)
+	if [ "$(DOCKER_ENV)" == "stable" ]; then docker push sveneisenschmidt/yay:latest; fi
+	if [ "$(DOCKER_ENV)" == "dev"    ]; then docker push sveneisenschmidt/yay:$(shell git rev-parse --abbrev-ref HEAD); fi
 	rm docker-run.sh
 
 demo-publish:
 	rm -rf var/* config/integration/*
 	cp dist/docker-run.demo.sh docker-run.sh
 	chmod +x docker-run.sh
-	docker build -t sveneisenschmidt/yay-demo .
-	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)-$(shell git log -1 --format=%h)
-	docker tag sveneisenschmidt/yay-demo sveneisenschmidt/yay-demo:$(DOCKER_ENV)
-	docker push sveneisenschmidt/yay-demo
+	docker build --squash --compress -t sveneisenschmidt/yay-demo:$(DOCKER_ENV) .
+	docker push sveneisenschmidt/yay-demo:$(DOCKER_ENV)
+	if [ "$(DOCKER_ENV)" == "stable" ]; then docker push sveneisenschmidt/yay-demo:latest; fi
+	if [ "$(DOCKER_ENV)" == "dev" 	 ]; then docker push sveneisenschmidt/yay-demo:$(shell git rev-parse --abbrev-ref HEAD); fi
 	rm docker-run.sh
 
 watch-logs: .application-watch-logs
