@@ -27,4 +27,4 @@ class MyListener
 | yay.engine.pre_save | `Component\Engine\Event\ObjectEvent` | `Component\Entity\*`  | Triggered before an entity is saved. |
 | yay.engine.post_save | `Component\Engine\Event\ObjectEvent` | `Component\Entity\*`  | Triggered after an entity was saved. |
 | yay.engine.grant_personal_achievement | `Component\Engine\Event\ObjectEvent` | `Component\Entity\Achievement\PersonalAchievement`  | Triggered after a player has been awarded with a new achievement. |
-| yay.engine.grant_personal_action | `Component\Engine\Event\ObjectEvent` |  |`Component\Entity\Achievement\PersonalAction`  | Triggered after a player has been accounted a new action.  |
+| yay.engine.grant_personal_action | `Component\Engine\Event\ObjectEvent` | `Component\Entity\Achievement\PersonalAction` | Triggered after a player has been accounted a new action.  |
