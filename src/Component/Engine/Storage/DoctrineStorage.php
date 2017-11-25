@@ -138,8 +138,4 @@ class DoctrineStorage implements StorageInterface
         return new ActivityCollection($result);
     }
 
-    public function findActivityAny(): ActivityCollection
-    {
-        return $this->findActivityBy([]);
-    }
 }
