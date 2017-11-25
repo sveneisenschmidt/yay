@@ -18,7 +18,7 @@ jobs:
     - stage: "Test"
       before_install:
       - sudo apt-get update
-      - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
+      - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
       - docker --version
       before_script:
       - sed -i -e 's/var\/www\/html:cached/var\/www\/html/g' docker-compose.yml
@@ -32,7 +32,7 @@ jobs:
       if: branch = master AND type IN (push, api, cron) AND fork = false
       before_install:
       - sudo apt-get update
-      - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
+      - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
       - docker --version
       before_script:
       - sed -i -e 's/var\/www\/html:cached/var\/www\/html/g' docker-compose.yml
@@ -44,7 +44,7 @@ jobs:
       if: branch != master AND type IN (push, api, cron) AND fork = false
       before_install:
       - sudo apt-get update
-      - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
+      - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
       - docker --version
       before_script:
       - sed -i -e 's/var\/www\/html:cached/var\/www\/html/g' docker-compose.yml
