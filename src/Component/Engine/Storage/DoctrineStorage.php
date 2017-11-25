@@ -137,5 +137,4 @@ class DoctrineStorage implements StorageInterface
 
         return new ActivityCollection($result);
     }
-
 }
