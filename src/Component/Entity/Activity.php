@@ -1,7 +1,6 @@
 <?php
-namespace Component\Entity;
 
-use Component\Entity\ActivityInterface;
+namespace Component\Entity;
 
 class Activity implements ActivityInterface
 {
@@ -17,7 +16,7 @@ class Activity implements ActivityInterface
 
     /** @var array */
     protected $data;
-    
+
     /** @var \DateTime */
     protected $createdAt;
 
@@ -32,7 +31,7 @@ class Activity implements ActivityInterface
     {
         $this->name = $name;
     }
-    
+
     public function getName(): string
     {
         return $this->name;
@@ -47,7 +46,7 @@ class Activity implements ActivityInterface
     {
         return $this->data;
     }
-    
+
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;

@@ -74,7 +74,7 @@ class ActivityController extends Controller
             ->findActivityAny()
             ->toArray();
 
-        \usort($activities, function(Activity $a, Activity $b) {
+        \usort($activities, function (Activity $a, Activity $b) {
             return $a->getCreatedAt() > $b->getCreatedAt() ? -1 : 1;
         });
 
