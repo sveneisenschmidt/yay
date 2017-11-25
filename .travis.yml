@@ -6,6 +6,7 @@ addons:
     apt:
         packages:
             - pv
+            - docker-ce
 
 git:
     depth: 1
@@ -16,12 +17,7 @@ services:
 jobs:
   include:
     - stage: "Test"
-      before_install:
-      - sudo apt-get update
-      - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
-      - docker --version
       before_script:
-      - sed -i -e 's/var\/www\/html:cached/var\/www\/html/g' docker-compose.yml
       - make install 2>&1 "$TRAVIS_BUILD_DIR"/install.log | pv > /dev/null -t
       script:
       - make test-coverage
@@ -30,24 +26,14 @@ jobs:
       - cat "$TRAVIS_BUILD_DIR"/install.log
     - stage: "Build Docker Images (stable)"
       if: branch = master AND type IN (push, api, cron) AND fork = false
-      before_install:
-      - sudo apt-get update
-      - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
-      - docker --version
       before_script:
-      - sed -i -e 's/var\/www\/html:cached/var\/www\/html/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
       - DOCKER_ENV=stable make default-publish
       - DOCKER_ENV=stable make demo-publish
     - stage: "Build Docker Images (dev)"
       if: branch != master AND type IN (push, api, cron) AND fork = false
-      before_install:
-      - sudo apt-get update
-      - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
-      - docker --version
       before_script:
-      - sed -i -e 's/var\/www\/html:cached/var\/www\/html/g' docker-compose.yml
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
       - DOCKER_ENV=dev make default-publish
