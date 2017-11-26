@@ -389,5 +389,5 @@ class PlayerController extends Controller
             $player->getActivities(),
             ['player.personal_activities.show']
         );
-    }    
+    }
 }

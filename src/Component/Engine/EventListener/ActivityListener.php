@@ -42,7 +42,7 @@ class ActivityListener implements EventListenerInterface
         $personalAchievement = $event->getObject();
 
         $activity = new Activity(
-            Activity::PERSONAL_ACHIEVEMENT_GRANTED, 
+            Activity::PERSONAL_ACHIEVEMENT_GRANTED,
             $personalAchievement->getPlayer(),
             [
                 'player' => $personalAchievement->getPlayer()->getUsername(),
