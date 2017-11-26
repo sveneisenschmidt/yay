@@ -23,11 +23,15 @@ class ActivityListener implements EventListenerInterface
         /** @var PersonalAction $personalAction */
         $personalAction = $event->getObject();
 
-        $activity = new Activity(Activity::PERSONAL_ACTION_GRANTED, [
-            'player' => $personalAction->getPlayer()->getUsername(),
-            'action' => $personalAction->getActionDefinition()->getName(),
-            'achieved_at' => $personalAction->getAchievedAt()->format('c'),
-        ]);
+        $activity = new Activity(
+            Activity::PERSONAL_ACTION_GRANTED,
+            $personalAction->getPlayer(),
+            [
+                'player' => $personalAction->getPlayer()->getUsername(),
+                'action' => $personalAction->getActionDefinition()->getName(),
+                'achieved_at' => $personalAction->getAchievedAt()->format('c'),
+            ]
+        );
 
         $this->getStorage()->saveActivity($activity);
     }
@@ -37,11 +41,15 @@ class ActivityListener implements EventListenerInterface
         /** @var PersonalAchievement $personalAchievement */
         $personalAchievement = $event->getObject();
 
-        $activity = new Activity(Activity::PERSONAL_ACHIEVEMENT_GRANTED, [
-            'player' => $personalAchievement->getPlayer()->getUsername(),
-            'achievement' => $personalAchievement->getAchievementDefinition()->getName(),
-            'achieved_at' => $personalAchievement->getAchievedAt()->format('c'),
-        ]);
+        $activity = new Activity(
+            Activity::PERSONAL_ACHIEVEMENT_GRANTED, 
+            $personalAchievement->getPlayer(),
+            [
+                'player' => $personalAchievement->getPlayer()->getUsername(),
+                'achievement' => $personalAchievement->getAchievementDefinition()->getName(),
+                'achieved_at' => $personalAchievement->getAchievedAt()->format('c'),
+            ]
+        );
 
         $this->getStorage()->saveActivity($activity);
     }

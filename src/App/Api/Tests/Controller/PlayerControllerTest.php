@@ -32,6 +32,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertArraySubsetHasKey('links', 'self', $data);
         $this->assertArraySubsetHasKey('links', 'personal_achievements', $data);
         $this->assertArraySubsetHasKey('links', 'personal_actions', $data);
+        $this->assertArraySubsetHasKey('links', 'personal_activities', $data);
     }
 
     public function test_Player_IndexAction(): void
@@ -175,6 +176,37 @@ class PlayerControllerTest extends WebTestCase
         $client = static::createClient();
 
         $client->request('GET', '/api/players/john.doe/personal-actions/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isNotFound());
+    }
+
+    public function test_Player_PersonalActivities_IndexAction(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/players/jane.doe/personal-activities/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        foreach ($data as $key => $value) {
+            $this->assertArrayHasKey('name', $value);
+            $this->assertArrayHasKey('data', $value);
+            $this->assertArrayHasKey('created_at', $value);
+            $this->assertArraySubsetHasKey('links', 'self', $value);
+            $this->assertArraySubsetHasKey('links', 'player', $value);
+        }
+    }
+
+    public function test_Player_PersonalActivities_IndexAction_NotFound(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/players/john.doe/personal-activities/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());

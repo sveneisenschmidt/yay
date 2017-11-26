@@ -6,10 +6,13 @@ Component\Entity\Activity:
     name:
       groups:
         - 'activity.index'
+        - 'player.personal_activities.show'
     createdAt:
       groups:
         - 'activity.index'
+        - 'player.personal_activities.show'
     data:
       groups:
         - 'activity.index'
+        - 'player.personal_activities.show'
 

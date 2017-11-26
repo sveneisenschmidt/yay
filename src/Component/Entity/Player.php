@@ -4,6 +4,7 @@ namespace Component\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as CollectionInterface;
+use Component\Entity\ActivityCollection;
 use Component\Entity\Achievement\AchievementDefinitionInterface;
 use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionCollection;
@@ -32,6 +33,11 @@ class Player implements PlayerInterface
      * @var array|PersonalAchievementInterface[]
      */
     protected $personalAchievements;
+    
+    /**
+     * @var ActivityCollection
+     */
+    protected $activities;
 
     /** @var int */
     protected $score = 0;
@@ -40,6 +46,7 @@ class Player implements PlayerInterface
     {
         $this->personalActions = new ArrayCollection();
         $this->personalAchievements = new ArrayCollection();
+        $this->activities = new ArrayCollection();
     }
 
     public function getName(): string
@@ -80,6 +87,11 @@ class Player implements PlayerInterface
     public function getPersonalAchievements(): CollectionInterface
     {
         return $this->personalAchievements;
+    }
+
+    public function getActivities(): CollectionInterface
+    {
+        return $this->activities;
     }
 
     public function hasPersonalAchievement(AchievementDefinitionInterface $achievementDefinition): bool

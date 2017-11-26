@@ -81,6 +81,10 @@ class LinkListener
                 'api_player_personal_actions_show',
                 ['username' => $player->getUsername()]
             ),
+            'personal_activities' => $this->generateRoute(
+                'api_player_personal_activities_show',
+                ['username' => $player->getUsername()]
+            ),
         ]);
     }
 
@@ -178,7 +182,7 @@ class LinkListener
             ),
             'player' => $this->generateRoute(
                 'api_player_show',
-                ['username' => $activity->getData()['player']]
+                ['username' => $activity->getPlayer()->getUsername()]
             ),
             'action' => $this->generateRoute(
                 'api_action_show',
@@ -198,7 +202,7 @@ class LinkListener
             ),
             'player' => $this->generateRoute(
                 'api_player_show',
-                ['username' => $activity->getData()['player']]
+                ['username' => $activity->getPlayer()->getUsername()]
             ),
             'achievement' => $this->generateRoute(
                 'api_achievement_show',

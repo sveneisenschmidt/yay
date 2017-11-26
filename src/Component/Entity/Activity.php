@@ -2,6 +2,8 @@
 
 namespace Component\Entity;
 
+use Component\Entity\PlayerInterface;
+
 class Activity implements ActivityInterface
 {
     const PERSONAL_ACTION_GRANTED = 'personal_action_granted';
@@ -13,6 +15,9 @@ class Activity implements ActivityInterface
 
     /** @var string */
     protected $name;
+    
+    /** @var PlayerInterface */
+    protected $player;
 
     /** @var array */
     protected $data;
@@ -20,10 +25,15 @@ class Activity implements ActivityInterface
     /** @var \DateTime */
     protected $createdAt;
 
-    public function __construct(string $name, array $data = [], \DateTime $createdAt = null)
-    {
-        $this->name = $name;
-        $this->data = $data;
+    public function __construct(
+        string $name, 
+        PlayerInterface $player,
+        array $data = [], 
+        \DateTime $createdAt = null
+    ) {
+        $this->setPlayer($player);
+        $this->setName($name);
+        $this->setData($data);
         $this->createdAt = $createdAt ? $createdAt : new \DateTime();
     }
 
@@ -35,6 +45,16 @@ class Activity implements ActivityInterface
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setPlayer(PlayerInterface $player): void
+    {
+        $this->player = $player;
+    }
+
+    public function getPlayer(): PlayerInterface
+    {
+        return $this->player;
     }
 
     public function setData(array $data): void

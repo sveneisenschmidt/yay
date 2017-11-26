@@ -357,6 +357,54 @@ _Returns a Player achievements identified by its username property_
 - Type: string
 
 
+## /api/players/{username}/personal-activities/ ##
+
+### `GET` /api/players/{username}/personal-activities/ ###
+
+_Returns a Player activities identified by its username property_
+
+**Example Response:**
+```json
+```json
+	[{
+		"name": "personal_action_granted",
+		"data": {
+			"action": "demo-action",
+			"player": "jane.doe",
+			"achieved_at": "2017-11-26T14:36:17+00:00"
+		},
+		"created_at": "2017-11-26T14:36:17+00:00",
+		"links": {
+			"self": "http://localhost:50080/api/activities/",
+			"player": "http://localhost:50080/api/players/jane.doe/",
+			"action": "http://localhost:50080/api/actions/demo-action/"
+		}
+	}, {
+		"name": "personal_action_granted",
+		"data": {
+			"action": "demo-action",
+			"player": "jane.doe",
+			"achieved_at": "2017-11-26T14:36:18+00:00"
+		},
+		"created_at": "2017-11-26T14:36:18+00:00",
+		"links": {
+			"self": "http://localhost:50080/api/activities/",
+			"player": "http://localhost:50080/api/players/jane.doe/",
+			"action": "http://localhost:50080/api/actions/demo-action/"
+		}
+	}]
+```
+```
+
+
+#### Requirements ####
+
+**username**
+
+- Requirement: [A-Za-z0-9\-\_\.]+
+- Type: string
+
+
 
 # Progress of an Player #
 

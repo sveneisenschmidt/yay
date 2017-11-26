@@ -15,3 +15,13 @@ Component\Entity\Activity:
       type: string
     data:
       type: json
+  # Relationships
+  manyToOne:
+    player:
+      targetEntity: 'Component\Entity\Player'
+      inversedBy: activities
+      cascade: [ 'persist', 'refresh' ]
+      joinColumn:
+        name: player_id
+        referencedColumnName: id
+        cascade: [ 'persist', 'refresh' ]

@@ -312,4 +312,82 @@ class PlayerController extends Controller
             ['player.personal_actions.show']
         );
     }
+
+    /**
+     * **Example Response:**
+     * ```json
+     * ```json
+     * 	[{
+     * 		"name": "personal_action_granted",
+     * 		"data": {
+     * 			"action": "demo-action",
+     * 			"player": "jane.doe",
+     * 			"achieved_at": "2017-11-26T14:36:17+00:00"
+     * 		},
+     * 		"created_at": "2017-11-26T14:36:17+00:00",
+     * 		"links": {
+     * 			"self": "http://localhost:50080/api/activities/",
+     * 			"player": "http://localhost:50080/api/players/jane.doe/",
+     * 			"action": "http://localhost:50080/api/actions/demo-action/"
+     * 		}
+     * 	}, {
+     * 		"name": "personal_action_granted",
+     * 		"data": {
+     * 			"action": "demo-action",
+     * 			"player": "jane.doe",
+     * 			"achieved_at": "2017-11-26T14:36:18+00:00"
+     * 		},
+     * 		"created_at": "2017-11-26T14:36:18+00:00",
+     * 		"links": {
+     * 			"self": "http://localhost:50080/api/activities/",
+     * 			"player": "http://localhost:50080/api/players/jane.doe/",
+     * 			"action": "http://localhost:50080/api/actions/demo-action/"
+     * 		}
+     * 	}]
+     * ```.
+     * ```.
+     *
+     * @Method("GET")
+     *
+     * @Route(
+     *     "/{username}/personal-activities/",
+     *     name="api_player_personal_activities_show",
+     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"}
+     * )
+     *
+     * @ApiDoc(
+     *     section="Players",
+     *     resource=true,
+     *     description="Returns a Player activities identified by its username property",
+     *     requirements={
+     *         {
+     *             "name"="username",
+     *             "dataType"="string",
+     *             "requirement"="[A-Za-z0-9\-\_\.]+"
+     *         }
+     *     },
+     *     statusCodes = {
+     *         200 = "Returned when successful",
+     *         404 = "Returned when the player is not found"
+     *     }
+     * )
+     */
+    public function indexPersonalActivitiesAction(
+        Engine $engine,
+        ResponseSerializer $serializer,
+        string $username
+    ): Response {
+        $players = $engine->findPlayerBy(['username' => $username]);
+        if ($players->isEmpty()) {
+            throw $this->createNotFoundException();
+        }
+
+        /** @var PlayerInterface $player */
+        $player = $players->first();
+
+        return $serializer->createResponse(
+            $player->getActivities(),
+            ['player.personal_activities.show']
+        );
+    }    
 }

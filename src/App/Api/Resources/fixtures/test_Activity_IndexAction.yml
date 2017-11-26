@@ -12,6 +12,7 @@ Component\Entity\Activity:
   activity1:
       __construct:
           - personal_action_granted
+          - '@player'
           - 
             player: jane.doe
             action: yay.action.test_api_action
@@ -19,6 +20,7 @@ Component\Entity\Activity:
   activity2:
       __construct:
           - personal_achievement_granted
+          - '@player'
           - 
             player: jane.doe
             achievement: yay.achievement.test_api_achievement
