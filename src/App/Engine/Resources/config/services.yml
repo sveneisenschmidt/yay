@@ -10,14 +10,11 @@ services:
         resource: '../../Command'
         tags: ['console.command']
 
-    App\Engine\EventListener\:
-        resource: '../../EventListener'
-        tags:
-            - { name: kernel.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
-            - { name: kernel.event_listener, event: yay.engine.grant_personal_achievement, method: onGrantPersonalAchievement }
-
     Component\Engine\Engine: { public: true }
     Component\Engine\Storage\DoctrineStorage: ["@=service('doctrine').getManager()"]
     Component\Engine\StorageInterface: '@Component\Engine\Storage\DoctrineStorage'
     Component\Engine\AchievementValidatorCollection: ~ 
-
+    Component\Engine\EventListener\ActivityListener:
+        tags:
+            - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
+            - { name: yay.event_listener, event: yay.engine.grant_personal_achievement, method: onGrantPersonalAchievement }

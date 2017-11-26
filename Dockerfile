@@ -33,7 +33,7 @@ RUN a2enmod rewrite
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \
     php -r "unlink('composer-setup.php');" && \
-    composer install --ignore-platform-reqs
+    composer install --ignore-platform-reqs --optimize-autoloader 
 
 RUN rm -rf ./.build/* ./var/* 
 

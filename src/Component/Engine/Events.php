@@ -2,7 +2,7 @@
 
 namespace Component\Engine;
 
-class Events
+final class Events
 {
     const PRE_SAVE = 'yay.engine.pre_save';
     const POST_SAVE = 'yay.engine.post_save';

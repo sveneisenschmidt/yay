@@ -9,6 +9,8 @@ use Component\Engine\Storage\EventStorageTrait;
 use Component\Entity\PlayerInterface;
 use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionInterface;
+use Component\Engine\Events;
+use Component\Engine\Event\ObjectEvent;
 
 class EventStorageTraitTest extends TestCase
 {
@@ -43,7 +45,11 @@ class EventStorageTraitTest extends TestCase
         $storage = $this->createMock(StorageInterface::class);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
         $eventDispatcher->expects($this->exactly(2))
-            ->method('dispatch');
+            ->method('dispatch')
+            ->withConsecutive(
+                [$this->stringContains(EVENTS::PRE_SAVE), $this->isInstanceOf(ObjectEvent::class)],
+                [$this->stringContains(EVENTS::POST_SAVE), $this->isInstanceOf(ObjectEvent::class)]
+            );
 
         $object = $this->createMock(PlayerInterface::class);
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
@@ -55,7 +61,11 @@ class EventStorageTraitTest extends TestCase
         $storage = $this->createMock(StorageInterface::class);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
         $eventDispatcher->expects($this->exactly(2))
-            ->method('dispatch');
+            ->method('dispatch')
+            ->withConsecutive(
+                [$this->stringContains(EVENTS::PRE_SAVE), $this->isInstanceOf(ObjectEvent::class)],
+                [$this->stringContains(EVENTS::POST_SAVE), $this->isInstanceOf(ObjectEvent::class)]
+            );
 
         $object = $this->createMock(PersonalAchievementInterface::class);
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
@@ -67,7 +77,11 @@ class EventStorageTraitTest extends TestCase
         $storage = $this->createMock(StorageInterface::class);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
         $eventDispatcher->expects($this->exactly(2))
-            ->method('dispatch');
+            ->method('dispatch')
+            ->withConsecutive(
+                [$this->stringContains(EVENTS::PRE_SAVE), $this->isInstanceOf(ObjectEvent::class)],
+                [$this->stringContains(EVENTS::POST_SAVE), $this->isInstanceOf(ObjectEvent::class)]
+            );
 
         $object = $this->createMock(PersonalActionInterface::class);
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);

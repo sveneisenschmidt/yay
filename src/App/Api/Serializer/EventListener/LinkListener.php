@@ -115,8 +115,9 @@ class LinkListener
     }
 
     public function handlePersonalAchievement(
-        GenericSerializationVisitor $visitor, PersonalAchievementInterface $personalAchievement)
-    {
+        GenericSerializationVisitor $visitor, 
+        PersonalAchievementInterface $personalAchievement
+    ): void {
         $visitor->setData('links', [
             'self' => $this->generateRoute(
                 'api_player_personal_achievements_show',
@@ -133,8 +134,10 @@ class LinkListener
         ]);
     }
 
-    public function handlePersonalAction(GenericSerializationVisitor $visitor, PersonalActionInterface $personalAction)
-    {
+    public function handlePersonalAction(
+        GenericSerializationVisitor $visitor, 
+        PersonalActionInterface $personalAction
+    ): void {
         $visitor->setData('links', [
             'self' => $this->generateRoute(
                 'api_player_personal_actions_show',
@@ -151,40 +154,56 @@ class LinkListener
         ]);
     }
 
-    public function handleActivity(GenericSerializationVisitor $visitor, ActivityInterface $activity)
-    {
+    public function handleActivity(
+        GenericSerializationVisitor $visitor, 
+        ActivityInterface $activity
+    ): void {
         if (Activity::PERSONAL_ACTION_GRANTED == $activity->getName()) {
-            $visitor->setData('links', [
-                'self' => $this->generateRoute(
-                    'api_activity_index',
-                    []
-                ),
-                'player' => $this->generateRoute(
-                    'api_player_show',
-                    ['username' => $activity->getData()['player']]
-                ),
-                'action' => $this->generateRoute(
-                    'api_action_show',
-                    ['name' => $activity->getData()['action']]
-                ),
-            ]);
+            $this->handleActivityPersonalActionGranted($visitor, $activity);
         }
 
         if (Activity::PERSONAL_ACHIEVEMENT_GRANTED == $activity->getName()) {
-            $visitor->setData('links', [
-                'self' => $this->generateRoute(
-                    'api_activity_index',
-                    []
-                ),
-                'player' => $this->generateRoute(
-                    'api_player_show',
-                    ['username' => $activity->getData()['player']]
-                ),
-                'achievement' => $this->generateRoute(
-                    'api_achievement_show',
-                    ['name' => $activity->getData()['achievement']]
-                ),
-            ]);
+            $this->handleActivityPersonalAchievementGranted($visitor, $activity);
         }
     }
+
+    public function handleActivityPersonalActionGranted(
+        GenericSerializationVisitor $visitor, 
+        ActivityInterface $activity
+    ): void {
+        $visitor->setData('links', [
+            'self' => $this->generateRoute(
+                'api_activity_index',
+                []
+            ),
+            'player' => $this->generateRoute(
+                'api_player_show',
+                ['username' => $activity->getData()['player']]
+            ),
+            'action' => $this->generateRoute(
+                'api_action_show',
+                ['name' => $activity->getData()['action']]
+            ),
+        ]);
+    }
+
+    public function handleActivityPersonalAchievementGranted(
+        GenericSerializationVisitor $visitor, 
+        ActivityInterface $activity
+    ): void {
+        $visitor->setData('links', [
+            'self' => $this->generateRoute(
+                'api_activity_index',
+                []
+            ),
+            'player' => $this->generateRoute(
+                'api_player_show',
+                ['username' => $activity->getData()['player']]
+            ),
+            'achievement' => $this->generateRoute(
+                'api_achievement_show',
+                ['name' => $activity->getData()['achievement']]
+            ),
+        ]);
+    }    
 }
