@@ -23,7 +23,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertEmpty($data);
-        
+
         // (2) Get activity list
         $client->request('GET', '/api/activities/');
         $response = $client->getResponse();

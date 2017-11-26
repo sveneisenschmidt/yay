@@ -5,7 +5,6 @@ namespace Component\Engine\EventListener;
 use Component\Entity\Activity;
 use Component\Entity\Achievement\PersonalAchievement;
 use Component\Entity\Achievement\PersonalAction;
-use Component\Engine\EventListener\EventListenerInterface;
 use Component\Engine\Event\ObjectEvent;
 use Component\Engine\Storage\StorageInterface;
 use Component\Engine\Storage\StorageTrait;
