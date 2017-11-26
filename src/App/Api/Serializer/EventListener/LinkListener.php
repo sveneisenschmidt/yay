@@ -115,7 +115,7 @@ class LinkListener
     }
 
     public function handlePersonalAchievement(
-        GenericSerializationVisitor $visitor, 
+        GenericSerializationVisitor $visitor,
         PersonalAchievementInterface $personalAchievement
     ): void {
         $visitor->setData('links', [
@@ -135,7 +135,7 @@ class LinkListener
     }
 
     public function handlePersonalAction(
-        GenericSerializationVisitor $visitor, 
+        GenericSerializationVisitor $visitor,
         PersonalActionInterface $personalAction
     ): void {
         $visitor->setData('links', [
@@ -155,7 +155,7 @@ class LinkListener
     }
 
     public function handleActivity(
-        GenericSerializationVisitor $visitor, 
+        GenericSerializationVisitor $visitor,
         ActivityInterface $activity
     ): void {
         if (Activity::PERSONAL_ACTION_GRANTED == $activity->getName()) {
@@ -168,7 +168,7 @@ class LinkListener
     }
 
     public function handleActivityPersonalActionGranted(
-        GenericSerializationVisitor $visitor, 
+        GenericSerializationVisitor $visitor,
         ActivityInterface $activity
     ): void {
         $visitor->setData('links', [
@@ -188,7 +188,7 @@ class LinkListener
     }
 
     public function handleActivityPersonalAchievementGranted(
-        GenericSerializationVisitor $visitor, 
+        GenericSerializationVisitor $visitor,
         ActivityInterface $activity
     ): void {
         $visitor->setData('links', [
@@ -205,5 +205,5 @@ class LinkListener
                 ['name' => $activity->getData()['achievement']]
             ),
         ]);
-    }    
+    }
 }
