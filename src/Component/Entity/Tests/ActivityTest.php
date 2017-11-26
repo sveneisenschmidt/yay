@@ -16,7 +16,6 @@ class ActivityTest extends TestCase
 
     public function test_set_get_scalar(): void
     {
-
         $instance = new Activity(
             $name = $this->faker->name,
             $player = $this->createMock(PlayerInterface::class),

@@ -4,7 +4,6 @@ namespace Component\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as CollectionInterface;
-use Component\Entity\ActivityCollection;
 use Component\Entity\Achievement\AchievementDefinitionInterface;
 use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionCollection;
@@ -33,7 +32,7 @@ class Player implements PlayerInterface
      * @var array|PersonalAchievementInterface[]
      */
     protected $personalAchievements;
-    
+
     /**
      * @var ActivityCollection
      */
