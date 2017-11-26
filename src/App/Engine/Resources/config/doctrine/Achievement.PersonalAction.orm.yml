@@ -1,6 +1,6 @@
 Component\Entity\Achievement\PersonalAction:
   type: entity
-  table: personalAction
+  table: personal_action
   # Primary Key
   id:
     id:

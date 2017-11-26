@@ -1,12 +1,12 @@
 # Development #
 
 ## Technology
-- MySQL 5.7|8
+- MySQL 5.7
 - PHP 7.2-RC
 
 ## Application
 - Symfony 3.4
-- Docker 17.09
+- Docker 17.03+
 
 # Build Docker Images
 

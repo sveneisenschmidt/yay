@@ -4,8 +4,10 @@ namespace Component\Engine\Tests;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Component\Engine\Engine;
-use Component\Engine\StorageInterface;
+use Component\Engine\Events;
+use Component\Engine\Storage\StorageInterface;
 use Component\Engine\AchievementValidatorInterface;
 use Component\Engine\AchievementValidatorCollection;
 use Component\Entity\PlayerInterface;
@@ -21,7 +23,8 @@ class EngineTest extends TestCase
     public function test_get_achievement_validators_empty(): void
     {
         $storage = $this->createMock(StorageInterface::class);
-        $engine = new Engine($storage);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $engine = new Engine($storage, $eventDispatcher);
 
         $this->assertNotNull($engine->getAchievementValidators());
     }
@@ -29,8 +32,9 @@ class EngineTest extends TestCase
     public function test_get_achievement_validators_construct(): void
     {
         $storage = $this->createMock(StorageInterface::class);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
         $achievementValidatorCollection = new AchievementValidatorCollection();
-        $engine = new Engine($storage, $achievementValidatorCollection);
+        $engine = new Engine($storage, $eventDispatcher, $achievementValidatorCollection);
 
         $this->assertNotNull($engine->getAchievementValidators());
         $this->assertSame($achievementValidatorCollection, $engine->getAchievementValidators());
@@ -41,7 +45,8 @@ class EngineTest extends TestCase
         $collection = new PersonalActionCollection();
         $player = $this->createConfiguredMock(PlayerInterface::class, ['getPersonalActions' => $collection]);
         $storage = $this->createMock(StorageInterface::class);
-        $engine = new Engine($storage);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $engine = new Engine($storage, $eventDispatcher);
 
         $this->assertSame($collection, $engine->getPlayerPersonalActions($player));
     }
@@ -50,7 +55,8 @@ class EngineTest extends TestCase
     {
         $player = $this->createConfiguredMock(PlayerInterface::class, ['getPersonalActions' => new ArrayCollection()]);
         $storage = $this->createMock(StorageInterface::class);
-        $engine = new Engine($storage);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $engine = new Engine($storage, $eventDispatcher);
 
         $collection = $engine->getPlayerPersonalActions($player);
         $this->assertInstanceOf(PersonalActionCollection::class, $collection);
@@ -66,7 +72,8 @@ class EngineTest extends TestCase
         $personalActionCollection->add(new PersonalAction($player, $this->createMock(ActionDefinition::class)));
 
         $storage = $this->createMock(StorageInterface::class);
-        $engine = new Engine($storage);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $engine = new Engine($storage, $eventDispatcher);
         $actionDefinitionCollection = $engine->extractActionDefinitions($personalActionCollection);
         $this->assertCount(3, $actionDefinitionCollection);
     }
@@ -96,7 +103,8 @@ class EngineTest extends TestCase
         $achievementDefinitionCollection->add($achievementDefinition2);
 
         $storage = $this->createMock(StorageInterface::class);
-        $engine = new Engine($storage);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $engine = new Engine($storage, $eventDispatcher);
 
         $collection1 = $engine->extractMatchingAchievementDefinitions($actionDefinitionCollection1, $achievementDefinitionCollection);
         $this->assertNotEmpty($collection1);
@@ -136,8 +144,9 @@ class EngineTest extends TestCase
         $storage = $this->createConfiguredMock(StorageInterface::class, [
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
-        $engine = new Engine($storage);
+        $engine = new Engine($storage, $eventDispatcher);
         $results = $engine->advance($player);
         $this->assertEmpty($results);
     }
@@ -163,8 +172,16 @@ class EngineTest extends TestCase
         $storage = $this->createConfiguredMock(StorageInterface::class, [
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $eventDispatcher->expects($this->atLeastOnce())
+            ->method('dispatch')
+            ->withConsecutive(
+                [$this->stringContains(Events::PRE_SAVE)],
+                [$this->stringContains(Events::POST_SAVE)],
+                [$this->stringContains(Events::GRANT_PERSONAL_ACTION)]
+            );
 
-        $engine = new Engine($storage);
+        $engine = new Engine($storage, $eventDispatcher);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
             'supports' => true,
             'validate' => false,
@@ -197,8 +214,16 @@ class EngineTest extends TestCase
         $storage = $this->createConfiguredMock(StorageInterface::class, [
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $eventDispatcher->expects($this->atLeastOnce())
+            ->method('dispatch')
+            ->withConsecutive(
+                [$this->stringContains(Events::PRE_SAVE)],
+                [$this->stringContains(Events::POST_SAVE)],
+                [$this->stringContains(Events::GRANT_PERSONAL_ACTION)]
+            );
 
-        $engine = new Engine($storage);
+        $engine = new Engine($storage, $eventDispatcher);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
             'supports' => false,
             'validate' => false,
@@ -232,7 +257,16 @@ class EngineTest extends TestCase
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
 
-        $engine = new Engine($storage);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $eventDispatcher->expects($this->atLeastOnce())
+            ->method('dispatch')
+            ->withConsecutive(
+                [$this->stringContains(Events::PRE_SAVE)],
+                [$this->stringContains(Events::POST_SAVE)],
+                [$this->stringContains(Events::GRANT_PERSONAL_ACHIEVEMENT)]
+            );
+
+        $engine = new Engine($storage, $eventDispatcher);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
             'supports' => true,
             'validate' => true,
@@ -266,7 +300,21 @@ class EngineTest extends TestCase
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
 
-        $engine = new Engine($storage);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $eventDispatcher->expects($this->atLeastOnce())
+            ->method('dispatch')
+            ->withConsecutive(
+                [$this->stringContains(Events::PRE_SAVE)],
+                [$this->stringContains(Events::POST_SAVE)],
+                [$this->stringContains(Events::GRANT_PERSONAL_ACHIEVEMENT)],
+                [$this->stringContains(Events::PRE_SAVE)],
+                [$this->stringContains(Events::POST_SAVE)],
+                [$this->stringContains(Events::PRE_SAVE)],
+                [$this->stringContains(Events::POST_SAVE)],
+                [$this->stringContains(Events::GRANT_PERSONAL_ACHIEVEMENT)]
+            );
+
+        $engine = new Engine($storage, $eventDispatcher);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
             'supports' => true,
             'validate' => true,

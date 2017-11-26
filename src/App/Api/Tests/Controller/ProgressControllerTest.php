@@ -15,6 +15,7 @@ class ProgressControllerTest extends WebTestCase
             'action' => 'yay.action.test_api_action',
         ]);
 
+        // (1) Push new actions
         $client->request('GET', sprintf('/api/progress/?%s', $content));
         $response = $client->getResponse();
 
@@ -22,6 +23,16 @@ class ProgressControllerTest extends WebTestCase
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertEmpty($data);
+
+        // (2) Get activity list
+        $client->request('GET', '/api/activities/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+        $this->assertCount(1, $data);
     }
 
     public function test_Progress_SubmitPostAction_ValidUser_OneAction(): void
@@ -33,6 +44,7 @@ class ProgressControllerTest extends WebTestCase
             'action' => 'yay.action.test_api_action',
         ]);
 
+        // (1) Push new actions
         $client->request('POST', '/api/progress/', [], [], [], $content);
         $response = $client->getResponse();
 
@@ -40,6 +52,16 @@ class ProgressControllerTest extends WebTestCase
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertEmpty($data);
+
+        // (2) Get activity list
+        $client->request('GET', '/api/activities/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+        $this->assertCount(1, $data);
     }
 
     public function test_Progress_SubmitGetAction_ValidUser_ManyAction(): void
@@ -90,6 +112,16 @@ class ProgressControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'player', $value);
             $this->assertArraySubsetHasKey('links', 'achievement', $value);
         }
+
+        // (3) Get activity list
+        $client->request('GET', '/api/activities/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+        $this->assertCount(6, $data);
     }
 
     public function test_Progress_SubmitPostAction_ValidUser_ManyAction(): void
@@ -140,6 +172,16 @@ class ProgressControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'player', $value);
             $this->assertArraySubsetHasKey('links', 'achievement', $value);
         }
+
+        // (3) Get activity list
+        $client->request('GET', '/api/activities/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+        $this->assertCount(6, $data);
     }
 
     public function test_Progress_SubmitGetAction_ValidUser_NoAction(): void

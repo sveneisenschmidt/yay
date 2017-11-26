@@ -6,7 +6,7 @@ use Nelmio\Alice\Loader\NativeLoader;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 use App\Integration\Configuration\ConfigurationTransformer;
-use Component\Engine\StorageInterface;
+use Component\Engine\Storage\StorageInterface;
 use Component\Entity\Achievement\ActionDefinition;
 use Component\Entity\Achievement\AchievementDefinition;
 use Component\Entity\Achievement\Level;

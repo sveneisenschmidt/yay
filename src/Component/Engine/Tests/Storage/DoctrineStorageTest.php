@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Component\Engine\Storage\DoctrineStorage;
-use Component\Engine\StorageTrait;
+use Component\Engine\Storage\StorageTrait;
 use Component\Entity\Achievement\ActionDefinition;
 use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Achievement\AchievementDefinition;
@@ -17,6 +17,8 @@ use Component\Entity\Achievement\Level;
 use Component\Entity\Achievement\LevelCollection;
 use Component\Entity\Player;
 use Component\Entity\PlayerCollection;
+use Component\Entity\Activity;
+use Component\Entity\ActivityCollection;
 
 class DoctrineStorageTest extends TestCase
 {
@@ -274,5 +276,42 @@ class DoctrineStorageTest extends TestCase
         $manager = $this->createManagerMockRefresh();
         $object = $this->createMock(Player::class);
         $this->wrapStorage(new DoctrineStorage($manager))->refreshPlayer($object);
+    }
+
+    public function test_save_activity(): void
+    {
+        $manager = $this->createManagerMockSave();
+        $object = $this->createMock(Activity::class);
+        $this->wrapStorage(new DoctrineStorage($manager))->saveActivity($object);
+    }
+
+    public function test_find_activity(): void
+    {
+        $manager = $this->createManagerMockOne(Activity::class);
+        $object = $this->wrapStorage(new DoctrineStorage($manager))->findActivity($primaryKey = rand(1, 100));
+        $this->assertInstanceOf(Activity::class, $object);
+    }
+
+    public function test_find_activity_empty(): void
+    {
+        $manager = $this->createManagerMockOne(Activity::class, true);
+        $object = $this->wrapStorage(new DoctrineStorage($manager))->findActivity($primaryKey = rand(1, 100));
+        $this->assertNull($object);
+    }
+
+    public function test_find_activity_by(): void
+    {
+        $manager = $this->createManagerMockMany(Activity::class);
+        $objects = $this->wrapStorage(new DoctrineStorage($manager))->findActivityBy([]);
+        $this->assertInstanceOf(ActivityCollection::class, $objects);
+        $this->assertGreaterThan(0, count($objects));
+    }
+
+    public function test_find_activity_by_empty(): void
+    {
+        $manager = $this->createManagerMockMany(Activity::class, true);
+        $objects = $this->wrapStorage(new DoctrineStorage($manager))->findActivityBy([]);
+        $this->assertInstanceOf(ActivityCollection::class, $objects);
+        $this->assertEquals(0, count($objects));
     }
 }

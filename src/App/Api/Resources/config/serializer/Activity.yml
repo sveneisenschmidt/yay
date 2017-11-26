@@ -1,0 +1,18 @@
+Component\Entity\Activity:
+  exclusion_policy: ALL
+  accessor_order: custom
+  custom_accessor_order: [name, data, ...]
+  properties:
+    name:
+      groups:
+        - 'activity.index'
+        - 'player.personal_activities.show'
+    createdAt:
+      groups:
+        - 'activity.index'
+        - 'player.personal_activities.show'
+    data:
+      groups:
+        - 'activity.index'
+        - 'player.personal_activities.show'
+

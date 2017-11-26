@@ -13,4 +13,8 @@ services:
     Component\Engine\Engine: { public: true }
     Component\Engine\Storage\DoctrineStorage: ["@=service('doctrine').getManager()"]
     Component\Engine\StorageInterface: '@Component\Engine\Storage\DoctrineStorage'
-    Component\Engine\AchievementValidatorCollection: ~ #[!tagged yay.achievement_validator]
+    Component\Engine\AchievementValidatorCollection: ~ 
+    Component\Engine\EventListener\ActivityListener:
+        tags:
+            - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
+            - { name: yay.event_listener, event: yay.engine.grant_personal_achievement, method: onGrantPersonalAchievement }

@@ -1,0 +1,18 @@
+include:
+  - test_default.yml
+
+Component\Entity\Achievement\PersonalAction:
+    personalAction{1..5}:
+        __construct:
+          - '@player'
+          - '@action_definition'
+
+Component\Entity\Activity:
+  activity{1..5}:
+      __construct:
+          - personal_action_granted
+          - '@player'
+          - 
+            player: jane.doe
+            action: yay.action.test_api_action
+            achieved_at: <iso8601()>

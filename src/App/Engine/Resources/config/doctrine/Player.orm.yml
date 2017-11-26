@@ -31,3 +31,7 @@ Component\Entity\Player:
       targetEntity: 'Component\Entity\Achievement\PersonalAchievement'
       mappedBy: player
       cascade: [ 'persist', 'refresh' ]
+    activities:
+      targetEntity: 'Component\Entity\Activity'
+      mappedBy: player
+      cascade: [ 'persist', 'refresh' ]

@@ -17,7 +17,7 @@ class EngineTest extends WebTestCase
             ->setMethods(['addCompilerPass', 'registerForAutoconfiguration'])
             ->getMock();
 
-        $builder->expects($this->once())
+        $builder->expects($this->exactly(2))
             ->method('addCompilerPass');
 
         $builder->expects($this->once())

@@ -2,6 +2,9 @@
 
 namespace Component\Engine;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Component\Engine\Storage\EventStorageTrait;
+use Component\Engine\Storage\StorageInterface;
 use Component\Engine\AchievementValidator\ValidationContext;
 use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Achievement\AchievementDefinitionInterface;
@@ -9,20 +12,23 @@ use Component\Entity\Achievement\AchievementDefinitionCollection;
 use Component\Entity\Achievement\PersonalAchievement;
 use Component\Entity\Achievement\PersonalActionCollection;
 use Component\Entity\PlayerInterface;
+use Component\Engine\Event\ObjectEvent;
 
 class Engine
 {
-    use StorageTrait;
+    use EventStorageTrait;
 
     /** @var AchievementValidatorCollection */
     protected $achievementValidatorCollection;
 
     public function __construct(
         StorageInterface $storage,
+        EventDispatcherInterface $eventDispatcher,
         AchievementValidatorCollection $achievementValidatorCollection = null
     ) {
         $this->setStorage($storage);
-        $this->achievementValidatorCollection = !$achievementValidatorCollection ? new AchievementValidatorCollection() : $achievementValidatorCollection;
+        $this->setEventDispatcher($eventDispatcher);
+        $this->achievementValidatorCollection = empty($achievementValidatorCollection) ? new AchievementValidatorCollection() : $achievementValidatorCollection;
     }
 
     public function getAchievementValidators(): AchievementValidatorCollection
@@ -113,12 +119,13 @@ class Engine
                 }
 
                 $validationContext = $this->createValidationContext($player, $achievementDefinition);
-                if ($achievementValidator->validate($validationContext)) {
+                if ($valid = $achievementValidator->validate($validationContext)) {
                     $personalAchievement = new PersonalAchievement($player, $achievementDefinition);
                     $personalAchievements[] = $personalAchievement;
 
                     $this->savePersonalAchievement($personalAchievement);
                     $this->refreshPlayer($player);
+                    $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACHIEVEMENT, new ObjectEvent($personalAchievement));
                 }
             }
         }
@@ -149,6 +156,7 @@ class Engine
         // Persist new personalActions to database
         foreach ($collection as $personalAction) {
             $this->savePersonalAction($personalAction);
+            $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACTION, new ObjectEvent($personalAction));
         }
 
         // Refresh players

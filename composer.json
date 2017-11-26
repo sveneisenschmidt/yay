@@ -4,18 +4,13 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "App\\": "src/App",
+            "Component\\": "src/Component",
+            "ThirdParty\\": "src/ThirdParty"
         },
         "classmap": [
             "src/App/Kernel.php"
         ]
-    },
-    "autoload-dev": {
-      "psr-4": {
-        "App\\": "src/App",
-        "Component\\": "src/Component",
-        "ThirdParty\\": "src/ThirdParty"
-    }
     },
     "require": {
         "php": ">=7.1",

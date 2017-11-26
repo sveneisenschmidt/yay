@@ -33,6 +33,11 @@ class Player implements PlayerInterface
      */
     protected $personalAchievements;
 
+    /**
+     * @var ActivityCollection
+     */
+    protected $activities;
+
     /** @var int */
     protected $score = 0;
 
@@ -40,6 +45,7 @@ class Player implements PlayerInterface
     {
         $this->personalActions = new ArrayCollection();
         $this->personalAchievements = new ArrayCollection();
+        $this->activities = new ArrayCollection();
     }
 
     public function getName(): string
@@ -80,6 +86,11 @@ class Player implements PlayerInterface
     public function getPersonalAchievements(): CollectionInterface
     {
         return $this->personalAchievements;
+    }
+
+    public function getActivities(): CollectionInterface
+    {
+        return $this->activities;
     }
 
     public function hasPersonalAchievement(AchievementDefinitionInterface $achievementDefinition): bool
