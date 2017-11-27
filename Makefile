@@ -58,6 +58,10 @@ demo-import: .application-demo-import
 
 demo-remove: .application-demo-remove
 
+github-import: .application-github-import
+
+github-remove: .application-github-remove
+
 default-publish:
 	@$(call .publish,dist/docker-run.default.sh,sveneisenschmidt/yay,$(DOCKER_ENV),$(DOCKER_BRANCH))
 

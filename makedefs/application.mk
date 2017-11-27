@@ -45,8 +45,31 @@
 
 .application-demo-remove-fixtures:
 	@$(call .docker-run,cli,'\
-        	php bin/console yay:integration:disable default && \
+		php bin/console yay:integration:disable default && \
 		php bin/console yay:integration:disable demo && \
+		php bin/console cache:clear --no-warmup && \
+		php bin/console cache:warmup')
+
+.application-github-import: \
+	.application-clean-database \
+	.application-github-import-fixtures
+
+.application-github-remove: \
+	.application-github-remove-fixtures \
+	.application-clean-database
+
+.application-github-import-fixtures:
+	@$(call .docker-run,cli,'\
+		php bin/console yay:integration:enable default integration/default && \
+		php bin/console yay:integration:enable github integration/github && \
+		php bin/console yay:recalculate && \
+		php bin/console cache:clear --no-warmup && \
+		php bin/console cache:warmup')
+
+.application-github-remove-fixtures:
+	@$(call .docker-run,cli,'\
+		php bin/console yay:integration:disable default && \
+		php bin/console yay:integration:disable github && \
 		php bin/console cache:clear --no-warmup && \
 		php bin/console cache:warmup')
 

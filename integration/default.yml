@@ -28,3 +28,4 @@ integration:
     actions: ~
     achievements: ~
     validators: ~
+    webhooks: ~

@@ -29,7 +29,7 @@ trait EngineControllerTrait
         foreach ($actions as $action) {
             $actionDefinitions = $engine->findActionDefinitionBy(['name' => $action]);
             if ($actionDefinitions->isEmpty()) {
-                continue;
+                throw $this->createNotFoundException(sprintf('Action "%s" not found', $action));
             }
 
             $personalActionCollection->add(

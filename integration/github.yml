@@ -1,0 +1,6 @@
+integration:
+    levels:
+    actions: ~
+    achievements: ~
+    validators: ~
+    webhooks: ~
