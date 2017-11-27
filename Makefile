@@ -14,8 +14,10 @@ all:
 	#	test-coverage			Run application tests and generate code coverage
 	#	shell					Start an interactive shell session
 	#	default-publish			Publish demo docker image to sveneisenschmidt/yay
-	#	demo-import				Import demo data
-	#	demo-remove				Remove demo data
+	#	enable-demo				Import demo data
+	#	disable-demo			Remove demo data
+	#	enable-github			Import demo data
+	#	disable-github			Remove demo data
 	#	demo-publish			Publish demo docker image to sveneisenschmidt/yay-demo
 	#	watch-logs				Watch all log files
 	#	watch-redis				Watch all redis queries
@@ -54,13 +56,13 @@ test: .application-test
 
 test-coverage: .application-test-coverage
 
-demo-import: .application-demo-import
+enable-demo: .integration-enable-demo
 
-demo-remove: .application-demo-remove
+disable-demo: .integration-disable-demo
 
-github-import: .application-github-import
+enable-github: .integration-enable-github
 
-github-remove: .application-github-remove
+disable-github: .integration-disable-github
 
 default-publish:
 	@$(call .publish,dist/docker-run.default.sh,sveneisenschmidt/yay,$(DOCKER_ENV),$(DOCKER_BRANCH))

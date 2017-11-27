@@ -2,7 +2,7 @@
 set -e
 
 # Enable demo integration
-make demo-import
+make enable-demo
 
 # Start application
 make start

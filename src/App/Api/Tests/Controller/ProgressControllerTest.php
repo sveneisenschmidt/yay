@@ -254,10 +254,8 @@ class ProgressControllerTest extends WebTestCase
         $client->request('GET', sprintf('/api/progress/?%s', $content));
         $response = $client->getResponse();
 
-        $this->assertTrue($response->isOk());
+        $this->assertTrue($response->isNotFound());
         $this->assertJson($content = $response->getContent());
-        $this->assertInternalType('array', $data = json_decode($content, true));
-        $this->assertEmpty($data);
     }
 
     public function test_Progress_SubmitPostAction_ValidUser_UnknownAction(): void
@@ -272,9 +270,7 @@ class ProgressControllerTest extends WebTestCase
         $client->request('POST', '/api/progress/', [], [], [], $content);
         $response = $client->getResponse();
 
-        $this->assertTrue($response->isOk());
+        $this->assertTrue($response->isNotFound());
         $this->assertJson($content = $response->getContent());
-        $this->assertInternalType('array', $data = json_decode($content, true));
-        $this->assertEmpty($data);
     }
 }

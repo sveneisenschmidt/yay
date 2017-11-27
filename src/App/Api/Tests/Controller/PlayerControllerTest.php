@@ -74,6 +74,7 @@ class PlayerControllerTest extends WebTestCase
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());
+        $this->assertJson($content = $response->getContent());
     }
 
     /** @dataProvider providePlayerData */
@@ -148,6 +149,7 @@ class PlayerControllerTest extends WebTestCase
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());
+        $this->assertJson($content = $response->getContent());
     }
 
     public function test_Player_PersonalActions_IndexAction(): void
@@ -179,6 +181,7 @@ class PlayerControllerTest extends WebTestCase
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());
+        $this->assertJson($content = $response->getContent());
     }
 
     public function test_Player_PersonalActivities_IndexAction(): void
@@ -210,5 +213,6 @@ class PlayerControllerTest extends WebTestCase
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());
+        $this->assertJson($content = $response->getContent());
     }
 }

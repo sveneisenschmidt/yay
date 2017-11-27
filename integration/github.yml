@@ -1,6 +1,29 @@
 integration:
-    levels:
-    actions: ~
-    achievements: ~
-    validators: ~
+
+    actions:
+        pullrequest-opened:
+            label: Pull request opened
+            description: ...
+        pullrequest-reviewed:
+            label: Pull request reviewed
+            description: ...
+        pullrequest-merged:
+            label: Pull request merged
+            description: ...
+
+    achievements:
+        pull-request-streak-badge:
+            label: Code-aholic
+            description: Perform five times an action on any pull request. Can be awarded multiple times.
+            points: 50
+            actions: [pullrequest-opened, pullrequest-reviewed, pullrequest-merged]
+
+    validators:
+        pull-request-streak-validator:
+            type: expression
+            arguments:
+                - "actions.count()%5 == 0" # expression
+                - ['pull-request-streak-badge'] # supported achievements
+                - true # multiple: true
+
     webhooks: ~
