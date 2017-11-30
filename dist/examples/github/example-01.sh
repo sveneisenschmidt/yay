@@ -16,25 +16,7 @@ curl -X "POST" http://localhost:50080/api/players/ \
 
 # Perform demo action 10x
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"pullrequest-opened\"}"
-curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"pullrequest-opened\"}"
-curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"pullrequest-opened\"}"
-curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"pullrequest-opened\"}"
-curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"pullrequest-opened\"}"
-curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"pullrequest-opened\"}"
-curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"pullrequest-opened\"}"
-curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"pullrequest-opened\"}"
-curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"pullrequest-opened\"}"
-curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"pullrequest-opened\"}"
+    -d "{\"username\":\"jane.doe\",\"actions\":[\"pullrequest-opened\",\"pullrequest-opened\",\"pullrequest-opened\",\"pullrequest-opened\",\"pullrequest-opened\",\"pullrequest-opened\"]}"
 
 # Get player activity
 curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-activities/

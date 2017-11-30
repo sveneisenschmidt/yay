@@ -123,6 +123,29 @@ class EngineTest extends TestCase
         $this->assertCount(2, $collection3);
     }
 
+    public function test_advance_no_achievement_definitions(): void
+    {
+        $actionDefinition = new ActionDefinition('test-action');
+        $personalActionCollection = new PersonalActionCollection();
+
+        $player = $this->createConfiguredMock(PlayerInterface::class, [
+            'getPersonalActions' => $personalActionCollection,
+            'hasPersonalAchievement' => false,
+        ]);
+
+        $personalAction = new PersonalAction($player, $actionDefinition);
+        $personalActionCollection->add($personalAction);
+
+        $storage = $this->createConfiguredMock(StorageInterface::class, [
+            'findAchievementDefinitionBy' => new AchievementDefinitionCollection(),
+        ]);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+
+        $engine = new Engine($storage, $eventDispatcher);
+        $results = $engine->advance($player);
+        $this->assertEmpty($results);
+    }
+
     public function test_advance_no_validators(): void
     {
         $actionDefinition = new ActionDefinition('test-action');

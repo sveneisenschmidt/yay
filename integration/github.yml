@@ -22,7 +22,7 @@ integration:
         pull-request-streak-validator:
             type: expression
             arguments:
-                - "actions.count()%5 == 0" # expression
+                - "actions.count()%3 == 0" # expression
                 - ['pull-request-streak-badge'] # supported achievements
                 - true # multiple: true
 

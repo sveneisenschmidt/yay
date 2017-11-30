@@ -64,10 +64,10 @@ enable-github: .integration-enable-github
 
 disable-github: .integration-disable-github
 
-default-publish:
+publish-default:
 	@$(call .publish,dist/docker-run.default.sh,sveneisenschmidt/yay,$(DOCKER_ENV),$(DOCKER_BRANCH))
 
-demo-publish:
+publish-demo:
 	@$(call .publish,dist/docker-run.demo.sh,sveneisenschmidt/yay-demo,$(DOCKER_ENV),$(DOCKER_BRANCH))
 
 watch-logs: .application-watch-logs

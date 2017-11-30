@@ -3,8 +3,7 @@
 namespace App\Engine\Controller;
 
 use Component\Engine\Engine;
-use Component\Entity\Achievement\PersonalAction;
-use Component\Entity\Achievement\PersonalActionCollection;
+use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Player;
 
 trait EngineControllerTrait
@@ -24,19 +23,28 @@ trait EngineControllerTrait
         }
 
         $player = $players->first();
-        $personalActionCollection = new PersonalActionCollection();
+        $actionDefinitions = new ActionDefinitionCollection();
 
         foreach ($actions as $action) {
-            $actionDefinitions = $engine->findActionDefinitionBy(['name' => $action]);
-            if ($actionDefinitions->isEmpty()) {
+            $actionDefinition = $engine
+                ->findActionDefinitionBy(['name' => $action])
+                ->first();
+
+            if (!$actionDefinition) {
                 throw $this->createNotFoundException(sprintf('Action "%s" not found', $action));
             }
 
-            $personalActionCollection->add(
-                new PersonalAction($player, $actionDefinitions->first())
+            $actionDefinitions->add($actionDefinition);
+        }
+
+        $personalAchievements = [];
+        foreach ($actionDefinitions as $actionDefinition) {
+            $personalAchievements = array_merge(
+                $personalAchievements, 
+                $engine->advance($player, $actionDefinition)
             );
         }
 
-        return $engine->advance($player, $personalActionCollection);
+        return $personalAchievements;
     }
 }
