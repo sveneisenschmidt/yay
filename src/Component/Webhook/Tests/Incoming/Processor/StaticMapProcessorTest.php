@@ -24,7 +24,9 @@ class StaticMapProcessorTest extends TestCase
         $processor = new StaticMapProcessor(
             $name = 'static-map-processor',
             $key,
-            ['bar' => 'baz']
+            [
+                ['bar' => 'baz']
+            ]
         );
         $processor->process($request);
         $this->assertEquals('baz', $request->attributes->get('foo'));
@@ -38,7 +40,9 @@ class StaticMapProcessorTest extends TestCase
         $processor = new StaticMapProcessor(
             $name = 'static-map-processor',
             'foo',
-            ['bar' => 'baz']
+            [
+                ['bar' => 'baz']
+            ]
         );
         $processor->process($request);
         $this->assertFalse($request->attributes->has('foo'));

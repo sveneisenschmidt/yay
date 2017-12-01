@@ -26,4 +26,27 @@ integration:
                 - ['pull-request-streak-badge'] # supported achievements
                 - true # multiple: true
 
-    webhooks: ~
+    webhooks:
+        incoming_processors:
+            github:
+                type: chain
+                arguments:
+                    - [ github-payload, github-actions, github-users ]
+            github-payload:
+                type: class
+                class: ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
+            github-actions:
+                type: static-map
+                arguments:
+                    - action
+                    -
+                        - pull_request.opened:      pullrequest-opened
+                        - pull_request.reviewed:    pullrequest-reviewed
+                        - pull_request.merged:      pullrequest-closed
+                        - pull_request.closed:      pullrequest-closed
+            github-users:
+                type: static-map
+                arguments:
+                    - username
+                    -
+                        - sveneisenschmidt: jane.doe

@@ -1,4 +1,4 @@
-FROM php:7.2-rc-apache
+FROM php:7.2-apache
 
 LABEL org.label-schema.name="yay" \
       org.label-schema.url="https://github.com/sveneisenschmidt/yay" \
@@ -34,6 +34,12 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \
     php -r "unlink('composer-setup.php');" && \
     composer install --ignore-platform-reqs --optimize-autoloader 
+    
+RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
+    && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
+    && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp \
+    && mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so \
+    && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini
 
 RUN rm -rf ./.build/* ./var/* 
 

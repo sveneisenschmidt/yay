@@ -14,8 +14,8 @@ class Compat extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new JMSSerializerBundlePass(), PassConfig::TYPE_AFTER_REMOVING, -255);
-        $container->addCompilerPass(new SncRedisBundlePass(), PassConfig::TYPE_AFTER_REMOVING, -255);
+        // $container->addCompilerPass(new JMSSerializerBundlePass(), PassConfig::TYPE_AFTER_REMOVING, -255);
+        // $container->addCompilerPass(new SncRedisBundlePass(), PassConfig::TYPE_AFTER_REMOVING, -255);
         $container->addCompilerPass(new NelmioApiDocBundlePass(), PassConfig::TYPE_AFTER_REMOVING, -255);
     }
 

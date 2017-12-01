@@ -48,4 +48,14 @@ class GithubProcessorTest extends TestCase
         $this->assertFalse($request->attributes->has('username'));
         $this->assertFalse($request->attributes->has('action'));
     }
+
+    /** @expectedException InvalidArgumentException */
+    public function test_process_broken_payload(): void
+    {
+        $contents = ',1%}';
+        $request = Request::create('/', 'POST', [], [], [], [], $contents);
+        $request->headers->set('X-GitHub-Event', 'github-event');
+
+        (new GithubProcessor('github-processor'))->process($request);
+    }
 }

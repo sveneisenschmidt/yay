@@ -6,12 +6,13 @@ web:
     links:
         - mysqldb
         - redis
+        - blackfire
     volumes:
         - ./:/data:cached
     environment:
         APP_MODE: web
         APP_ENV: dev
-        APP_DEBUG: 1
+        APP_DEBUG: 0
         DATABASE_HOST: mysqldb
         DATABASE_NAME: dev
         DATABASE_USER: root
@@ -25,12 +26,13 @@ cli:
     links:
         - mysqldb
         - redis
+        - blackfire
     volumes:
         - ./:/data:cached
     environment:
         APP_MODE: web
         APP_ENV: dev
-        APP_DEBUG: 1
+        APP_DEBUG: 0
         DATABASE_HOST: mysqldb
         DATABASE_NAME: dev
         DATABASE_USER: root
@@ -51,3 +53,12 @@ redis:
     image: redis:latest
     ports:
         - "56379:6379"
+
+# Profiler
+blackfire:
+    image: blackfire/blackfire
+    environment:
+        - BLACKFIRE_SERVER_ID
+        - BLACKFIRE_SERVER_TOKEN
+    ports:
+        - "8707:8707"

@@ -35,9 +35,10 @@ class StaticMapProcessor implements ProcessorInterface
         }
 
         $value = $request->attributes->get($this->key);
-        foreach ($this->map as $mapKey => $mapValue) {
-            if ($value === $mapKey) {
-                $request->attributes->set($this->key, $mapValue);
+
+        foreach ($this->map as $map) {
+            if ($value == key($map)) {
+                $request->attributes->set($this->key, current($map));
             }
         }
     }

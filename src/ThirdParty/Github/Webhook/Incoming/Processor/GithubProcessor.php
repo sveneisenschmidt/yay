@@ -28,6 +28,10 @@ class GithubProcessor implements ProcessorInterface
         $contents = $request->getContent(false);
         $data = json_decode($contents, true, 32);
 
+        if ($data === null) {
+            throw new \InvalidArgumentException('Could not decode json payload.');
+        }
+
         if ($request->headers->has('X-GitHub-Event')) {
             $action = $request->headers->get('X-GitHub-Event');
         }

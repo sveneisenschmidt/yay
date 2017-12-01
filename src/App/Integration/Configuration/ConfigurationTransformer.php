@@ -117,9 +117,16 @@ class ConfigurationTransformer
                 $processor['class'] = IncomingStaticMapProcessor::class;
             }
 
+            $arguments = $processor['arguments'];
+            if ($processor['class'] == IncomingChainProcessor::class) {
+                $arguments[0] = array_map(function (string $argument) {
+                    return sprintf('@%s', $argument);
+                }, $arguments[0]);
+            }
+
             $services['services'][$name] = [
                 'class' => $processor['class'],
-                'arguments' => array_merge([$name], $processor['arguments']),
+                'arguments' => array_merge([$name], $arguments),
                 'tags' => ['yay.webhook_incoming.processor'],
             ];
         }
