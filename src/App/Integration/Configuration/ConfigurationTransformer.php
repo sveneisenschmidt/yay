@@ -118,7 +118,7 @@ class ConfigurationTransformer
             }
 
             $arguments = $processor['arguments'];
-            if ($processor['class'] == IncomingChainProcessor::class) {
+            if (IncomingChainProcessor::class == $processor['class']) {
                 $arguments[0] = array_map(function (string $argument) {
                     return sprintf('@%s', $argument);
                 }, $arguments[0]);
