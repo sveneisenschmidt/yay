@@ -25,7 +25,7 @@ class StaticMapProcessorTest extends TestCase
             $name = 'static-map-processor',
             $key,
             [
-                ['bar' => 'baz']
+                ['bar' => 'baz'],
             ]
         );
         $processor->process($request);
@@ -41,7 +41,7 @@ class StaticMapProcessorTest extends TestCase
             $name = 'static-map-processor',
             'foo',
             [
-                ['bar' => 'baz']
+                ['bar' => 'baz'],
             ]
         );
         $processor->process($request);

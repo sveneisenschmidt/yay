@@ -28,7 +28,7 @@ class GithubProcessor implements ProcessorInterface
         $contents = $request->getContent(false);
         $data = json_decode($contents, true, 32);
 
-        if ($data === null) {
+        if (null === $data) {
             throw new \InvalidArgumentException('Could not decode json payload.');
         }
 
