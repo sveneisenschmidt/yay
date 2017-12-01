@@ -40,7 +40,7 @@ trait EngineControllerTrait
         $personalAchievements = [];
         foreach ($actionDefinitions as $actionDefinition) {
             $personalAchievements = array_merge(
-                $personalAchievements, 
+                $personalAchievements,
                 $engine->advance($player, $actionDefinition)
             );
         }
