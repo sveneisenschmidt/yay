@@ -365,7 +365,6 @@ _Returns a Player activities identified by its username property_
 
 **Example Response:**
 ```json
-```json
 	[{
 		"name": "personal_action_granted",
 		"data": {
@@ -393,7 +392,6 @@ _Returns a Player activities identified by its username property_
 			"action": "http://localhost:50080/api/actions/demo-action/"
 		}
 	}]
-```
 ```
 
 

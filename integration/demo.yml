@@ -46,18 +46,20 @@ integration:
             demo-defaults:
                 type: dummy
                 arguments:
-                    - { username: john.smith, action: demo-action-01 }
+                    - 
+                        username: john.smith, 
+                        action: demo-action-01 
             # Maps third party action to application action
             demo-thirdparty-action:
                 type: static-map
                 arguments:
                     - action
-                    -
+                    - 
                         third_party.demo_action: demo-action-02
             # Maps third party username to application username
             demo-thirdparty-user:
                 type: static-map
                 arguments:
                     - username
-                    -
+                    - 
                         third_party.demo_user: jane.doe

@@ -96,9 +96,10 @@ class ConfigurationTransformer
                 $validator['class'] = ExpressionLanguageValidator::class;
             }
 
+            $arguments = array_values($validator['arguments']);
             $services['services'][$name] = [
                 'class' => $validator['class'],
-                'arguments' => $validator['arguments'],
+                'arguments' => $arguments,
                 'tags' => ['yay.achievement_validator'],
             ];
         }
@@ -117,9 +118,10 @@ class ConfigurationTransformer
                 $processor['class'] = IncomingStaticMapProcessor::class;
             }
 
+            $arguments = array_values($processor['arguments']);
             $services['services'][$name] = [
                 'class' => $processor['class'],
-                'arguments' => array_merge([$name], $processor['arguments']),
+                'arguments' => array_merge([$name], $arguments),
                 'tags' => ['yay.webhook_incoming.processor'],
             ];
         }
@@ -129,9 +131,10 @@ class ConfigurationTransformer
                 $processor['class'] = OutgoingNullProcessor::class;
             }
 
+            $arguments = array_values($processor['arguments']);
             $services['services'][$name] = [
                 'class' => $processor['class'],
-                'arguments' => array_merge([$name], $processor['arguments']),
+                'arguments' => array_merge([$name], $arguments),
                 'tags' => ['yay.webhook_outgoing.processor'],
             ];
         }

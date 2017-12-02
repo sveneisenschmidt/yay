@@ -84,8 +84,8 @@ integration:
                 type: static-map
                 arguments:
                     - username
-                    - 
-                        - octocat: jane.doe
+                    -
+                        octocat: jane.doe
 ```
 URL:  `/webhook/incoming/example-processor/`.
 
