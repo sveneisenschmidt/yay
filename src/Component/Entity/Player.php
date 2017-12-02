@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection as CollectionInterface;
 use Component\Entity\Achievement\AchievementDefinitionInterface;
 use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionCollection;
+use Component\Entity\Activity;
 
 class Player implements PlayerInterface
 {

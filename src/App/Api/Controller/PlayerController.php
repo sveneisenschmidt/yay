@@ -317,7 +317,6 @@ class PlayerController extends Controller
     /**
      * **Example Response:**
      * ```json
-     * ```json
      * 	[{
      * 		"name": "personal_action_granted",
      * 		"data": {
@@ -345,7 +344,6 @@ class PlayerController extends Controller
      * 			"action": "http://localhost:50080/api/actions/demo-action/"
      * 		}
      * 	}]
-     * ```.
      * ```.
      *
      * @Method("GET")
