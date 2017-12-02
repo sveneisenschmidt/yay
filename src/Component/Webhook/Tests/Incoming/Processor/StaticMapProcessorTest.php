@@ -18,24 +18,22 @@ class StaticMapProcessorTest extends TestCase
     public function test_does_replace_value(): void
     {
         $request = $this->createMock(Request::class);
-        $request->attributes = new ParameterBag();
-        $request->attributes->set($key = 'foo', 'bar');
+        $request->request = new ParameterBag();
+        $request->request->set($key = 'foo', 'bar');
 
         $processor = new StaticMapProcessor(
             $name = 'static-map-processor',
             $key,
-            [
-                ['bar' => 'baz'],
-            ]
+            ['bar' => 'baz']
         );
         $processor->process($request);
-        $this->assertEquals('baz', $request->attributes->get('foo'));
+        $this->assertEquals('baz', $request->request->get('foo'));
     }
 
     public function test_does_nothing(): void
     {
         $request = $this->createMock(Request::class);
-        $request->attributes = new ParameterBag();
+        $request->request = new ParameterBag();
 
         $processor = new StaticMapProcessor(
             $name = 'static-map-processor',
@@ -45,6 +43,6 @@ class StaticMapProcessorTest extends TestCase
             ]
         );
         $processor->process($request);
-        $this->assertFalse($request->attributes->has('foo'));
+        $this->assertFalse($request->request->has('foo'));
     }
 }

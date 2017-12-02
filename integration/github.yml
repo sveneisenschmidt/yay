@@ -40,13 +40,13 @@ integration:
                 arguments:
                     - action
                     -
-                        - pull_request.opened:      pullrequest-opened
-                        - pull_request.reviewed:    pullrequest-reviewed
-                        - pull_request.merged:      pullrequest-closed
-                        - pull_request.closed:      pullrequest-closed
+                        pull_request.opened:      pullrequest-opened
+                        pull_request.reviewed:    pullrequest-reviewed
+                        pull_request.merged:      pullrequest-closed
+                        pull_request.closed:      pullrequest-closed
             github-users:
                 type: static-map
                 arguments:
                     - username
                     -
-                        - sveneisenschmidt: jane.doe
+                        sveneisenschmidt: jane.doe

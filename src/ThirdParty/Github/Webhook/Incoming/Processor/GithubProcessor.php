@@ -45,8 +45,8 @@ class GithubProcessor implements ProcessorInterface
         }
 
         if (!empty($action) && !empty($username)) {
-            $request->attributes->set('action', $action);
-            $request->attributes->set('username', $username);
+            $request->request->set('action', $action);
+            $request->request->set('username', $username);
         }
     }
 }
