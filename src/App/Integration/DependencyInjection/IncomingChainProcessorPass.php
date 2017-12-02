@@ -36,7 +36,7 @@ class IncomingChainProcessorPass implements CompilerPassInterface
         }
 
         foreach ($argument as $index => $id) {
-            $argument[$index] = new Reference($id);
+            $argument[$index] = is_string($id) ? new Reference($id) : $id;
         }
 
         $definition->setArgument(1, $argument);

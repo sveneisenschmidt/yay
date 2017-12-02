@@ -31,7 +31,7 @@ integration:
             github:
                 type: chain
                 arguments:
-                    processors: [ github-payload, github-actions, github-users ]
+                    - [ github-payload, github-actions, github-users ]
             github-payload:
                 type: class
                 class: ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
