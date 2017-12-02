@@ -100,8 +100,8 @@ integration:
                 type: dummy
                 arguments:
                     -
-                        - username: jane.doe
-                        - action: example.action
+                        username: jane.doe
+                        action: example.action
 ```
 URL:  `/webhook/incoming/example-dummy/`.
 
