@@ -6,6 +6,7 @@ web:
     links:
         - mysqldb
         - redis
+        - blackfire
     volumes:
         - ./:/data:cached
     environment:
@@ -51,3 +52,12 @@ redis:
     image: redis:latest
     ports:
         - "56379:6379"
+
+# Profiler
+blackfire:
+    image: blackfire/blackfire
+    environment:
+        - BLACKFIRE_SERVER_ID
+        - BLACKFIRE_SERVER_TOKEN
+    ports:
+        - "8707:8707"

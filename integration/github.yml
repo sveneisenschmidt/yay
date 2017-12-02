@@ -1,0 +1,52 @@
+integration:
+
+    actions:
+        pullrequest-opened:
+            label: Pull request opened
+            description: ...
+        pullrequest-reviewed:
+            label: Pull request reviewed
+            description: ...
+        pullrequest-merged:
+            label: Pull request merged
+            description: ...
+
+    achievements:
+        pull-request-streak-badge:
+            label: Code-aholic
+            description: Perform five times an action on any pull request. Can be awarded multiple times.
+            points: 50
+            actions: [pullrequest-opened, pullrequest-reviewed, pullrequest-merged]
+
+    validators:
+        pull-request-streak-validator:
+            type: expression
+            arguments:
+                - "actions.count()%3 == 0" # expression
+                - ['pull-request-streak-badge'] # supported achievements
+                - true # multiple: true
+
+    webhooks:
+        incoming_processors:
+            github:
+                type: chain
+                arguments:
+                    - [ github-payload, github-actions, github-users ]
+            github-payload:
+                type: class
+                class: ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
+            github-actions:
+                type: static-map
+                arguments:
+                    - action
+                    - 
+                        pull_request.opened: pullrequest-opened
+                        pull_request.reviewed: pullrequest-reviewed
+                        pull_request.merged: pullrequest-closed
+                        pull_request.closed: pullrequest-closed
+            github-users:
+                type: static-map
+                arguments:
+                    - username
+                    - 
+                        sveneisenschmidt: jane.doe

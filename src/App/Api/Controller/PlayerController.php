@@ -13,6 +13,7 @@ use App\Api\Response\ResponseSerializer;
 use App\Api\Validator\EntityValidator;
 use Component\Engine\Engine;
 use Component\Entity\PlayerInterface;
+use Component\Entity\Activity;
 
 /**
  * @Route("/players")
@@ -316,7 +317,6 @@ class PlayerController extends Controller
     /**
      * **Example Response:**
      * ```json
-     * ```json
      * 	[{
      * 		"name": "personal_action_granted",
      * 		"data": {
@@ -344,7 +344,6 @@ class PlayerController extends Controller
      * 			"action": "http://localhost:50080/api/actions/demo-action/"
      * 		}
      * 	}]
-     * ```.
      * ```.
      *
      * @Method("GET")
@@ -382,11 +381,17 @@ class PlayerController extends Controller
             throw $this->createNotFoundException();
         }
 
-        /** @var PlayerInterface $player */
-        $player = $players->first();
+        $activities = $players
+            ->first()
+            ->getActivities()
+            ->toArray();
+
+        \usort($activities, function (Activity $a, Activity $b) {
+            return $a->getCreatedAt() > $b->getCreatedAt() ? -1 : 1;
+        });
 
         return $serializer->createResponse(
-            $player->getActivities(),
+            $activities,
             ['player.personal_activities.show']
         );
     }

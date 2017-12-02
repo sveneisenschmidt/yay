@@ -6,10 +6,12 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Component\Engine\Storage\EventStorageTrait;
 use Component\Engine\Storage\StorageInterface;
 use Component\Engine\AchievementValidator\ValidationContext;
+use Component\Entity\Achievement\ActionDefinition;
 use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Achievement\AchievementDefinitionInterface;
 use Component\Entity\Achievement\AchievementDefinitionCollection;
 use Component\Entity\Achievement\PersonalAchievement;
+use Component\Entity\Achievement\PersonalAction;
 use Component\Entity\Achievement\PersonalActionCollection;
 use Component\Entity\PlayerInterface;
 use Component\Engine\Event\ObjectEvent;
@@ -83,12 +85,19 @@ class Engine
 
     public function advance(
         PlayerInterface $player,
-        PersonalActionCollection $collection = null
+        ActionDefinition $actionDefinition = null
     ): array {
-        if ($collection) {
-            $this->collectPersonalActions($collection);
+        if ($actionDefinition) {
+            // Persist new personalAction to database
+            $personalAction = new PersonalAction($player, $actionDefinition);
+            $this->savePersonalAction($personalAction);
+            $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACTION, new ObjectEvent($personalAction));
+
+            // Refresh player
+            $this->refreshPlayer($player);
         }
 
+        // Start processing
         $achievementValidatorCollection = $this->getAchievementValidators();
         $personalActionCollection = $this->getPlayerPersonalActions($player);
         $actionDefinitionCollection = $this->extractActionDefinitions($personalActionCollection);
@@ -141,27 +150,5 @@ class Engine
         AchievementDefinitionInterface $achievementDefinition
     ): ValidationContext {
         return new ValidationContext($player, $achievementDefinition);
-    }
-
-    public function collectPersonalActions(PersonalActionCollection $collection): void
-    {
-        // Collect players to refresh them later
-        $players = [];
-        foreach ($collection as $personalAction) {
-            if (!in_array($personalAction->getPlayer(), $players)) {
-                $players[] = $personalAction->getPlayer();
-            }
-        }
-
-        // Persist new personalActions to database
-        foreach ($collection as $personalAction) {
-            $this->savePersonalAction($personalAction);
-            $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACTION, new ObjectEvent($personalAction));
-        }
-
-        // Refresh players
-        foreach ($players as $player) {
-            $this->refreshPlayer($player);
-        }
     }
 }

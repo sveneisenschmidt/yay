@@ -24,8 +24,8 @@ class GithubProcessorTest extends TestCase
         $request->headers->set('X-GitHub-Event', 'github-event');
 
         (new GithubProcessor('github-processor'))->process($request);
-        $this->assertEquals('octocat', $request->attributes->get('username'));
-        $this->assertEquals('github-event.github-action', $request->attributes->get('action'));
+        $this->assertEquals('octocat', $request->request->get('username'));
+        $this->assertEquals('github-event.github-action', $request->request->get('action'));
     }
 
     public function test_process_empty_payload_but_event(): void
@@ -34,8 +34,8 @@ class GithubProcessorTest extends TestCase
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
 
         (new GithubProcessor('github-processor'))->process($request);
-        $this->assertFalse($request->attributes->has('username'));
-        $this->assertFalse($request->attributes->has('action'));
+        $this->assertFalse($request->request->has('username'));
+        $this->assertFalse($request->request->has('action'));
     }
 
     public function test_process_empty_payload(): void
@@ -45,7 +45,17 @@ class GithubProcessorTest extends TestCase
         $request->headers->set('X-GitHub-Event', 'github-event');
 
         (new GithubProcessor('github-processor'))->process($request);
-        $this->assertFalse($request->attributes->has('username'));
-        $this->assertFalse($request->attributes->has('action'));
+        $this->assertFalse($request->request->has('username'));
+        $this->assertFalse($request->request->has('action'));
+    }
+
+    /** @expectedException InvalidArgumentException */
+    public function test_process_broken_payload(): void
+    {
+        $contents = ',1%}';
+        $request = Request::create('/', 'POST', [], [], [], [], $contents);
+        $request->headers->set('X-GitHub-Event', 'github-event');
+
+        (new GithubProcessor('github-processor'))->process($request);
     }
 }

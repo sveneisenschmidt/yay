@@ -62,20 +62,31 @@ integration:
     webhooks:
         incoming_processors:
             # Chains multiple processors
-            example-chain:
+            example:
                 type: chain
                 arguments:
-                    - [example-thirdparty-action, example-thirdparty-user]
-            # Maps third party payload to action
-            example-thirdparty-action:
-                class: \Component\Webhook\Incoming\DummyProcessor
+                    - [example-defaults, example-action, example-user]
+            # Set defaults
+            example-defaults:
+                type: dummy
                 arguments:
-                    - { 'third_party.action': demo.action }
-            # Maps third party payload to user
-            example-thirdparty-user:
-                class: \Component\Webhook\Incoming\DummyProcessor
+                    -
+                        username: jane.doe
+                        action: demo.action 
+            # Maps third party action to application action
+            example-action:
+                type: static-map
                 arguments:
-                    - { 'third_party.user': jane.doe  }
+                    - action
+                    -
+                        third_party.demo_action: example-action-02
+            # Maps third party username to application username
+            example-user:
+                type: static-map
+                arguments:
+                    - username
+                    -
+                        third_party.example_user: jane.doe
 
 
 ```

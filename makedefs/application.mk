@@ -27,29 +27,6 @@
 		php bin/console doctrine:schema:drop --force --em=default && \
 		php bin/console doctrine:schema:create --em=default')
 
-.application-demo-import: \
-	.application-clean-database \
-	.application-demo-import-fixtures
-
-.application-demo-remove: \
-	.application-demo-remove-fixtures \
-	.application-clean-database
-
-.application-demo-import-fixtures:
-	@$(call .docker-run,cli,'\
-		php bin/console yay:integration:enable default integration/default && \
-		php bin/console yay:integration:enable demo integration/demo && \
-		php bin/console yay:recalculate && \
-		php bin/console cache:clear --no-warmup && \
-		php bin/console cache:warmup')
-
-.application-demo-remove-fixtures:
-	@$(call .docker-run,cli,'\
-        	php bin/console yay:integration:disable default && \
-		php bin/console yay:integration:disable demo && \
-		php bin/console cache:clear --no-warmup && \
-		php bin/console cache:warmup')
-
 .application-test:
 	@$(call .docker-run,cli,'\
 		php bin/console doctrine:schema:drop --env=test --force --em=default && \

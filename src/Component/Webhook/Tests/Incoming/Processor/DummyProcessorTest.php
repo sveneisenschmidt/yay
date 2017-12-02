@@ -17,23 +17,22 @@ class DummyProcessorTest extends TestCase
 
     public function test_dummy_values_get_added(): void
     {
-        $attributes = new ParameterBag();
         $request = $this->createMock(Request::class);
-        $request->attributes = $attributes;
+        $request->request = new ParameterBag();
 
         $processor = new DummyProcessor($name = 'null-processor', [
             'player' => $player = 'test-player',
             'actions' => $actions = ['test-action'],
         ]);
 
-        $this->assertFalse($attributes->has('player'));
-        $this->assertFalse($attributes->has('actions'));
+        $this->assertFalse($request->request->has('player'));
+        $this->assertFalse($request->request->has('actions'));
 
         $processor->process($request);
 
-        $this->assertTrue($attributes->has('player'));
-        $this->assertTrue($attributes->has('actions'));
-        $this->assertEquals($player, $attributes->get('player'));
-        $this->assertEquals($actions, $attributes->get('actions'));
+        $this->assertTrue($request->request->has('player'));
+        $this->assertTrue($request->request->has('actions'));
+        $this->assertEquals($player, $request->request->get('player'));
+        $this->assertEquals($actions, $request->request->get('actions'));
     }
 }

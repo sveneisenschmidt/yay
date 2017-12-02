@@ -12,6 +12,15 @@ services:
     App\Api\Response\ResponseSerializer: ~
     App\Api\Validator\EntityValidator: ~
 
+    App\Api\EventListener\KernelExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+
+    App\Api\Serializer\EventListener\LinkListener:
+        public: true
+        tags:
+            - { name: jms_serializer.event_listener, event: serializer.post_serialize, method: onPostSerialize, direction: serialization }
+
     Component\HttpFoundation\Request\ParamConverter\QueryStringConverter:
         tags:
             - { name: request.param_converter, priority: -2, converter: QueryString }
@@ -23,10 +32,5 @@ services:
             - { name: request.param_converter, priority: -2, converter: JsonField }
     Component\HttpFoundation\Request\ParamConverter\DeserializeFieldConverter:
         tags:
-            - { name: request.param_converter, priority: -2, converter: DeserializeField }
-
-    App\Api\Serializer\EventListener\LinkListener:
-        public: true
-        tags:
-            - { name: jms_serializer.event_listener, event: serializer.post_serialize, method: onPostSerialize, direction: serialization }
+            - { name: request.param_converter, priority: -2, converter: DeserializeField }            
 

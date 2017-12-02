@@ -2,8 +2,11 @@ integration:
     levels: []
 
     actions:
-        demo-action:
-            label: Demo action label
+        demo-action-01:
+            label: Demo 01 action label
+            description: Demo actions description
+        demo-action-02:
+            label: Demo 02 action label
             description: Demo actions description
 
     achievements:
@@ -11,12 +14,12 @@ integration:
             label: Demo achievement label
             description: Demo achievement description
             points: 50
-            actions: [demo-action]
+            actions: [demo-action-01, demo-action-02]
         demo-achievement-02:
             label: Demo achievement label
             description: Demo achievement description
             points: 100
-            actions: [demo-action]
+            actions: [demo-action-01, demo-action-02]
 
     validators:
         # Grants achviement 'demo-achievement-01' if action `demo-action`
@@ -35,17 +38,28 @@ integration:
     webhooks:
         incoming_processors:
             # Chains multiple processors
-            demo-chain:
+            demo:
                 type: chain
                 arguments:
-                    - [demo-thirdparty-action, demo-thirdparty-user]
-            # Maps third party payload to action
+                    - [demo-defaults, demo-thirdparty-action, demo-thirdparty-user]
+            # Set defaults
+            demo-defaults:
+                type: dummy
+                arguments:
+                    - 
+                        username: john.smith, 
+                        action: demo-action-01 
+            # Maps third party action to application action
             demo-thirdparty-action:
-                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                type: static-map
                 arguments:
-                    - { 'third_party.action': demo.action }
-            # Maps third party payload to user
+                    - action
+                    - 
+                        third_party.demo_action: demo-action-02
+            # Maps third party username to application username
             demo-thirdparty-user:
-                class: \Yay\Component\Webhook\Incoming\DummyProcessor
+                type: static-map
                 arguments:
-                    - { 'third_party.user': jane.doe }
+                    - username
+                    - 
+                        third_party.demo_user: jane.doe

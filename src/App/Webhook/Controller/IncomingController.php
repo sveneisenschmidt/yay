@@ -40,16 +40,16 @@ class IncomingController extends Controller
         $processor = $webhook->getIncomingProcessors()->getProcessor($processorName);
         $processor->process($request);
 
-        if (!$request->attributes->has('username')) {
+        if (!$request->request->has('username')) {
             throw $this->createNotFoundException('Processor(s) did not provide a username');
         }
 
-        if (!$request->attributes->has('action')) {
+        if (!$request->request->has('action')) {
             throw $this->createNotFoundException('Processor(s) did not provide action');
         }
 
-        $username = $request->attributes->get('username');
-        $action = $request->attributes->get('action');
+        $username = $request->request->get('username');
+        $action = $request->request->get('action');
 
         $personalAchievements = $this->advance($engine, $username, [$action]);
 

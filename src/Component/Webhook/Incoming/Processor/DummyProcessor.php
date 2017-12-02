@@ -27,8 +27,8 @@ class DummyProcessor implements ProcessorInterface
     public function process(Request $request): void
     {
         foreach ($this->data as $key => $value) {
-            if (!$request->attributes->has($key, $value)) {
-                $request->attributes->set($key, $value);
+            if (!$request->request->has($key, $value)) {
+                $request->request->set($key, $value);
             }
         }
     }

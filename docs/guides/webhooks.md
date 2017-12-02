@@ -100,8 +100,8 @@ integration:
                 type: dummy
                 arguments:
                     -
-                        - username: jane.doe
-                        - aciton: example.action
+                        username: jane.doe
+                        action: example.action
 ```
 URL:  `/webhook/incoming/example-dummy/`.
 
@@ -118,9 +118,9 @@ integration:
 ```
 URL:  `/webhook/incoming/example-null/`.
 
-#### `NullProcessor`
+#### `StaticMapProcessor`
 
-The [NullProcessor](../../src/Component/Webhook/Incoming/Processor/NullProcessor.php) does nothing. Its `process` method is empty. It is used for testing.
+The [StaticMapProcessor](../../src/Component/Webhook/Incoming/Processor/StaticMapProcessor.php) remaps the specified request attribute values.
 
 ```yml
 integration:
@@ -131,7 +131,8 @@ integration:
                 arguments:
                     - username
                     -
-                        - octocat: jane.doe
+                        # username=octocate => username=jane.doe
+                        octocat: jane.doe 
 ```
 URL:  `/webhook/incoming/example-static-map/`.
 
@@ -173,7 +174,7 @@ integration:
                 arguments:
                     - username
                     -
-                        - octocat: jane.doe
+                        octocat: jane.doe
 ```
 URL:  `/webhook/incoming/example-processor/`.
 

@@ -35,8 +35,8 @@ jobs:
       before_script:
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
-      - DOCKER_ENV=stable DOCKER_BRANCH="$TRAVIS_BRANCH" make default-publish
-      - DOCKER_ENV=stable DOCKER_BRANCH="$TRAVIS_BRANCH" make demo-publish
+      - DOCKER_ENV=stable DOCKER_BRANCH="$TRAVIS_BRANCH" make publish-default
+      - DOCKER_ENV=stable DOCKER_BRANCH="$TRAVIS_BRANCH" make publish-demo
     - stage: "Build Docker Images (dev)"
       if: branch != master AND type IN (push, api, cron) AND fork = false
       before_install:
@@ -45,6 +45,6 @@ jobs:
       before_script:
       - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       script:
-      - DOCKER_ENV=dev DOCKER_BRANCH="$TRAVIS_BRANCH" make default-publish
-      - DOCKER_ENV=dev DOCKER_BRANCH="$TRAVIS_BRANCH" make demo-publish 
+      - DOCKER_ENV=dev DOCKER_BRANCH="$TRAVIS_BRANCH" make publish-default
+      - DOCKER_ENV=dev DOCKER_BRANCH="$TRAVIS_BRANCH" make publish-demo 
 

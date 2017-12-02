@@ -28,6 +28,10 @@ class GithubProcessor implements ProcessorInterface
         $contents = $request->getContent(false);
         $data = json_decode($contents, true, 32);
 
+        if (null === $data) {
+            throw new \InvalidArgumentException('Could not decode json payload.');
+        }
+
         if ($request->headers->has('X-GitHub-Event')) {
             $action = $request->headers->get('X-GitHub-Event');
         }
@@ -41,8 +45,8 @@ class GithubProcessor implements ProcessorInterface
         }
 
         if (!empty($action) && !empty($username)) {
-            $request->attributes->set('action', $action);
-            $request->attributes->set('username', $username);
+            $request->request->set('action', $action);
+            $request->request->set('username', $username);
         }
     }
 }
