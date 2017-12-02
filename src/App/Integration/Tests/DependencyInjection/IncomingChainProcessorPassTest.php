@@ -8,7 +8,6 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use App\Integration\DependencyInjection\IncomingChainProcessorPass;
 use Component\Webhook\Incoming\Processor\ChainProcessor;
-use Component\Webhook\Incoming\Processor\DummyProcessor;
 
 class IncomingChainProcessorPassTest extends WebTestCase
 {
@@ -32,12 +31,12 @@ class IncomingChainProcessorPassTest extends WebTestCase
         (new IncomingChainProcessorPass())->process($builder);
     }
 
-    public function test_process_chainprocessor() 
+    public function test_process_chainprocessor()
     {
         $definition = new ChildDefinition(ChainProcessor::class);
         $definition->setClass(ChainProcessor::class);
         $definition->setArguments([
-            'test', ['reference1', 'reference2', 'reference3']
+            'test', ['reference1', 'reference2', 'reference3'],
         ]);
 
         $builder = $this->getMockBuilder(ContainerBuilder::class)
@@ -57,7 +56,7 @@ class IncomingChainProcessorPassTest extends WebTestCase
         }
     }
 
-    public function test_process_chainprocessor_no_arguments() 
+    public function test_process_chainprocessor_no_arguments()
     {
         $definition = new ChildDefinition(ChainProcessor::class);
         $definition->setClass(ChainProcessor::class);
@@ -73,7 +72,7 @@ class IncomingChainProcessorPassTest extends WebTestCase
         $this->assertEmpty($arguments);
     }
 
-    public function test_process_chainprocessor_no_array() 
+    public function test_process_chainprocessor_no_array()
     {
         $definition = new ChildDefinition(ChainProcessor::class);
         $definition->setClass(ChainProcessor::class);
