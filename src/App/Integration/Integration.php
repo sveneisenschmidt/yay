@@ -10,7 +10,7 @@ use App\Integration\DependencyInjection\IntegrationExtension;
 class Integration extends Bundle
 {
     public function build(ContainerBuilder $container)
-    {        
+    {
         $container->addCompilerPass(new IncomingChainProcessorPass());
     }
 
