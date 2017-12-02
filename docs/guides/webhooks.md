@@ -120,7 +120,7 @@ URL:  `/webhook/incoming/example-null/`.
 
 #### `StaticMapProcessor`
 
-The [StaticMapProcessor](../../src/Component/Webhook/Incoming/Processor/StaticMapProcessor.php) remaps a the specified request attribute value.
+The [StaticMapProcessor](../../src/Component/Webhook/Incoming/Processor/StaticMapProcessor.php) remaps the specified request attribute values.
 
 ```yml
 integration:
@@ -131,7 +131,8 @@ integration:
                 arguments:
                     - username
                     -
-                        octocat: jane.doe
+                        # username=octocate => username=jane.doe
+                        octocat: jane.doe 
 ```
 URL:  `/webhook/incoming/example-static-map/`.
 
