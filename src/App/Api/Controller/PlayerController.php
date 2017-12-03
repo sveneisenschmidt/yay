@@ -7,8 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use App\Api\Request\CriteriaHandler;
 use App\Api\Response\ResponseSerializer;
 use App\Api\Validator\EntityValidator;
 use Component\Engine\Engine;
@@ -45,15 +47,25 @@ class PlayerController extends Controller
      *     description="Returns a collection of all known Players",
      *     statusCodes = {
      *         200 = "Returned when successful"
+     *     },
+     *     filters={
+     *         {"name"="order[name]", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="order[username]", "dataType"="string", "pattern"="ASC|DESC"}
      *     }
      * )
      */
     public function indexAction(
+        Request $request,
         Engine $engine,
+        CriteriaHandler $criteria,
         ResponseSerializer $serializer
     ): Response {
+        $players = $engine->findPlayerAny()
+            ->matching($criteria->createCriteria($request))
+            ->toArray();
+
         return $serializer->createResponse(
-            $engine->findPlayerAny()->toArray(),
+            $players,
             ['player.index']
         );
     }
@@ -96,7 +108,9 @@ class PlayerController extends Controller
      * )
      */
     public function showAction(
+        Request $request,
         Engine $engine,
+        CriteriaHandler $criteria,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -159,8 +173,10 @@ class PlayerController extends Controller
      * )
      */
     public function createAction(
+        Request $request,
         Engine $engine,
         EntityValidator $validator,
+        CriteriaHandler $criteria,
         ResponseSerializer $serializer,
         UrlGeneratorInterface $urlGenerator,
         PlayerInterface $player
@@ -230,7 +246,9 @@ class PlayerController extends Controller
      * )
      */
     public function indexPersonalAchievementsAction(
+        Request $request,
         Engine $engine,
+        CriteriaHandler $criteria,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -239,11 +257,13 @@ class PlayerController extends Controller
             throw $this->createNotFoundException();
         }
 
-        /** @var PlayerInterface $player */
-        $player = $players->first();
+        $achievements = $players->first()
+            ->getPersonalAchievements()
+            ->matching($criteria->createCriteria($request))
+            ->toArray();
 
         return $serializer->createResponse(
-            $player->getPersonalAchievements(),
+            $achievements,
             ['player.personal_achievements.show']
         );
     }
@@ -296,7 +316,9 @@ class PlayerController extends Controller
      * )
      */
     public function indexPersonalActionsAction(
+        Request $request,
         Engine $engine,
+        CriteriaHandler $criteria,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -305,11 +327,13 @@ class PlayerController extends Controller
             throw $this->createNotFoundException();
         }
 
-        /** @var PlayerInterface $player */
-        $player = $players->first();
+        $actions = $players->first()
+            ->getPersonalActions()
+            ->matching($criteria->createCriteria($request))
+            ->toArray();
 
         return $serializer->createResponse(
-            $player->getPersonalActions(),
+            $actions,
             ['player.personal_actions.show']
         );
     }
@@ -372,7 +396,9 @@ class PlayerController extends Controller
      * )
      */
     public function indexPersonalActivitiesAction(
+        Request $request,
         Engine $engine,
+        CriteriaHandler $criteria,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -381,14 +407,10 @@ class PlayerController extends Controller
             throw $this->createNotFoundException();
         }
 
-        $activities = $players
-            ->first()
+        $activities = $players->first()
             ->getActivities()
+            ->matching($criteria->createCriteria($request))
             ->toArray();
-
-        \usort($activities, function (Activity $a, Activity $b) {
-            return $a->getCreatedAt() > $b->getCreatedAt() ? -1 : 1;
-        });
 
         return $serializer->createResponse(
             $activities,
