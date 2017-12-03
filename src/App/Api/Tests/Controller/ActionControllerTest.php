@@ -24,6 +24,15 @@ class ActionControllerTest extends WebTestCase
             $this->assertArrayNotHasKey('description', $value);
             $this->assertArraySubsetHasKey('links', 'self', $value);
         }
+
+        $client->request('GET', '/api/actions/?limit=1');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+        $this->assertCount(1, $data);
     }
 
     public function test_Action_ShowAction(): void

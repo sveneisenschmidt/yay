@@ -50,6 +50,15 @@ class PlayerControllerTest extends WebTestCase
         foreach ($data as $key => $value) {
             $this->assertPlayerData($value);
         }
+
+        $client->request('GET', '/api/players/?limit=1');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+        $this->assertCount(1, $data);
     }
 
     public function test_Player_ShowAction(): void
@@ -139,6 +148,15 @@ class PlayerControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'player', $value);
             $this->assertArraySubsetHasKey('links', 'achievement', $value);
         }
+
+        $client->request('GET', '/api/players/jane.doe/personal-achievements/?limit=1');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+        $this->assertCount(1, $data);
     }
 
     public function test_Player_PersonalAchievements_IndexAction_NotFound(): void
@@ -171,6 +189,15 @@ class PlayerControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'player', $value);
             $this->assertArraySubsetHasKey('links', 'action', $value);
         }
+
+        $client->request('GET', '/api/players/jane.doe/personal-actions/?limit=1');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+        $this->assertCount(1, $data);
     }
 
     public function test_Player_PersonalActions_IndexAction_NotFound(): void
@@ -203,6 +230,15 @@ class PlayerControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'self', $value);
             $this->assertArraySubsetHasKey('links', 'player', $value);
         }
+
+        $client->request('GET', '/api/players/jane.doe/personal-activities/?limit=1');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+        $this->assertCount(1, $data);
     }
 
     public function test_Player_PersonalActivities_IndexAction_NotFound(): void

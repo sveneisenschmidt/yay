@@ -9,6 +9,7 @@ services:
         resource: '../../Controller'
         tags: ['controller.service_arguments']
 
+    App\Api\Request\CriteriaHandler: ~
     App\Api\Response\ResponseSerializer: ~
     App\Api\Validator\EntityValidator: ~
 

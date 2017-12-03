@@ -7,13 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use App\Api\Request\CriteriaHandler;
 use App\Api\Response\ResponseSerializer;
 use App\Api\Validator\EntityValidator;
 use Component\Engine\Engine;
 use Component\Entity\PlayerInterface;
-use Component\Entity\Activity;
 
 /**
  * @Route("/players")
@@ -45,15 +46,33 @@ class PlayerController extends Controller
      *     description="Returns a collection of all known Players",
      *     statusCodes = {
      *         200 = "Returned when successful"
+     *     },
+     *     filters={
+     *         {"name"="limit", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="offset", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="order[$field]", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="filter[$field]", "dataType"="string"},
+     *         {"name"="filter[$field:eq]", "dataType"="string"},
+     *         {"name"="filter[$field:neq]", "dataType"="string"},
+     *         {"name"="filter[$field:gt]", "dataType"="string"},
+     *         {"name"="filter[$field:lt]", "dataType"="string"},
+     *         {"name"="filter[$field:gte]", "dataType"="string"},
+     *         {"name"="filter[$field:lte]", "dataType"="string"},
      *     }
      * )
      */
     public function indexAction(
+        Request $request,
         Engine $engine,
+        CriteriaHandler $handler,
         ResponseSerializer $serializer
     ): Response {
+        $players = $engine->findPlayerAny()
+            ->matching($handler->createCriteria($request))
+            ->toArray();
+
         return $serializer->createResponse(
-            $engine->findPlayerAny()->toArray(),
+            $players,
             ['player.index']
         );
     }
@@ -226,11 +245,25 @@ class PlayerController extends Controller
      *     statusCodes = {
      *         200 = "Returned when successful",
      *         404 = "Returned when the player is not found"
+     *     },
+     *     filters={
+     *         {"name"="limit", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="offset", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="order[$field]", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="filter[$field]", "dataType"="string"},
+     *         {"name"="filter[$field:eq]", "dataType"="string"},
+     *         {"name"="filter[$field:neq]", "dataType"="string"},
+     *         {"name"="filter[$field:gt]", "dataType"="string"},
+     *         {"name"="filter[$field:lt]", "dataType"="string"},
+     *         {"name"="filter[$field:gte]", "dataType"="string"},
+     *         {"name"="filter[$field:lte]", "dataType"="string"},
      *     }
      * )
      */
     public function indexPersonalAchievementsAction(
+        Request $request,
         Engine $engine,
+        CriteriaHandler $handler,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -239,11 +272,13 @@ class PlayerController extends Controller
             throw $this->createNotFoundException();
         }
 
-        /** @var PlayerInterface $player */
-        $player = $players->first();
+        $achievements = $players->first()
+            ->getPersonalAchievements()
+            ->matching($handler->createCriteria($request))
+            ->toArray();
 
         return $serializer->createResponse(
-            $player->getPersonalAchievements(),
+            $achievements,
             ['player.personal_achievements.show']
         );
     }
@@ -292,11 +327,25 @@ class PlayerController extends Controller
      *     statusCodes = {
      *         200 = "Returned when successful",
      *         404 = "Returned when the player is not found"
+     *     },
+     *     filters={
+     *         {"name"="limit", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="offset", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="order[$field]", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="filter[$field]", "dataType"="string"},
+     *         {"name"="filter[$field:eq]", "dataType"="string"},
+     *         {"name"="filter[$field:neq]", "dataType"="string"},
+     *         {"name"="filter[$field:gt]", "dataType"="string"},
+     *         {"name"="filter[$field:lt]", "dataType"="string"},
+     *         {"name"="filter[$field:gte]", "dataType"="string"},
+     *         {"name"="filter[$field:lte]", "dataType"="string"},
      *     }
      * )
      */
     public function indexPersonalActionsAction(
+        Request $request,
         Engine $engine,
+        CriteriaHandler $handler,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -305,11 +354,13 @@ class PlayerController extends Controller
             throw $this->createNotFoundException();
         }
 
-        /** @var PlayerInterface $player */
-        $player = $players->first();
+        $actions = $players->first()
+            ->getPersonalActions()
+            ->matching($handler->createCriteria($request))
+            ->toArray();
 
         return $serializer->createResponse(
-            $player->getPersonalActions(),
+            $actions,
             ['player.personal_actions.show']
         );
     }
@@ -368,11 +419,25 @@ class PlayerController extends Controller
      *     statusCodes = {
      *         200 = "Returned when successful",
      *         404 = "Returned when the player is not found"
+     *     },
+     *     filters={
+     *         {"name"="limit", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="offset", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="order[$field]", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="filter[$field]", "dataType"="string"},
+     *         {"name"="filter[$field:eq]", "dataType"="string"},
+     *         {"name"="filter[$field:neq]", "dataType"="string"},
+     *         {"name"="filter[$field:gt]", "dataType"="string"},
+     *         {"name"="filter[$field:lt]", "dataType"="string"},
+     *         {"name"="filter[$field:gte]", "dataType"="string"},
+     *         {"name"="filter[$field:lte]", "dataType"="string"},
      *     }
      * )
      */
     public function indexPersonalActivitiesAction(
+        Request $request,
         Engine $engine,
+        CriteriaHandler $handler,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -381,14 +446,10 @@ class PlayerController extends Controller
             throw $this->createNotFoundException();
         }
 
-        $activities = $players
-            ->first()
+        $activities = $players->first()
             ->getActivities()
+            ->matching($handler->createCriteria($request))
             ->toArray();
-
-        \usort($activities, function (Activity $a, Activity $b) {
-            return $a->getCreatedAt() > $b->getCreatedAt() ? -1 : 1;
-        });
 
         return $serializer->createResponse(
             $activities,

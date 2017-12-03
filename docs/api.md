@@ -24,6 +24,51 @@ _Returns a collection of all known Achievements_
 ```
 
 
+#### Filters ####
+
+limit:
+
+  * DataType: int
+  * Pattern: 0-9
+
+offset:
+
+  * DataType: int
+  * Pattern: 0-9
+
+order[$field]:
+
+  * DataType: string
+  * Pattern: ASC|DESC
+
+filter[$field]:
+
+  * DataType: string
+
+filter[$field:eq]:
+
+  * DataType: string
+
+filter[$field:neq]:
+
+  * DataType: string
+
+filter[$field:gt]:
+
+  * DataType: string
+
+filter[$field:lt]:
+
+  * DataType: string
+
+filter[$field:gte]:
+
+  * DataType: string
+
+filter[$field:lte]:
+
+  * DataType: string
+
 
 ## /api/achievements/{name}/ ##
 
@@ -70,6 +115,51 @@ _Returns a collection of all known Actions_
 }]
 ```
 
+
+#### Filters ####
+
+limit:
+
+  * DataType: int
+  * Pattern: 0-9
+
+offset:
+
+  * DataType: int
+  * Pattern: 0-9
+
+order[$field]:
+
+  * DataType: string
+  * Pattern: ASC|DESC
+
+filter[$field]:
+
+  * DataType: string
+
+filter[$field:eq]:
+
+  * DataType: string
+
+filter[$field:neq]:
+
+  * DataType: string
+
+filter[$field:gt]:
+
+  * DataType: string
+
+filter[$field:lt]:
+
+  * DataType: string
+
+filter[$field:gte]:
+
+  * DataType: string
+
+filter[$field:lte]:
+
+  * DataType: string
 
 
 ## /api/actions/{name}/ ##
@@ -139,6 +229,51 @@ _Returns a collection of activities_
 ```
 
 
+#### Filters ####
+
+limit:
+
+  * DataType: int
+  * Pattern: 0-9
+
+offset:
+
+  * DataType: int
+  * Pattern: 0-9
+
+order[$field]:
+
+  * DataType: string
+  * Pattern: ASC|DESC
+
+filter[$field]:
+
+  * DataType: string
+
+filter[$field:eq]:
+
+  * DataType: string
+
+filter[$field:neq]:
+
+  * DataType: string
+
+filter[$field:gt]:
+
+  * DataType: string
+
+filter[$field:lt]:
+
+  * DataType: string
+
+filter[$field:gte]:
+
+  * DataType: string
+
+filter[$field:lte]:
+
+  * DataType: string
+
 
 
 # Levels #
@@ -166,6 +301,51 @@ _Returns a collection of all known Levels_
 }]
 ```
 
+
+#### Filters ####
+
+limit:
+
+  * DataType: int
+  * Pattern: 0-9
+
+offset:
+
+  * DataType: int
+  * Pattern: 0-9
+
+order[$field]:
+
+  * DataType: string
+  * Pattern: ASC|DESC
+
+filter[$field]:
+
+  * DataType: string
+
+filter[$field:eq]:
+
+  * DataType: string
+
+filter[$field:neq]:
+
+  * DataType: string
+
+filter[$field:gt]:
+
+  * DataType: string
+
+filter[$field:lt]:
+
+  * DataType: string
+
+filter[$field:gte]:
+
+  * DataType: string
+
+filter[$field:lte]:
+
+  * DataType: string
 
 
 
@@ -201,6 +381,51 @@ _Returns a sorted collection of all Players that have more than 0 points, starti
 ```
 
 
+#### Filters ####
+
+limit:
+
+  * DataType: int
+  * Pattern: 0-9
+
+offset:
+
+  * DataType: int
+  * Pattern: 0-9
+
+order[$field]:
+
+  * DataType: string
+  * Pattern: ASC|DESC
+
+filter[$field]:
+
+  * DataType: string
+
+filter[$field:eq]:
+
+  * DataType: string
+
+filter[$field:neq]:
+
+  * DataType: string
+
+filter[$field:gt]:
+
+  * DataType: string
+
+filter[$field:lt]:
+
+  * DataType: string
+
+filter[$field:gte]:
+
+  * DataType: string
+
+filter[$field:lte]:
+
+  * DataType: string
+
 
 
 # Players #
@@ -224,6 +449,51 @@ _Returns a collection of all known Players_
 }]
 ```
 
+
+#### Filters ####
+
+limit:
+
+  * DataType: int
+  * Pattern: 0-9
+
+offset:
+
+  * DataType: int
+  * Pattern: 0-9
+
+order[$field]:
+
+  * DataType: string
+  * Pattern: ASC|DESC
+
+filter[$field]:
+
+  * DataType: string
+
+filter[$field:eq]:
+
+  * DataType: string
+
+filter[$field:neq]:
+
+  * DataType: string
+
+filter[$field:gt]:
+
+  * DataType: string
+
+filter[$field:lt]:
+
+  * DataType: string
+
+filter[$field:gte]:
+
+  * DataType: string
+
+filter[$field:lte]:
+
+  * DataType: string
 
 
 ### `POST` /api/players/ ###
@@ -320,6 +590,51 @@ _Returns a Player achievements identified by its username property_
 - Requirement: [A-Za-z0-9\-\_\.]+
 - Type: string
 
+#### Filters ####
+
+limit:
+
+  * DataType: int
+  * Pattern: 0-9
+
+offset:
+
+  * DataType: int
+  * Pattern: 0-9
+
+order[$field]:
+
+  * DataType: string
+  * Pattern: ASC|DESC
+
+filter[$field]:
+
+  * DataType: string
+
+filter[$field:eq]:
+
+  * DataType: string
+
+filter[$field:neq]:
+
+  * DataType: string
+
+filter[$field:gt]:
+
+  * DataType: string
+
+filter[$field:lt]:
+
+  * DataType: string
+
+filter[$field:gte]:
+
+  * DataType: string
+
+filter[$field:lte]:
+
+  * DataType: string
+
 
 ## /api/players/{username}/personal-actions/ ##
 
@@ -355,6 +670,51 @@ _Returns a Player achievements identified by its username property_
 
 - Requirement: [A-Za-z0-9\-\_\.]+
 - Type: string
+
+#### Filters ####
+
+limit:
+
+  * DataType: int
+  * Pattern: 0-9
+
+offset:
+
+  * DataType: int
+  * Pattern: 0-9
+
+order[$field]:
+
+  * DataType: string
+  * Pattern: ASC|DESC
+
+filter[$field]:
+
+  * DataType: string
+
+filter[$field:eq]:
+
+  * DataType: string
+
+filter[$field:neq]:
+
+  * DataType: string
+
+filter[$field:gt]:
+
+  * DataType: string
+
+filter[$field:lt]:
+
+  * DataType: string
+
+filter[$field:gte]:
+
+  * DataType: string
+
+filter[$field:lte]:
+
+  * DataType: string
 
 
 ## /api/players/{username}/personal-activities/ ##
@@ -401,6 +761,51 @@ _Returns a Player activities identified by its username property_
 
 - Requirement: [A-Za-z0-9\-\_\.]+
 - Type: string
+
+#### Filters ####
+
+limit:
+
+  * DataType: int
+  * Pattern: 0-9
+
+offset:
+
+  * DataType: int
+  * Pattern: 0-9
+
+order[$field]:
+
+  * DataType: string
+  * Pattern: ASC|DESC
+
+filter[$field]:
+
+  * DataType: string
+
+filter[$field:eq]:
+
+  * DataType: string
+
+filter[$field:neq]:
+
+  * DataType: string
+
+filter[$field:gt]:
+
+  * DataType: string
+
+filter[$field:lt]:
+
+  * DataType: string
+
+filter[$field:gte]:
+
+  * DataType: string
+
+filter[$field:lte]:
+
+  * DataType: string
 
 
 
