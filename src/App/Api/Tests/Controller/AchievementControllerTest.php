@@ -26,10 +26,10 @@ class AchievementControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'self', $value);
             $this->assertArraySubsetHasKey('links', 'actions', $value);
         }
-        
+
         $client->request('GET', '/api/achievements/?limit=1');
         $response = $client->getResponse();
-        
+
         $this->assertTrue($response->isOk());
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));

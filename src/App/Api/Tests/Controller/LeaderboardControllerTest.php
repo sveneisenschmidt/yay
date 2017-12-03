@@ -34,10 +34,10 @@ class LeaderboardControllerTest extends WebTestCase
         rsort($expectedScores);
 
         $this->assertEquals($expectedScores, $actualScores, 'Failed asserting that arrays are sorted equally');
-        
+
         $client->request('GET', '/api/leaderboard/?limit=1');
         $response = $client->getResponse();
-        
+
         $this->assertTrue($response->isOk());
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));
