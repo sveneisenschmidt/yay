@@ -44,10 +44,10 @@ class ActivityControllerTest extends WebTestCase
                 $this->assertArraySubsetHasKey('links', 'action', $value);
             }
         }
-        
+
         $client->request('GET', '/api/activities/?limit=1');
         $response = $client->getResponse();
-        
+
         $this->assertTrue($response->isOk());
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));

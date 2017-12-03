@@ -25,10 +25,10 @@ class LevelControllerTest extends WebTestCase
             $this->assertArrayHasKey('points', $value);
             $this->assertArrayHasKey('level', $value);
         }
-        
+
         $client->request('GET', '/api/levels/?limit=1');
         $response = $client->getResponse();
-        
+
         $this->assertTrue($response->isOk());
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));

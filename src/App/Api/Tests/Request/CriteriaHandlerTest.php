@@ -14,7 +14,7 @@ class CriteriaHandlerTest extends WebTestCase
     public function test_criteria_handler(): void
     {
         $this->assertInstanceOf(
-            NameConverterInterface::class, 
+            NameConverterInterface::class,
             (new CriteriaHandler())->getNormalizer()
         );
     }
@@ -29,31 +29,31 @@ class CriteriaHandlerTest extends WebTestCase
         $this->assertEmpty($criteria->getOrderings());
         $this->assertEmpty($criteria->getWhereExpression());
     }
-    
+
     public function test_create_criteria_request_order()
     {
         $request = new Request();
         $request->query->set('order', [
-            ($field = 'test') => ($dir = Criteria::ASC)
+            ($field = 'test') => ($dir = Criteria::ASC),
         ]);
 
         $criteria = (new CriteriaHandler())->createCriteria($request);
         $this->assertEquals([$field => $dir], $criteria->getOrderings());
     }
-    
+
     public function test_create_criteria_request_limit()
     {
         $request = new Request();
-        $request->query->set('limit', $limit = rand(1,10));
+        $request->query->set('limit', $limit = rand(1, 10));
 
         $criteria = (new CriteriaHandler())->createCriteria($request);
         $this->assertEquals($limit, $criteria->getMaxResults());
     }
-    
+
     public function test_create_criteria_request_offset()
     {
         $request = new Request();
-        $request->query->set('offset', $offset = rand(1,10));
+        $request->query->set('offset', $offset = rand(1, 10));
 
         $criteria = (new CriteriaHandler())->createCriteria($request);
         $this->assertEquals($offset, $criteria->getFirstResult());
@@ -63,7 +63,7 @@ class CriteriaHandlerTest extends WebTestCase
     {
         $request = new Request();
         $request->query->set('filter', [
-            ($field = 'test') => ($value = 'test2')
+            ($field = 'test') => ($value = 'test2'),
         ]);
 
         $criteria = (new CriteriaHandler())->createCriteria($request);
@@ -74,12 +74,12 @@ class CriteriaHandlerTest extends WebTestCase
         $this->assertEquals($value, $expr->getValue()->getValue());
         $this->assertEquals(Comparison::EQ, $expr->getOperator());
     }
-    
+
     public function test_create_criteria_request_filter_eq(): void
     {
         $request = new Request();
         $request->query->set('filter', [
-            'test1:eq' => 'test2'
+            'test1:eq' => 'test2',
         ]);
 
         $criteria = (new CriteriaHandler())->createCriteria($request);
@@ -88,12 +88,12 @@ class CriteriaHandlerTest extends WebTestCase
         $expr = $criteria->getWhereExpression();
         $this->assertEquals(Comparison::EQ, $expr->getOperator());
     }
-    
+
     public function test_create_criteria_request_filter_neq(): void
     {
         $request = new Request();
         $request->query->set('filter', [
-            'test1:neq' => 'test2'
+            'test1:neq' => 'test2',
         ]);
 
         $criteria = (new CriteriaHandler())->createCriteria($request);
