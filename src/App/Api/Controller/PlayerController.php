@@ -15,7 +15,6 @@ use App\Api\Response\ResponseSerializer;
 use App\Api\Validator\EntityValidator;
 use Component\Engine\Engine;
 use Component\Entity\PlayerInterface;
-use Component\Entity\Activity;
 
 /**
  * @Route("/players")
