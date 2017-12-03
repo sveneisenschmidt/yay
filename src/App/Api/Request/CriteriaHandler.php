@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CriteriaHandler
 {
-    /** @var NameConverterInterface  */
+    /** @var NameConverterInterface */
     protected $normalizer;
 
     public function __construct(NameConverterInterface $normalizer = null)
@@ -28,19 +28,19 @@ class CriteriaHandler
         }
 
         // Pagination: limit
-        $limit = $request->query->get('limit'); 
+        $limit = $request->query->get('limit');
         if (is_numeric($limit)) {
             $criteria->setMaxResults($limit);
         }
 
         // Order
-        $order = $request->query->get('order'); 
+        $order = $request->query->get('order');
         if (is_array($order)) {
             $this->handleOrderBy($criteria, $order);
         }
 
         // Filter
-        $filter = $request->query->get('filter'); 
+        $filter = $request->query->get('filter');
         if (is_array($filter)) {
             $this->handleFilter($criteria, $filter);
         }
@@ -56,7 +56,7 @@ class CriteriaHandler
         foreach ($map as $key => $value) {
             $key = $this->normalize($key);
             list($property, $expr) = strpos($key, ':') ? explode(':', $key) : [$key, 'eq'];
-            $criteria->andWhere(Criteria::expr()->{$expr}($property, $value));    
+            $criteria->andWhere(Criteria::expr()->{$expr}($property, $value));
         }
 
         return $criteria;
