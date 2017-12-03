@@ -49,19 +49,27 @@ class PlayerController extends Controller
      *         200 = "Returned when successful"
      *     },
      *     filters={
-     *         {"name"="order[name]", "dataType"="string", "pattern"="ASC|DESC"},
-     *         {"name"="order[username]", "dataType"="string", "pattern"="ASC|DESC"}
+     *         {"name"="limit", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="offset", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="order[$field]", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="filter[$field]", "dataType"="string"},
+     *         {"name"="filter[$field:eq]", "dataType"="string"},
+     *         {"name"="filter[$field:neq]", "dataType"="string"},
+     *         {"name"="filter[$field:gt]", "dataType"="string"},
+     *         {"name"="filter[$field:lt]", "dataType"="string"},
+     *         {"name"="filter[$field:gte]", "dataType"="string"},
+     *         {"name"="filter[$field:lte]", "dataType"="string"},
      *     }
      * )
      */
     public function indexAction(
         Request $request,
         Engine $engine,
-        CriteriaHandler $criteria,
+        CriteriaHandler $handler,
         ResponseSerializer $serializer
     ): Response {
         $players = $engine->findPlayerAny()
-            ->matching($criteria->createCriteria($request))
+            ->matching($handler->createCriteria($request))
             ->toArray();
 
         return $serializer->createResponse(
@@ -108,9 +116,7 @@ class PlayerController extends Controller
      * )
      */
     public function showAction(
-        Request $request,
         Engine $engine,
-        CriteriaHandler $criteria,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -173,10 +179,8 @@ class PlayerController extends Controller
      * )
      */
     public function createAction(
-        Request $request,
         Engine $engine,
         EntityValidator $validator,
-        CriteriaHandler $criteria,
         ResponseSerializer $serializer,
         UrlGeneratorInterface $urlGenerator,
         PlayerInterface $player
@@ -242,13 +246,25 @@ class PlayerController extends Controller
      *     statusCodes = {
      *         200 = "Returned when successful",
      *         404 = "Returned when the player is not found"
+     *     },
+     *     filters={
+     *         {"name"="limit", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="offset", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="order[$field]", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="filter[$field]", "dataType"="string"},
+     *         {"name"="filter[$field:eq]", "dataType"="string"},
+     *         {"name"="filter[$field:neq]", "dataType"="string"},
+     *         {"name"="filter[$field:gt]", "dataType"="string"},
+     *         {"name"="filter[$field:lt]", "dataType"="string"},
+     *         {"name"="filter[$field:gte]", "dataType"="string"},
+     *         {"name"="filter[$field:lte]", "dataType"="string"},
      *     }
      * )
      */
     public function indexPersonalAchievementsAction(
         Request $request,
         Engine $engine,
-        CriteriaHandler $criteria,
+        CriteriaHandler $handler,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -259,7 +275,7 @@ class PlayerController extends Controller
 
         $achievements = $players->first()
             ->getPersonalAchievements()
-            ->matching($criteria->createCriteria($request))
+            ->matching($handler->createCriteria($request))
             ->toArray();
 
         return $serializer->createResponse(
@@ -312,13 +328,25 @@ class PlayerController extends Controller
      *     statusCodes = {
      *         200 = "Returned when successful",
      *         404 = "Returned when the player is not found"
+     *     },
+     *     filters={
+     *         {"name"="limit", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="offset", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="order[$field]", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="filter[$field]", "dataType"="string"},
+     *         {"name"="filter[$field:eq]", "dataType"="string"},
+     *         {"name"="filter[$field:neq]", "dataType"="string"},
+     *         {"name"="filter[$field:gt]", "dataType"="string"},
+     *         {"name"="filter[$field:lt]", "dataType"="string"},
+     *         {"name"="filter[$field:gte]", "dataType"="string"},
+     *         {"name"="filter[$field:lte]", "dataType"="string"},
      *     }
      * )
      */
     public function indexPersonalActionsAction(
         Request $request,
         Engine $engine,
-        CriteriaHandler $criteria,
+        CriteriaHandler $handler,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -329,7 +357,7 @@ class PlayerController extends Controller
 
         $actions = $players->first()
             ->getPersonalActions()
-            ->matching($criteria->createCriteria($request))
+            ->matching($handler->createCriteria($request))
             ->toArray();
 
         return $serializer->createResponse(
@@ -392,13 +420,25 @@ class PlayerController extends Controller
      *     statusCodes = {
      *         200 = "Returned when successful",
      *         404 = "Returned when the player is not found"
+     *     },
+     *     filters={
+     *         {"name"="limit", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="offset", "dataType"="int", "pattern"="0-9"},
+     *         {"name"="order[$field]", "dataType"="string", "pattern"="ASC|DESC"},
+     *         {"name"="filter[$field]", "dataType"="string"},
+     *         {"name"="filter[$field:eq]", "dataType"="string"},
+     *         {"name"="filter[$field:neq]", "dataType"="string"},
+     *         {"name"="filter[$field:gt]", "dataType"="string"},
+     *         {"name"="filter[$field:lt]", "dataType"="string"},
+     *         {"name"="filter[$field:gte]", "dataType"="string"},
+     *         {"name"="filter[$field:lte]", "dataType"="string"},
      *     }
      * )
      */
     public function indexPersonalActivitiesAction(
         Request $request,
         Engine $engine,
-        CriteriaHandler $criteria,
+        CriteriaHandler $handler,
         ResponseSerializer $serializer,
         string $username
     ): Response {
@@ -409,7 +449,7 @@ class PlayerController extends Controller
 
         $activities = $players->first()
             ->getActivities()
-            ->matching($criteria->createCriteria($request))
+            ->matching($handler->createCriteria($request))
             ->toArray();
 
         return $serializer->createResponse(

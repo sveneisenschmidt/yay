@@ -3,6 +3,7 @@
 namespace App\Api\Request;
 
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Expr\Comparison;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,11 @@ class CriteriaHandler
     public function __construct(NameConverterInterface $normalizer = null)
     {
         $this->normalizer = $normalizer ?? new CamelCaseToSnakeCaseNameConverter();
+    }
+
+    public function getNormalizer(): NameConverterInterface
+    {
+        return $this->normalizer;
     }
 
     public function createCriteria(Request $request): Criteria
