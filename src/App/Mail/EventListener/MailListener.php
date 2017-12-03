@@ -3,15 +3,15 @@
 namespace App\Mail\EventListener;
 
 use Symfony\Bundle\TwigBundle\TwigEngine;
-use \Swift_Mailer;
-use \Swift_Message;
+use Swift_Mailer;
+use Swift_Message;
 use Component\Entity\Achievement\PersonalAchievement;
 use Component\Entity\Achievement\PersonalAction;
 use Component\Engine\Event\ObjectEvent;
 use Component\Engine\EventListener\EventListenerInterface;
 
 class MailListener implements EventListenerInterface
-{   
+{
     /** @var TwigEngine */
     protected $renderer;
 
@@ -30,9 +30,9 @@ class MailListener implements EventListenerInterface
         $player = $personalAction->getPlayer();
 
         $contents = $this->renderer->render('Mail/grant_personal_action.html.twig', [
-            'personalAction' => $personalAction
+            'personalAction' => $personalAction,
         ]);
-        
+
         $message = (new Swift_Message('Yay! A new action has been recorded for you!'))
             ->setFrom($player->getEmail(), 'No Reply')
             ->setTo($player->getEmail(), $player->getName())
@@ -47,9 +47,9 @@ class MailListener implements EventListenerInterface
         $player = $personalAchievement->getPlayer();
 
         $contents = $this->renderer->render('Mail/grant_personal_achievement.html.twig', [
-            'personalAchievement' => $personalAchievement
+            'personalAchievement' => $personalAchievement,
         ]);
-            
+
         $message = (new Swift_Message('Yay! You\'ve been awared a new achievement!'))
             ->setFrom($player->getEmail(), 'No Reply')
             ->setTo($player->getEmail(), $player->getName())
