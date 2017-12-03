@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+;
 
 class Kernel extends BaseKernel
 {
@@ -13,7 +14,6 @@ class Kernel extends BaseKernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Symfony\Bundle\WebServerBundle\WebServerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
@@ -23,6 +23,7 @@ class Kernel extends BaseKernel
             new App\Api\Api(),
             new App\Engine\Engine(),
             new App\Integration\Integration(),
+            new App\Mail\Mail(),
             new App\Webhook\Webhook(),
         ];
 

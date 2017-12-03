@@ -70,7 +70,7 @@ class PlayerController extends Controller
         $players = $engine->findPlayerAny()
             ->matching($handler->createCriteria($request))
             ->toArray();
-
+ 
         return $serializer->createResponse(
             $players,
             ['player.index']

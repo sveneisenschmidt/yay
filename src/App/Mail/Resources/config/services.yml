@@ -1,0 +1,12 @@
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Mail\EventListener\MailListener:
+        arguments: [ '@templating', '@mailer' ]
+        tags:
+            - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
+            - { name: yay.event_listener, event: yay.engine.grant_personal_achievement, method: onGrantPersonalAchievement }

@@ -3,10 +3,7 @@ parameters:
     # default parameters
     env(SECRET): 12345abcdef
     env(DATABASE_PORT): 3306
-    env(MAILER_TRANSPORT): ~
-    env(MAILER_HOST): ~
-    env(MAILER_USER): ~
-    env(MAILER_PASSWORD): ~
+    env(MAILER_URL): ~
 
     # env variables
     database_host: "%env(DATABASE_HOST)%"
@@ -16,8 +13,5 @@ parameters:
     database_password: "%env(DATABASE_PASSWORD)%"
     redis_host: "%env(REDIS_HOST)%"
     redis_port: "%env(REDIS_PORT)%"
-    mailer_transport: "%env(MAILER_TRANSPORT)%"
-    mailer_host: "%env(MAILER_HOST)%"
-    mailer_user: "%env(MAILER_USER)%"
-    mailer_password: "%env(MAILER_PASSWORD)%"
+    mailer_url: "%env(MAILER_URL)%"
     secret: "%env(SECRET)%"

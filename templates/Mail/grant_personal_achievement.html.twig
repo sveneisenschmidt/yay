@@ -1,0 +1,16 @@
+{% extends "Mail/layout.html.twig" %}
+{% block content %}
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <p><b><span style="color: #007fad">Yay!</span></b></p>
+        <p>You've been awared a new <b>achievement</b>:</p>
+        <p>
+          <b>1x</b> {{ personalAchievement.achievementDefinition.label }} - 
+          {{ personalAchievement.achievementDefinition.description }}
+        </p>
+        <p>Have a nice day and keep on rockin'!</p>
+      </td>
+    </tr>
+  </table>
+{% endblock %}
