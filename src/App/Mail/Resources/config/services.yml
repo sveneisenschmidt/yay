@@ -5,8 +5,10 @@ services:
         autoconfigure: true
         public: false
 
-    App\Mail\EventListener\MailListener:
+    App\Mail\Service\Mailer:
         arguments: [ '@templating', '@mailer' ]
+
+    App\Mail\EventListener\MailListener:
         tags:
             - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
             - { name: yay.event_listener, event: yay.engine.grant_personal_achievement, method: onGrantPersonalAchievement }
