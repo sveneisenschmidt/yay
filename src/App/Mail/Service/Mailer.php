@@ -5,10 +5,6 @@ namespace App\Mail\Service;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Swift_Mailer;
 use Swift_Message;
-use Component\Entity\Achievement\PersonalAchievement;
-use Component\Entity\Achievement\PersonalAction;
-use Component\Engine\Event\ObjectEvent;
-use Component\Engine\EventListener\EventListenerInterface;
 
 class Mailer
 {
@@ -36,6 +32,7 @@ class Mailer
         array $data = []
     ): Swift_Message {
         $contents = $this->renderer->render($template, $data);
+
         return (new Swift_Message($subject))
             ->setFrom($recipient, 'No Reply')
             ->setTo($recipient)
