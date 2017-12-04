@@ -3,7 +3,6 @@
 namespace App\Mail\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use App\Mail\DependencyInjection\MailExtension;
 use App\Mail\Mail;
 

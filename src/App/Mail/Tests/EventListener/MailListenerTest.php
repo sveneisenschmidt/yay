@@ -7,9 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Swift_Message;
 use Component\Engine\Events;
 use Component\Engine\Event\ObjectEvent;
-use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionInterface;
-use Component\Entity\Achievement\ActionDefinitionInterface;
 use Component\Entity\PlayerInterface;
 use App\Mail\EventListener\MailListener;
 use App\Mail\Service\Mailer;
@@ -31,7 +29,7 @@ class MailListenerTest extends WebTestCase
         foreach ($dispatcher->getListeners() as $event => $listeners) {
             foreach ($listeners as $listener) {
                 list($class, $method) = $listener;
-                $calls []= sprintf('%s::%s', get_class($class), $method);
+                $calls[] = sprintf('%s::%s', get_class($class), $method);
             }
         }
 
@@ -58,19 +56,19 @@ class MailListenerTest extends WebTestCase
 
         $personalAction = $this->createConfiguredMock(PersonalActionInterface::class, [
             'getPlayer' => $this->createConfiguredMock(PlayerInterface::class, [
-                'getEmail' => $faker->email
-            ])
+                'getEmail' => $faker->email,
+            ]),
         ]);
 
         $event = new ObjectEvent($personalAction);
         $listener = new MailListener($mailer);
         $listener->onGrantPersonalAction($event);
     }
-    
+
     public function test_on_grant_personal_achievement(): void
     {
         $faker = FakerFactory::create();
-        
+
         $mailer = $this->getMockBuilder(Mailer::class)
             ->disableOriginalConstructor()
             ->setMethods(['send', 'compose'])
@@ -86,8 +84,8 @@ class MailListenerTest extends WebTestCase
 
         $personalAchievement = $this->createConfiguredMock(PersonalActionInterface::class, [
             'getPlayer' => $this->createConfiguredMock(PlayerInterface::class, [
-                'getEmail' => $faker->email
-            ])
+                'getEmail' => $faker->email,
+            ]),
         ]);
 
         $event = new ObjectEvent($personalAchievement);

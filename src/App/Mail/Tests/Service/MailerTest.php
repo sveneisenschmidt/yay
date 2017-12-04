@@ -35,7 +35,7 @@ class MailerTest extends TestCase
         $mailer = new Mailer(
             $renderer = $this->createMock(TwigEngine::class),
             $mail = $this->createConfiguredMock(Swift_Mailer::class, [
-                'send' => $status = rand(0, 10)
+                'send' => $status = rand(0, 10),
             ])
         );
 
@@ -48,5 +48,4 @@ class MailerTest extends TestCase
 
         $this->assertEquals($status, $mailer->send($message));
     }
-
 }
