@@ -18,12 +18,12 @@ class ActivityListener implements EventListenerInterface
     {
         $this->setStorage($storage);
     }
-    
+
     public function onCreatePlayer(ObjectEvent $event): void
     {
         /** @var PlayerInterface $player */
         $player = $event->getObject();
-        
+
         $activity = new Activity(
             Activity::PLAYER_CREATED,
             $player,
@@ -35,7 +35,6 @@ class ActivityListener implements EventListenerInterface
 
         $this->getStorage()->saveActivity($activity);
     }
-        
 
     public function onGrantPersonalAction(ObjectEvent $event): void
     {

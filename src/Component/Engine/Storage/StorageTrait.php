@@ -29,7 +29,7 @@ trait StorageTrait
     {
         return $this->storage;
     }
-    
+
     public function isNew(object $object): bool
     {
         return $this->getStorage()->isNew($object);

@@ -51,7 +51,7 @@ class Player implements PlayerInterface
         $this->activities = new ArrayCollection();
         $this->setCreatedAt($createdAt ?: new \DateTime());
     }
-    
+
     public function setCreatedAt(\DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;

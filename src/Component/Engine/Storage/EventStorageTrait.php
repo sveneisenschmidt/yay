@@ -46,11 +46,11 @@ trait EventStorageTrait
     public function savePersonalAchievement(PersonalAchievementInterface $personalAchievement): void
     {
         $event = new ObjectEvent($personalAchievement);
-        
+
         if ($this->isNew($personalAchievement)) {
             $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACHIEVEMENT, $event);
         }
-        
+
         $this->eventDispatcher->dispatch(Events::PRE_SAVE, $event);
         $this->invokeSavePersonalAchievement($personalAchievement);
         $this->eventDispatcher->dispatch(Events::POST_SAVE, $event);
@@ -59,7 +59,7 @@ trait EventStorageTrait
     public function savePersonalAction(PersonalActionInterface $personalAction): void
     {
         $event = new ObjectEvent($personalAction);
-        
+
         if ($this->isNew($personalAction)) {
             $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACTION, $event);
         }

@@ -37,7 +37,6 @@ class MailListenerTest extends WebTestCase
         $this->assertContains(sprintf('%s::%s', MailListener::class, 'onGrantPersonalAction'), $calls);
         $this->assertContains(sprintf('%s::%s', MailListener::class, 'onGrantPersonalAchievement'), $calls);
         $this->assertContains(sprintf('%s::%s', MailListener::class, 'onCreatePlayer'), $calls);
-        
     }
 
     public function test_on_grant_personal_action(): void
