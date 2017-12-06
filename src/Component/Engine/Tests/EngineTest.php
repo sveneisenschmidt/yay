@@ -196,13 +196,6 @@ class EngineTest extends TestCase
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
-        $eventDispatcher->expects($this->atLeastOnce())
-            ->method('dispatch')
-            ->withConsecutive(
-                [$this->stringContains(Events::PRE_SAVE)],
-                [$this->stringContains(Events::POST_SAVE)],
-                [$this->stringContains(Events::GRANT_PERSONAL_ACTION)]
-            );
 
         $engine = new Engine($storage, $eventDispatcher);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
@@ -238,13 +231,6 @@ class EngineTest extends TestCase
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
-        $eventDispatcher->expects($this->atLeastOnce())
-            ->method('dispatch')
-            ->withConsecutive(
-                [$this->stringContains(Events::PRE_SAVE)],
-                [$this->stringContains(Events::POST_SAVE)],
-                [$this->stringContains(Events::GRANT_PERSONAL_ACTION)]
-            );
 
         $engine = new Engine($storage, $eventDispatcher);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
@@ -281,13 +267,6 @@ class EngineTest extends TestCase
         ]);
 
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
-        $eventDispatcher->expects($this->atLeastOnce())
-            ->method('dispatch')
-            ->withConsecutive(
-                [$this->stringContains(Events::PRE_SAVE)],
-                [$this->stringContains(Events::POST_SAVE)],
-                [$this->stringContains(Events::GRANT_PERSONAL_ACHIEVEMENT)]
-            );
 
         $engine = new Engine($storage, $eventDispatcher);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
@@ -324,18 +303,6 @@ class EngineTest extends TestCase
         ]);
 
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
-        $eventDispatcher->expects($this->atLeastOnce())
-            ->method('dispatch')
-            ->withConsecutive(
-                [$this->stringContains(Events::PRE_SAVE)],
-                [$this->stringContains(Events::POST_SAVE)],
-                [$this->stringContains(Events::GRANT_PERSONAL_ACHIEVEMENT)],
-                [$this->stringContains(Events::PRE_SAVE)],
-                [$this->stringContains(Events::POST_SAVE)],
-                [$this->stringContains(Events::PRE_SAVE)],
-                [$this->stringContains(Events::POST_SAVE)],
-                [$this->stringContains(Events::GRANT_PERSONAL_ACHIEVEMENT)]
-            );
 
         $engine = new Engine($storage, $eventDispatcher);
         $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [

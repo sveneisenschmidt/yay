@@ -91,7 +91,6 @@ class Engine
             // Persist new personalAction to database
             $personalAction = new PersonalAction($player, $actionDefinition);
             $this->savePersonalAction($personalAction);
-            $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACTION, new ObjectEvent($personalAction));
 
             // Refresh player
             $this->refreshPlayer($player);
@@ -134,7 +133,6 @@ class Engine
 
                     $this->savePersonalAchievement($personalAchievement);
                     $this->refreshPlayer($player);
-                    $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACHIEVEMENT, new ObjectEvent($personalAchievement));
                 }
             }
         }

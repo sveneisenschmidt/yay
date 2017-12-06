@@ -193,6 +193,7 @@ class PlayerController extends Controller
             );
         }
 
+        $player->setCreatedAt(new \DateTime());
         $engine->savePlayer($player);
 
         return $serializer->createResponse(

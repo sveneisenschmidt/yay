@@ -8,4 +8,5 @@ final class Events
     const POST_SAVE = 'yay.engine.post_save';
     const GRANT_PERSONAL_ACHIEVEMENT = 'yay.engine.grant_personal_achievement';
     const GRANT_PERSONAL_ACTION = 'yay.engine.grant_personal_action';
+    const CREATE_PLAYER = 'yay.engine.create_player';
 }

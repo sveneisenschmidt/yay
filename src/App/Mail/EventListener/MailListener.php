@@ -18,6 +18,18 @@ class MailListener implements EventListenerInterface
         $this->mailer = $mailer;
     }
 
+    public function onCreatePlayer(ObjectEvent $event): void
+    {
+        $player = $event->getObject();
+
+        $this->mailer->send($this->mailer->compose(
+            $player->getEmail(),
+            'Yay! Welcome on board!!',
+            'Mail/create_player.html.twig',
+            ['player' => $player]
+        ));
+    }
+
     public function onGrantPersonalAction(ObjectEvent $event): void
     {
         $personalAction = $event->getObject();

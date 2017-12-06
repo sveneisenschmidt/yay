@@ -9,6 +9,8 @@ Component\Entity\Player:
         strategy: AUTO
   # Columns
   fields:
+    createdAt:
+      type: datetime
     name:
       type: string
     username:

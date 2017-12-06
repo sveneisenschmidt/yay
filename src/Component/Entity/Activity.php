@@ -32,7 +32,7 @@ class Activity implements ActivityInterface
         $this->setPlayer($player);
         $this->setName($name);
         $this->setData($data);
-        $this->createdAt = $createdAt ? $createdAt : new \DateTime();
+        $this->setCreatedAt($createdAt ?: new \DateTime());
     }
 
     public function setName(string $name): void
@@ -63,6 +63,11 @@ class Activity implements ActivityInterface
     public function getData(): array
     {
         return $this->data;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): void
+    {
+        $this->createdAt = $createdAt;
     }
 
     public function getCreatedAt(): \DateTime

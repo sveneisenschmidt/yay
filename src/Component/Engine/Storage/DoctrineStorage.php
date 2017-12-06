@@ -31,6 +31,11 @@ class DoctrineStorage implements StorageInterface
         $this->manager = $manager;
     }
 
+    public function isNew(object $object): bool
+    {
+        return !$this->manager->contains($object);
+    }
+
     public function findPlayer(int $id): ?PlayerInterface
     {
         return $this->manager->getRepository(Player::class)->find($id);

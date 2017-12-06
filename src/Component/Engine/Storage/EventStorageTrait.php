@@ -32,21 +32,39 @@ trait EventStorageTrait
 
     public function savePlayer(PlayerInterface $player): void
     {
-        $this->eventDispatcher->dispatch(Events::PRE_SAVE, $event = new ObjectEvent($player));
+        $event = new ObjectEvent($player);
+
+        if ($this->isNew($player)) {
+            $this->eventDispatcher->dispatch(Events::CREATE_PLAYER, $event);
+        }
+
+        $this->eventDispatcher->dispatch(Events::PRE_SAVE, $event);
         $this->invokeSavePlayer($player);
         $this->eventDispatcher->dispatch(Events::POST_SAVE, $event);
     }
 
     public function savePersonalAchievement(PersonalAchievementInterface $personalAchievement): void
     {
-        $this->eventDispatcher->dispatch(Events::PRE_SAVE, $event = new ObjectEvent($personalAchievement));
+        $event = new ObjectEvent($personalAchievement);
+        
+        if ($this->isNew($personalAchievement)) {
+            $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACHIEVEMENT, $event);
+        }
+        
+        $this->eventDispatcher->dispatch(Events::PRE_SAVE, $event);
         $this->invokeSavePersonalAchievement($personalAchievement);
         $this->eventDispatcher->dispatch(Events::POST_SAVE, $event);
     }
 
     public function savePersonalAction(PersonalActionInterface $personalAction): void
     {
-        $this->eventDispatcher->dispatch(Events::PRE_SAVE, $event = new ObjectEvent($personalAction));
+        $event = new ObjectEvent($personalAction);
+        
+        if ($this->isNew($personalAction)) {
+            $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACTION, $event);
+        }
+
+        $this->eventDispatcher->dispatch(Events::PRE_SAVE, $event);
         $this->invokesavePersonalAction($personalAction);
         $this->eventDispatcher->dispatch(Events::POST_SAVE, $event);
     }

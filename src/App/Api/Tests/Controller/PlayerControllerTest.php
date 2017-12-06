@@ -28,6 +28,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertArrayHasKey('name', $data);
         $this->assertArrayHasKey('username', $data);
         $this->assertArrayHasKey('score', $data);
+        $this->assertArrayHasKey('created_at', $data);
         $this->assertArrayHasKey('image_url', $data);
         $this->assertArraySubsetHasKey('links', 'self', $data);
         $this->assertArraySubsetHasKey('links', 'personal_achievements', $data);

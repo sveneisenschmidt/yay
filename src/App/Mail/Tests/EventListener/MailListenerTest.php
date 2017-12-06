@@ -24,6 +24,7 @@ class MailListenerTest extends WebTestCase
         $events = array_keys($dispatcher->getListeners());
         $this->assertContains(EVENTS::GRANT_PERSONAL_ACHIEVEMENT, $events);
         $this->assertContains(EVENTS::GRANT_PERSONAL_ACTION, $events);
+        $this->assertContains(EVENTS::CREATE_PLAYER, $events);
 
         $calls = [];
         foreach ($dispatcher->getListeners() as $event => $listeners) {
@@ -35,6 +36,8 @@ class MailListenerTest extends WebTestCase
 
         $this->assertContains(sprintf('%s::%s', MailListener::class, 'onGrantPersonalAction'), $calls);
         $this->assertContains(sprintf('%s::%s', MailListener::class, 'onGrantPersonalAchievement'), $calls);
+        $this->assertContains(sprintf('%s::%s', MailListener::class, 'onCreatePlayer'), $calls);
+        
     }
 
     public function test_on_grant_personal_action(): void
@@ -91,5 +94,32 @@ class MailListenerTest extends WebTestCase
         $event = new ObjectEvent($personalAchievement);
         $listener = new MailListener($mailer);
         $listener->onGrantPersonalAchievement($event);
+    }
+
+    public function test_on_create_player(): void
+    {
+        $faker = FakerFactory::create();
+
+        $mailer = $this->getMockBuilder(Mailer::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['send', 'compose'])
+            ->getMock();
+
+        $mailer->expects($this->once())
+            ->method('send')
+            ->willReturn(0);
+
+        $mailer->expects($this->once())
+            ->method('compose')
+            ->willReturn(new Swift_Message());
+
+        $player = $this->createConfiguredMock(PlayerInterface::class, [
+            'getName' => $faker->text,
+            'getEmail' => $faker->email,
+        ]);
+
+        $event = new ObjectEvent($player);
+        $listener = new MailListener($mailer);
+        $listener->onCreatePlayer($event);
     }
 }
