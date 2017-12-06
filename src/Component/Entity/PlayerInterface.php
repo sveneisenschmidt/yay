@@ -8,7 +8,7 @@ use Component\Entity\Achievement\AchievementDefinitionInterface;
 interface PlayerInterface
 {
     public function setCreatedAt(\DateTime $createdAt): void;
-    
+
     public function getCreatedAt(): \DateTime;
 
     public function getName(): string;
