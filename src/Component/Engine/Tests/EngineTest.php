@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Component\Engine\Engine;
-use Component\Engine\Events;
 use Component\Engine\Storage\StorageInterface;
 use Component\Engine\AchievementValidatorInterface;
 use Component\Engine\AchievementValidatorCollection;

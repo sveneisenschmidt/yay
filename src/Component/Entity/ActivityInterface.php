@@ -13,6 +13,6 @@ interface ActivityInterface
     public function setData(array $data): void;
 
     public function setCreatedAt(\DateTime $createdAt): void;
-    
+
     public function getCreatedAt(): \DateTime;
 }
