@@ -5,7 +5,9 @@ namespace Component\Entity;
 class Activity implements ActivityInterface
 {
     const PERSONAL_ACTION_GRANTED = 'personal_action_granted';
+
     const PERSONAL_ACHIEVEMENT_GRANTED = 'personal_achievement_granted';
+
     const PLAYER_CREATED = 'player_created';
 
     /** @var int */

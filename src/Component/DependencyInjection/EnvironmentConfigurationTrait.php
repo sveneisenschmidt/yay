@@ -10,8 +10,8 @@ use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 trait EnvironmentConfigurationTrait
 {
     public function loadFromDirectory(
-        string $directory, 
-        array $configs, 
+        string $directory,
+        array $configs,
         ContainerBuilder $container
     ): int {
         $loader = new YamlFileLoader(
@@ -32,10 +32,9 @@ trait EnvironmentConfigurationTrait
                 continue;
             }
 
-            $loaded++; 
+            ++$loaded;
         }
 
         return $loaded;
     }
 }
-
