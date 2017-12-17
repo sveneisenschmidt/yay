@@ -5,11 +5,11 @@ namespace Component\DependencyInjection\tTests;
 use PHPUnit\Framework\TestCase;
 use Component\DependencyInjection\EnvironmentConfigurationTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class EnvironmentConfigurationTraitTest extends TestCase
 {
-    public function createInstance(): object {
+    public function createInstance(): object
+    {
         return new class() {
             use EnvironmentConfigurationTrait;
         };
@@ -19,13 +19,13 @@ class EnvironmentConfigurationTraitTest extends TestCase
     {
         $configs = [];
         $container = $this->createConfiguredMock(ContainerBuilder::class, [
-            'getParameter' => 'test'
+            'getParameter' => 'test',
         ]);
 
         $instance = $this->createInstance();
         $loaded = $instance->loadFromDirectory(
-            __DIR__.'/Fixtures/EnvironmentConfigurationTrait', 
-            $configs, 
+            __DIR__.'/Fixtures/EnvironmentConfigurationTrait',
+            $configs,
             $container
         );
 
@@ -36,13 +36,13 @@ class EnvironmentConfigurationTraitTest extends TestCase
     {
         $configs = [];
         $container = $this->createConfiguredMock(ContainerBuilder::class, [
-            'getParameter' => 'dev'
+            'getParameter' => 'dev',
         ]);
 
         $instance = $this->createInstance();
         $loaded = $instance->loadFromDirectory(
-            __DIR__.'/Fixtures/EnvironmentConfigurationTrait', 
-            $configs, 
+            __DIR__.'/Fixtures/EnvironmentConfigurationTrait',
+            $configs,
             $container
         );
 

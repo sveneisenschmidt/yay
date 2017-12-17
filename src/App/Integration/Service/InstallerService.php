@@ -14,7 +14,9 @@ use Component\Entity\Achievement\Level;
 class InstallerService
 {
     const MODE_ALL = 0;
+
     const MODE_CONFIG = 1;
+
     const MODE_DATA = 2;
 
     protected $filesystem;
