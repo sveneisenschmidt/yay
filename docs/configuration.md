@@ -12,3 +12,4 @@ The application is configured through environment variables, these will be provi
 | DATABASE_PASSWORD | | Password of database user |
 | REDIS_HOST | | IP or hostname of redis server. |
 | REDIS_PORT | | Port of the host where the redis server is running on. |
+| MAILER_URL | | The dsn of the mail service to use. (e.g. smtp://localhost:25) |

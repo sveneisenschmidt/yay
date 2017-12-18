@@ -15,6 +15,12 @@ Component\Entity\Player:
         - 'player.show'
         - 'leaderboard.index'
         - 'player.create'
+    createdAt:
+      groups:
+        - 'player.index'
+        - 'player.show'
+        - 'leaderboard.index'
+        - 'player.create'
     score:
       groups:
         - 'player.show'

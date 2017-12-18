@@ -17,6 +17,8 @@ use Component\Entity\ActivityCollection;
 
 interface StorageInterface
 {
+    public function isNew(object $object): bool;
+
     public function findPlayer(int $id): ?PlayerInterface;
 
     public function findPlayerBy(array $criteria = []): PlayerCollection;

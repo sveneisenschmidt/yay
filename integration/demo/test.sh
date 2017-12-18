@@ -28,6 +28,9 @@ done
 # Assertions
 URL="http://localhost:50080/api/players/jane.doe/personal-activities/"
 
+# Assert that 1x a player has been created
+assert "curl -sS -X GET $URL | grep player_created | wc -l | tr -d '[:space:]'" 1
+
 # Assert that 10x a personal action has been granted
 assert "curl -sS -X GET $URL | grep personal_action_granted | wc -l | tr -d '[:space:]'" 10
 

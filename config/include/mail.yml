@@ -1,0 +1,4 @@
+swiftmailer:
+    url:        "%mailer_url%"
+    spool:      { type: memory }
+    logging:    "%kernel.debug%"

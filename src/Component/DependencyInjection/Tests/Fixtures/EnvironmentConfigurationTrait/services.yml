@@ -1,0 +1,5 @@
+parameters: ~
+
+services:
+    test_services_1: 
+      class: stdClass

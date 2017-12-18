@@ -30,6 +30,11 @@ trait StorageTrait
         return $this->storage;
     }
 
+    public function isNew(object $object): bool
+    {
+        return $this->getStorage()->isNew($object);
+    }
+
     public function findPlayer(int $id): ?PlayerInterface
     {
         return $this->getStorage()->findPlayer($id);

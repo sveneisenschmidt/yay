@@ -7,6 +7,7 @@ web:
         - mysqldb
         - redis
         - blackfire
+        - mail
     volumes:
         - ./:/data:cached
     environment:
@@ -19,6 +20,7 @@ web:
         DATABASE_PASSWORD: root
         REDIS_HOST: redis
         REDIS_PORT: 6379
+        MAILER_URL: smtp://mail:1025
 
 # Command Line Tools
 cli:
@@ -26,6 +28,7 @@ cli:
     links:
         - mysqldb
         - redis
+        - mail
     volumes:
         - ./:/data:cached
     environment:
@@ -38,6 +41,7 @@ cli:
         DATABASE_PASSWORD: root
         REDIS_HOST: redis
         REDIS_PORT: 6379
+        MAILER_URL: smtp://mail:1025
 
 # MySQL
 mysqldb:
@@ -61,3 +65,9 @@ blackfire:
         - BLACKFIRE_SERVER_TOKEN
     ports:
         - "8707:8707"
+
+# Mail
+mail:
+    image: schickling/mailcatcher
+    ports:
+        - "50081:1080"

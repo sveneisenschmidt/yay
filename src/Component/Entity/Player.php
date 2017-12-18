@@ -13,6 +13,9 @@ class Player implements PlayerInterface
     /** @var int */
     protected $id;
 
+    /** @var \DateTime */
+    protected $createdAt;
+
     /** @var string */
     protected $name;
 
@@ -41,11 +44,22 @@ class Player implements PlayerInterface
     /** @var int */
     protected $score = 0;
 
-    public function __construct()
+    public function __construct(\DateTime $createdAt = null)
     {
         $this->personalActions = new ArrayCollection();
         $this->personalAchievements = new ArrayCollection();
         $this->activities = new ArrayCollection();
+        $this->setCreatedAt($createdAt ?: new \DateTime());
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
     }
 
     public function getName(): string

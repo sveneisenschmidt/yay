@@ -14,7 +14,6 @@ use Component\Entity\Achievement\PersonalAchievement;
 use Component\Entity\Achievement\PersonalAction;
 use Component\Entity\Achievement\PersonalActionCollection;
 use Component\Entity\PlayerInterface;
-use Component\Engine\Event\ObjectEvent;
 
 class Engine
 {
@@ -91,7 +90,6 @@ class Engine
             // Persist new personalAction to database
             $personalAction = new PersonalAction($player, $actionDefinition);
             $this->savePersonalAction($personalAction);
-            $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACTION, new ObjectEvent($personalAction));
 
             // Refresh player
             $this->refreshPlayer($player);
@@ -134,7 +132,6 @@ class Engine
 
                     $this->savePersonalAchievement($personalAchievement);
                     $this->refreshPlayer($player);
-                    $this->eventDispatcher->dispatch(Events::GRANT_PERSONAL_ACHIEVEMENT, new ObjectEvent($personalAchievement));
                 }
             }
         }
