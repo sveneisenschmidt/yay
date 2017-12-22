@@ -1,6 +1,3 @@
-# Guides #
-
-## How to write your own integration ##
 
 Integrations are used to extend the application with new actions, achievements and validators. Before creating your own integration it is advised to have a look at the the [demo integration](../../integration/demo.yml) provided in the application's source.
 
@@ -72,7 +69,7 @@ integration:
                 arguments:
                     -
                         username: jane.doe
-                        action: demo.action 
+                        action: demo.action
             # Maps third party action to application action
             example-action:
                 type: static-map
