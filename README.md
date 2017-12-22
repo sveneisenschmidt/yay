@@ -14,7 +14,7 @@
     </a>
     <a href="https://opensource.org/licenses/Apache-2.0">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
-    </a>
+    </a><br>
     <a href="https://hub.docker.com/r/sveneisenschmidt/yay/">
         <img src="https://img.shields.io/badge/docker-.../yay:stable-green.svg" alt="Docker Hub">
     </a>
@@ -34,6 +34,7 @@
     </a>
   </p>
 </p>
+
 ---
 
 Yay is a **gamification engine**, exposing a web service API, to bring everyone the joy of gamification and integrating any kinds of gamified features into your organisation. Yay originally started as a 36 hours hackathon project at [trivago](https://github.com/trivago) to bring gamification to the organisation. Yay's aim is to integrate into a vast of application landscapes by offering extension points that are flexible and easy to use with the ultimate goal to write your own and tailored integrations.
