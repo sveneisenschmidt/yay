@@ -1,4 +1,4 @@
-[Table of contents](README.md) | **Getting Started** | [Customization](customization.md) | [Under the hood](under-the-hood.md) | [Contributing](contributing.md)
+[Table of contents](README.md) | **Getting Started** | [Customization](customization.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
 
 ---
 
@@ -79,13 +79,15 @@ After the image has been build, run it with the needed configuration options. Fo
 $ docker run \
     -p 50800:80 \
     mycompany/yay \
+    -e APP_ENV=prod \
     -e DATABASE_HOST=10.0.0.1 \
     -e DATABASE_PORT=3306 \
     -e DATABASE_NAME=yay \
     -e DATABASE_USER=db_username \
     -e DATABASE_PASSWORD=db_password \
     -e REDIS_HOST=10.0.0.2 \
-    -e REDIS_PORT=6379
+    -e REDIS_PORT=6379 \
+    -e MAILER_URL=smtp://localhost:25
 ```
 
 ---
@@ -130,7 +132,7 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 ]
 ```
 
-Additionally Yay supports integrating third party applications via webhooks.
+Additionally Yay supports integrating third party applications via webhooks. Yay ships a basic Github webhook integration, more platforms will follow soon. Until then you can follow the webhook guide "[How to write and configure your webhooks](docs/guides/webhooks.md)" or write and maybe even support your own webhooks/processors, yay!
 
 ```yml
 integration:
@@ -150,4 +152,3 @@ integration:
                     -
                         octocat: jane.doe
 ```
-For a start Yay is shipped with support for GitHub, more platforms will follow soon. Until then you can follow the webhook guide "[How to write and configure your webhooks](docs/guides/webhooks.md)" or write and maybe even support your own webhooks/processors, yay!

@@ -1,3 +1,7 @@
+[Table of contents]docs/(README.md) | [Getting Started](docs/getting-started.md) | [Customization](docs/customization.md) | [Under The Hood](docs/under-the-hood.md) | [Contributing](docs/contributing.md)
+
+---
+
 <p align="center">
   <img alt="Yay! Logo" src="docs/src/logo.svg" height="168" />
   <h3 align="center">Yay!</h3>
@@ -44,7 +48,7 @@ Yay is a **gamification engine**, exposing a web service API, to bring everyone 
 
 ## Documentation
 
-Documentation can be found in the [docs folder](docs/getting-started.md).
+Documentation can be found in the [docs folder](docs/README.md).
 
 ---
 

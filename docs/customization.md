@@ -1,4 +1,4 @@
-[Table of contents](README.md) | [Getting Started](getting-started.md) | **Customization** | [Under the hood](under-the-hood.md) | [Contributing](contributing.md)
+[Table of contents](README.md) | [Getting Started](getting-started.md) | **Customization** | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
 
 ---
 
@@ -25,7 +25,7 @@ touch integration/mycompany.yml
 
 The integration setup file has a root element `integration` and four possible children nodes `actions`, `achievements`, and `validators`.
 
-| Node | Desciprion |
+| Node | Description |
 |---|---|
 | actions | Actions a player can perform. |
 | achievements | Achievments a player can earn. |
