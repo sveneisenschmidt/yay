@@ -5,18 +5,21 @@
 # Documentation
 
 * [Getting Started](getting-started.md)
-   * Requirements
-   * Installation
-   * Configuration
-   * Usage / API
+    * [Requirements](getting-started.md#requirements)
+    * [Installation](getting-started.md#installation)
+    * [Configuration](getting-started.md#configuration)
+    * [Usage / API](getting-started.md#usage--api)
 * [Customization](customization.md)
-   * Integration with Third-Party-Services
-   * Hosting
-   * Templates
-   * Webhooks
+    * [Integration with Third-Parties](customization.md#integration-with-third-parties)
+    * [Hosting](customization.md#hosting)
+    * [Templates](customization.md#templates)
+    * [Webhooks](customization.md#webhooks)
 * [Under The Hood](under-the-hood.md)
-   * Commands
-   * Events
-   * Webhook
-   * Development
+    * [Commands](under-the-hood.md#commands)
+    * [Events](under-the-hood.md#events)
+    * [Webhooks](under-the-hood.md#webhooks)
 * [Contributing](contributing.md)
+    * [Setup](contributing.md#setup)
+    * [Test](contributing.md#test)
+    * [Commit](contributing.md#commit)
+    * [Pull Request](contributing.md#pull-request)

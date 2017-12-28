@@ -22,27 +22,11 @@
 
 ### Local installation (Recommended for trying Yay! out)
 
-Local development is supported through `make` and powered by Docker. To see all provided commands run `make` and a list of available target is rendered. For installing the local development environment, clone from source and install the application first, then start it.
-
-```bash
-git clone git@github.com:sveneisenschmidt/yay.git yay
-cd yay
-```
-
-```bash
-$ make install
-# ...
-$ make start
-# ...
-# http://localhost:50080
-```
-
-The application responds now to API requests from `http://localhost:50800`. To see the api documentation browse to `http://localhost:50800/api/docs`.
-
+Local development is supported through `make` and powered by Docker. Please see the [Under The Hood > Devleopment](under-the-hood.md#development) documentation to start developing locally.
 
 ### Own distribution (via Docker)
 
-__NOTE__: Ready-to-use Docker images `sveneisenschmidt/yay` and `sveneisenschmidt/yay-demo` are built automatically via Travis CI ([.travis.yml](.travis.yml)).
+__NOTE__: Ready-to-use Docker images `sveneisenschmidt/yay` and `sveneisenschmidt/yay-demo` are built automatically via Travis CI ([.travis.yml](../.travis.yml)).
 
 It is encouraged to create your own distribution based on a docker image which includes your own or third-party integrations. As a first step use the application sources and Dockerfile to create a docker image and use it via `FROM` as basis for your own `Dockerfile`.
 

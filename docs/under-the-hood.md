@@ -7,7 +7,6 @@
 * [Commands](under-the-hood.md#commands)
 * [Events](under-the-hood.md#events)
 * [Webhooks](under-the-hood.md#webhooks)
-* [Development](under-the-hood.md#development)
 
 ---
 
@@ -240,44 +239,3 @@ URL:  `/webhook/incoming/example-processor/`.
 #### Configuration in Github
 
 ![Github Webhook Configuration](../../docs/src/github-webhook.png)
-
-
-
-## Development
-
-Local development is supported by `make`. To see a list of available make targets run `make`.
-```bash
-$ make
-#    start                Start the application
-#    stop                 Stop the application
-#    restart              Restart the application
-#    build                Build the application including development environment
-#    clean                Cleans cache files, logs
-#    cleanall             Cleans containers, images and project files including caches, logs
-#    install              Install and build the application including development environment
-#    test                 Run application tests
-#    test-coverage        Run application tests and generate code coverage
-#    shell                Start an interactive shell session
-#    default-publish      Publish demo docker image to sveneisenschmidt/yay
-#    enable-demo          Import demo data
-#    disable-demo         Remove demo data
-#    enable-github        Import demo data
-#    disable-github       Remove demo data
-#    demo-publish         Publish demo docker image to sveneisenschmidt/yay-demo
-#    watch-logs           Watch all log files
-#    watch-redis          Watch all redis queries
-```
-
-To start local development, first install all runtime depenedencies with `make install` and
-run the application with `make start`. The application will then respond to request at `http://localhost:50080`.
-
-```bash
-$ make install
-# ...
-$ make start
-# ...
-# http://localhost:50080
-```
-
----
-
