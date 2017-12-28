@@ -1,4 +1,6 @@
-[Table of Contents](README.md) | **Getting Started** | [Customization](customization.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
+[Table of Contents](README.md) | **Getting Started** | [Customization](customization.md) | [Examples](docs/examples.md) | [Under The Hood](docs/under-the-hood.md) | [Contributing](docs/contributing.md)
+
+
 
 ---
 
@@ -22,7 +24,7 @@
 
 ### Local installation (Recommended for trying Yay! out)
 
-Local development is supported through `make` and powered by Docker. Please see the [Under The Hood > Devleopment](under-the-hood.md#development) documentation to start developing locally.
+Local development is supported through `make` and powered by Docker. Please see the [Contributing](contributing.md) documentation to start developing locally.
 
 ### Own distribution (via Docker)
 
@@ -122,7 +124,9 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 ]
 ```
 
-Additionally Yay supports integrating third party applications via webhooks. Yay ships a basic Github webhook integration, more platforms will follow soon. Until then you can follow the webhook guide "[How to write and configure your webhooks](docs/guides/webhooks.md)" or write and maybe even support your own webhooks/processors, yay!
+An on-the-fly geenrated API documentation can be found under [`http://localhost:50080/api/doc`](http://localhost:50080/api/doc), run it with `make start`. The latest stable version [`https://yay-demo.sloppy.zone/api/doc`](https://yay-demo.sloppy.zone/api/doc) is available via `sloppy.io`.
+
+Additionally Yay supports integrating third party applications via webhooks. Yay ships a basic Github webhook integration, more platforms will follow soon. Until then you can follow the webhook guide "[Under The Hood: Webhooks](under-the-hood.md#webhooks)" or write and contribute your own webhooks/processors, yay!
 
 ```yml
 integration:

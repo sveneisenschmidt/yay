@@ -1,4 +1,5 @@
-**Table of Contents** | [Getting Started](getting-started.md) | [Customization](customization.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
+**Table of Contents** | [Getting Started](getting-started.md) | [Customization](customization.md) | [Examples](docs/examples.md) | [Under The Hood](docs/under-the-hood.md) | [Contributing](docs/contributing.md)
+
 
 ---
 
@@ -14,6 +15,8 @@
     * [Hosting](customization.md#hosting)
     * [Templates](customization.md#templates)
     * [Webhooks](customization.md#webhooks)
+* [Examples](examples.md)
+    * [Demo](examples.md#demo)
 * [Under The Hood](under-the-hood.md)
     * [Commands](under-the-hood.md#commands)
     * [Events](under-the-hood.md#events)

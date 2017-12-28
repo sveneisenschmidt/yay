@@ -1,4 +1,5 @@
-[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customization](customization.md) | [Under The Hood](under-the-hood.md) | **Contributing**
+[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customization](customization.md) | [Examples](docs/examples.md) | [Under The Hood](docs/under-the-hood.md) | **Contributing**
+
 
 ---
 
@@ -9,7 +10,7 @@
 * [Commit](contributing.md#commit)
 * [Pull Request](contributing.md#pull-request)
 
-Hint: Inspired by the amazing `goreleaser` documentation.
+Hint: Inspired by the amazing [`goreleaser`](https://github.com/goreleaser/goreleaser/tree/master/docs) documentation.
 
 ---
 

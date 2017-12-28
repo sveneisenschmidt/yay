@@ -1,23 +1,30 @@
-# Demo #
+[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customization](customization.md) | **Examples** | [Under The Hood](docs/under-the-hood.md) | [Contributing](docs/contributing.md)
 
-To run the demo we need to enable the demo integration, you can do so by using the built-in make command `make demo-import` for your local dev environment or executing the appropriate console command (`php bin/console yay:integration:enable integration/demo`), we choose the former.
 
-```bash
+---
+
+# Examples
+
+* [Demo](examples.md#setup)
+
+---
+
+## Demo
+
+To run the demo we need to enable the demo integration, you can do so by using the built-in make command `make enable-demo` for your local dev environment or executing the appropriate console command (`php bin/console yay:integration:enable demo integration/demo`), we choose the former.
+
+```console
 $ make enable-demo
 
 [OK] Integration "default" enabled
 [OK] Integration "demo" enabled
 ```
 
-Now we can run the application, it will start the built-in PHP web-server. This is not recommended for produciton environments.
-```bash
+Now we can run the application.
+
+```console
 $ make start
-```
-_Output:_
-```bash
-yay_mysqldb_1 is up-to-date
-yay_redis_1 is up-to-date
-yay_web_1 is up-to-date
+# ...
 # http://localhost:50080
 ```
 
@@ -46,16 +53,16 @@ curl -X "POST" http://localhost:50080/api/players/ \
 }
 ```
 
-2\) Make a request to [localhost:50080/api/actions](http://localhost:50080/api/actions). Here you can see a list of available actions a user can perform. Let us pick`demo-action`.
+2\) Make a request to [localhost:50080/api/actions](http://localhost:50080/api/actions). Here you can see a list of available actions a user can perform. Let us pick`demo-action-01`.
 ```bash
 curl -X "GET" http://localhost:50080/api/actions/
 
 [
     {
-        "name": "demo-action",
+        "name": "demo-action-01",
         "label": "Accusamus molestias eum libero ullam libero.",
         "links": {
-            "self": "http://localhost:50080/api/actions/demo-action/"
+            "self": "http://localhost:50080/api/actions/demo-action-01/"
         }
     }
 ]
@@ -63,8 +70,8 @@ curl -X "GET" http://localhost:50080/api/actions/
 
 3\) Make a request to [localhost:50080/api/achievements](http://localhost:50080/api/achievements).
 Here you can see a list of available achievements, in this demo you can earn both achievements by
-performing 5x the action `demo-action` for the first achievement and then 10x the
-action `demo-action` for the second achievement.
+performing 5x the action `demo-action-01` for the first achievement and then 10x the
+action `demo-action-01` for the second achievement.
 
 ```bash
 curl -X "GET" http://localhost:50080/api/achievements/
@@ -77,7 +84,7 @@ curl -X "GET" http://localhost:50080/api/achievements/
         "links": {
             "self": "http://localhost:50080/api/achievements/demo-achievement-01/",
             "actions": [
-                "http://localhost:50080/api/actions/demo-action/"
+                "http://localhost:50080/api/actions/demo-action-01/"
             ]
         }
     },
@@ -88,17 +95,17 @@ curl -X "GET" http://localhost:50080/api/achievements/
         "links": {
             "self": "http://localhost:50080/api/achievements/demo-achievement-02/",
             "actions": [
-                "http://localhost:50080/api/actions/demo-action/"
+                "http://localhost:50080/api/actions/demo-action-01/"
             ]
         }
     }
 ]
 ```
 
-4\) Let our player `jane.doe` perform the action `demo-action` one time.
+4\) Let our player `jane.doe` perform the action `demo-action-01` one time.
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"demo-action\"}"
+    -d "{\"username\":\"jane.doe\",\"action\":\"demo-action-01\"}"
 
 []
 ```
@@ -109,14 +116,14 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-actions
 
 [
     {
-        "name": "demo-action",
-        "label": "demo-action",
-        "description": "demo-action",
+        "name": "demo-action-01",
+        "label": "demo-action-01",
+        "description": "demo-action-01",
         "achieved_at": "2017-10-08T12:48:13+0000",
         "links": {
             "self": "http://localhost:50080/api/players/jane.doe/personal-actions/",
             "player": "http://localhost:50080/api/players/jane.doe/",
-            "action": "http://localhost:50080/api/actions/demo-action/"
+            "action": "http://localhost:50080/api/actions/demo-action-01/"
         }
     }
 ]
@@ -125,7 +132,7 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-actions
 Now let us get our first achievement. For this, perform four more times our `demo.action` action.
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"actions\":[\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\"]}"
+    -d "{\"username\":\"jane.doe\",\"actions\":[\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\"]}"
 
 [
     {
@@ -144,10 +151,10 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 ```
 Et voilà, we earned our first achievement!
 
-5\) Now let us go further, Let the player perform five times more the `demo-action` action.
+5\) Now let us go further, Let the player perform five times more the `demo-action-01` action.
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"actions\":[\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\",\"demo-action\"]}"
+    -d "{\"username\":\"jane.doe\",\"actions\":[\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\"]}"
 
 [
     {
@@ -170,7 +177,7 @@ Clap, clap! Our player earned now his official second achievemennt.
 
 6\) Let's check now our player achievements by performing the following request.
 ```bash
-curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-achievements
+curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-achievements/
 
 [
     {
@@ -201,3 +208,4 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-achievements
 ```
 
 And that's all for the demo. Yay!
+
