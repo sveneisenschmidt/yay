@@ -1,4 +1,4 @@
-[Table of contents](README.md) | [Getting Started](getting-started.md) | [Customization](customization.md) | **Under The Hood** | [Contributing](contributing.md)
+[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customization](customization.md) | **Under The Hood** | [Contributing](contributing.md)
 
 ---
 
