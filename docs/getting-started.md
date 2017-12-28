@@ -27,12 +27,18 @@ Local development is supported through `make` and powered by Docker. To see all 
 ```bash
 git clone git@github.com:sveneisenschmidt/yay.git yay
 cd yay
+```
 
-make install
-make start
+```bash
+$ make install
+# ...
+$ make start
+# ...
+# http://localhost:50080
+```
 
 The application responds now to API requests from `http://localhost:50800`. To see the api documentation browse to `http://localhost:50800/api/docs`.
-```
+
 
 ### Own distribution (via Docker)
 

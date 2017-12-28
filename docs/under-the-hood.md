@@ -4,10 +4,10 @@
 
 # Under The Hood
 
-* Commands
-* Events
-* Webhook
-* Development
+* [Commands](under-the-hood.md#commands)
+* [Events](under-the-hood.md#events)
+* [Webhooks](under-the-hood.md#webhooks)
+* [Development](under-the-hood.md#development)
 
 ---
 
@@ -33,7 +33,7 @@ Yay provides a set of events to easily hook into. How to work with events is ill
 # services.yml
 MyListener:
     tags:
-        - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
+     - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
 ```
 ```php
 # MyListener.php
@@ -41,10 +41,10 @@ class MyListener
 {
     public function onGrantPersonalAction(ObjectEvent $event): void
     {
-        /** @var PersonalAction $personalAction */
-        $personalAction = $event->getObject();
+     /** @var PersonalAction $personalAction */
+     $personalAction = $event->getObject();
 
-        // ...
+     // ...
     }
 }
 ```
@@ -59,7 +59,7 @@ class MyListener
 
 ---
 
-## Webhook
+## Webhooks
 
 Webhooks are the super glue that conntect the outside world with your Yay instance.
 
@@ -101,22 +101,22 @@ class MyProcessor implements ProcessorInterface
 
     public function __construct(string $name)
     {
-        $this->name = $name;
+     $this->name = $name;
     }
 
     public function getName(): string
     {
-        return $this->name:
+     return $this->name:
     }
 
     public function process(Request $request): void
     {
-        // extract, transform data from $request object, assign $username and $action
-        // $username = ...
-        // $action = ...
+     // extract, transform data from $request object, assign $username and $action
+     // $username = ...
+     // $action = ...
 
-        $request->attrbiutes->set('username', $username);
-        $request->attrbiutes->set('action', $action);
+     $request->attrbiutes->set('username', $username);
+     $request->attrbiutes->set('action', $action);
     }
 }
 ```
@@ -130,20 +130,20 @@ The [ChainProcessor](../../src/Component/Webhook/Incoming/Processor/ChainProcess
 ```yml
 integration:
     webhooks:
-        incoming_processors:
-            # Chains multiple processors into one
-            example-chain:
-                type: chain
-                arguments:
-                    - [example-mycompany-jenkinsci, example-mycompany-users]
-            # Your company provides a processor to transform Jenkins CI payloads
-            example-mycompany-jenkinsci:
-                class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
-            # Your company provides a second processor to ap jenkins users to Yay players
-            # based on a static configuration file deployed witht he application
-            example-mycompany-users:
-                class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
-                arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
+     incoming_processors:
+         # Chains multiple processors into one
+         example-chain:
+          type: chain
+          arguments:
+              - [example-mycompany-jenkinsci, example-mycompany-users]
+         # Your company provides a processor to transform Jenkins CI payloads
+         example-mycompany-jenkinsci:
+          class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
+         # Your company provides a second processor to ap jenkins users to Yay players
+         # based on a static configuration file deployed witht he application
+         example-mycompany-users:
+          class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
+          arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
 ```
 URL:  `/webhook/incoming/example-chain/`.
 
@@ -154,13 +154,13 @@ The [DummyProcessor](../../src/Component/Webhook/Incoming/Processor/DummyProcess
 ```yml
 integration:
     webhooks:
-        incoming_processors:
-            example-dummy:
-                type: dummy
-                arguments:
-                    -
-                        username: jane.doe
-                        action: example.action
+     incoming_processors:
+         example-dummy:
+          type: dummy
+          arguments:
+              -
+               username: jane.doe
+               action: example.action
 ```
 URL:  `/webhook/incoming/example-dummy/`.
 
@@ -171,9 +171,9 @@ The [NullProcessor](../../src/Component/Webhook/Incoming/Processor/NullProcessor
 ```yml
 integration:
     webhooks:
-        incoming_processors:
-            example-null:
-                type: 'null'
+     incoming_processors:
+         example-null:
+          type: 'null'
 ```
 URL:  `/webhook/incoming/example-null/`.
 
@@ -184,14 +184,14 @@ The [StaticMapProcessor](../../src/Component/Webhook/Incoming/Processor/StaticMa
 ```yml
 integration:
     webhooks:
-        incoming_processors:
-            example-static-map:
-                type: static-map
-                arguments:
-                    - username
-                    -
-                        # username=octocate => username=jane.doe
-                        octocat: jane.doe
+     incoming_processors:
+         example-static-map:
+          type: static-map
+          arguments:
+              - username
+              -
+               # username=octocate => username=jane.doe
+               octocat: jane.doe
 ```
 URL:  `/webhook/incoming/example-static-map/`.
 
@@ -204,10 +204,10 @@ The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/Git
 ```yml
 integration:
     webhooks:
-        incoming_processors:
-            example-github:
-                type: class
-                class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
+     incoming_processors:
+         example-github:
+          type: class
+          class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
 ```
 URL:  `/webhook/incoming/example-github/`.
 
@@ -220,20 +220,20 @@ Infamous git platform GitHub use the concept of webhooks [(official documentatio
 ```yml
 integration:
     webhooks:
-        incoming_processors:
-            example-processor:
-                type: chain
-                arguments:
-                    - [ example-github ]
-            example-github:
-                type: class
-                class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
-            example-users:
-                type: static-map
-                arguments:
-                    - username
-                    -
-                        octocat: jane.doe
+     incoming_processors:
+         example-processor:
+          type: chain
+          arguments:
+              - [ example-github ]
+         example-github:
+          type: class
+          class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
+         example-users:
+          type: static-map
+          arguments:
+              - username
+              -
+               octocat: jane.doe
 ```
 URL:  `/webhook/incoming/example-processor/`.
 
@@ -245,7 +245,39 @@ URL:  `/webhook/incoming/example-processor/`.
 
 ## Development
 
-...
+Local development is supported by `make`. To see a list of available make targets run `make`.
+```bash
+$ make
+#    start                Start the application
+#    stop                 Stop the application
+#    restart              Restart the application
+#    build                Build the application including development environment
+#    clean                Cleans cache files, logs
+#    cleanall             Cleans containers, images and project files including caches, logs
+#    install              Install and build the application including development environment
+#    test                 Run application tests
+#    test-coverage        Run application tests and generate code coverage
+#    shell                Start an interactive shell session
+#    default-publish      Publish demo docker image to sveneisenschmidt/yay
+#    enable-demo          Import demo data
+#    disable-demo         Remove demo data
+#    enable-github        Import demo data
+#    disable-github       Remove demo data
+#    demo-publish         Publish demo docker image to sveneisenschmidt/yay-demo
+#    watch-logs           Watch all log files
+#    watch-redis          Watch all redis queries
+```
+
+To start local development, first install all runtime depenedencies with `make install` and
+run the application with `make start`. The application will then respond to request at `http://localhost:50080`.
+
+```bash
+$ make install
+# ...
+$ make start
+# ...
+# http://localhost:50080
+```
 
 ---
 

@@ -4,10 +4,10 @@
 
 # Customization
 
-* [Integration with Third-Parties](customization.md)
-* [Hosting](customization.md)
-* [Templates](customization.md)
-* [Webhooks](customization.md)
+* [Integration with Third-Parties](customization.md#integration-with-third-parties)
+* [Hosting](customization.md#hosting)
+* [Templates](customization.md#templates)
+* [Webhooks](customization.md#webhooks)
 
 ---
 

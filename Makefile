@@ -3,24 +3,24 @@ PROJECT := yay
 DOCKER_ENV ?= dev
 
 all:
-	#	start					Start the application
-	#	stop					Stop the application
-	#	restart					Restart the application
-	#	build					Build the application including development environment
-	#	clean					Cleans cache files, logs
-	#	cleanall				Cleans containers, images and project files including caches, logs
-	#	install					Install and build the application including development environment
-	#	test					Run application tests
-	#	test-coverage			Run application tests and generate code coverage
-	#	shell					Start an interactive shell session
-	#	default-publish			Publish demo docker image to sveneisenschmidt/yay
-	#	enable-demo				Import demo data
-	#	disable-demo			Remove demo data
-	#	enable-github			Import demo data
-	#	disable-github			Remove demo data
-	#	demo-publish			Publish demo docker image to sveneisenschmidt/yay-demo
-	#	watch-logs				Watch all log files
-	#	watch-redis				Watch all redis queries
+	#    start                Start the application
+	#    stop                 Stop the application
+	#    restart              Restart the application
+	#    build                Build the application including development environment
+	#    clean                Cleans cache files, logs
+	#    cleanall             Cleans containers, images and project files including caches, logs
+	#    install              Install and build the application including development environment
+	#    test                 Run application tests
+	#    test-coverage        Run application tests and generate code coverage
+	#    shell                Start an interactive shell session
+	#    default-publish      Publish demo docker image to sveneisenschmidt/yay
+	#    enable-demo          Import demo data
+	#    disable-demo         Remove demo data
+	#    enable-github        Import demo data
+	#    disable-github       Remove demo data
+	#    demo-publish         Publish demo docker image to sveneisenschmidt/yay-demo
+	#    watch-logs           Watch all log files
+	#    watch-redis          Watch all redis queries
 
 # Includes
 include makedefs/*.mk
