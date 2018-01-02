@@ -1,4 +1,4 @@
-[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customization](customization.md) | [Examples](examples.md) | **Under The Hood** | [Contributing](docs/contributing.md)
+[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customization](customization.md) | [Examples](examples.md) | **Under The Hood** | [Contributing](contributing.md)
 
 
 ---
@@ -239,4 +239,4 @@ URL:  `/webhook/incoming/example-processor/`.
 
 #### Configuration in Github
 
-![Github Webhook Configuration](../../docs/src/github-webhook.png)
+![Github Webhook Configuration](../../src/github-webhook.png)
