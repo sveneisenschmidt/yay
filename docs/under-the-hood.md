@@ -115,8 +115,8 @@ class MyProcessor implements ProcessorInterface
      // $username = ...
      // $action = ...
 
-     $request->attributes->set('username', $username);
-     $request->attributes->set('action', $action);
+     $request->request->set('username', $username);
+     $request->request->set('action', $action);
     }
 }
 ```
