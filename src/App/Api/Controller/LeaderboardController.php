@@ -84,7 +84,7 @@ class LeaderboardController extends Controller
             ->filter(function (PlayerInterface $player) {
                 return $player->getScore() > 0;
             })
-            ->toArray();
+            ->getValues();
 
         return $serializer->createResponse(
             $players,

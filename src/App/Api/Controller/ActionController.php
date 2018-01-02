@@ -65,7 +65,7 @@ class ActionController extends Controller
     ): Response {
         $actionDefinitions = $engine->findActionDefinitionAny()
             ->matching($handler->createCriteria($request))
-            ->toArray();
+            ->getValues();
 
         return $serializer->createResponse(
             $actionDefinitions,

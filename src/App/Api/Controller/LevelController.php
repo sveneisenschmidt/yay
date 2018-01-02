@@ -69,7 +69,7 @@ class LevelController extends Controller
     ): Response {
         $levels = $engine->findLevelAny()
             ->matching($handler->createCriteria($request))
-            ->toArray();
+            ->getValues();
 
         return $serializer->createResponse(
             $levels,

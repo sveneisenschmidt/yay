@@ -10,17 +10,8 @@ web:
         - mail
     volumes:
         - ./:/data:cached
-    environment:
-        APP_MODE: web
-        APP_ENV: dev
-        APP_DEBUG: 1
-        DATABASE_HOST: mysqldb
-        DATABASE_NAME: dev
-        DATABASE_USER: root
-        DATABASE_PASSWORD: root
-        REDIS_HOST: redis
-        REDIS_PORT: 6379
-        MAILER_URL: smtp://mail:1025
+    env_file:
+        - .docker.env
 
 # Command Line Tools
 cli:
@@ -31,17 +22,8 @@ cli:
         - mail
     volumes:
         - ./:/data:cached
-    environment:
-        APP_MODE: web
-        APP_ENV: dev
-        APP_DEBUG: 1
-        DATABASE_HOST: mysqldb
-        DATABASE_NAME: dev
-        DATABASE_USER: root
-        DATABASE_PASSWORD: root
-        REDIS_HOST: redis
-        REDIS_PORT: 6379
-        MAILER_URL: smtp://mail:1025
+    env_file:
+        - .docker.env
 
 # MySQL
 mysqldb:
@@ -60,11 +42,10 @@ redis:
 # Profiler
 blackfire:
     image: blackfire/blackfire
-    environment:
-        - BLACKFIRE_SERVER_ID
-        - BLACKFIRE_SERVER_TOKEN
     ports:
         - "8707:8707"
+    env_file:
+        - .docker.env
 
 # Mail
 mail:

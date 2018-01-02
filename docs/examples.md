@@ -5,7 +5,128 @@
 
 # Examples
 
+* [Usage / API](examples.md#usage--api)
 * [Demo](examples.md#setup)
+---
+
+## Usage / API
+
+Yay's API supports filtering, sorting and paginating for `GET requests.
+
+An on-the-fly generated API documentation can be found under [`http://localhost:50080/api/doc`](http://localhost:50080/api/doc), run it with `make start`. The latest stable version [`https://yay-demo.sloppy.zone/api/doc`](https://yay-demo.sloppy.zone/api/doc) is available via `sloppy.io`.
+
+### Filtering results
+
+Filtering for specific results is achieved by the `filter` query paramter.
+
+#### Filter by `name`, it must equal `Jane Doe`:
+```bash
+curl -gX "GET" http://localhost:50080/api/players/?filter[name]=Jane+Doe
+// Same as: curl -gX "GET" http://localhost:50080/api/players/?filter[name:eq]=Jane+Doe
+
+[
+    {
+        "name": "John Doe",
+        "username": "john.doe",
+        "created_at": "2018-01-02T13:24:40+00:00",
+    },
+    {
+        "name": "Jane Doe",
+        "username": "jane.doe",
+        "created_at": "2018-01-02T13:24:19+00:00",
+    }
+]
+```
+
+#### Supported filter methods:
+
+The filtering uses a specific syntax to enable different types of matching strategies: `filter[$field:$expression]=$value`.
+
+| Expression | Example | Description |
+|---|---|---|
+| * | `filter[name]=Jane+Doe` | Value of field `name` equals `Jane Doe`. |
+| eq | `filter[name:eq]=Jane+Doe` | Value of field `name` equals `Jane Doe`. |
+| gt | `filter[score:gt]=10` | Value of field `name` is greater than `10`. |
+| lt | `filter[score:lt]=10` | Value of field `name` is less than `10`. |
+| lte | `filter[score:lte]=10` | Value of field `name` is greater than or equals `10`. |
+| gte | `filter[score:gte]=10` | Value of field `name` is less than or equals `10`. |
+| neq | `filter[name:neq]=Jane+Doe` | Value of field `name` does not equals `Jane Doe`. |
+| contains | `filter[name:contains]=Doe` | Value of field `name` contains `Doe`. |
+| startsWith | `filter[name:startsWith]=Jane` | Value of field `name` ends with `Jane`. |
+| endsWith | `filter[name:endsWith]=Doe` | Value of field `name` ends with `Doe`. |
+
+
+
+
+### Sorting results
+
+Setting a sorting is possible through setting a `order` query parameter. Sorting both ascdending and descending is possible.
+
+#### Sorts by field `created_at`, use default sort direction (`desc`):
+```bash
+curl -gX "GET" http://localhost:50080/api/players/?order[created_at]
+
+[
+    {
+        "name": "John Doe",
+        "username": "john.doe",
+        "created_at": "2018-01-02T13:24:40+00:00",
+    },
+    {
+        "name": "Jane Doe",
+        "username": "jane.doe",
+        "created_at": "2018-01-02T13:24:19+00:00",
+    }
+]
+```
+
+#### Sorts by field `created_at`, use ascending as sort direction (`asc`):
+```bash
+curl -gX "GET" http://localhost:50080/api/players/?order[created_at]=asc
+
+[
+    {
+        "name": "Jane Doe",
+        "username": "jane.doe",
+        "created_at": "2018-01-02T13:24:19+00:00",
+    },
+    {
+        "name": "John Doe",
+        "username": "john.doe",
+        "created_at": "2018-01-02T13:24:40+00:00",
+    }
+]
+```
+
+### Paginating results
+
+Paginating through results is possible by using the `limit` and `offset` query parameters.
+
+#### Shows the first result:
+```bash
+curl -gX "GET" http://localhost:50080/api/players/?limit=1
+
+[
+    {
+        "name": "Jane Doe",
+        "username": "jane.doe",
+        "created_at": "2018-01-02T13:24:19+00:00",
+    }
+]
+```
+
+#### Shows the second result:
+```bash
+curl -gX "GET" http://localhost:50080/api/players/?limit=1&offset=1
+
+[
+    {
+        "name": "John Doe",
+        "username": "john.doe",
+        "created_at": "2018-01-02T13:24:40+00:00",
+    }
+]
+```
 
 ---
 

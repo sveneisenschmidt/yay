@@ -71,7 +71,7 @@ class AchievementController extends Controller
     ): Response {
         $achievementDefinitions = $engine->findAchievementDefinitionAny()
             ->matching($handler->createCriteria($request))
-            ->toArray();
+            ->getValues();
 
         return $serializer->createResponse(
             $achievementDefinitions,

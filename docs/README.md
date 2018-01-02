@@ -16,6 +16,7 @@
     * [Templates](customization.md#templates)
     * [Webhooks](customization.md#webhooks)
 * [Examples](examples.md)
+    * [Usage / API](examples.md#usage--api)
     * [Demo](examples.md#demo)
 * [Under The Hood](under-the-hood.md)
     * [Commands](under-the-hood.md#commands)

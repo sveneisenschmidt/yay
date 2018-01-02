@@ -88,7 +88,7 @@ class ActivityController extends Controller
     ): Response {
         $activities = $engine->findActivityAny()
             ->matching($handler->createCriteria($request))
-            ->toArray();
+            ->getValues();
 
         return $serializer->createResponse(
             $activities,
