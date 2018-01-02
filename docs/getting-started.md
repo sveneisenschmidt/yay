@@ -16,7 +16,7 @@
 ## Requirements
 
 - Docker 17.04+
-- GNU make compatible environment (Linux, Marcos, Windows \w CygWIN, Windows Subsystem for Linux)
+- GNU make compatible environment (Linux, macOS, Windows \w CygWIN, Windows Subsystem for Linux)
 
 ---
 
