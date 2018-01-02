@@ -1,4 +1,4 @@
-**Table of Contents** | [Getting Started](getting-started.md) | [Customization](customization.md) | [Examples](examples.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
+**Table of Contents** | [Getting Started](getting-started.md) | [Customisation](customisation.md) | [Examples](examples.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
 
 
 ---
@@ -10,11 +10,10 @@
     * [Installation](getting-started.md#installation)
     * [Configuration](getting-started.md#configuration)
     * [Usage / API](getting-started.md#usage--api)
-* [Customization](customization.md)
-    * [Integration with Third-Parties](customization.md#integration-with-third-parties)
-    * [Hosting](customization.md#hosting)
-    * [Templates](customization.md#templates)
-    * [Webhooks](customization.md#webhooks)
+* [Customisation](customisation.md)
+    * [Integration with Third-Parties](customisation.md#integration-with-third-parties)
+    * [Hosting](customisation.md#hosting)
+    * [Templates](customisation.md#templates)
 * [Examples](examples.md)
     * [Usage / API](examples.md#usage--api)
     * [Demo](examples.md#demo)

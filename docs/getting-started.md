@@ -1,4 +1,4 @@
-[Table of Contents](README.md) | **Getting Started** | [Customization](customization.md) | [Examples](examples.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
+[Table of Contents](README.md) | **Getting Started** | [Customisation](customisation.md) | [Examples](examples.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
 
 
 
@@ -16,7 +16,7 @@
 ## Requirements
 
 - Docker 17.04+
-- GNU make compatible environment (Linux, macOS, Windows \w CygWIN, Windows Subsystem for Linux)
+- GNU make compatible environment (Linux, Marcos, Windows \w CygWIN, Windows Subsystem for Linux)
 
 ---
 
@@ -48,7 +48,7 @@ COPY ./integration/mycompany.yml ./data/integration/mycompany.yml
 COPY ./mycompany-docker-run.sh docker-run.sh
 ```
 
-By providing your own `docker-run.sh` it is possible to install custom integrations at startup and customize the web server used. With this approach even more sophisticated installation routines are possible. Try it out!
+By providing your own `docker-run.sh` it is possible to install custom integrations at startup and customise the web server used. With this approach even more sophisticated installation routines are possible. Try it out!
 
 ```bash
 #!/bin/bash
@@ -66,7 +66,7 @@ Now you are prepared to build your own docker image.
 docker build -t mycompany/yay .
 ```
 
-After the image has been build, run it with the needed configuration options. For further information ona bout how to configure the docker image please see the documentation of all [configuration](configuration.md) options.
+After the image has been build, run it with the needed configuration options. For further information about how to configure the docker image please see the documentation of all [configuration](configuration.md) options.
 ```bash
 $ docker run \
     -p 50800:80 \

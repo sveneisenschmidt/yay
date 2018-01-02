@@ -1,4 +1,4 @@
-[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customization](customization.md) | [Examples](examples.md) | **Under The Hood** | [Contributing](contributing.md)
+[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customisation](customisation.md) | [Examples](examples.md) | **Under The Hood** | [Contributing](contributing.md)
 
 
 ---
@@ -61,7 +61,7 @@ class MyListener
 
 ## Webhooks
 
-Webhooks are the super glue that conntect the outside world with your Yay instance.
+Webhooks are the super glue that connects the outside world with your Yay instance.
 
 ### Internals
 
@@ -69,11 +69,11 @@ Processors implement the [ProcessorInterface](../../src/Component/Webhook/Incomi
 
 #### Incoming processors
 
-During execution of the webhook the `process` method of the processor is called. A [Request](http://api.symfony.com/master/Symfony/Component/HttpFoundation/Request.html) instance is passed, it contains all request data passed to the applcation.
+During execution of the webhook the `process` method of the processor is called. A [Request](http://api.symfony.com/master/Symfony/Component/HttpFoundation/Request.html) instance is passed, it contains all request data passed to the application.
 
 The webhook implementation requires that after the processor or all processor via the `chain` processor are run the request object holds both `username` and `action` attributes.
 
-Processors can be combined through chaining to maximize flexibility, for an example you can follow the [How to write your own integration](integrations.md) guide. A very good example is to process palyload from GitHub and then use a custom processor to map github usernames to internal usernames.
+Processors can be combined through chaining to maximise flexibility, for an example you can follow the [How to write your own integration](integrations.md) guide. A very good example is to process payload from GitHub and then use a custom processor to map github usernames to internal usernames.
 
 Processors are then available as part of a webhook route `/webhook/incoming/{processor}/` and reachable via `GET` and `POST`.
 
@@ -115,8 +115,8 @@ class MyProcessor implements ProcessorInterface
      // $username = ...
      // $action = ...
 
-     $request->attrbiutes->set('username', $username);
-     $request->attrbiutes->set('action', $action);
+     $request->attributes->set('username', $username);
+     $request->attributes->set('action', $action);
     }
 }
 ```
@@ -125,7 +125,7 @@ class MyProcessor implements ProcessorInterface
 
 #### `ChainProcessor`
 
-The [ChainProcessor](../../src/Component/Webhook/Incoming/Processor/ChainProcessor.php) is able to chain multiple processors to maximize flexibility. It is configured in your integration configuration.
+The [ChainProcessor](../../src/Component/Webhook/Incoming/Processor/ChainProcessor.php) is able to chain multiple processors to maximise flexibility. It is configured in your integration configuration.
 
 ```yml
 integration:
@@ -139,8 +139,8 @@ integration:
          # Your company provides a processor to transform Jenkins CI payloads
          example-mycompany-jenkinsci:
           class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
-         # Your company provides a second processor to ap jenkins users to Yay players
-         # based on a static configuration file deployed witht he application
+         # Your company provides a second processor to map jenkins users to Yay players
+         # based on a static configuration file deployed with the application
          example-mycompany-users:
           class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
           arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
@@ -199,7 +199,7 @@ URL:  `/webhook/incoming/example-static-map/`.
 
 #### `GitHub`
 
-The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/GithubProcessor.php) processes Github's webhook payloads to extract `username` and `actions`.
+The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/GithubProcessor.php) processes GitHub webhook payloads to extract `username` and `actions`.
 
 ```yml
 integration:
@@ -213,7 +213,7 @@ URL:  `/webhook/incoming/example-github/`.
 
 ### Example GitHub
 
-Infamous git platform GitHub use the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to conntect their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay is able to process it as well.
+Infamous git platform GitHub use the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to connects their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay is able to process it as well.
 
 #### Configuration in Yay
 

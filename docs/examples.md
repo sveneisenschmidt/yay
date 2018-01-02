@@ -1,4 +1,4 @@
-[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customization](customization.md) | **Examples** | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
+[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customisation](customisation.md) | **Examples** | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
 
 
 ---
@@ -17,7 +17,7 @@ An on-the-fly generated API documentation can be found under [`http://localhost:
 
 ### Filtering results
 
-Filtering for specific results is achieved by the `filter` query paramter.
+Filtering for specific results is achieved by the `filter` query parameter.
 
 #### Filter by `name`, it must equal `Jane Doe`:
 ```bash
@@ -60,7 +60,7 @@ The filtering uses a specific syntax to enable different types of matching strat
 
 ### Sorting results
 
-Setting a sorting is possible through setting a `order` query parameter. Sorting both ascdending and descending is possible.
+Setting a sorting is possible through setting a `order` query parameter. Sorting both ascending and descending is possible.
 
 #### Sorts by field `created_at`, use default sort direction (`desc`):
 ```bash
@@ -231,7 +231,7 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 []
 ```
 
-No achievment were granted yet, although if you check now our players personal actions you will find our recent action.
+No achievement were granted yet, although if you check now our players personal actions you will find our recent action.
 ```bash
 curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-actions
 
@@ -293,7 +293,7 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 ]⏎
 ```
 
-Clap, clap! Our player earned now his official second achievemennt.
+Clap, clap! Our player earned now his official second achievement.
 
 
 6\) Let's check now our player achievements by performing the following request.
