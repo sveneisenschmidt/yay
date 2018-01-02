@@ -73,7 +73,7 @@ During execution of the webhook the `process` method of the processor is called.
 
 The webhook implementation requires that after the processor or all processor via the `chain` processor are run the request object holds both `username` and `action` attributes.
 
-Processors can be combined through chaining to maximise flexibility, you can follow the [GitHub example](under-the-hood.md#example-gitHub) to see all benefits of processing webhook payloads. E.g you can process a payload from GitHub and then use a custom processor to map github usernames to internal usernames.
+Processors can be combined through chaining to maximise flexibility, you can follow the [GitHub example](under-the-hood.md#example-github) to see all benefits of processing webhook payloads. E.g you can process a payload from GitHub and then use a custom processor to map github usernames to internal usernames.
 
 Processors are then available as part of a webhook route `/webhook/incoming/{processor}/` and reachable via `GET` and `POST`.
 
