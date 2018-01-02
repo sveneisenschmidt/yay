@@ -14,7 +14,7 @@ class RecalculateCommand extends ContainerAwareCommand
     {
         $this
             ->setName('yay:recalculate')
-            ->setDescription('Install\'s an integration defined by it\'s path.')
+            ->setDescription('Recalculates a player\'s progress.')
         ;
     }
 

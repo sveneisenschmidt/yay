@@ -69,7 +69,7 @@ class PlayerController extends Controller
     ): Response {
         $players = $engine->findPlayerAny()
             ->matching($handler->createCriteria($request))
-            ->toArray();
+            ->getValues();
 
         return $serializer->createResponse(
             $players,
@@ -276,7 +276,7 @@ class PlayerController extends Controller
         $achievements = $players->first()
             ->getPersonalAchievements()
             ->matching($handler->createCriteria($request))
-            ->toArray();
+            ->getValues();
 
         return $serializer->createResponse(
             $achievements,
@@ -358,7 +358,7 @@ class PlayerController extends Controller
         $actions = $players->first()
             ->getPersonalActions()
             ->matching($handler->createCriteria($request))
-            ->toArray();
+            ->getValues();
 
         return $serializer->createResponse(
             $actions,
@@ -450,7 +450,7 @@ class PlayerController extends Controller
         $activities = $players->first()
             ->getActivities()
             ->matching($handler->createCriteria($request))
-            ->toArray();
+            ->getValues();
 
         return $serializer->createResponse(
             $activities,

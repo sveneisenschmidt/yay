@@ -42,9 +42,6 @@
             --coverage-html=.build/report \
             --coverage-clover=coverage.xml')
 
-.application-build-docs:
-	@$(call .docker-run,cli,'php bin/console api:doc:dump') > docs/api.md
-
 .application-watch-logs:
 	@$(call .docker-run,cli,'tail -f var/logs/*')
 

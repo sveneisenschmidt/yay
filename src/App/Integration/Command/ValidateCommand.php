@@ -14,7 +14,7 @@ class ValidateCommand extends ContainerAwareCommand
     protected function configure(): void
     {
         $this->setName('yay:integration:validate')
-            ->setDescription('Enables an integration.')
+            ->setDescription('Validates an integration.')
             ->addArgument(
                 'name',
                 InputArgument::REQUIRED,
