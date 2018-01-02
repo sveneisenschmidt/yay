@@ -239,4 +239,4 @@ URL:  `/webhook/incoming/example-processor/`.
 
 #### Configuration in Github
 
-![Github Webhook Configuration](../../src/github-webhook.png)
+![Github Webhook Configuration](src/github-webhook.png)
