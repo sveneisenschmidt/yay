@@ -28,7 +28,7 @@ The integration setup file has a root element `integration` and four possible ch
 |---|---|
 | actions | Actions a player can perform. |
 | achievements | Achievements a player can earn. |
-| validators | Validators verify a players actions against any achievement and grants if they pass all checks. ( `Validate::validate(Achievement, Actions): true||false` ) |
+| validators | Validators verify a player's actions against any achievement and grants if they pass all checks. ( `Validate::validate(Achievement, Actions): true||false` ) |
 | webhooks | Processors that listen to incoming and outgoing webhooks to process payloads to push username and actions into the engine |
 
 #### Example setup file
@@ -182,7 +182,7 @@ integration:
 
 #### `webhooks`.`incoming`
 
-Webhook are declared as multi-dimensional associative arrays. Keys on the first level are the processor name, keys and values on second level are the properties of the webhook. During runtime the application needs to identify a processor by  its through a route parameter. Internally, processors implement the `ProcessorInterface`([1](../src/Component/Webhook/Incoming/ProcessorInterface.php), [2](../src/Component/Webhook/Outgoing/ProcessorInterface.php)) for incoming and outgoing webhooks.
+Webhooks are declared as multi-dimensional associative arrays. Keys on the first level are the processor name, keys and values on second level are the properties of the webhook. During runtime the application needs to identify a processor by  its through a route parameter. Internally, processors implement the `ProcessorInterface`([1](../src/Component/Webhook/Incoming/ProcessorInterface.php), [2](../src/Component/Webhook/Outgoing/ProcessorInterface.php)) for incoming and outgoing webhooks.
 
 Supported properties: `type`, `arguments`, `class`. If you provide `chain` for `type` the property `class` gets set to `ChainProcessor`, if you provide `dummy` it is set to `DummyProcessor` and if you provide `null` it is set to `NullProcessor` internally.
 
@@ -238,7 +238,7 @@ Hint: The disable routine will only remove the configuration. Entities created d
 
 ## Hosting
 
-To leverage the full potential of Yay it is encouraged to run it trough Docker. A easy way to do so is to use a platform like [sloppy.io](https://sloppy.io). We created a set of recipes to get you started, you can find them on [sveneisenschmidt/yay-recipes-sloppy](https://github.com/sveneisenschmidt/yay-recipes-sloppy).
+To leverage the full potential of Yay it is encouraged to run it trough Docker. An easy way to do so is to use a platform like [sloppy.io](https://sloppy.io). We created a set of recipes to get you started, you can find them on [sveneisenschmidt/yay-recipes-sloppy](https://github.com/sveneisenschmidt/yay-recipes-sloppy).
 
 --
 
