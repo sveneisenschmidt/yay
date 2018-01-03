@@ -61,19 +61,19 @@ class MyListener
 
 ## Webhooks
 
-Webhooks are the super glue that connects the outside world with your Yay instance.
+Webhooks are the link that joins the outside world with your Yay instance.
 
 ### Internals
 
-Processors implement the [ProcessorInterface](../../src/Component/Webhook/Incoming/ProcessorInterface.php) interface for incoming webhooks and implement the [ProcessorInterface](../../src/Component/Webhook/Outgoing/ProcessorInterface.php) interface for outgoing webhooks.
+Processors implement the `ProcessorInterface`([1](../src/Component/Webhook/Incoming/ProcessorInterface.php), [2](../src/Component/Webhook/Outgoing/ProcessorInterface.php)) for incoming and outgoing webhooks.
 
 #### Incoming processors
 
 During execution of the webhook the `process` method of the processor is called. A [Request](http://api.symfony.com/master/Symfony/Component/HttpFoundation/Request.html) instance is passed, it contains all request data passed to the application.
 
-The webhook implementation requires that after the processor or all processor via the `chain` processor are run the request object holds both `username` and `action` attributes.
+The webhook implementation requires that after the processor or all processors via the `chain` processor are run the request object holds both `username` and `action` attributes.
 
-Processors can be combined through chaining to maximise flexibility, you can follow the [GitHub example](under-the-hood.md#example-github) to see all benefits of processing webhook payloads. E.g you can process a payload from GitHub and then use a custom processor to map github usernames to internal usernames.
+Processors can be combined through chaining to maximise flexibility, you can follow the [GitHub example](under-the-hood.md#example-github) to see all the benefits of processing webhook payloads. E.g you can process a payload from GitHub and then use a custom processor to map github usernames to internal usernames.
 
 Processors are then available as part of a webhook route `/webhook/incoming/{processor}/` and reachable via `GET` and `POST`.
 
@@ -213,7 +213,7 @@ URL:  `/webhook/incoming/example-github/`.
 
 ### Example GitHub
 
-Infamous git platform GitHub use the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to connects their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay is able to process it as well.
+Famous git platform GitHub uses the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to connects their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay is able to process it as well.
 
 #### Configuration in Yay
 
