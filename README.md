@@ -51,7 +51,7 @@ Yay is a **gamification engine** directly exposing a web service API to bring ev
 
 ## Documentation
 
-Documentation can be found in the [docs folder](docs/README.md). Want to try it out or develop it further? Please see the [Contributing](contributing.md) documentation. It provides everything to get you started. **Yay! Isn't that awesome?!**
+Documentation can be found in the [docs folder](docs/README.md). Want to try it out or develop it further? Please see the [Contributing](docs/contributing.md) documentation. It provides everything to get you started. **Yay! Isn't that awesome?!**
 
 
 ---
