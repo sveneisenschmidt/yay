@@ -32,7 +32,7 @@ __NOTE__: Ready-to-use Docker images `sveneisenschmidt/yay` and `sveneisenschmid
 
 It is encouraged to create your own distribution based on a docker image which includes your own or third-party integrations. As a first step use the application sources and Dockerfile to create a docker image and use it via `FROM` as basis for your own `Dockerfile`.
 
-Create a new folder, or preferably clone a repository that contains your own Dockerfile and integrations to extend yay.
+Create a new folder, or preferably clone a repository that contains your own Dockerfile and integrations to extend Yay.
 
 Let's assume you have a folder called 'mycompany-yay', it will hold our Dockerfile that will have a custom command. The default docker image has a default `CMD` that will load a `docker-run.sh` file from the `root` folder if present.
 
@@ -86,7 +86,7 @@ $ docker run \
 
 ## Configuration
 
-The application is configured through environment variables, these will be provided through the `docker-compose` file during development. In product they need to be passed to the running container that includes the application or e.g. provided via `SetEnv` by a Apache2 web server. The application itself reads then the parameters through the [parameters.yml](../config/parameters.yml) file.
+The application is configured through environment variables, these will be provided through the `docker-compose.yml` file during development. In production they need to be passed to the running container that includes the application. e.g. via SetEnv by an Apache2 web server. The application itself reads then the parameters through the [parameters.yml](../config/parameters.yml) file.
 
 | Variable | Default Value | Description |
 |---|---|---|
@@ -124,7 +124,7 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 ]
 ```
 
-An on-the-fly generated API documentation can be found under [`http://localhost:50080/api/doc`](http://localhost:50080/api/doc), run it with `make start`. The latest stable version [`https://yay-demo.sloppy.zone/api/doc`](https://yay-demo.sloppy.zone/api/doc) is available via `sloppy.io`.
+Automatically-generated API documentation can be found at [`http://localhost:50080/api/doc`](http://localhost:50080/api/doc), run it with `make start`. The latest stable version [`https://yay-demo.sloppy.zone/api/doc`](https://yay-demo.sloppy.zone/api/doc) is available via `sloppy.io`.
 
 Additionally Yay supports integrating third party applications via webhooks. Yay ships a basic Github webhook integration, more platforms will follow soon. Until then you can follow the webhook guide "[Under The Hood: Webhooks](under-the-hood.md#webhooks)" or write and contribute your own webhooks/processors, yay!
 

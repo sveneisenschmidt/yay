@@ -22,13 +22,13 @@ touch integration/mycompany.yml
 
 ### Integration setup
 
-The integration setup file has a root element `integration` and four possible children nodes `actions`, `achievements`, and `validators`.
+The integration setup file has a root element `integration` and four possible child nodes `actions`, `achievements`, and `validators`.
 
 | Node | Description |
 |---|---|
 | actions | Actions a player can perform. |
 | achievements | Achievements a player can earn. |
-| validators | Validators validates a players actions against any achievement and grants if validation passed the validation. ( `Validate::validate(Achievement, Actions): true||false` ) |
+| validators | Validators verify a player's actions against any achievement and grants if they pass all checks. ( `Validate::validate(Achievement, Actions): true||false` ) |
 | webhooks | Processors that listen to incoming and outgoing webhooks to process payloads to push username and actions into the engine |
 
 #### Example setup file
@@ -153,7 +153,7 @@ integration:
 
 #### `validators`
 
-Validators are declared as multi-dimensional associative arrays. Keys on the first level are the validators name, keys and values on second level are the properties of the validator. During runtime the application needs to know when to grant an achievement after certain set of actions have been performed by a player. To provide this functionality the application uses validators that are able to tell if achievement criteria are met. Internally validators implement the [AchievementValidatorInterface](../src/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of achievements.
+Validators are declared as multi-dimensional associative arrays. Keys on the first level are the validators name, keys and values on second level are the properties of the validator. During runtime the application needs to know when to grant an achievement after a certain set of actions have been performed by a player. To provide this functionality the application uses validators that are able to tell if achievement criteria have been met. Internally validators implement the [AchievementValidatorInterface](../src/Component/Engine/AchievementValidatorInterface.php), a default validator that uses the [Expression Language](https://symfony.com/doc/current/components/expression_language.html) component is provided and simplifies the evaluation of achievements.
 
 Supported properties: `type`, `arguments`, `class`. If you provide `expression` for `type` internally the property `class` gets set to `ExpressionLanguageValidator`.
 
@@ -182,7 +182,7 @@ integration:
 
 #### `webhooks`.`incoming`
 
-Webhook  are declared as multi-dimensional associative arrays. Keys on the first level are the processor name, keys and values on second level are the properties of the validator. During runtime the application needs to identify a processor by it's name through a route parameter. Internally processors implement the [ProcessorInterface](../src/Component/Webhook/Incoming/ProcessorInterface.php) interface for incoming webhooks and implement the [ProcessorInterface](../src/Component/Webhook/Outgoing/ProcessorInterface.php) interface for outgoing webhooks.
+Webhooks are declared as multi-dimensional associative arrays. Keys on the first level are the processor name, keys and values on second level are the properties of the webhook. During runtime the application needs to identify a processor by  its through a route parameter. Internally, processors implement the `ProcessorInterface`([1](../src/Component/Webhook/Incoming/ProcessorInterface.php), [2](../src/Component/Webhook/Outgoing/ProcessorInterface.php)) for incoming and outgoing webhooks.
 
 Supported properties: `type`, `arguments`, `class`. If you provide `chain` for `type` the property `class` gets set to `ChainProcessor`, if you provide `dummy` it is set to `DummyProcessor` and if you provide `null` it is set to `NullProcessor` internally.
 
@@ -238,12 +238,16 @@ Hint: The disable routine will only remove the configuration. Entities created d
 
 ## Hosting
 
+To leverage the full potential of Yay it is encouraged to run it trough Docker. An easy way to do so is to use a platform like [sloppy.io](https://sloppy.io). We created a set of recipes to get you started, you can find them on [sveneisenschmidt/yay-recipes-sloppy](https://github.com/sveneisenschmidt/yay-recipes-sloppy).
+
+--
+
 ## Templates
 Yay sends a set of emails when events occur. It is powered by [Lee Munroe's](https://github.com/leemunroe) amazing [email templates](https://github.com/leemunroe/responsive-html-email-template).
 
 It is possible to override the layout ([`templates/Mail/layout.html.twig`](../templates/Mail/layout.html.twig).) or any other template for your liking.
 
-The following emails are send:
+The following emails are sent:
 
 ### New Player joined Yay!
 ```
@@ -312,7 +316,7 @@ URL:  `/webhook/incoming/example-github/`.
 
 ### Example GitHub
 
-Infamous git platform GitHub use the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to connect their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay is able to process it as well.
+Famous git platform GitHub use the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to connect their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay is able to process it as well.
 
 #### Configuration in Yay
 

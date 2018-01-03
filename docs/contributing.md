@@ -27,7 +27,7 @@ Prerequisites:
 Clone `yay` from source into any directory:
 
 ```bash
-$ git clone git@github.com:sveneisenschmidt/yay.git yay
+$ git clone git@github.com:sveneisenschmidt/yay.git
 $ cd yay
 ```
 
@@ -50,7 +50,7 @@ $ make start
 # http://localhost:50080
 ```
 
-To see all provided commands run `make` and a list of available target is rendered.
+To see all provided commands run `make` and a list of available targets is rendered.
 
 ```bash
 $ make

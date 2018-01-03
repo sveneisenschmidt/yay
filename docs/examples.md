@@ -11,9 +11,9 @@
 
 ## Usage / API
 
-Yay's API supports filtering, sorting and paginating for `GET requests.
+Yay's API supports filtering, sorting and paginating for `GET` requests.
 
-An on-the-fly generated API documentation can be found under [`http://localhost:50080/api/doc`](http://localhost:50080/api/doc), run it with `make start`. The latest stable version [`https://yay-demo.sloppy.zone/api/doc`](https://yay-demo.sloppy.zone/api/doc) is available via `sloppy.io`.
+Automatically-generated API documentation can be found at [`http://localhost:50080/api/doc`](http://localhost:50080/api/doc), run it with `make start`. The latest stable version [`https://yay-demo.sloppy.zone/api/doc`](https://yay-demo.sloppy.zone/api/doc) is available via `sloppy.io`.
 
 ### Filtering results
 
@@ -50,7 +50,7 @@ The filtering uses a specific syntax to enable different types of matching strat
 | lt | `filter[score:lt]=10` | Value of field `name` is less than `10`. |
 | lte | `filter[score:lte]=10` | Value of field `name` is greater than or equals `10`. |
 | gte | `filter[score:gte]=10` | Value of field `name` is less than or equals `10`. |
-| neq | `filter[name:neq]=Jane+Doe` | Value of field `name` does not equals `Jane Doe`. |
+| neq | `filter[name:neq]=Jane+Doe` | Value of field `name` does not equal `Jane Doe`. |
 | contains | `filter[name:contains]=Doe` | Value of field `name` contains `Doe`. |
 | startsWith | `filter[name:startsWith]=Jane` | Value of field `name` ends with `Jane`. |
 | endsWith | `filter[name:endsWith]=Doe` | Value of field `name` ends with `Doe`. |
@@ -132,7 +132,7 @@ curl -gX "GET" http://localhost:50080/api/players/?limit=1&offset=1
 
 ## Demo
 
-To run the demo we need to enable the demo integration, you can do so by using the built-in make command `make enable-demo` for your local dev environment or executing the appropriate console command (`php bin/console yay:integration:enable demo integration/demo`), we choose the former.
+To run the demo we need to enable the demo integration. You can do so by using the built-in make command `make enable-demo` for your local dev environment or executing the appropriate console command (`php bin/console yay:integration:enable demo integration/demo`), we choose the former.
 
 ```console
 $ make enable-demo
@@ -231,7 +231,7 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 []
 ```
 
-No achievement were granted yet, although if you check now our players personal actions you will find our recent action.
+No achievements were granted yet, although if you check now our players personal actions you will find our recent action.
 ```bash
 curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-actions
 
@@ -250,7 +250,8 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-actions
 ]
 ```
 
-Now let us get our first achievement. For this, perform four more times our `demo.action` action.
+Now let us get our first achievement. For this, perform the `demo.action` action four more times.
+
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
     -d "{\"username\":\"jane.doe\",\"actions\":[\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\"]}"
@@ -270,9 +271,9 @@ curl -X "POST" http://localhost:50080/api/progress/ \
     }
 ]
 ```
-Et voilà, we earned our first achievement!
+Et voilà: we earned our first achievement!
 
-5\) Now let us go further, Let the player perform five times more the `demo-action-01` action.
+5\) Now let's go further. Let the player perform the `demo-action-01` action five more times.
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
     -d "{\"username\":\"jane.doe\",\"actions\":[\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\"]}"
@@ -293,10 +294,9 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 ]⏎
 ```
 
-Clap, clap! Our player earned now his official second achievement.
+Clap, clap! Our player earned their second official achievement.
 
-
-6\) Let's check now our player achievements by performing the following request.
+6\) Let's check our player achievements by performing the following request.
 ```bash
 curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-achievements/
 
