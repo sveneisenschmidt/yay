@@ -3,5 +3,5 @@ CONTRIBUTORS
 
  - Sven Eisenschmidt (sveneisenschmidt)
  - Jasper Tandy (jaspertandy)
- - Victo rAvelar (VictorAvelar)
+ - Victor Avelar (VictorAvelar)
  - Lee Connelly (LeeConnelly12)
