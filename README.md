@@ -5,7 +5,7 @@
 <p align="center">
   <img alt="Yay! Logo" src="docs/src/logo.svg" height="168" />
   <h3 align="center">Yay!</h3>
-  <p align="center">Gamification done simple.</p>
+  <p align="center">Gamification made simple.</p>
   <p align="center">
     <a href="https://travis-ci.org/sveneisenschmidt/yay">
         <img src="https://travis-ci.org/sveneisenschmidt/yay.svg?branch=master" alt="Build Status">
