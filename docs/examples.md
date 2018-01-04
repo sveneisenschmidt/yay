@@ -6,7 +6,7 @@
 # Examples
 
 * [Usage / API](examples.md#usage--api)
-* [Demo](examples.md#setup)
+* [Demo](examples.md#demo)
 ---
 
 ## Usage / API
