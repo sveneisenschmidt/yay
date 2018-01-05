@@ -29,12 +29,12 @@ include makedefs/*.mk
 restart: stop start
 
 start:
-	@$(call .docker-upd,web)
+	@$(call .docker-upd,mysqldb web)
 	@sleep 5
 	# http://localhost:50080
 
 start-attached:
-	@$(call .docker-up,web)
+	@$(call .docker-up,mysqldb web)
 
 stop:
 	@docker-compose -p $(PROJECT) stop || true
