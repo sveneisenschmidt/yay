@@ -66,7 +66,6 @@ class CriteriaHandler
 
     public function handleOrderBy(Criteria $criteria, array $map): Criteria
     {
-        $normalizer = new CamelCaseToSnakeCaseNameConverter();
         $normalizedMap = [];
 
         foreach ($map as $key => $value) {
