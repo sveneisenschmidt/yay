@@ -1,0 +1,4 @@
+<Location /favicon.ico>
+  Order deny,allow
+  Deny from all
+</Location>
