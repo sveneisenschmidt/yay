@@ -1,7 +1,3 @@
-[Table of Contents](docs/README.md) | [Getting Started](docs/getting-started.md) | [Customisation](docs/customisation.md) | [Examples](docs/examples.md) | [Under The Hood](docs/under-the-hood.md) | [Contributing](docs/contributing.md)
-
----
-
 <p align="center">
   <img alt="Yay! Logo" src="docs/src/logo.svg" height="168" />
   <h3 align="center">Yay!</h3>
