@@ -63,12 +63,12 @@ $ make
 #    install              Install and build the application including development environment
 #    test                 Run application tests
 #    test-coverage        Run application tests and generate code coverage
-#    shell                Start an interactive shell session
+#    qa					  Run static code analysis 
 #    default-publish      Publish demo docker image to sveneisenschmidt/yay
-#    enable-demo          Import demo data
-#    disable-demo         Remove demo data
-#    enable-github        Import demo data
-#    disable-github       Remove demo data
+#    enable-demo          Enable demo integration
+#    disable-demo         Remove demo integration
+#    enable-github        Disable github integration
+#    disable-github       Disable github integration
 #    demo-publish         Publish demo docker image to sveneisenschmidt/yay-demo
 #    watch-logs           Watch all log files
 #    watch-redis          Watch all redis queries
@@ -85,7 +85,8 @@ $ make build
 When you are satisfied with the changes, we suggest you run:
 
 ```console
-$ make test
+$ make test-coverage // Run tests and checks code coverage
+$ make qa // Run static code analysis and checks for violations
 ```
 
 Which runs all the tests.
