@@ -21,7 +21,7 @@ class EnvironmentConfigurationTraitTest extends TestCase
         $container = $this->createConfiguredMock(ContainerBuilder::class, [
             'getParameter' => 'test',
         ]);
-        
+
         /** @var object&EnvironmentConfigurationTrait */
         $instance = $this->createInstance();
         $loaded = $instance->loadFromDirectory(

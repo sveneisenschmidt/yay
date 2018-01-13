@@ -23,7 +23,7 @@ abstract class WebTestCase extends BaseWebTestCase
 
         /** @var ManagerRegistry $doctrine */
         $doctrine = $container->get('doctrine');
-        $manager = $doctrine ->getManager();
+        $manager = $doctrine->getManager();
 
         $loader = new NativeLoader();
         $set = $loader->loadFile(file_exists($fixture1) ? $fixture1 : $fixture2);
@@ -42,7 +42,7 @@ abstract class WebTestCase extends BaseWebTestCase
 
         /** @var ManagerRegistry $doctrine */
         $doctrine = $container->get('doctrine');
-        $manager = $doctrine ->getManager();
+        $manager = $doctrine->getManager();
 
         $purger = new ORMPurger($manager);
         $purger->purge();
