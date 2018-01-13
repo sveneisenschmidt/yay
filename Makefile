@@ -66,6 +66,9 @@ test: .application-test
 .PHONY: test-coverage
 test-coverage: .application-test-coverage
 
+.PHONY: qa
+qa: .application-qa
+
 .PHONY: enable-demo
 enable-demo: .integration-enable-demo
 

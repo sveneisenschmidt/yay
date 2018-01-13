@@ -23,7 +23,7 @@ class RecalculateCommandTest extends KernelTestCase
             ->setMethods(['advance', 'findPlayerAny'])
             ->getMock();
 
-        $engine->expects($this->atLeastonce())
+        $engine->expects($this->atLeastOnce())
             ->method('findPlayerAny')
             ->willReturn(new PlayerCollection([
                 $this->createMock(Player::class),

@@ -6,6 +6,8 @@ use Component\Entity\PlayerInterface;
 
 interface PersonalAchievementInterface
 {
+    public function getAchievedAt(): \DateTime;
+
     public function setAchievementDefinition(AchievementDefinitionInterface $achievementDefinition);
 
     public function getAchievementDefinition(): AchievementDefinitionInterface;

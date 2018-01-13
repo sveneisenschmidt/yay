@@ -8,21 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
 use Component\HttpFoundation\Request\ParamConverter\DeserializeFieldConverter;
-
-class DeserializeFieldConverterFixture
-{
-    /**
-     * @JMS\Serializer\Annotation\Type("string")
-     * @JMS\Serializer\Annotation\Groups({"test1"})
-     */
-    public $bar1 = '';
-
-    /**
-     * @JMS\Serializer\Annotation\Type("string")
-     * @JMS\Serializer\Annotation\Groups({"test2"})
-     */
-    public $bar2 = '';
-}
+use Component\HttpFoundation\Tests\Request\ParamConverter\Fixture\DeserializeFieldConverterFixture;
 
 class DeserializeFieldConverterTest extends TestCase
 {

@@ -3,8 +3,9 @@
 namespace App\Mail\EventListener;
 
 use App\Mail\Service\Mailer;
-use Component\Entity\Achievement\PersonalAchievement;
-use Component\Entity\Achievement\PersonalAction;
+use Component\Entity\PlayerInterface;
+use Component\Entity\Achievement\PersonalAchievementInterface;
+use Component\Entity\Achievement\PersonalActionInterface;
 use Component\Engine\Event\ObjectEvent;
 use Component\Engine\EventListener\EventListenerInterface;
 
@@ -20,6 +21,7 @@ class MailListener implements EventListenerInterface
 
     public function onCreatePlayer(ObjectEvent $event): void
     {
+        /** @var PlayerInterface $player */
         $player = $event->getObject();
 
         $this->mailer->send($this->mailer->compose(
@@ -32,6 +34,7 @@ class MailListener implements EventListenerInterface
 
     public function onGrantPersonalAction(ObjectEvent $event): void
     {
+        /** @var PersonalActionInterface $personalAction */
         $personalAction = $event->getObject();
         $player = $personalAction->getPlayer();
 
@@ -45,6 +48,7 @@ class MailListener implements EventListenerInterface
 
     public function onGrantPersonalAchievement(ObjectEvent $event): void
     {
+        /** @var PersonalAchievementInterface $personalAchievement */
         $personalAchievement = $event->getObject();
         $player = $personalAchievement->getPlayer();
 

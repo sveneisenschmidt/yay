@@ -14,7 +14,7 @@ trait EngineControllerTrait
         array $actions
     ): array {
         if (empty($actions)) {
-            throw $this->createNotFoundException(sprintf('Actions empty', $username));
+            throw $this->createNotFoundException('Actions empty');
         }
 
         $players = $engine->findPlayerBy(['username' => $username]);

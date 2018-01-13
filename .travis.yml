@@ -24,6 +24,7 @@ jobs:
       - make install 2>&1 "$TRAVIS_BUILD_DIR"/install.log | pv > /dev/null -t
       script:
       - make test-coverage
+      - make qa
       after_success:
       - bash <(curl -s https://codecov.io/bash)
       - cat "$TRAVIS_BUILD_DIR"/install.log

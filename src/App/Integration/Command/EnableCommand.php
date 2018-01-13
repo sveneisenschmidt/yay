@@ -57,6 +57,7 @@ class EnableCommand extends ContainerAwareCommand
         $sourceFile = realpath(sprintf('%s/../../%s.yml', $rootDirectory, $path));
         $targetDirectory = realpath(sprintf('%s/../../config/integration', $rootDirectory));
 
+        /** @var InstallerService $installer */
         $installer = $this->getContainer()->get(InstallerService::class);
         $installer->install($name, $sourceFile, $targetDirectory, $mode);
 

@@ -3,13 +3,12 @@
 namespace App\Api\Tests\Controller;
 
 use App\Api\Test\WebTestCase;
-use Faker\Factory as FakerFactory;
 
 class PlayerControllerTest extends WebTestCase
 {
     public function providePlayerData(): array
     {
-        $faker = FakerFactory::create();
+        $faker = \Faker\Factory::create();
 
         return [
             [

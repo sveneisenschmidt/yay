@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ResponseSerializer
 {
+    /** @var SerializerInterface */
+    protected $serializer;
+
     public function __construct(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;

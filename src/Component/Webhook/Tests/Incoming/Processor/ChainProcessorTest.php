@@ -4,7 +4,7 @@ namespace Component\Webhook\Tests\Incoming\Processor;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Component\Webhook\Incoming\Processor\ProcessorInterface;
+use Component\Webhook\Incoming\ProcessorInterface;
 use Component\Webhook\Incoming\Processor\ChainProcessor;
 
 class ChainProcessorTest extends TestCase
@@ -19,21 +19,21 @@ class ChainProcessorTest extends TestCase
     {
         $processor1 = $this->getMockBuilder(ProcessorInterface::class)
             ->disableOriginalConstructor()
-            ->setMethods(['process'])
+            ->setMethods(['process', 'getName'])
             ->getMock();
         $processor1->expects($this->once())
             ->method('process');
 
         $processor2 = $this->getMockBuilder(ProcessorInterface::class)
             ->disableOriginalConstructor()
-            ->setMethods(['process'])
+            ->setMethods(['process', 'getName'])
             ->getMock();
         $processor2->expects($this->once())
             ->method('process');
 
         $processor3 = $this->getMockBuilder(ProcessorInterface::class)
             ->disableOriginalConstructor()
-            ->setMethods(['process'])
+            ->setMethods(['process', 'getName'])
             ->getMock();
         $processor3->expects($this->once())
             ->method('process');

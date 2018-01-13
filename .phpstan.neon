@@ -1,0 +1,8 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-phpunit/rules.neon
+
+parameters:
+	ignoreErrors:
+		- '#Call to an undefined method Symfony\\[a-zA-Z0-9\\_]+\\NodeDefinition::children\(\)#'

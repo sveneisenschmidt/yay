@@ -15,4 +15,6 @@ interface ActivityInterface
     public function setCreatedAt(\DateTime $createdAt): void;
 
     public function getCreatedAt(): \DateTime;
+
+    public function getPlayer(): PlayerInterface;
 }

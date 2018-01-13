@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Engine\Tests\Command;
+namespace App\Integration\Tests\Command;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

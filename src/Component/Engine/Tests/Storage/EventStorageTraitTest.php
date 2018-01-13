@@ -36,6 +36,7 @@ class EventStorageTraitTest extends TestCase
         $storage = $this->createMock(StorageInterface::class);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
+        /** @var object&EventStorageTrait $instance */
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
         $this->assertSame($eventDispatcher, $instance->getEventDispatcher());
     }
@@ -52,6 +53,7 @@ class EventStorageTraitTest extends TestCase
             );
 
         $object = $this->createMock(PlayerInterface::class);
+        /** @var object&EventStorageTrait $instance */
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
         $instance->savePlayer($object);
     }
@@ -68,6 +70,7 @@ class EventStorageTraitTest extends TestCase
             );
 
         $object = $this->createMock(PersonalAchievementInterface::class);
+        /** @var object&EventStorageTrait $instance */
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
         $instance->savePersonalAchievement($object);
     }
@@ -84,6 +87,7 @@ class EventStorageTraitTest extends TestCase
             );
 
         $object = $this->createMock(PersonalActionInterface::class);
+        /** @var object&EventStorageTrait $instance */
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
         $instance->savePersonalAction($object);
     }

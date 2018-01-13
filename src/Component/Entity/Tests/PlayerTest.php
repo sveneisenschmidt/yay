@@ -2,7 +2,6 @@
 
 namespace Component\Entity\Tests;
 
-use Faker\Factory as FakerFactory;
 use PHPUnit\Framework\TestCase;
 use Component\Entity\Achievement\AchievementDefinition;
 use Component\Entity\Achievement\PersonalAchievement;
@@ -11,9 +10,14 @@ use Component\Entity\Player;
 
 class PlayerTest extends TestCase
 {
+    /**
+     * @var \Faker\Generator
+     */
+    protected $faker;
+
     public function setUp(): void
     {
-        $this->faker = FakerFactory::create();
+        $this->faker = \Faker\Factory::create();
     }
 
     public function test_set_get_scalar(): void

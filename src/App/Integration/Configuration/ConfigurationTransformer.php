@@ -15,6 +15,12 @@ use Component\Webhook\Outgoing\Processor\NullProcessor as OutgoingNullProcessor;
 
 class ConfigurationTransformer
 {
+    /** @var Processor */
+    protected $processor;
+
+    /** @var Configuration */
+    protected $configuration;
+
     public function __construct(Processor $processor, Configuration $configuration)
     {
         $this->processor = $processor;

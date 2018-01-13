@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Integration\Tests\Service;
+namespace App\Mail\Tests\Service;
 
-use Faker\Factory as FakerFactory;
 use PHPUnit\Framework\TestCase;
 use Swift_Mailer;
 use Swift_Message;
@@ -13,7 +12,7 @@ class MailerTest extends TestCase
 {
     public function test_compose()
     {
-        $faker = FakerFactory::create();
+        $faker = \Faker\Factory::create();
         $mailer = new Mailer(
             $renderer = $this->createMock(TwigEngine::class),
             $mail = $this->createMock(Swift_Mailer::class)
@@ -31,7 +30,7 @@ class MailerTest extends TestCase
 
     public function test_send()
     {
-        $faker = FakerFactory::create();
+        $faker = \Faker\Factory::create();
         $mailer = new Mailer(
             $renderer = $this->createMock(TwigEngine::class),
             $mail = $this->createConfiguredMock(Swift_Mailer::class, [

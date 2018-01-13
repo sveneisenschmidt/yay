@@ -10,7 +10,7 @@ class DummyProcessor implements ProcessorInterface
     /** @var string */
     protected $name;
 
-    /** @var data */
+    /** @var array */
     protected $data;
 
     public function __construct(string $name, array $data = [])
@@ -27,7 +27,7 @@ class DummyProcessor implements ProcessorInterface
     public function process(Request $request): void
     {
         foreach ($this->data as $key => $value) {
-            if (!$request->request->has($key, $value)) {
+            if (!$request->request->has($key)) {
                 $request->request->set($key, $value);
             }
         }

@@ -8,6 +8,9 @@ use App\Api\Response\ResponseSerializer;
 
 class KernelExceptionListener
 {
+    /** @var ResponseSerializer */
+    protected $serializer;
+
     public function __construct(ResponseSerializer $serializer)
     {
         $this->serializer = $serializer;
