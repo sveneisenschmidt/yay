@@ -69,6 +69,7 @@ class CriteriaHandlerTest extends WebTestCase
         $criteria = (new CriteriaHandler())->createCriteria($request);
         $this->assertNotEmpty($criteria->getWhereExpression());
 
+        /** @var Comparison $expr */
         $expr = $criteria->getWhereExpression();
         $this->assertEquals($field, $expr->getField());
         $this->assertEquals($value, $expr->getValue()->getValue());
@@ -85,6 +86,7 @@ class CriteriaHandlerTest extends WebTestCase
         $criteria = (new CriteriaHandler())->createCriteria($request);
         $this->assertNotEmpty($criteria->getWhereExpression());
 
+        /** @var Comparison $expr */
         $expr = $criteria->getWhereExpression();
         $this->assertEquals(Comparison::EQ, $expr->getOperator());
     }
@@ -99,6 +101,7 @@ class CriteriaHandlerTest extends WebTestCase
         $criteria = (new CriteriaHandler())->createCriteria($request);
         $this->assertNotEmpty($criteria->getWhereExpression());
 
+        /** @var Comparison $expr */
         $expr = $criteria->getWhereExpression();
         $this->assertEquals(Comparison::NEQ, $expr->getOperator());
     }

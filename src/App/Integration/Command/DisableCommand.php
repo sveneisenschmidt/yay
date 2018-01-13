@@ -29,6 +29,7 @@ class DisableCommand extends ContainerAwareCommand
         $rootDirectory = $this->getContainer()->getParameter('kernel.root_dir');
         $targetDirectory = realpath(sprintf('%s/../config/integration', $rootDirectory));
 
+        /** @var InstallerService $installer */
         $installer = $this->getContainer()->get(InstallerService::class);
         $installer->uninstall($name, $targetDirectory);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Component\DependencyInjection\tTests;
+namespace Component\DependencyInjection\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Component\DependencyInjection\EnvironmentConfigurationTrait;
@@ -22,6 +22,7 @@ class EnvironmentConfigurationTraitTest extends TestCase
             'getParameter' => 'test',
         ]);
 
+        /** @var object&EnvironmentConfigurationTrait */
         $instance = $this->createInstance();
         $loaded = $instance->loadFromDirectory(
             __DIR__.'/Fixtures/EnvironmentConfigurationTrait',
@@ -39,6 +40,7 @@ class EnvironmentConfigurationTraitTest extends TestCase
             'getParameter' => 'dev',
         ]);
 
+        /** @var object&EnvironmentConfigurationTrait */
         $instance = $this->createInstance();
         $loaded = $instance->loadFromDirectory(
             __DIR__.'/Fixtures/EnvironmentConfigurationTrait',

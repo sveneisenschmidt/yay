@@ -1,17 +1,17 @@
 .application-remove-cache-dev:
 	@$(call .docker-run,cli,'\
-        php bin/console cache:clear --env=dev --no-warmup && \
-        php bin/console cache:warmup --env=dev')
+		php bin/console cache:clear --env=dev --no-warmup && \
+		php bin/console cache:warmup --env=dev')
 
 .application-remove-cache-test:
 	@$(call .docker-run,cli,'\
-        php bin/console cache:clear --env=test --no-warmup && \
-        php bin/console cache:warmup --env=test')
+		php bin/console cache:clear --env=test --no-warmup && \
+		php bin/console cache:warmup --env=test')
 
 .application-remove-cache-prod:
 	@$(call .docker-run,cli,'\
-        php bin/console cache:clear --env=prod --no-warmup && \
-        php bin/console cache:warmup --env=prod')
+		php bin/console cache:clear --env=prod --no-warmup && \
+		php bin/console cache:warmup --env=prod')
 
 .application-install-dependencies:
 	@mkdir -p .build .build/cache vendor var/logs var/cache var/sessions || true
@@ -31,16 +31,19 @@
 	@$(call .docker-run,cli,'\
 		php bin/console doctrine:schema:drop --env=test --force --em=default && \
 		php bin/console doctrine:schema:create --env=test --em=default && \
-        vendor/bin/phpunit')
+        	vendor/bin/phpunit')
 
 .application-test-coverage:
 	@$(call .docker-run,cli,'\
 		php bin/console doctrine:schema:drop  --env=test --force --em=default && \
 		php bin/console doctrine:schema:create  --env=test --em=default && \
-        phpdbg -qrr ./vendor/bin/phpunit \
-            --coverage-text \
-            --coverage-html=.build/report \
-            --coverage-clover=coverage.xml')
+		phpdbg -qrr ./vendor/bin/phpunit \
+			--coverage-text \
+			--coverage-html=.build/report \
+			--coverage-clover=coverage.xml')
+
+.application-qa:
+	@$(call .docker-run,cli,'vendor/bin/phpstan analyse src --level 2 -c .phpstan.neon')
 
 .application-watch-logs:
 	@$(call .docker-run,cli,'tail -f var/logs/*')

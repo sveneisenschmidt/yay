@@ -36,6 +36,7 @@ class ValidateCommand extends ContainerAwareCommand
         $sourceFile = realpath(sprintf('%s/../%s.yml', $rootDirectory, $path));
 
         try {
+            /** @var InstallerService $installer */
             $installer = $this->getContainer()->get(InstallerService::class);
             $installer->validate($name, $sourceFile);
 

@@ -4,6 +4,7 @@ namespace App\Integration\Configuration;
 
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 class Configuration implements ConfigurationInterface
 {
@@ -12,6 +13,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('integration');
 
+        /* @var ArrayNodeDefinition $rootNode */
         $rootNode
             ->children()
                 ->arrayNode('levels')

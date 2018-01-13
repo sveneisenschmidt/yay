@@ -14,7 +14,7 @@ class ActionDefinition implements ActionDefinitionInterface
     protected $description = '';
 
     /**
-     * @var array|PersonalActionInterface[]
+     * @var array<PersonalActionInterface>
      */
     protected $personalActions;
 

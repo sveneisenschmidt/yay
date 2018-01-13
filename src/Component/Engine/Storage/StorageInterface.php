@@ -45,7 +45,7 @@ interface StorageInterface
 
     public function findLevel(string $name): ?LevelInterface;
 
-    public function findLevelBy(): LevelCollection;
+    public function findLevelBy(array $criteria = []): LevelCollection;
 
     public function saveLevel(LevelInterface $level);
 

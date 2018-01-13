@@ -31,7 +31,7 @@ class ExpressionLanguageValidator implements AchievementValidatorInterface
 
     public function validate(ValidationContext $validationContext): bool
     {
-        return $this->language->evaluate(
+        return (bool) $this->language->evaluate(
             $this->expression,
             [
                 'player' => $validationContext->getPlayer(),

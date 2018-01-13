@@ -32,7 +32,7 @@ class Player implements PlayerInterface
     protected $personalActions;
 
     /**
-     * @var array|PersonalAchievementInterface[]
+     * @var array<PersonalAchievementInterface>
      */
     protected $personalAchievements;
 

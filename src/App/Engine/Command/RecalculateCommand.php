@@ -20,6 +20,7 @@ class RecalculateCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
+        /** @var Engine $engine */
         $engine = $this->getContainer()->get(Engine::class);
         foreach ($engine->findPlayerAny() as $player) {
             $achievements = $engine->advance($player);

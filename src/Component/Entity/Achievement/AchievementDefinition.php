@@ -22,12 +22,12 @@ class AchievementDefinition implements AchievementDefinitionInterface
     protected $createdAt;
 
     /**
-     * @var array|ActionDefinitionInterface[]
+     * @var array<ActionDefinitionInterface>|ActionDefinitionCollection
      */
     protected $actionDefinitions;
 
     /**
-     * @var array|PersonalAchievementInterface[]
+     * @var array<PersonalAchievementInterface>|PersonalAchievementCollection
      */
     protected $personalAchievements;
 
@@ -36,6 +36,7 @@ class AchievementDefinition implements AchievementDefinitionInterface
         $this->name = $name;
         $this->createdAt = $createdAt ? $createdAt : new \DateTime();
         $this->actionDefinitions = new ActionDefinitionCollection();
+        $this->personalAchievements = new PersonalAchievementCollection();
     }
 
     public function getName(): string

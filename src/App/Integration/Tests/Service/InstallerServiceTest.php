@@ -18,17 +18,17 @@ class InstallerServiceTest extends TestCase
             ->setMethods(['installServices', 'installEntities', 'loadConfig', 'transformFromConfig'])
             ->getMock();
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('installServices');
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('installEntities');
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('loadConfig')
             ->willReturn([]);
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('transformFromConfig')
             ->willReturn(['services.yml' => [], 'entities.yml' => []]);
 
@@ -42,17 +42,17 @@ class InstallerServiceTest extends TestCase
             ->setMethods(['installServices', 'installEntities', 'loadConfig', 'transformFromConfig'])
             ->getMock();
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('installServices');
 
         $installer->expects($this->never())
             ->method('installEntities');
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('loadConfig')
             ->willReturn([]);
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('transformFromConfig')
             ->willReturn(['services.yml' => [], 'entities.yml' => []]);
 
@@ -69,14 +69,14 @@ class InstallerServiceTest extends TestCase
         $installer->expects($this->never())
             ->method('installServices');
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('installEntities');
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('loadConfig')
             ->willReturn([]);
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('transformFromConfig')
             ->willReturn(['services.yml' => [], 'entities.yml' => []]);
 
@@ -92,7 +92,7 @@ class InstallerServiceTest extends TestCase
             ->setMethods(['dumpFile'])
             ->getMock();
 
-        $filesystem->expects($this->atLeastonce())
+        $filesystem->expects($this->atLeastOnce())
             ->method('dumpFile');
 
         $transformer = $this->getMockBuilder(ConfigurationTransformer::class)
@@ -116,7 +116,7 @@ class InstallerServiceTest extends TestCase
             ->setMethods(['exists'])
             ->getMock();
 
-        $filesystem->expects($this->atLeastonce())
+        $filesystem->expects($this->atLeastOnce())
             ->method('exists')
             ->willReturn(false);
 
@@ -141,7 +141,7 @@ class InstallerServiceTest extends TestCase
             ->setMethods(['transformFromUnprocessedConfig'])
             ->getMock();
 
-        $transformer->expects($this->atLeastonce())
+        $transformer->expects($this->atLeastOnce())
             ->method('transformFromUnprocessedConfig')
             ->willReturn([]);
 
@@ -156,7 +156,7 @@ class InstallerServiceTest extends TestCase
             ->setMethods(['uninstallService'])
             ->getMock();
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('uninstallService');
 
         $installer->uninstall('a', 'b');
@@ -171,11 +171,11 @@ class InstallerServiceTest extends TestCase
             ->setMethods(['remove', 'exists'])
             ->getMock();
 
-        $filesystem->expects($this->atLeastonce())
+        $filesystem->expects($this->atLeastOnce())
             ->method('exists')
             ->willReturn(true);
 
-        $filesystem->expects($this->atLeastonce())
+        $filesystem->expects($this->atLeastOnce())
             ->method('remove');
 
         $transformer = $this->getMockBuilder(ConfigurationTransformer::class)
@@ -196,7 +196,7 @@ class InstallerServiceTest extends TestCase
             ->setMethods(['remove', 'exists'])
             ->getMock();
 
-        $filesystem->expects($this->atLeastonce())
+        $filesystem->expects($this->atLeastOnce())
             ->method('exists')
             ->willReturn(false);
 
@@ -306,15 +306,15 @@ class InstallerServiceTest extends TestCase
             ->setMethods(['loadConfig', 'transformFromConfig', 'loadEntities'])
             ->getMock();
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('loadConfig')
             ->willReturn([]);
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('transformFromConfig')
             ->willReturn(['services.yml' => [], 'entities.yml' => []]);
 
-        $installer->expects($this->atLeastonce())
+        $installer->expects($this->atLeastOnce())
             ->method('loadEntities')
             ->willReturn([]);
 

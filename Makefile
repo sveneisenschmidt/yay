@@ -13,12 +13,12 @@ all:
 	#    install              Install and build the application including development environment
 	#    test                 Run application tests
 	#    test-coverage        Run application tests and generate code coverage
-	#    shell                Start an interactive shell session
+	#    qa					  Run static code analysis 
 	#    default-publish      Publish demo docker image to sveneisenschmidt/yay
-	#    enable-demo          Import demo data
-	#    disable-demo         Remove demo data
-	#    enable-github        Import demo data
-	#    disable-github       Remove demo data
+	#    enable-demo          Enable demo integration
+	#    disable-demo         Remove demo integration
+	#    enable-github        Disable github integration
+	#    disable-github       Disable github integration
 	#    demo-publish         Publish demo docker image to sveneisenschmidt/yay-demo
 	#    watch-logs           Watch all log files
 	#    watch-redis          Watch all redis queries
@@ -65,6 +65,9 @@ test: .application-test
 
 .PHONY: test-coverage
 test-coverage: .application-test-coverage
+
+.PHONY: qa
+qa: .application-qa
 
 .PHONY: enable-demo
 enable-demo: .integration-enable-demo

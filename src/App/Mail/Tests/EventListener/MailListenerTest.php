@@ -2,8 +2,8 @@
 
 namespace App\Mail\Tests\EventListener;
 
-use Faker\Factory as FakerFactory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Swift_Message;
 use Component\Engine\Events;
 use Component\Engine\Event\ObjectEvent;
@@ -19,6 +19,7 @@ class MailListenerTest extends WebTestCase
         $client = static::createClient();
 
         $container = $client->getKernel()->getContainer();
+        /** @var EventDispatcherInterface */
         $dispatcher = $container->get('event_dispatcher');
 
         $events = array_keys($dispatcher->getListeners());
@@ -41,7 +42,7 @@ class MailListenerTest extends WebTestCase
 
     public function test_on_grant_personal_action(): void
     {
-        $faker = FakerFactory::create();
+        $faker = \Faker\Factory::create();
 
         $mailer = $this->getMockBuilder(Mailer::class)
             ->disableOriginalConstructor()
@@ -69,7 +70,7 @@ class MailListenerTest extends WebTestCase
 
     public function test_on_grant_personal_achievement(): void
     {
-        $faker = FakerFactory::create();
+        $faker = \Faker\Factory::create();
 
         $mailer = $this->getMockBuilder(Mailer::class)
             ->disableOriginalConstructor()
@@ -97,7 +98,7 @@ class MailListenerTest extends WebTestCase
 
     public function test_on_create_player(): void
     {
-        $faker = FakerFactory::create();
+        $faker = \Faker\Factory::create();
 
         $mailer = $this->getMockBuilder(Mailer::class)
             ->disableOriginalConstructor()

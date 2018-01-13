@@ -52,7 +52,7 @@ class IncomingChainProcessorPassTest extends WebTestCase
         $this->assertInternalType('array', $arguments[1]);
         $this->assertNotEmpty($arguments[1]);
         foreach ($arguments[1] as $reference) {
-            $this->assertInstanceof(Reference::class, $reference);
+            $this->assertInstanceOf(Reference::class, $reference);
         }
     }
 

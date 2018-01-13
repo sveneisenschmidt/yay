@@ -2,6 +2,8 @@
 
 namespace App\Webhook\Test;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Nelmio\Alice\Loader\NativeLoader;
@@ -13,13 +15,15 @@ abstract class WebTestCase extends BaseWebTestCase
         $client = static::createClient();
         $container = $client->getContainer();
 
-        $directory = $container->get('kernel')->locateResource('@Webhook');
+        /** @var KernelInterface $kernel */
+        $kernel = $container->get('kernel');
+        $directory = $kernel->locateResource('@Webhook');
         $fixture1 = sprintf('%s/Resources/fixtures/%s.yml', $directory, $this->getName());
         $fixture2 = sprintf('%s/Resources/fixtures/%s.yml', $directory, 'test_default');
 
-        $manager = $container
-            ->get('doctrine')
-            ->getManager();
+        /** @var ManagerRegistry $doctrine */
+        $doctrine = $container->get('doctrine');
+        $manager = $doctrine->getManager();
 
         $loader = new NativeLoader();
         $set = $loader->loadFile(file_exists($fixture1) ? $fixture1 : $fixture2);
@@ -33,10 +37,12 @@ abstract class WebTestCase extends BaseWebTestCase
 
     public function tearDown(): void
     {
-        $manager = static::createClient()
-            ->getContainer()
-            ->get('doctrine')
-            ->getManager();
+        $client = static::createClient();
+        $container = $client->getContainer();
+
+        /** @var ManagerRegistry $doctrine */
+        $doctrine = $container->get('doctrine');
+        $manager = $doctrine->getManager();
 
         $purger = new ORMPurger($manager);
         $purger->purge();
