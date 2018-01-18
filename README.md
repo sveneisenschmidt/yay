@@ -45,6 +45,23 @@ Yay is a **gamification engine** directly exposing a web service API to bring ev
   <img alt="Yay! Demo" src="docs/src/teaser.gif" />
 </p>
 
+## Features
+- Achievements
+- Activity Stream
+- Goals
+- Leaderboards
+- Notifications
+- Player Levels
+- [API](docs/examples.md#usage--api)
+- [Webhooks](docs/under-the-hood.md#webhooks)
+
+**Developer Highlights**
+- Deploy and run it everywhere with [Docker](docs/getting-started.md#installation)
+- Fast and easy to learn, runs on [PHP 7 & MySQL](docs/contributing.md#submit-a-pull-request)
+- Easy to customise through a single [configuration format](docs/customisation.md#integration-with-third-parties)
+- All functions are availabe through a [JSON-based API](docs/examples.md#usage--api)
+- Support for third party system via [webhooks](docs/under-the-hood.md#webhooks)
+
 ## Documentation
 
 Documentation can be found in the [docs folder](docs/README.md). Want to try it out or develop it further? Please see the [Contributing](docs/contributing.md) documentation. It provides everything to get you started. **Yay! Isn't that awesome?!**

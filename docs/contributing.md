@@ -5,10 +5,10 @@
 
 # Contributing
 
-* [Setup](contributing.md#setup)
-* [Test](contributing.md#test)
-* [Commit](contributing.md#commit)
-* [Pull Request](contributing.md#pull-request)
+* [Setup](contributing.md#setup-your-machine)
+* [Test](contributing.md#test-your-changes)
+* [Commit](contributing.md#create-a-commit)
+* [Pull Request](contributing.md#submit-a-pull-request)
 
 Hint: Inspired by the amazing [`goreleaser`](https://github.com/goreleaser/goreleaser/tree/master/docs) documentation.
 
@@ -74,7 +74,7 @@ $ make
 #    watch-redis          Watch all redis queries
 ```
 
-## Test your change
+## Test your changes
 
 You can create a branch for your changes and try to build from the source as you go:
 
