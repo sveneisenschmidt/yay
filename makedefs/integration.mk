@@ -32,3 +32,9 @@ endef
 
 .integration-disable-github:
 	@$(call .integration-disable,github)
+
+.integration-enable-gitlab:
+	@$(call .integration-enable,gitlab)
+
+.integration-disable-gitlab:
+	@$(call .integration-disable,gitlab)
