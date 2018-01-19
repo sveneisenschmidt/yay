@@ -1,7 +1,8 @@
 {
 	"action": "opened",
-	"pull_request": {},
-    "sender": {
+	"pull_request": {
+    "user": {
       "login": "sveneisenschmidt"
     }
+  }
 }

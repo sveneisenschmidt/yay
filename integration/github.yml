@@ -34,7 +34,7 @@ integration:
                     - [ github-payload, github-actions, github-users ]
             github-payload:
                 type: class
-                class: ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
+                class: ThirdParty\GitHub\Webhook\Incoming\Processor\GitHubProcessor
             github-actions:
                 type: static-map
                 arguments:
