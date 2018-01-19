@@ -83,6 +83,8 @@ class PlayerController extends Controller
      * {
      *     "name": "Jane Doe",
      *     "username": "jane.doe",
+     *     "score": 0,
+     *     "level": 0,
      *     "links": {
      *         "self": "https://example.org/api/players/jane.doe/",
      *         "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements/",
@@ -148,6 +150,7 @@ class PlayerController extends Controller
      *     "username": "marianne58",
      *     "image_url": "https://api.adorable.io/avatars/128/497",
      *     "score": 0,
+     *     "level": 0,
      *     "links": {
      *         "self": "https://example.org/api/players/marianne58",
      *         "personal_achievements": "https://example.org/api/players/marianne58/personal-achievements/",

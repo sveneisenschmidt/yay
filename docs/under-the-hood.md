@@ -32,7 +32,7 @@ Yay provides a set of events to easily hook into. How to work with events is ill
 # services.yml
 MyListener:
     tags:
-     - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
+        - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
 ```
 ```php
 # MyListener.php
@@ -130,19 +130,21 @@ The [ChainProcessor](../../src/Component/Webhook/Incoming/Processor/ChainProcess
 integration:
     webhooks:
      incoming_processors:
-         # Chains multiple processors into one
-         example-chain:
-          type: chain
-          arguments:
-              - [example-mycompany-jenkinsci, example-mycompany-users]
-         # Your company provides a processor to transform Jenkins CI payloads
-         example-mycompany-jenkinsci:
-          class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
-         # Your company provides a second processor to map jenkins users to Yay players
-         # based on a static configuration file deployed with the application
-         example-mycompany-users:
-          class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
-          arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
+            # Chains multiple processors into one
+            example-chain:
+                type: chain
+                arguments:
+                    - [example-mycompany-jenkinsci, example-mycompany-users]
+            # Your company provides a processor to transform Jenkins CI payloads
+            example-mycompany-jenkinsci:
+                type: class
+                class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
+            # Your company provides a second processor to map jenkins users to Yay players
+            # based on a static configuration file deployed with the application
+            example-mycompany-users:
+                type: class
+                class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
+                arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
 ```
 URL:  `/webhook/incoming/example-chain/`.
 
@@ -154,12 +156,12 @@ The [DummyProcessor](../../src/Component/Webhook/Incoming/Processor/DummyProcess
 integration:
     webhooks:
      incoming_processors:
-         example-dummy:
-          type: dummy
-          arguments:
-              -
-               username: jane.doe
-               action: example.action
+        example-dummy:
+            type: dummy
+            arguments:
+                -
+                    username: jane.doe
+                    action: example.action
 ```
 URL:  `/webhook/incoming/example-dummy/`.
 
@@ -170,9 +172,9 @@ The [NullProcessor](../../src/Component/Webhook/Incoming/Processor/NullProcessor
 ```yml
 integration:
     webhooks:
-     incoming_processors:
-         example-null:
-          type: 'null'
+        incoming_processors:
+            example-null:
+                type: 'null'
 ```
 URL:  `/webhook/incoming/example-null/`.
 
@@ -184,13 +186,13 @@ The [StaticMapProcessor](../../src/Component/Webhook/Incoming/Processor/StaticMa
 integration:
     webhooks:
      incoming_processors:
-         example-static-map:
-          type: static-map
-          arguments:
-              - username
-              -
-               # username=octocate => username=jane.doe
-               octocat: jane.doe
+            example-static-map:
+                type: static-map
+                arguments:
+                    - username
+                    -
+                    # username=octocate => username=jane.doe
+                    octocat: jane.doe
 ```
 URL:  `/webhook/incoming/example-static-map/`.
 
@@ -204,9 +206,9 @@ The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/Git
 integration:
     webhooks:
      incoming_processors:
-         example-github:
-          type: class
-          class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
+            example-github:
+                type: class
+                class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
 ```
 URL:  `/webhook/incoming/example-github/`.
 
@@ -218,8 +220,8 @@ The [GitlabProcessor](../../src/ThirdParty/Gitlab/Webhook/Incoming/Processor/Git
 integration:
     webhooks:
      incoming_processors:
-         example-gitlab:
-          type: class
-          class: Yay\ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
+            example-gitlab:
+                type: class
+                class: Yay\ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
 ```
 URL:  `/webhook/incoming/example-gitlab/`.

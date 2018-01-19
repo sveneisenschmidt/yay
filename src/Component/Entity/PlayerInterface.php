@@ -31,7 +31,11 @@ interface PlayerInterface
 
     public function getScore(): int;
 
-    public function refreshScore(): int;
+    public function getLevel(): int;
+    
+    public function setScore(int $score): void;
+
+    public function setLevel(int $level): void;
 
     public function getImageUrl(): string;
 }

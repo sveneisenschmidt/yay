@@ -6,7 +6,6 @@
 
 * [How to connect to Gitlab](how-to.md#how-to-connect-to-gitlab)
 * [How to connect to GitHub](how-to.md#how-to-connect-to-github)
-* [How to add own player levels](how-to.md#how-to-add-own-player-levels)
 
 ---
 
@@ -17,20 +16,10 @@ Emerging git platform Gitlab uses the concept of webhooks [(official documentati
 ```yml
 integration:
     webhooks:
-     incoming_processors:
-         example-processor:
-          type: chain
-          arguments:
-              - [ example-gitlab ]
-         example-github:
-          type: class
-          class: Yay\ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
-         example-users:
-          type: static-map
-          arguments:
-              - username
-              -
-               octocat: jane.doe
+        incoming_processors:
+            gitlab:
+                type: class
+                class: Yay\ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
 ```
 
 The [GitlabProcessor](../../src/ThirdParty/Gitlab/Webhook/Incoming/Processor/GitlabProcessor.php) processes Gitlab webhook payloads to extract `username` and `actions`.
@@ -48,20 +37,10 @@ Famous git platform GitHub uses the concept of webhooks [(official documentation
 ```yml
 integration:
     webhooks:
-     incoming_processors:
-         example-processor:
-          type: chain
-          arguments:
-              - [ example-github ]
-         example-github:
-          type: class
-          class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
-         example-users:
-          type: static-map
-          arguments:
-              - username
-              -
-               octocat: jane.doe
+        incoming_processors:
+            github:
+                type: class
+                class: Yay\ThirdParty\GitHub\Webhook\Incoming\Processor\GitHubProcessor
 ```
 
 The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/GithubProcessor.php) processes GitHub webhook payloads to extract `username` and `actions`.
@@ -69,9 +48,3 @@ The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/Git
 Support webhook events:
 - commit & push (`push`)
 - pull request (`pull_request.{opened,updated,reviewed,merged,closed}`)
-
----
-
-## How to add own player levels
-
-Coming soon ...

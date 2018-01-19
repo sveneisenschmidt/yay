@@ -21,6 +21,8 @@ Component\Entity\Player:
       unique: true
     score:
       type: integer
+    level:
+      type: integer
     imageUrl:
       type: string
   # Relationships

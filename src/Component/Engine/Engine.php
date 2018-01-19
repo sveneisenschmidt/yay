@@ -2,6 +2,7 @@
 
 namespace Component\Engine;
 
+use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Component\Engine\Storage\EventStorageTrait;
 use Component\Engine\Storage\StorageInterface;
@@ -14,6 +15,7 @@ use Component\Entity\Achievement\PersonalAchievement;
 use Component\Entity\Achievement\PersonalAction;
 use Component\Entity\Achievement\PersonalActionCollection;
 use Component\Entity\PlayerInterface;
+use Component\Entity\Achievement\LevelInterface;
 
 class Engine
 {
@@ -131,15 +133,43 @@ class Engine
                     $personalAchievements[] = $personalAchievement;
 
                     $this->savePersonalAchievement($personalAchievement);
-                    $this->refreshPlayer($player);
                 }
             }
         }
 
-        $player->refreshScore();
+        $this->refreshPlayer($player);
+        $this->refreshScore($player);
+        $this->refreshLevel($player);
         $this->savePlayer($player);
 
         return $personalAchievements;
+    }
+
+    public function refreshScore(PlayerInterface $player): void
+    {
+        $score = 0;
+        foreach ($player->getPersonalAchievements() as $personalAchievement) {
+            $score += $personalAchievement->getAchievementDefinition()->getPoints();
+        }
+
+        $player->setScore($score);
+    }
+
+    public function refreshLevel(PlayerInterface $player): void
+    {
+        $criteria = Criteria::create();
+        $criteria->orderBy(['level' => 'DESC']);
+
+        $level = $this->findLevelBy()
+            ->matching($criteria)
+            ->filter(function (LevelInterface $level) use ($player) {
+                return $level->getPoints() <= $player->getScore();
+            })
+            ->first();
+            
+        if ($level) {
+            $player->setLevel($level->getLevel());
+        }
     }
 
     public function createValidationContext(

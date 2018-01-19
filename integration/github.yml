@@ -18,6 +18,23 @@ integration:
             points: 50
             actions: [pullrequest-opened, pullrequest-reviewed, pullrequest-merged]
 
+    levels:
+        level-01:
+            level: 1
+            label: Example level 01 label
+            description: Example level 01 description
+            points: 25
+        level-02:
+            level: 2
+            label: Example level 02 label
+            description: Example level 02 description
+            points: 75
+        level-03:
+            level: 3
+            label: Example level 03 label
+            description: Example level 03 description
+            points: 150
+
     validators:
         pull-request-streak-validator:
             type: expression

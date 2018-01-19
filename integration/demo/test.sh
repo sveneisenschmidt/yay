@@ -26,15 +26,17 @@ do
 done    
 
 # Assertions
+
+## Activity
 URL="http://localhost:50080/api/players/jane.doe/personal-activities/"
 
-# Assert that 1x a player has been created
+### Assert that 1x a player has been created
 assert "curl -sS -X GET $URL | grep player_created | wc -l | tr -d '[:space:]'" 1
 
-# Assert that 10x a personal action has been granted
+### Assert that 10x a personal action has been granted
 assert "curl -sS -X GET $URL | grep personal_action_granted | wc -l | tr -d '[:space:]'" 10
 
-# Assert that 2x a personal achievement has been granted
+### Assert that 2x a personal achievement has been granted
 assert "curl -sS -X GET $URL | grep personal_achievement_granted | wc -l| tr -d '[:space:]'" 2
 
 # Print assertions

@@ -33,6 +33,20 @@ class ProgressControllerTest extends WebTestCase
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
         $this->assertCount(1, $data);
+
+        // (3) Check scores and level
+        $client->request('GET', '/api/players/jane.doe/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        $this->assertArrayHasKey('score', $data);
+        $this->assertArrayHasKey('level', $data);
+        $this->assertEquals(0, $data['score']);
+        $this->assertEquals(0, $data['level']);
     }
 
     public function test_Progress_SubmitPostAction_ValidUser_OneAction(): void
@@ -62,6 +76,20 @@ class ProgressControllerTest extends WebTestCase
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
         $this->assertCount(1, $data);
+
+        // (3) Check scores and level
+        $client->request('GET', '/api/players/jane.doe/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        $this->assertArrayHasKey('score', $data);
+        $this->assertArrayHasKey('level', $data);
+        $this->assertEquals(0, $data['score']);
+        $this->assertEquals(0, $data['level']);
     }
 
     public function test_Progress_SubmitGetAction_ValidUser_ManyAction(): void
@@ -122,6 +150,20 @@ class ProgressControllerTest extends WebTestCase
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
         $this->assertCount(6, $data);
+
+        // (4) Check scores and level
+        $client->request('GET', '/api/players/jane.doe/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        $this->assertArrayHasKey('score', $data);
+        $this->assertArrayHasKey('level', $data);
+        $this->assertEquals(50, $data['score']);
+        $this->assertEquals(1, $data['level']);
     }
 
     public function test_Progress_SubmitPostAction_ValidUser_ManyAction(): void
@@ -182,6 +224,20 @@ class ProgressControllerTest extends WebTestCase
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
         $this->assertCount(6, $data);
+
+        // (4) Check scores and level
+        $client->request('GET', '/api/players/jane.doe/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        $this->assertArrayHasKey('score', $data);
+        $this->assertArrayHasKey('level', $data);
+        $this->assertEquals(50, $data['score']);
+        $this->assertEquals(1, $data['level']);
     }
 
     public function test_Progress_SubmitGetAction_ValidUser_NoAction(): void

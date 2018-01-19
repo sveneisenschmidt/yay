@@ -28,12 +28,14 @@ class PlayerTest extends TestCase
         $instance->setUsername($username = $this->faker->userName);
         $instance->setEmail($email = $this->faker->email);
         $instance->setScore($score = rand(1, 100));
+        $instance->setLevel($level = rand(1, 100));
         $instance->setImageUrl($imageUrl = 'https://example.org/example.png');
 
         $this->assertEquals($name, $instance->getName());
         $this->assertEquals($username, $instance->getUsername());
         $this->assertEquals($email, $instance->getEmail());
         $this->assertEquals($score, $instance->getScore());
+        $this->assertEquals($level, $instance->getLevel());
         $this->assertEquals($imageUrl, $instance->getImageUrl());
     }
 
@@ -68,19 +70,5 @@ class PlayerTest extends TestCase
         $this->assertFalse($instance->hasPersonalAchievement($definition));
         $instance->getPersonalAchievements()->add($achievement);
         $this->assertTrue($instance->hasPersonalAchievement($definition));
-    }
-
-    public function test_refresh_score(): void
-    {
-        $instance = new Player();
-        $definition = new AchievementDefinition($name = 'definition');
-        $definition->setPoints(100);
-        $achievement1 = new PersonalAchievement($instance, $definition);
-        $achievement2 = new PersonalAchievement($instance, $definition);
-
-        $this->assertEquals(0, $instance->refreshScore());
-        $instance->getPersonalAchievements()->add($achievement1);
-        $instance->getPersonalAchievements()->add($achievement2);
-        $this->assertEquals(200, $instance->refreshScore());
     }
 }

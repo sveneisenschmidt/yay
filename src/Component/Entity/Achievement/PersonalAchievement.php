@@ -26,7 +26,6 @@ class PersonalAchievement implements PersonalAchievementInterface
         $this->setPlayer($player);
         $this->setAchievementDefinition($achievementDefinition);
         $this->setAchievedAt($achievedAt ?: new \DateTime());
-        $player->refreshScore();
     }
 
     public function getAchievedAt(): \DateTime

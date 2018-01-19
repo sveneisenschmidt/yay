@@ -28,8 +28,9 @@ The integration setup file has a root element `integration` and four possible ch
 |---|---|
 | actions | Actions a player can perform. |
 | achievements | Achievements a player can earn. |
-| validators | Validators verify a player's actions against any achievement and grants if they pass all checks. ( `Validate::validate(Achievement, Actions): true||false` ) |
-| webhooks | Processors that listen to incoming and outgoing webhooks to process payloads to push username and actions into the engine |
+| levels | Levels a player can reach. |
+| validators | Validators verify a player's actions against any achievement and grants if they pass required checks. |
+| webhooks | Processors that listen to incoming and outgoing webhooks to process payloads to provide username and actions to the engine |
 
 #### Example setup file
 (See [demo integration](../integration/demo.yml))
@@ -39,7 +40,7 @@ integration:
     actions:
         example-action:
             label: Example action label
-            description: Example actions description
+            description: Example action description
 
     achievements:
         example-achievement-01:
@@ -52,6 +53,23 @@ integration:
             description: Example achievement description
             points: 100
             actions: ["example-action"]
+
+    levels:
+        level-01:
+            level: 1
+            label: Example level label
+            description: Example level description
+            points: 100
+        level-02:
+            level: 2
+            label: Example level label
+            description: Example level description
+            points: 200
+        level-03:
+            level: 3
+            label: Example level label
+            description: Example level description
+            points: 300
 
     validators:
         # Grants achievement 'example-achievement-01' if action `example-action`
