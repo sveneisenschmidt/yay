@@ -1,4 +1,4 @@
-**Table of Contents** | [Getting Started](getting-started.md) | [Customisation](customisation.md) | [Examples](examples.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
+**Table of Contents** | [Getting Started](getting-started.md) | [Customisation](customisation.md) | [How To](how-to.md) | [Examples](examples.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
 
 
 ---
@@ -17,6 +17,10 @@
 * [Examples](examples.md)
     * [Usage / API](examples.md#usage--api)
     * [Demo](examples.md#demo)
+* [How To](how-to.md)
+    * [How to connect to GitLab](how-to.md#how-to-connect-to-gitlab)
+    * [How to connect to GitHub](how-to.md#how-to-connect-to-github)
+    * [How to add own player levels](how-to.md#how-to-add-own-player-levels)
 * [Under The Hood](under-the-hood.md)
     * [Commands](under-the-hood.md#commands)
     * [Events](under-the-hood.md#events)
