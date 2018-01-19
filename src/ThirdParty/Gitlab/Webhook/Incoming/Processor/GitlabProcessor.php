@@ -37,9 +37,11 @@ class GitlabProcessor implements ProcessorInterface
         switch ($request->headers->get('X-Gitlab-Event')) {
             case 'Push Hook':
                 $this->processPushHook($request->request, $data);
+
                 break;
             case 'Merge Request Hook':
                 $this->processMergeRequestHook($request->request, $data);
+
                 break;
             default:
                 return;

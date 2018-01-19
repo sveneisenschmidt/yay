@@ -13,16 +13,16 @@ class GitlabProcessorTest extends TestCase
         return [
             [
                 'Push Hook',
-                file_get_contents(__DIR__.'/Fixtures/GitlabProcessor/PushHook.json'), 
-                'jsmith', 
-                'push.created'
+                file_get_contents(__DIR__.'/Fixtures/GitlabProcessor/PushHook.json'),
+                'jsmith',
+                'push.created',
             ],
             [
                 'Merge Request Hook',
-                file_get_contents(__DIR__.'/Fixtures/GitlabProcessor/MergeRequestHook.json'), 
-                'jsmith', 
-                'merge_request.opened'
-            ]
+                file_get_contents(__DIR__.'/Fixtures/GitlabProcessor/MergeRequestHook.json'),
+                'jsmith',
+                'merge_request.opened',
+            ],
         ];
     }
 
@@ -34,9 +34,9 @@ class GitlabProcessorTest extends TestCase
 
     /** @dataProvider providePayloads */
     public function test_process_payload(
-        string $header, 
-        string $contents, 
-        string $username, 
+        string $header,
+        string $contents,
+        string $username,
         string $action
     ): void {
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
