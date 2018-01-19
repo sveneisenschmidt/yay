@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Component\Webhook\Incoming\ProcessorInterface;
 
-class GitHubProcessor implements ProcessorInterface
+class GithubProcessor implements ProcessorInterface
 {
     /** @var string */
     protected $name;
@@ -47,7 +47,7 @@ class GitHubProcessor implements ProcessorInterface
     public function processPushHook(ParameterBag $request, array $data): void
     {
         $action = 'push';
-        $username = ''; 
+        $username = '';
 
         if (isset($data['pusher']['name'])) {
             $username = $data['pusher']['name'];
