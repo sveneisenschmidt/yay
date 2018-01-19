@@ -1,4 +1,4 @@
-**Table of Contents** | [Getting Started](getting-started.md) | [Customisation](customisation.md) | [Examples](examples.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
+**Table of Contents** | [Getting Started](getting-started.md) | [Customisation](customisation.md) | [How To](how-to.md) | [Examples](examples.md) | [Under The Hood](under-the-hood.md) | [Contributing](contributing.md)
 
 
 ---
