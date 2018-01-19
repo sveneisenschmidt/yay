@@ -22,11 +22,6 @@ services:
         tags:
             - { name: jms_serializer.event_listener, event: serializer.post_serialize, method: onPostSerialize, direction: serialization }
 
-    App\Api\Serializer\EventListener\LevelListener:
-        public: true
-        tags:
-            - { name: jms_serializer.event_listener, event: serializer.post_serialize, method: onPostSerialize, direction: serialization }
-
     Component\HttpFoundation\Request\ParamConverter\QueryStringConverter:
         tags:
             - { name: request.param_converter, priority: -2, converter: QueryString }
