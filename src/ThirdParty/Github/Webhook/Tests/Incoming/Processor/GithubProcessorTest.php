@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use ThirdParty\GitHub\Webhook\Incoming\Processor\GitHubProcessor;
 
-class GithubProcessorTest extends TestCase
+class GitHubProcessorTest extends TestCase
 {
     public function providePayloads()
     {

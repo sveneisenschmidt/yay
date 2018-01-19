@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Component\Webhook\Incoming\ProcessorInterface;
 
-class GithubProcessor implements ProcessorInterface
+class GitHubProcessor implements ProcessorInterface
 {
     /** @var string */
     protected $name;
