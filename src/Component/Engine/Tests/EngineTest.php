@@ -338,11 +338,11 @@ class EngineTest extends TestCase
         $player = new Player();
 
         $achievementDefinition1 = new AchievementDefinition('test-achievement-1');
-        $achievementDefinition1->setPoints($points1 = rand(1,100));
+        $achievementDefinition1->setPoints($points1 = rand(1, 100));
         $personalAchievement1 = new PersonalAchievement($player, $achievementDefinition1);
 
         $achievementDefinition2 = new AchievementDefinition('test-achievement-2');
-        $achievementDefinition2->setPoints($points2 = rand(1,100));
+        $achievementDefinition2->setPoints($points2 = rand(1, 100));
         $personalAchievement2 = new PersonalAchievement($player, $achievementDefinition2);
 
         $player->getPersonalAchievements()->add($personalAchievement1);
@@ -354,7 +354,7 @@ class EngineTest extends TestCase
         $engine = new Engine($storage, $eventDispatcher);
         $engine->refreshScore($player);
 
-        $this->assertEquals($points1+$points2, $player->getScore());
+        $this->assertEquals($points1 + $points2, $player->getScore());
     }
 
     public function test_refresh_level(): void

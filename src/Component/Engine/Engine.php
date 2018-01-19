@@ -166,7 +166,7 @@ class Engine
                 return $level->getPoints() <= $player->getScore();
             })
             ->first();
-            
+
         if ($level) {
             $player->setLevel($level->getLevel());
         }
