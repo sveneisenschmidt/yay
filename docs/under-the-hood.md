@@ -223,7 +223,3 @@ integration:
           class: Yay\ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
 ```
 URL:  `/webhook/incoming/example-gitlab/`.
-
-Support webhook events:
-- commit & push (`push`)
-- merge request (`merge_request.{opened,updated,reviewed,merged,closed}`)
