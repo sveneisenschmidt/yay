@@ -1,5 +1,4 @@
-[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customisation](customisation.md) | [Examples](examples.md) | **Under The Hood** | [Contributing](contributing.md)
-
+[Table of Contents](README.md) | [Getting Started](getting-started.md) | [Customisation](customisation.md) | [How To](how-to.md) | [Examples](examples.md) | **Under The Hood** | [Contributing](contributing.md)
 
 ---
 
@@ -211,10 +210,6 @@ integration:
 ```
 URL:  `/webhook/incoming/example-github/`.
 
-Support webhook events:
-- commit & push (`push`)
-- pull request (`pull_request.{opened,updated,reviewed,merged,closed}`)
-
 #### `Gitlab`
 
 The [GitlabProcessor](../../src/ThirdParty/Gitlab/Webhook/Incoming/Processor/GitlabProcessor.php) processes Gitlab webhook payloads to extract `username` and `actions`.
@@ -232,53 +227,3 @@ URL:  `/webhook/incoming/example-gitlab/`.
 Support webhook events:
 - commit & push (`push`)
 - merge request (`merge_request.{opened,updated,reviewed,merged,closed}`)
-
-### Examples
-
-#### GitHub
-
-Famous git platform GitHub uses the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to connect their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay is able to process it as well.
-
-```yml
-integration:
-    webhooks:
-     incoming_processors:
-         example-processor:
-          type: chain
-          arguments:
-              - [ example-github ]
-         example-github:
-          type: class
-          class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
-         example-users:
-          type: static-map
-          arguments:
-              - username
-              -
-               octocat: jane.doe
-```
-URL:  `/webhook/incoming/example-processor/`.
-
-#### Gitlab
-
-Emerging git platform Gitlab uses the concept of webhooks [(official documentation)](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) to connect their own and third party systems in a simple way. With this in mind it is possible to connect Gitlab and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by Gitlab, process and transform it so Yay is able to process it as well.
-
-```yml
-integration:
-    webhooks:
-     incoming_processors:
-         example-processor:
-          type: chain
-          arguments:
-              - [ example-gitlab ]
-         example-github:
-          type: class
-          class: Yay\ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
-         example-users:
-          type: static-map
-          arguments:
-              - username
-              -
-               octocat: jane.doe
-```
-URL:  `/webhook/incoming/example-processor/`.
