@@ -35,11 +35,11 @@ class GitlabProcessor implements ProcessorInterface
             throw new \InvalidArgumentException('Could not decode json payload.');
         }
 
-        if ($event === 'Push Hook') {
+        if ('Push Hook' === $event) {
             $this->processPushHook($request->request, $data);
         }
 
-        if ($event === 'Merge Request Hook') {
+        if ('Merge Request Hook' === $event) {
             $this->processMergeRequestHook($request->request, $data);
         }
     }
