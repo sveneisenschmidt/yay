@@ -27,6 +27,7 @@ class GitlabProcessor implements ProcessorInterface
             return;
         }
 
+        $event = $request->headers->get('X-Gitlab-Event');
         $contents = $request->getContent(false);
         $data = json_decode($contents, true, 32);
 
@@ -34,17 +35,12 @@ class GitlabProcessor implements ProcessorInterface
             throw new \InvalidArgumentException('Could not decode json payload.');
         }
 
-        switch ($request->headers->get('X-Gitlab-Event')) {
-            case 'Push Hook':
-                $this->processPushHook($request->request, $data);
+        if ($event === 'Push Hook') {
+            $this->processPushHook($request->request, $data);
+        }
 
-                break;
-            case 'Merge Request Hook':
-                $this->processMergeRequestHook($request->request, $data);
-
-                break;
-            default:
-                return;
+        if ($event === 'Merge Request Hook') {
+            $this->processMergeRequestHook($request->request, $data);
         }
     }
 
