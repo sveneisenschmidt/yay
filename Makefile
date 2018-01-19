@@ -81,6 +81,12 @@ enable-github: .integration-enable-github
 .PHONY: disable-github
 disable-github: .integration-disable-github
 
+.PHONY: enable-gitlab
+enable-gitlab: .integration-enable-gitlab
+
+.PHONY: disable-gitlab
+disable-gitlab: .integration-disable-gitlab
+
 .PHONY: publish-default
 publish-default:
 	@$(call .publish,dist/docker-run.default.sh,sveneisenschmidt/yay,$(DOCKER_ENV),$(DOCKER_BRANCH))

@@ -28,22 +28,22 @@ integration:
 
     webhooks:
         incoming_processors:
-            github:
+            gitlab:
                 type: chain
                 arguments:
-                    - [ github-payload, github-actions, github-users ]
-            github-payload:
+                    - [ gitlab-payload, gitlab-actions, gitlab-users ]
+            gitlab-payload:
                 type: class
-                class: ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
-            github-actions:
+                class: ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
+            gitlab-actions:
                 type: static-map
                 arguments:
                     - action
                     - 
-                        pull_request.opened: pullrequest-opened
-                        pull_request.merged: pullrequest-merged
-                        pull_request.closed: pullrequest-closed
-            github-users:
+                        merge_request.opened: pullrequest-opened
+                        merge_request.merged: pullrequest-merged
+                        merge_request.closed: pullrequest-closed
+            gitlab-users:
                 type: static-map
                 arguments:
                     - username

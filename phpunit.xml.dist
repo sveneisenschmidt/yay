@@ -38,6 +38,7 @@
                 <directory>src/*/*/Tests</directory>
                 <directory>src/*/*/Test</directory>
                 <directory>src/App/Compat</directory>
+                <directory>src/ThirdParty/*/Webhook/Tests</directory>
             </exclude>
         </whitelist>
     </filter>
