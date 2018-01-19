@@ -13,13 +13,13 @@ class GitlabProcessorTest extends TestCase
         return [
             [
                 'Push Hook',
-                file_get_contents(__DIR__.'/Fixtures/GitlabProcessor/PushHook.json'),
+                file_get_contents(__DIR__.'/Fixtures/PushWebhook.json'),
                 'jsmith',
-                'push.created',
+                'push',
             ],
             [
                 'Merge Request Hook',
-                file_get_contents(__DIR__.'/Fixtures/GitlabProcessor/MergeRequestHook.json'),
+                file_get_contents(__DIR__.'/Fixtures/MergeRequestWebhook.json'),
                 'jsmith',
                 'merge_request.opened',
             ],

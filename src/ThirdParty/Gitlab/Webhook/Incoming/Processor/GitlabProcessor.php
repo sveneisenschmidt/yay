@@ -46,12 +46,8 @@ class GitlabProcessor implements ProcessorInterface
 
     public function processPushHook(ParameterBag $request, array $data): void
     {
-        $action = '';
+        $action = 'push';
         $username = '';
-
-        if (isset($data['object_kind'])) {
-            $action = sprintf('%s.created', $data['object_kind']);
-        }
 
         if (isset($data['user_username'])) {
             $username = $data['user_username'];

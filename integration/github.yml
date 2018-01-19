@@ -41,8 +41,7 @@ integration:
                     - action
                     - 
                         pull_request.opened: pullrequest-opened
-                        pull_request.reviewed: pullrequest-reviewed
-                        pull_request.merged: pullrequest-closed
+                        pull_request.merged: pullrequest-merged
                         pull_request.closed: pullrequest-closed
             github-users:
                 type: static-map

@@ -1,31 +1,50 @@
 <?php
 
-namespace ThirdParty\Github\Webhook\Tests\Incoming\Processor;
+namespace ThirdParty\GitHub\Webhook\Tests\Incoming\Processor;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor;
+use ThirdParty\GitHub\Webhook\Incoming\Processor\GitHubProcessor;
 
-class GithubProcessorTest extends TestCase
+class GitHubProcessorTest extends TestCase
 {
+    public function providePayloads()
+    {
+        return [
+            [
+                'push',
+                file_get_contents(__DIR__.'/Fixtures/PushWebhook.json'),
+                'baxterthehacker',
+                'push',
+            ],
+            [
+                'pull_request',
+                file_get_contents(__DIR__.'/Fixtures/PullRequestWebhook.json'),
+                'baxterthehacker',
+                'pull_request.opened',
+            ],
+        ];
+    }
+
     public function test_set_get_name(): void
     {
-        $processor = new GithubProcessor($name = 'github-processor');
+        $processor = new GitHubProcessor($name = 'github-processor');
         $this->assertEquals('github-processor', $processor->getName());
     }
 
-    public function test_process_payload(): void
-    {
-        $contents = json_encode([
-            'action' => 'github-action',
-            'sender' => ['login' => 'octocat'],
-        ]);
+    /** @dataProvider providePayloads */
+    public function test_process_payload(
+        string $header,
+        string $contents,
+        string $username,
+        string $action
+    ): void {
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
-        $request->headers->set('X-GitHub-Event', 'github-event');
+        $request->headers->set('X-GitHub-Event', $header);
 
-        (new GithubProcessor('github-processor'))->process($request);
-        $this->assertEquals('octocat', $request->request->get('username'));
-        $this->assertEquals('github-event.github-action', $request->request->get('action'));
+        (new GitHubProcessor('github-processor'))->process($request);
+        $this->assertEquals($username, $request->request->get('username'));
+        $this->assertEquals($action, $request->request->get('action'));
     }
 
     public function test_process_empty_payload_but_event(): void
@@ -33,7 +52,7 @@ class GithubProcessorTest extends TestCase
         $contents = json_encode([]);
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
 
-        (new GithubProcessor('github-processor'))->process($request);
+        (new GitHubProcessor('github-processor'))->process($request);
         $this->assertFalse($request->request->has('username'));
         $this->assertFalse($request->request->has('action'));
     }
@@ -44,7 +63,7 @@ class GithubProcessorTest extends TestCase
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
         $request->headers->set('X-GitHub-Event', 'github-event');
 
-        (new GithubProcessor('github-processor'))->process($request);
+        (new GitHubProcessor('github-processor'))->process($request);
         $this->assertFalse($request->request->has('username'));
         $this->assertFalse($request->request->has('action'));
     }
@@ -56,6 +75,6 @@ class GithubProcessorTest extends TestCase
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
         $request->headers->set('X-GitHub-Event', 'github-event');
 
-        (new GithubProcessor('github-processor'))->process($request);
+        (new GitHubProcessor('github-processor'))->process($request);
     }
 }

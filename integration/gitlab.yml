@@ -40,7 +40,9 @@ integration:
                 arguments:
                     - action
                     - 
-                        merge_request_hook.merge_request: pullrequest-opened
+                        merge_request.opened: pullrequest-opened
+                        merge_request.merged: pullrequest-merged
+                        merge_request.closed: pullrequest-closed
             gitlab-users:
                 type: static-map
                 arguments:
