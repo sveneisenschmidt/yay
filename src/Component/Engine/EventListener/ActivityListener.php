@@ -82,7 +82,7 @@ class ActivityListener implements EventListenerInterface
             $player,
             [
                 'player' => $player->getUsername(),
-                'level' => $player->getLevel()
+                'level' => $player->getLevel(),
             ]
         );
 
@@ -99,7 +99,7 @@ class ActivityListener implements EventListenerInterface
             $player,
             [
                 'player' => $player->getUsername(),
-                'score' => $player->getScore()
+                'score' => $player->getScore(),
             ]
         );
 
