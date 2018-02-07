@@ -401,9 +401,9 @@ class DoctrineStorageTest extends TestCase
         $repository->expects($this->once())
             ->method('findBy')
             ->willReturn([
-                new Level(1, 1, 1), 
-                new Level(2, 2, 2), 
-                new Level(3, 3, 3)
+                new Level(1, 1, 1),
+                new Level(2, 2, 2),
+                new Level(3, 3, 3),
             ]);
 
         $manager = $this->getMockBuilder(EntityManagerInterface::class)

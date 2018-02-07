@@ -14,7 +14,6 @@ use Component\Entity\Achievement\PersonalAchievement;
 use Component\Entity\Achievement\PersonalAction;
 use Component\Entity\Achievement\PersonalActionCollection;
 use Component\Entity\PlayerInterface;
-use Component\Entity\Achievement\LevelInterface;
 
 class Engine
 {

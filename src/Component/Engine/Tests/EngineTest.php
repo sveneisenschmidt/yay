@@ -18,9 +18,6 @@ use Component\Entity\Achievement\PersonalAction;
 use Component\Entity\Achievement\PersonalActionCollection;
 use Component\Entity\Achievement\LevelCollection;
 use Component\Entity\Achievement\PersonalAchievementCollection;
-use Component\Entity\Achievement\Level;
-use Component\Entity\Player;
-use Component\Entity\Achievement\PersonalAchievement;
 
 class EngineTest extends TestCase
 {

@@ -3,7 +3,6 @@
 namespace Component\Engine\Tests\EventListener;
 
 use PHPUnit\Framework\TestCase;
-use Component\Engine\Event\ObjectEvent;
 
 class ActivityListenerTest extends TestCase
 {
