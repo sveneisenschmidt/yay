@@ -71,4 +71,38 @@ class ActivityListener implements EventListenerInterface
 
         $this->getStorage()->saveActivity($activity);
     }
+
+    public function onLevelChanged(ObjectEvent $event): void
+    {
+        /** @var PlayerInterface $player */
+        $player = $event->getObject();
+
+        $activity = new Activity(
+            Activity::LEVEL_CHANGED,
+            $player,
+            [
+                'player' => $player->getUsername(),
+                'level' => $player->getLevel()
+            ]
+        );
+
+        $this->getStorage()->saveActivity($activity);
+    }
+
+    public function onScoreChanged(ObjectEvent $event): void
+    {
+        /** @var PlayerInterface $player */
+        $player = $event->getObject();
+
+        $activity = new Activity(
+            Activity::SCORE_CHANGED,
+            $player,
+            [
+                'player' => $player->getUsername(),
+                'score' => $player->getScore()
+            ]
+        );
+
+        $this->getStorage()->saveActivity($activity);
+    }
 }

@@ -25,6 +25,10 @@ interface StorageInterface
 
     public function refreshPlayer(PlayerInterface $player): void;
 
+    public function recalculatePlayerScore(PlayerInterface $player): void;
+
+    public function recalculatePlayerLevel(PlayerInterface $player): void;
+
     public function savePlayer(PlayerInterface $player): void;
 
     public function findAchievementDefinition(string $name): ?AchievementDefinitionInterface;

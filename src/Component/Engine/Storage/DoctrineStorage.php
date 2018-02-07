@@ -3,6 +3,7 @@
 namespace Component\Engine\Storage;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Collections\Criteria;
 use Component\Entity\Achievement\ActionDefinition;
 use Component\Entity\Achievement\ActionDefinitionInterface;
 use Component\Entity\Achievement\ActionDefinitionCollection;
@@ -51,6 +52,33 @@ class DoctrineStorage implements StorageInterface
     public function refreshPlayer(PlayerInterface $player): void
     {
         $this->manager->refresh($player);
+    }
+
+    public function recalculatePlayerScore(PlayerInterface $player): void
+    {
+        $score = 0;
+        foreach ($player->getPersonalAchievements() as $personalAchievement) {
+            $score += $personalAchievement->getAchievementDefinition()->getPoints();
+        }
+
+        $player->setScore($score);
+    }
+
+    public function recalculatePlayerLevel(PlayerInterface $player): void
+    {
+        $criteria = Criteria::create();
+        $criteria->orderBy(['level' => 'DESC']);
+
+        $level = $this->findLevelBy()
+            ->matching($criteria)
+            ->filter(function (LevelInterface $level) use ($player) {
+                return $level->getPoints() <= $player->getScore();
+            })
+            ->first();
+
+        if ($level) {
+            $player->setLevel($level->getLevel());
+        }
     }
 
     public function savePlayer(PlayerInterface $player): void

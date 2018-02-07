@@ -14,7 +14,9 @@ trait EventStorageTrait
     use StorageTrait {
         savePlayer              as invokeSavePlayer;
         savePersonalAchievement as invokeSavePersonalAchievement;
-        savePersonalAction      as invokesavePersonalAction;
+        savePersonalAction      as invokeSavePersonalAction;
+        recalculatePlayerScore  as invokeRecalculatePlayerScore;
+        recalculatePlayerLevel  as invokeRecalculatePlayerLevel;
     }
 
     /** @var EventDispatcherInterface */
@@ -65,7 +67,31 @@ trait EventStorageTrait
         }
 
         $this->eventDispatcher->dispatch(Events::PRE_SAVE, $event);
-        $this->invokesavePersonalAction($personalAction);
+        $this->invokeSavePersonalAction($personalAction);
         $this->eventDispatcher->dispatch(Events::POST_SAVE, $event);
+    }
+
+    public function recalculatePlayerLevel(PlayerInterface $player): void
+    {
+        $event = new ObjectEvent($player);
+        $level = $player->getLevel();
+
+        $this->invokeRecalculatePlayerLevel($player);
+
+        if ($player->getLevel() > $level) {
+            $this->eventDispatcher->dispatch(Events::CHANGE_LEVEL, $event);
+        }
+    }
+
+    public function recalculatePlayerScore(PlayerInterface $player): void
+    {
+        $event = new ObjectEvent($player);
+        $score = $player->getScore();
+
+        $this->invokeRecalculatePlayerScore($player);
+
+        if ($player->getScore() > $score) {
+            $this->eventDispatcher->dispatch(Events::CHANGE_SCORE, $event);
+        }
     }
 }

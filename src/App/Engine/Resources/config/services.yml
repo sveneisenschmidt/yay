@@ -19,3 +19,5 @@ services:
             - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
             - { name: yay.event_listener, event: yay.engine.grant_personal_achievement, method: onGrantPersonalAchievement }
             - { name: yay.event_listener, event: yay.engine.create_player, method: onCreatePlayer }
+            - { name: yay.event_listener, event: yay.engine.change_level, method: onLevelChanged }
+            - { name: yay.event_listener, event: yay.engine.change_score, method: onScoreChanged }

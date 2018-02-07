@@ -10,6 +10,10 @@ class Activity implements ActivityInterface
 
     const PLAYER_CREATED = 'player_created';
 
+    const SCORE_CHANGED = 'score_changed';
+
+    const LEVEL_CHANGED = 'level_changed';
+
     /** @var int */
     protected $id;
 

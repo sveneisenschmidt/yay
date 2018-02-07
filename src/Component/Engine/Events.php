@@ -13,4 +13,8 @@ final class Events
     const GRANT_PERSONAL_ACTION = 'yay.engine.grant_personal_action';
 
     const CREATE_PLAYER = 'yay.engine.create_player';
+
+    const CHANGE_LEVEL = 'yay.engine.change_level';
+
+    const CHANGE_SCORE = 'yay.engine.change_score';
 }

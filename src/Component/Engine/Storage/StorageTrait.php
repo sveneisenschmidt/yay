@@ -100,6 +100,16 @@ trait StorageTrait
         $this->getStorage()->refreshPlayer($player);
     }
 
+    public function recalculatePlayerScore(PlayerInterface $player): void
+    {
+        $this->getStorage()->recalculatePlayerScore($player);
+    }
+
+    public function recalculatePlayerLevel(PlayerInterface $player): void
+    {
+        $this->getStorage()->recalculatePlayerLevel($player);
+    }
+
     public function findLevel(string $name): ?LevelInterface
     {
         return $this->getStorage()->findLevel($name);

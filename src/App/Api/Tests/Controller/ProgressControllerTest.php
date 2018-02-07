@@ -149,7 +149,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
-        $this->assertCount(6, $data);
+        $this->assertCount(8, $data);
 
         // (4) Check scores and level
         $client->request('GET', '/api/players/jane.doe/');
@@ -223,7 +223,7 @@ class ProgressControllerTest extends WebTestCase
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
-        $this->assertCount(6, $data);
+        $this->assertCount(8, $data);
 
         // (4) Check scores and level
         $client->request('GET', '/api/players/jane.doe/');

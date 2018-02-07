@@ -332,49 +332,4 @@ class EngineTest extends TestCase
         $results = $engine->advance($player);
         $this->assertNotEmpty($results);
     }
-
-    public function test_refresh_score(): void
-    {
-        $player = new Player();
-
-        $achievementDefinition1 = new AchievementDefinition('test-achievement-1');
-        $achievementDefinition1->setPoints($points1 = rand(1, 100));
-        $personalAchievement1 = new PersonalAchievement($player, $achievementDefinition1);
-
-        $achievementDefinition2 = new AchievementDefinition('test-achievement-2');
-        $achievementDefinition2->setPoints($points2 = rand(1, 100));
-        $personalAchievement2 = new PersonalAchievement($player, $achievementDefinition2);
-
-        $player->getPersonalAchievements()->add($personalAchievement1);
-        $player->getPersonalAchievements()->add($personalAchievement2);
-
-        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
-        $storage = $this->createMock(StorageInterface::class);
-
-        $engine = new Engine($storage, $eventDispatcher);
-        $engine->refreshScore($player);
-
-        $this->assertEquals($points1 + $points2, $player->getScore());
-    }
-
-    public function test_refresh_level(): void
-    {
-        $levelCollection = new LevelCollection();
-        $levelCollection->add(new Level(1, 1, 1));
-        $levelCollection->add(new Level(2, 2, 2));
-        $levelCollection->add(new Level(3, 3, 3));
-
-        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
-        $storage = $this->createConfiguredMock(StorageInterface::class, [
-            'findLevelBy' => $levelCollection,
-        ]);
-
-        $player = new Player();
-        $player->setScore(2);
-
-        $engine = new Engine($storage, $eventDispatcher);
-        $engine->refreshLevel($player);
-
-        $this->assertEquals(2, $player->getLevel());
-    }
 }

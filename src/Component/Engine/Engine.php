@@ -2,7 +2,6 @@
 
 namespace Component\Engine;
 
-use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Component\Engine\Storage\EventStorageTrait;
 use Component\Engine\Storage\StorageInterface;
@@ -138,38 +137,11 @@ class Engine
         }
 
         $this->refreshPlayer($player);
-        $this->refreshScore($player);
-        $this->refreshLevel($player);
+        $this->recalculatePlayerScore($player);
+        $this->recalculatePlayerLevel($player);
         $this->savePlayer($player);
 
         return $personalAchievements;
-    }
-
-    public function refreshScore(PlayerInterface $player): void
-    {
-        $score = 0;
-        foreach ($player->getPersonalAchievements() as $personalAchievement) {
-            $score += $personalAchievement->getAchievementDefinition()->getPoints();
-        }
-
-        $player->setScore($score);
-    }
-
-    public function refreshLevel(PlayerInterface $player): void
-    {
-        $criteria = Criteria::create();
-        $criteria->orderBy(['level' => 'DESC']);
-
-        $level = $this->findLevelBy()
-            ->matching($criteria)
-            ->filter(function (LevelInterface $level) use ($player) {
-                return $level->getPoints() <= $player->getScore();
-            })
-            ->first();
-
-        if ($level) {
-            $player->setLevel($level->getLevel());
-        }
     }
 
     public function createValidationContext(

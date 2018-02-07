@@ -362,4 +362,67 @@ class DoctrineStorageTest extends TestCase
         $this->assertInstanceOf(ActivityCollection::class, $objects);
         $this->assertEquals(0, count($objects));
     }
+
+    public function test_recalculate_player_score(): void
+    {
+        $manager = $this->getMockBuilder(EntityManagerInterface::class)
+            ->disableOriginalConstructor()
+            ->setMethods(get_class_methods(EntityManagerInterface::class))
+            ->getMock();
+
+        /** @var object&StorageTrait $storage */
+        $storage = $this->wrapStorage(new DoctrineStorage($manager));
+
+        $player = new Player();
+
+        $achievementDefinition1 = new AchievementDefinition('test-achievement-1');
+        $achievementDefinition1->setPoints($points1 = rand(1, 100));
+        $personalAchievement1 = new PersonalAchievement($player, $achievementDefinition1);
+
+        $achievementDefinition2 = new AchievementDefinition('test-achievement-2');
+        $achievementDefinition2->setPoints($points2 = rand(1, 100));
+        $personalAchievement2 = new PersonalAchievement($player, $achievementDefinition2);
+
+        $player->getPersonalAchievements()->add($personalAchievement1);
+        $player->getPersonalAchievements()->add($personalAchievement2);
+
+        $storage->recalculatePlayerScore($player);
+
+        $this->assertEquals($points1 + $points2, $player->getScore());
+    }
+
+    public function test_recalculate_player_level(): void
+    {
+        $repository = $this->getMockBuilder(ObjectRepository::class)
+            ->disableOriginalConstructor()
+            ->setMethods(get_class_methods(ObjectRepository::class))
+            ->getMock();
+
+        $repository->expects($this->once())
+            ->method('findBy')
+            ->willReturn([
+                new Level(1, 1, 1), 
+                new Level(2, 2, 2), 
+                new Level(3, 3, 3)
+            ]);
+
+        $manager = $this->getMockBuilder(EntityManagerInterface::class)
+            ->disableOriginalConstructor()
+            ->setMethods(get_class_methods(EntityManagerInterface::class))
+            ->getMock();
+
+        $manager->expects($this->once())
+            ->method('getRepository')
+            ->willReturn($repository);
+
+        /** @var object&StorageTrait $storage */
+        $storage = $this->wrapStorage(new DoctrineStorage($manager));
+
+        $player = new Player();
+        $player->setScore(2);
+
+        $storage->recalculatePlayerLevel($player);
+
+        $this->assertEquals(2, $player->getLevel());
+    }
 }

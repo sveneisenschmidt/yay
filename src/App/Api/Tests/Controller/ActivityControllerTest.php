@@ -43,6 +43,31 @@ class ActivityControllerTest extends WebTestCase
                 $this->assertArraySubsetHasKey('links', 'player', $value);
                 $this->assertArraySubsetHasKey('links', 'action', $value);
             }
+
+            if (Activity::PLAYER_CREATED == $value['name']) {
+                $this->assertArraySubsetHasKey('data', 'player', $value);
+                $this->assertArraySubsetHasKey('data', 'action', $value);
+                $this->assertArraySubsetHasKey('data', 'achieved_at', $value);
+
+                $this->assertArraySubsetHasKey('links', 'self', $value);
+                $this->assertArraySubsetHasKey('links', 'player', $value);
+            }
+
+            if (Activity::LEVEL_CHANGED == $value['name']) {
+                $this->assertArraySubsetHasKey('data', 'player', $value);
+                $this->assertArraySubsetHasKey('data', 'level', $value);
+
+                $this->assertArraySubsetHasKey('links', 'self', $value);
+                $this->assertArraySubsetHasKey('links', 'player', $value);
+            }
+
+            if (Activity::SCORE_CHANGED == $value['name']) {
+                $this->assertArraySubsetHasKey('data', 'player', $value);
+                $this->assertArraySubsetHasKey('data', 'score', $value);
+
+                $this->assertArraySubsetHasKey('links', 'self', $value);
+                $this->assertArraySubsetHasKey('links', 'player', $value);
+            }
         }
 
         $client->request('GET', '/api/activities/?limit=1');
