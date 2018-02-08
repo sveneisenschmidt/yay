@@ -12,7 +12,7 @@
 
 ## Integration with Third-Parties
 
-Integrations are used to extend the application with new actions, achievements and validators. Before creating your own integration it is advised to have a look at the the [demo integration](../../integration/demo.yml) provided in the application's source.
+Integrations are used to extend the application with new actions, achievements and validators. Before creating your own integration it is advised to have a look at the the [demo integration](../integration/demo.yml) provided in the application's source.
 
 In our example we will create a `mycompany` integration. To start please execute the following commands to create our integration setup file.
 
@@ -26,10 +26,11 @@ The integration setup file has a root element `integration` and four possible ch
 
 | Node | Description |
 |---|---|
-| actions | Actions a player can perform. |
-| achievements | Achievements a player can earn. |
-| validators | Validators verify a player's actions against any achievement and grants if they pass all checks. ( `Validate::validate(Achievement, Actions): true||false` ) |
-| webhooks | Processors that listen to incoming and outgoing webhooks to process payloads to push username and actions into the engine |
+| actions | Actions a player is able to perform. |
+| achievements | Achievements a player is able to earn. |
+| levels | Levels a player is able to reach. |
+| validators | Validators verify a player's actions against any achievement and grants if they pass required checks. |
+| webhooks | Processors that listen to incoming and outgoing webhooks to process payloads to provide username and actions to the engine |
 
 #### Example setup file
 (See [demo integration](../integration/demo.yml))
@@ -39,7 +40,7 @@ integration:
     actions:
         example-action:
             label: Example action label
-            description: Example actions description
+            description: Example action description
 
     achievements:
         example-achievement-01:
@@ -52,6 +53,23 @@ integration:
             description: Example achievement description
             points: 100
             actions: ["example-action"]
+
+    levels:
+        level-01:
+            level: 1
+            label: Example level label
+            description: Example level description
+            points: 100
+        level-02:
+            level: 2
+            label: Example level label
+            description: Example level description
+            points: 200
+        level-03:
+            level: 3
+            label: Example level label
+            description: Example level description
+            points: 300
 
     validators:
         # Grants achievement 'example-achievement-01' if action `example-action`
@@ -79,7 +97,7 @@ integration:
                 type: dummy
                 arguments:
                     -
-                        username: jane.doe
+                        username: alex.doe
                         action: demo.action
             # Maps third party action to application action
             example-action:
@@ -94,7 +112,7 @@ integration:
                 arguments:
                     - username
                     -
-                        third_party.example_user: jane.doe
+                        third_party.example_user: alex.doe
 
 
 ```
@@ -150,6 +168,33 @@ integration:
             actions: ["example-action"]
     # ...
 ```
+#### `levels`
+
+Levels are declared as multi-dimensional associative arrays. Keys on the first level are the levels name, keys and values on second level are the properties of the levels. 
+
+Supported properties: `level`, `points`, `label` and `description`. The attribute `points` define when the level is valid as reached.
+
+```yml
+integration:
+    # ...
+    levels:
+        level-01:
+            level: 1
+            label: Example level label
+            description: Example level description
+            points: 100
+        level-02:
+            level: 2
+            label: Example level label
+            description: Example level description
+            points: 200
+        level-03:
+            level: 3
+            label: Example level label
+            description: Example level description
+            points: 300
+    # ...
+```
 
 #### `validators`
 
@@ -199,7 +244,7 @@ integration:
             # Your company provides a processor to transform Jenkins CI payloads
             example-mycompany-jenkinsci:
                 class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
-            # Your company provides a second processor to map jenkins users to Yay players
+            # Your company provides a second processor to map jenkins users to Yay! players
             # based on a static configuration file deployed with the application
             example-mycompany-jenkinsci:
                 class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
@@ -238,12 +283,12 @@ Hint: The disable routine will only remove the configuration. Entities created d
 
 ## Hosting
 
-To leverage the full potential of Yay it is encouraged to run it trough Docker. An easy way to do so is to use a platform like [sloppy.io](https://sloppy.io). We created a set of recipes to get you started, you can find them on [sveneisenschmidt/yay-recipes-sloppy](https://github.com/sveneisenschmidt/yay-recipes-sloppy).
+To leverage the full potential of Yay! it is encouraged to run it trough Docker. An easy way to do so is to use a platform like [sloppy.io](https://sloppy.io). We created a set of recipes to get you started, you can find them on [sveneisenschmidt/yay-recipes-sloppy](https://github.com/sveneisenschmidt/yay-recipes-sloppy).
 
 --
 
 ## Templates
-Yay sends a set of emails when events occur. It is powered by [Lee Munroe's](https://github.com/leemunroe) amazing [email templates](https://github.com/leemunroe/responsive-html-email-template).
+Yay! sends a set of emails when events occur. It is powered by [Lee Munroe's](https://github.com/leemunroe) amazing [email templates](https://github.com/leemunroe/responsive-html-email-template).
 
 It is possible to override the layout ([`templates/Mail/layout.html.twig`](../templates/Mail/layout.html.twig).) or any other template for your liking.
 
@@ -284,3 +329,15 @@ You've been awarded a new achievement:
 Have a nice day and keep on rockin'!
 ```
 You can find the template in [`templates/Mail/grant_personal_action.html.twig`](../templates/Mail/grant_personal_action.html.twig). Sending is triggered by the [`yay.engine.grant_personal_action`](../src/App/Mail/EventListener/MailListener.php) event.
+
+### New level reached
+```
+Yay!
+
+You've reached a new level:
+
+You're now on level 3 - Aspiring Rookie.
+
+Have a nice day and keep on rockin'!
+```
+You can find the template in [`templates/Mail/change_level.html.twig`](../templates/Mail/change_level.html.twig). Sending is triggered by the [`yay.engine.change_level`](../src/App/Mail/EventListener/MailListener.php) event.

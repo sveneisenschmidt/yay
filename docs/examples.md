@@ -32,7 +32,7 @@ curl -gX "GET" http://localhost:50080/api/players/?filter[name]=Jane+Doe
     },
     {
         "name": "Jane Doe",
-        "username": "jane.doe",
+        "username": "alex.doe",
         "created_at": "2018-01-02T13:24:19+00:00",
     }
 ]
@@ -74,7 +74,7 @@ curl -gX "GET" http://localhost:50080/api/players/?order[created_at]
     },
     {
         "name": "Jane Doe",
-        "username": "jane.doe",
+        "username": "alex.doe",
         "created_at": "2018-01-02T13:24:19+00:00",
     }
 ]
@@ -87,7 +87,7 @@ curl -gX "GET" http://localhost:50080/api/players/?order[created_at]=asc
 [
     {
         "name": "Jane Doe",
-        "username": "jane.doe",
+        "username": "alex.doe",
         "created_at": "2018-01-02T13:24:19+00:00",
     },
     {
@@ -109,7 +109,7 @@ curl -gX "GET" http://localhost:50080/api/players/?limit=1
 [
     {
         "name": "Jane Doe",
-        "username": "jane.doe",
+        "username": "alex.doe",
         "created_at": "2018-01-02T13:24:19+00:00",
     }
 ]
@@ -159,17 +159,17 @@ curl -X "GET" http://localhost:50080/api/players/
 There are no users created yet, let's create a user by executing the following request.
 ```bash
 curl -X "POST" http://localhost:50080/api/players/ \
-    -d "{\"name\": \"Jane Doe\",\"username\":\"jane.doe\",\"email\": \"jane.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
+    -d "{\"name\": \"Jane Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
 
 {
     "name": "Jane Doe",
-    "username": "jane.doe",
+    "username": "alex.doe",
     "image_url": "https://api.adorable.io/avatars/128/354",
     "score": 0,
     "links": {
-        "self": "http://localhost:50080/api/players/jane.doe/",
-        "personal_achievements": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
-        "personal_actions": "http://localhost:50080/api/players/jane.doe/personal-actions/"
+        "self": "http://localhost:50080/api/players/alex.doe/",
+        "personal_achievements": "http://localhost:50080/api/players/alex.doe/personal-achievements/",
+        "personal_actions": "http://localhost:50080/api/players/alex.doe/personal-actions/"
     }
 }
 ```
@@ -223,17 +223,17 @@ curl -X "GET" http://localhost:50080/api/achievements/
 ]
 ```
 
-4\) Let our player `jane.doe` perform the action `demo-action-01` one time.
+4\) Let our player `alex.doe` perform the action `demo-action-01` one time.
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"demo-action-01\"}"
+    -d "{\"username\":\"alex.doe\",\"action\":\"demo-action-01\"}"
 
 []
 ```
 
 No achievements were granted yet, although if you check now our players personal actions you will find our recent action.
 ```bash
-curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-actions
+curl -X "GET" http://localhost:50080/api/players/alex.doe/personal-actions
 
 [
     {
@@ -242,8 +242,8 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-actions
         "description": "demo-action-01",
         "achieved_at": "2017-10-08T12:48:13+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-actions/",
-            "player": "http://localhost:50080/api/players/jane.doe/",
+            "self": "http://localhost:50080/api/players/alex.doe/personal-actions/",
+            "player": "http://localhost:50080/api/players/alex.doe/",
             "action": "http://localhost:50080/api/actions/demo-action-01/"
         }
     }
@@ -254,7 +254,7 @@ Now let us get our first achievement. For this, perform the `demo.action` action
 
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"actions\":[\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\"]}"
+    -d "{\"username\":\"alex.doe\",\"actions\":[\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\"]}"
 
 [
     {
@@ -264,8 +264,8 @@ curl -X "POST" http://localhost:50080/api/progress/ \
         "points": 50,
         "achieved_at": "2017-10-08T13:22:08+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
-            "player": "http://localhost:50080/api/players/jane.doe/",
+            "self": "http://localhost:50080/api/players/alex.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/alex.doe/",
             "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
         }
     }
@@ -276,7 +276,7 @@ Et voilà: we earned our first achievement!
 5\) Now let's go further. Let the player perform the `demo-action-01` action five more times.
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"actions\":[\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\"]}"
+    -d "{\"username\":\"alex.doe\",\"actions\":[\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\"]}"
 
 [
     {
@@ -286,8 +286,8 @@ curl -X "POST" http://localhost:50080/api/progress/ \
         "points": 50,
         "achieved_at": "2017-10-08T13:23:53+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
-            "player": "http://localhost:50080/api/players/jane.doe/",
+            "self": "http://localhost:50080/api/players/alex.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/alex.doe/",
             "achievement": "http://localhost:50080/api/achievements/demo-achievement-02/"
         }
     }
@@ -298,7 +298,7 @@ Clap, clap! Our player earned their second official achievement.
 
 6\) Let's check our player achievements by performing the following request.
 ```bash
-curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-achievements/
+curl -X "GET" http://localhost:50080/api/players/alex.doe/personal-achievements/
 
 [
     {
@@ -308,8 +308,8 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-achievements/
         "points": 50,
         "achieved_at": "2017-10-08T13:22:08+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
-            "player": "http://localhost:50080/api/players/jane.doe/",
+            "self": "http://localhost:50080/api/players/alex.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/alex.doe/",
             "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
         }
     },
@@ -320,8 +320,8 @@ curl -X "GET" http://localhost:50080/api/players/jane.doe/personal-achievements/
         "points": 50,
         "achieved_at": "2017-10-08T13:23:53+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
-            "player": "http://localhost:50080/api/players/jane.doe/",
+            "self": "http://localhost:50080/api/players/alex.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/alex.doe/",
             "achievement": "http://localhost:50080/api/achievements/demo-achievement-02/"
         }
     }

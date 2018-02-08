@@ -22,14 +22,14 @@ class LevelController extends Controller
      * ```json
      * [{
      *     "name": "Level 1",
-     *     "label": "label-001",
-     *     "description": "description-001",
+     *     "label": "Label of Level 1",
+     *     "description": "Description of Level 1",
      *     "level": 1,
      *     "points": 100
      * },{
      *     "name": "Level 2",
-     *     "label": "label-002",
-     *     "description": "description-002",
+     *     "label": "Label of Level 2",
+     *     "description": "Description of Level 2",
      *     "level": 2,
      *     "points": 200
      * }]

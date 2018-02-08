@@ -44,6 +44,9 @@ class Player implements PlayerInterface
     /** @var int */
     protected $score = 0;
 
+    /** @var int */
+    protected $level = 0;
+
     public function __construct(\DateTime $createdAt = null)
     {
         $this->personalActions = new ArrayCollection();
@@ -129,16 +132,14 @@ class Player implements PlayerInterface
         $this->score = $score;
     }
 
-    public function refreshScore(): int
+    public function getLevel(): int
     {
-        $score = 0;
-        foreach ($this->getPersonalAchievements() as $personalAchievement) {
-            $score += $personalAchievement->getAchievementDefinition()->getPoints();
-        }
+        return $this->level;
+    }
 
-        $this->setScore($score);
-
-        return $this->getScore();
+    public function setLevel(int $level): void
+    {
+        $this->level = $level;
     }
 
     public function getImageUrl(): string

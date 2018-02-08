@@ -11,7 +11,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = http_build_query([
-            'username' => 'jane.doe',
+            'username' => 'alex.doe',
             'action' => 'yay.action.test_api_action',
         ]);
 
@@ -33,6 +33,20 @@ class ProgressControllerTest extends WebTestCase
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
         $this->assertCount(1, $data);
+
+        // (3) Check scores and level
+        $client->request('GET', '/api/players/alex.doe/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        $this->assertArrayHasKey('score', $data);
+        $this->assertArrayHasKey('level', $data);
+        $this->assertEquals(0, $data['score']);
+        $this->assertEquals(0, $data['level']);
     }
 
     public function test_Progress_SubmitPostAction_ValidUser_OneAction(): void
@@ -40,7 +54,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = json_encode([
-            'username' => 'jane.doe',
+            'username' => 'alex.doe',
             'action' => 'yay.action.test_api_action',
         ]);
 
@@ -62,6 +76,20 @@ class ProgressControllerTest extends WebTestCase
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
         $this->assertCount(1, $data);
+
+        // (3) Check scores and level
+        $client->request('GET', '/api/players/alex.doe/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        $this->assertArrayHasKey('score', $data);
+        $this->assertArrayHasKey('level', $data);
+        $this->assertEquals(0, $data['score']);
+        $this->assertEquals(0, $data['level']);
     }
 
     public function test_Progress_SubmitGetAction_ValidUser_ManyAction(): void
@@ -69,7 +97,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = http_build_query([
-            'username' => 'jane.doe',
+            'username' => 'alex.doe',
             'actions' => [
                 'yay.action.test_api_action',
                 'yay.action.test_api_action',
@@ -97,7 +125,7 @@ class ProgressControllerTest extends WebTestCase
         }
 
         // (2) Get a player's achievements
-        $client->request('GET', '/api/players/jane.doe/personal-achievements/');
+        $client->request('GET', '/api/players/alex.doe/personal-achievements/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -121,7 +149,21 @@ class ProgressControllerTest extends WebTestCase
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
-        $this->assertCount(6, $data);
+        $this->assertCount(8, $data);
+
+        // (4) Check scores and level
+        $client->request('GET', '/api/players/alex.doe/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        $this->assertArrayHasKey('score', $data);
+        $this->assertArrayHasKey('level', $data);
+        $this->assertEquals(50, $data['score']);
+        $this->assertEquals(1, $data['level']);
     }
 
     public function test_Progress_SubmitPostAction_ValidUser_ManyAction(): void
@@ -129,7 +171,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = json_encode([
-            'username' => 'jane.doe',
+            'username' => 'alex.doe',
             'actions' => [
                 'yay.action.test_api_action',
                 'yay.action.test_api_action',
@@ -157,7 +199,7 @@ class ProgressControllerTest extends WebTestCase
         }
 
         // (2) Get a player's achievements
-        $client->request('GET', '/api/players/jane.doe/personal-achievements/');
+        $client->request('GET', '/api/players/alex.doe/personal-achievements/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -181,7 +223,21 @@ class ProgressControllerTest extends WebTestCase
         $this->assertJson($content = $response->getContent());
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
-        $this->assertCount(6, $data);
+        $this->assertCount(8, $data);
+
+        // (4) Check scores and level
+        $client->request('GET', '/api/players/alex.doe/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+
+        $this->assertArrayHasKey('score', $data);
+        $this->assertArrayHasKey('level', $data);
+        $this->assertEquals(50, $data['score']);
+        $this->assertEquals(1, $data['level']);
     }
 
     public function test_Progress_SubmitGetAction_ValidUser_NoAction(): void
@@ -189,7 +245,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = http_build_query([
-            'username' => 'jane.doe',
+            'username' => 'alex.doe',
         ]);
 
         $client->request('GET', sprintf('/api/progress/?%s', $content));
@@ -203,7 +259,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = json_encode([
-            'username' => 'jane.doe',
+            'username' => 'alex.doe',
         ]);
 
         $client->request('POST', '/api/progress/', [], [], [], $content);
@@ -247,7 +303,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = http_build_query([
-            'username' => 'jane.doe',
+            'username' => 'alex.doe',
             'action' => 'yay.action.unknown_test_action',
         ]);
 
@@ -263,7 +319,7 @@ class ProgressControllerTest extends WebTestCase
         $client = static::createClient();
 
         $content = json_encode([
-            'username' => 'jane.doe',
+            'username' => 'alex.doe',
             'action' => 'yay.action.unknown_test_action',
         ]);
 

@@ -26,13 +26,13 @@ class ActivityController extends Controller
      *     "name": "personal_action_granted",
      *     "data": {
      *         "action": "demo-action",
-     *         "player": "jane.doe",
+     *         "player": "alex.doe",
      *         "achieved_at": "2017-11-25T21:06:57+00:00"
      *     },
      *     "created_at": "2017-11-25T21:06:57+00:00",
      *     "links": {
      *         "self": "http://localhost:50080/api/activities/",
-     *         "player": "http://localhost:50080/api/players/jane.doe/",
+     *         "player": "http://localhost:50080/api/players/alex.doe/",
      *         "action": "http://localhost:50080/api/actions/demo-action/"
      *     }
      * },
@@ -40,13 +40,13 @@ class ActivityController extends Controller
      *     "name": "personal_achievement_granted",
      *     "data": {
      *         "action": "demo-achievement-01",
-     *         "player": "jane.doe",
+     *         "player": "alex.doe",
      *         "achieved_at": "2017-11-25T21:06:57+00:00"
      *     },
      *     "created_at": "2017-11-25T21:06:57+00:00",
      *     "links": {
      *         "self": "http://localhost:50080/api/activities/",
-     *         "player": "http://localhost:50080/api/players/jane.doe/",
+     *         "player": "http://localhost:50080/api/players/alex.doe/",
      *         "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
      *     }
      * }]

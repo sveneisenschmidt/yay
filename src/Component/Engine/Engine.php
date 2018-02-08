@@ -3,8 +3,8 @@
 namespace Component\Engine;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Component\Engine\Storage\EventStorageTrait;
 use Component\Engine\Storage\StorageInterface;
+use Component\Engine\Storage\Decorator\EventStorageDecoratorTrait;
 use Component\Engine\AchievementValidator\ValidationContext;
 use Component\Entity\Achievement\ActionDefinition;
 use Component\Entity\Achievement\ActionDefinitionCollection;
@@ -17,7 +17,7 @@ use Component\Entity\PlayerInterface;
 
 class Engine
 {
-    use EventStorageTrait;
+    use EventStorageDecoratorTrait;
 
     /** @var AchievementValidatorCollection */
     protected $achievementValidatorCollection;
@@ -131,12 +131,13 @@ class Engine
                     $personalAchievements[] = $personalAchievement;
 
                     $this->savePersonalAchievement($personalAchievement);
-                    $this->refreshPlayer($player);
                 }
             }
         }
 
-        $player->refreshScore();
+        $this->refreshPlayer($player);
+        $this->recalculatePlayerScore($player);
+        $this->recalculatePlayerLevel($player);
         $this->savePlayer($player);
 
         return $personalAchievements;

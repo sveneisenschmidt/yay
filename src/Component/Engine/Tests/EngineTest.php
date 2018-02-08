@@ -16,6 +16,8 @@ use Component\Entity\Achievement\ActionDefinition;
 use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Achievement\PersonalAction;
 use Component\Entity\Achievement\PersonalActionCollection;
+use Component\Entity\Achievement\LevelCollection;
+use Component\Entity\Achievement\PersonalAchievementCollection;
 
 class EngineTest extends TestCase
 {
@@ -137,6 +139,7 @@ class EngineTest extends TestCase
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
             'findAchievementDefinitionBy' => new AchievementDefinitionCollection(),
+            'findLevelBy' => new LevelCollection(),
         ]);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
@@ -165,6 +168,7 @@ class EngineTest extends TestCase
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
+            'findLevelBy' => new LevelCollection(),
         ]);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
@@ -181,6 +185,7 @@ class EngineTest extends TestCase
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getPersonalActions' => $personalActionCollection,
             'hasPersonalAchievement' => true,
+            'getPersonalAchievements' => new PersonalAchievementCollection(),
         ]);
 
         $personalAction = new PersonalAction($player, $actionDefinition);
@@ -193,6 +198,7 @@ class EngineTest extends TestCase
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
+            'findLevelBy' => new LevelCollection(),
         ]);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
@@ -216,6 +222,7 @@ class EngineTest extends TestCase
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getPersonalActions' => $personalActionCollection,
             'hasPersonalAchievement' => false,
+            'getPersonalAchievements' => new PersonalAchievementCollection(),
         ]);
 
         $personalAction = new PersonalAction($player, $actionDefinition);
@@ -228,6 +235,7 @@ class EngineTest extends TestCase
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
+            'findLevelBy' => new LevelCollection(),
         ]);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
@@ -251,6 +259,7 @@ class EngineTest extends TestCase
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getPersonalActions' => $personalActionCollection,
             'hasPersonalAchievement' => false,
+            'getPersonalAchievements' => new PersonalAchievementCollection(),
         ]);
 
         $personalAction = new PersonalAction($player, $actionDefinition);
@@ -263,6 +272,7 @@ class EngineTest extends TestCase
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
+            'findLevelBy' => new LevelCollection(),
         ]);
 
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
@@ -287,6 +297,7 @@ class EngineTest extends TestCase
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getPersonalActions' => $personalActionCollection,
             'hasPersonalAchievement' => false,
+            'getPersonalAchievements' => new PersonalAchievementCollection(),
         ]);
 
         $personalAction = new PersonalAction($player, $actionDefinition);
@@ -299,6 +310,7 @@ class EngineTest extends TestCase
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
             'findAchievementDefinitionBy' => $achievementDefinitionCollection,
+            'findLevelBy' => new LevelCollection(),
         ]);
 
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);

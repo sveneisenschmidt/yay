@@ -51,7 +51,7 @@ Yay is a **gamification engine** directly exposing a web service API to bring ev
 - Goals
 - Leaderboards
 - Notifications
-- Player Levels
+- Player Scores & Levels
 - [API](docs/examples.md#usage--api)
 - [Webhooks](docs/under-the-hood.md#webhooks)
 

@@ -8,13 +8,23 @@ use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionInterface;
 use Component\Engine\Event\ObjectEvent;
 use Component\Engine\EventListener\EventListenerInterface;
+use Component\Engine\Storage\StorageInterface;
+use Component\Engine\Storage\Decorator\StorageDecoratorTrait;
 
 class MailListener implements EventListenerInterface
 {
+    use StorageDecoratorTrait;
+
     /** @var Mailer */
     protected $mailer;
 
-    public function __construct(Mailer $mailer)
+    public function __construct(StorageInterface $storage, Mailer $mailer)
+    {
+        $this->setStorage($storage);
+        $this->setMailer($mailer);
+    }
+
+    public function setMailer(Mailer $mailer): void
     {
         $this->mailer = $mailer;
     }
@@ -26,8 +36,39 @@ class MailListener implements EventListenerInterface
 
         $this->mailer->send($this->mailer->compose(
             $player->getEmail(),
-            'Yay! Welcome on board!!',
+            'Yay! Welcome on board!',
             'Mail/create_player.html.twig',
+            ['player' => $player]
+        ));
+    }
+
+    public function onChangeLevel(ObjectEvent $event): void
+    {
+        /** @var PlayerInterface $player */
+        $player = $event->getObject();
+
+        $this->mailer->send($this->mailer->compose(
+            $player->getEmail(),
+            'Yay! You\'ve reached a new level!',
+            'Mail/change_level.html.twig',
+            [
+                'player' => $player,
+                'level' => $this->storage
+                    ->findLevelBy(['level' => $player->getLevel()])
+                    ->first(),
+                ]
+        ));
+    }
+
+    public function onChangeScore(ObjectEvent $event): void
+    {
+        /** @var PlayerInterface $player */
+        $player = $event->getObject();
+
+        $this->mailer->send($this->mailer->compose(
+            $player->getEmail(),
+            'Yay! You\'ve reached a new all time score!',
+            'Mail/change_score.html.twig',
             ['player' => $player]
         ));
     }

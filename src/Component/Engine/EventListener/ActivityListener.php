@@ -8,11 +8,11 @@ use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionInterface;
 use Component\Engine\Event\ObjectEvent;
 use Component\Engine\Storage\StorageInterface;
-use Component\Engine\Storage\StorageTrait;
+use Component\Engine\Storage\Decorator\StorageDecoratorTrait;
 
 class ActivityListener implements EventListenerInterface
 {
-    use StorageTrait;
+    use StorageDecoratorTrait;
 
     public function __construct(StorageInterface $storage)
     {
@@ -66,6 +66,40 @@ class ActivityListener implements EventListenerInterface
                 'player' => $personalAchievement->getPlayer()->getUsername(),
                 'achievement' => $personalAchievement->getAchievementDefinition()->getName(),
                 'achieved_at' => $personalAchievement->getAchievedAt()->format('c'),
+            ]
+        );
+
+        $this->getStorage()->saveActivity($activity);
+    }
+
+    public function onLevelChanged(ObjectEvent $event): void
+    {
+        /** @var PlayerInterface $player */
+        $player = $event->getObject();
+
+        $activity = new Activity(
+            Activity::LEVEL_CHANGED,
+            $player,
+            [
+                'player' => $player->getUsername(),
+                'level' => $player->getLevel(),
+            ]
+        );
+
+        $this->getStorage()->saveActivity($activity);
+    }
+
+    public function onScoreChanged(ObjectEvent $event): void
+    {
+        /** @var PlayerInterface $player */
+        $player = $event->getObject();
+
+        $activity = new Activity(
+            Activity::SCORE_CHANGED,
+            $player,
+            [
+                'player' => $player->getUsername(),
+                'score' => $player->getScore(),
             ]
         );
 

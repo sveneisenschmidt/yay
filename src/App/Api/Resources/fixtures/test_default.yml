@@ -1,9 +1,32 @@
 Component\Entity\Player:
     player:
-        username: 'jane.doe'
+        username: 'alex.doe'
         name: '<firstName()> <lastName()>'
         email: '<email()>'
         imageUrl: 'https://placehold.it/512x512/007daa/ffffff'
+
+Component\Entity\Achievement\Level:
+    level1:
+        __construct:
+            - level-1
+            - 1
+            - 50
+        label: '<text()>'
+        description: '<text()>'
+    level2:
+        __construct:
+            - level-2
+            - 2
+            - 100
+        label: '<text()>'
+        description: '<text()>'
+    level3:
+        __construct:
+            - level-3
+            - 3
+            - 150
+        label: '<text()>'
+        description: '<text()>'
 
 Component\Entity\Achievement\ActionDefinition:
     action_definition:

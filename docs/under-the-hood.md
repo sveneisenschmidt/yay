@@ -12,27 +12,27 @@
 
 ## Commands
 
-Yay is shipped with a collection of commands that are necessary to configure and control a running Yay installation.
+Yay! is shipped with a collection of commands that are necessary to configure and control a running Yay! installation.
 
 | Command | Description | Example |
 |---|---|---|
 | `yay:integration:enable <name> <path>` | Enables an integration. | `php bin/console --env=prod yay:integration:enable demo integration/demo` |
 | `yay:integration:disable <name>` | Disables an integration. | `php bin/console --env=prod yay:integration:disable demo` |
 | `yay:integration:validate <name> <path>` | Validates an integration. | `php bin/console --env=prod yay:integration:validate demo integration/demo` |
-| `yay:recalculate <player>` | Recalculates a player's progress. | `php bin/console --env=prod yay:recalculate jane.doe` |
-Hint: It is important to always pass the environment Yay is running in as the env parameter.
+| `yay:recalculate <player>` | Recalculates a player's progress. | `php bin/console --env=prod yay:recalculate alex.doe` |
+Hint: It is important to always pass the environment Yay! is running in as the env parameter.
 
 ---
 
 ## Events
 
-Yay provides a set of events to easily hook into. How to work with events is illustrated through the [ActivityListener](../src/Component/Engine/EventListener/ActivityListener.php) and the [services.yml](../src/App/Engine/Resources/config/services.yml) configuration.
+Yay! provides a set of events to easily hook into. How to work with events is illustrated through the [ActivityListener](../src/Component/Engine/EventListener/ActivityListener.php) and the [services.yml](../src/App/Engine/Resources/config/services.yml) configuration.
 
 ```yml
 # services.yml
 MyListener:
     tags:
-     - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
+        - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
 ```
 ```php
 # MyListener.php
@@ -53,14 +53,15 @@ class MyListener
 | yay.engine.pre_save | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Entity\*](../src/Component/Entity)  | Triggered before an entity is saved. |
 | yay.engine.post_save | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Entity\*](../src/Component/Entity)  | Triggered after an entity was saved. |
 | yay.engine.grant_personal_achievement | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [PersonalAchievement](../src/Component/Entity/Achievement/PersonalAchievement.php)  | Triggered after a player has been awarded with a new achievement. |
-| yay.engine.grant_personal_action | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [PersonalAction](../src/Component/Entity/Achievement/PersonalAction.php) | Triggered after a player has been accounted a new action.  |
-| yay.engine.create_player | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Player](../src/Component/Entity/Player.php) | Triggered after a new player has been created.  |
-
+| yay.engine.grant_personal_action | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [PersonalAction](../src/Component/Entity/Achievement/PersonalAction.php) | Triggered after a player has been accounted a new action. |
+| yay.engine.create_player | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Player](../src/Component/Entity/Player.php) | Triggered after a new player has been created. |
+| yay.engine.change_level | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Player](../src/Component/Entity/Player.php) | Triggered after a player's level has been changed. |
+| yay.engine.change_score | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Player](../src/Component/Entity/Player.php) | Triggered after a player's score has been changed. |
 ---
 
 ## Webhooks
 
-Webhooks are the link that joins the outside world with your Yay instance.
+Webhooks are the link that joins the outside world with your Yay! instance.
 
 ### Internals
 
@@ -130,19 +131,21 @@ The [ChainProcessor](../../src/Component/Webhook/Incoming/Processor/ChainProcess
 integration:
     webhooks:
      incoming_processors:
-         # Chains multiple processors into one
-         example-chain:
-          type: chain
-          arguments:
-              - [example-mycompany-jenkinsci, example-mycompany-users]
-         # Your company provides a processor to transform Jenkins CI payloads
-         example-mycompany-jenkinsci:
-          class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
-         # Your company provides a second processor to map jenkins users to Yay players
-         # based on a static configuration file deployed with the application
-         example-mycompany-users:
-          class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
-          arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
+            # Chains multiple processors into one
+            example-chain:
+                type: chain
+                arguments:
+                    - [example-mycompany-jenkinsci, example-mycompany-users]
+            # Your company provides a processor to transform Jenkins CI payloads
+            example-mycompany-jenkinsci:
+                type: class
+                class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
+            # Your company provides a second processor to map jenkins users to Yay! players
+            # based on a static configuration file deployed with the application
+            example-mycompany-users:
+                type: class
+                class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
+                arguments: [ '%kernel.root_dir/../integration/mycompany/users.yml%' ]
 ```
 URL:  `/webhook/incoming/example-chain/`.
 
@@ -154,12 +157,12 @@ The [DummyProcessor](../../src/Component/Webhook/Incoming/Processor/DummyProcess
 integration:
     webhooks:
      incoming_processors:
-         example-dummy:
-          type: dummy
-          arguments:
-              -
-               username: jane.doe
-               action: example.action
+        example-dummy:
+            type: dummy
+            arguments:
+                -
+                    username: alex.doe
+                    action: example.action
 ```
 URL:  `/webhook/incoming/example-dummy/`.
 
@@ -170,9 +173,9 @@ The [NullProcessor](../../src/Component/Webhook/Incoming/Processor/NullProcessor
 ```yml
 integration:
     webhooks:
-     incoming_processors:
-         example-null:
-          type: 'null'
+        incoming_processors:
+            example-null:
+                type: 'null'
 ```
 URL:  `/webhook/incoming/example-null/`.
 
@@ -184,13 +187,13 @@ The [StaticMapProcessor](../../src/Component/Webhook/Incoming/Processor/StaticMa
 integration:
     webhooks:
      incoming_processors:
-         example-static-map:
-          type: static-map
-          arguments:
-              - username
-              -
-               # username=octocate => username=jane.doe
-               octocat: jane.doe
+            example-static-map:
+                type: static-map
+                arguments:
+                    - username
+                    -
+                    # username=octocate => username=alex.doe
+                    octocat: alex.doe
 ```
 URL:  `/webhook/incoming/example-static-map/`.
 
@@ -204,9 +207,9 @@ The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/Git
 integration:
     webhooks:
      incoming_processors:
-         example-github:
-          type: class
-          class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
+            example-github:
+                type: class
+                class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
 ```
 URL:  `/webhook/incoming/example-github/`.
 
@@ -218,8 +221,8 @@ The [GitlabProcessor](../../src/ThirdParty/Gitlab/Webhook/Incoming/Processor/Git
 integration:
     webhooks:
      incoming_processors:
-         example-gitlab:
-          type: class
-          class: Yay\ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
+            example-gitlab:
+                type: class
+                class: Yay\ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
 ```
 URL:  `/webhook/incoming/example-gitlab/`.

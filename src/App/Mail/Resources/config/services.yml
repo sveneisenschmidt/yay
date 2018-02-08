@@ -10,6 +10,19 @@ services:
 
     App\Mail\EventListener\MailListener:
         tags:
-            - { name: yay.event_listener, event: yay.engine.grant_personal_action, method: onGrantPersonalAction }
-            - { name: yay.event_listener, event: yay.engine.grant_personal_achievement, method: onGrantPersonalAchievement }
-            - { name: yay.event_listener, event: yay.engine.create_player, method: onCreatePlayer }
+            - { name: yay.event_listener, 
+                event: !php/const Component\Engine\Events::CREATE_PLAYER, 
+                method: onCreatePlayer }
+            - { name: yay.event_listener, 
+                event: !php/const Component\Engine\Events::GRANT_PERSONAL_ACHIEVEMENT, 
+                method: onGrantPersonalAchievement }
+            - { name: yay.event_listener, 
+                event: !php/const Component\Engine\Events::GRANT_PERSONAL_ACTION, 
+                method: onGrantPersonalAction }
+            - { name: yay.event_listener, 
+                event: !php/const Component\Engine\Events::CHANGE_LEVEL, 
+                method: onChangeLevel }
+#            - { name: yay.event_listener, 
+#                event: !php/const Component\Engine\Events::CHANGE_SCORE, 
+#                method: onChangeScore }
+

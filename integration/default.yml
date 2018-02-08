@@ -1,30 +1,510 @@
 integration:
     levels:
-        level-01:
+        level-0:
+            level: 0
+            label: 'Custom Tailor'
+            description: 'Focused homogeneous moderator'
+            points: 0
+        level-1:
             level: 1
+            label: 'Bill and Account Collector'
+            description: 'Versatile executive database'
             points: 100
-            label: label-1
-            description: description-1
-        level-02:
+        level-2:
             level: 2
+            label: 'Valve Repairer OR Regulator Repairer'
+            description: 'Triple-buffered didactic flexibility'
             points: 200
-            label: label-2
-            description: description-2
-        level-03:
+        level-3:
             level: 3
+            label: Telemarketer
+            description: 'Optional full-range success'
             points: 300
-            label: label-3
-            description: description-3
-        level-04:
+        level-4:
             level: 4
+            label: 'Heating Equipment Operator'
+            description: 'Robust tangible function'
             points: 400
-            label: label-4
-            description: description-4
-        level-05:
+        level-5:
             level: 5
+            label: 'Railroad Yard Worker'
+            description: 'Integrated 6thgeneration data-warehouse'
             points: 500
-            label: label-5
-            description: description-5
+        level-6:
+            level: 6
+            label: 'Boiler Operator'
+            description: 'Pre-emptive intermediate knowledgeuser'
+            points: 600
+        level-7:
+            level: 7
+            label: 'Data Entry Operator'
+            description: 'Quality-focused regional processimprovement'
+            points: 700
+        level-8:
+            level: 8
+            label: 'Fire-Prevention Engineer'
+            description: 'Persevering 5thgeneration complexity'
+            points: 800
+        level-9:
+            level: 9
+            label: 'Geological Sample Test Technician'
+            description: 'Horizontal eco-centric access'
+            points: 900
+        level-10:
+            level: 10
+            label: Pediatricians
+            description: 'Polarised value-added framework'
+            points: 1000
+        level-11:
+            level: 11
+            label: Bellhop
+            description: 'Reverse-engineered hybrid challenge'
+            points: 1100
+        level-12:
+            level: 12
+            label: 'Funeral Director'
+            description: 'Monitored bi-directional time-frame'
+            points: 1200
+        level-13:
+            level: 13
+            label: 'Private Sector Executive'
+            description: 'Ameliorated hybrid openarchitecture'
+            points: 1300
+        level-14:
+            level: 14
+            label: 'Marine Oiler'
+            description: 'Self-enabling optimal middleware'
+            points: 1400
+        level-15:
+            level: 15
+            label: 'Executive Secretary'
+            description: 'Open-source tangible throughput'
+            points: 1500
+        level-16:
+            level: 16
+            label: 'Structural Iron and Steel Worker'
+            description: 'Universal impactful challenge'
+            points: 1600
+        level-17:
+            level: 17
+            label: CSI
+            description: 'Digitized heuristic internetsolution'
+            points: 1700
+        level-18:
+            level: 18
+            label: 'Diesel Engine Specialist'
+            description: 'Virtual mission-critical analyzer'
+            points: 1800
+        level-19:
+            level: 19
+            label: 'Fashion Model'
+            description: 'Versatile responsive benchmark'
+            points: 1900
+        level-20:
+            level: 20
+            label: 'Interaction Designer'
+            description: 'Persistent context-sensitive interface'
+            points: 2000
+        level-21:
+            level: 21
+            label: 'Production Helper'
+            description: 'Seamless web-enabled collaboration'
+            points: 2100
+        level-22:
+            level: 22
+            label: 'Waste Treatment Plant Operator'
+            description: 'Configurable empowering data-warehouse'
+            points: 2200
+        level-23:
+            level: 23
+            label: Engineer
+            description: 'Persevering full-range conglomeration'
+            points: 2300
+        level-24:
+            level: 24
+            label: 'Employment Interviewer'
+            description: 'Switchable secondary migration'
+            points: 2400
+        level-25:
+            level: 25
+            label: 'Food Servers'
+            description: 'Cloned web-enabled leverage'
+            points: 2500
+        level-26:
+            level: 26
+            label: 'Electrical Sales Representative'
+            description: 'Up-sized secondary analyzer'
+            points: 2600
+        level-27:
+            level: 27
+            label: 'Heat Treating Equipment Operator'
+            description: 'Distributed human-resource matrix'
+            points: 2700
+        level-28:
+            level: 28
+            label: 'Pest Control Worker'
+            description: 'Assimilated directional alliance'
+            points: 2800
+        level-29:
+            level: 29
+            label: 'Cultural Studies Teacher'
+            description: 'Proactive demand-driven frame'
+            points: 2900
+        level-30:
+            level: 30
+            label: 'Train Crew'
+            description: 'User-friendly optimizing approach'
+            points: 3000
+        level-31:
+            level: 31
+            label: 'Project Manager'
+            description: 'Intuitive neutral analyzer'
+            points: 3100
+        level-32:
+            level: 32
+            label: 'Bicycle Repairer'
+            description: 'Centralized radical hub'
+            points: 3200
+        level-33:
+            level: 33
+            label: 'Stringed Instrument Repairer and Tuner'
+            description: 'Re-engineered 24/7 help-desk'
+            points: 3300
+        level-34:
+            level: 34
+            label: 'Hazardous Materials Removal Worker'
+            description: 'Optimized needs-based groupware'
+            points: 3400
+        level-35:
+            level: 35
+            label: 'System Administrator'
+            description: 'Up-sized 24hour functionalities'
+            points: 3500
+        level-36:
+            level: 36
+            label: 'Biological Scientist'
+            description: 'Progressive hybrid task-force'
+            points: 3600
+        level-37:
+            level: 37
+            label: Microbiologist
+            description: 'Mandatory responsive project'
+            points: 3700
+        level-38:
+            level: 38
+            label: 'Home Appliance Installer'
+            description: 'Programmable exuding synergy'
+            points: 3800
+        level-39:
+            level: 39
+            label: 'Creative Writer'
+            description: 'Fundamental bifurcated instructionset'
+            points: 3900
+        level-40:
+            level: 40
+            label: Manicurists
+            description: 'Open-source fresh-thinking instructionset'
+            points: 4000
+        level-41:
+            level: 41
+            label: 'Library Assistant'
+            description: 'Up-sized optimizing time-frame'
+            points: 4100
+        level-42:
+            level: 42
+            label: 'Private Household Cook'
+            description: 'Implemented holistic portal'
+            points: 4200
+        level-43:
+            level: 43
+            label: 'Sawing Machine Operator'
+            description: 'Grass-roots intermediate access'
+            points: 4300
+        level-44:
+            level: 44
+            label: Electrician
+            description: 'Front-line coherent pricingstructure'
+            points: 4400
+        level-45:
+            level: 45
+            label: 'Nursing Instructor'
+            description: 'Reactive bi-directional initiative'
+            points: 4500
+        level-46:
+            level: 46
+            label: 'Marking Clerk'
+            description: 'Right-sized explicit installation'
+            points: 4600
+        level-47:
+            level: 47
+            label: 'Hand Sewer'
+            description: 'Inverse radical solution'
+            points: 4700
+        level-48:
+            level: 48
+            label: 'Massage Therapist'
+            description: 'Monitored fresh-thinking encryption'
+            points: 4800
+        level-49:
+            level: 49
+            label: 'Mail Clerk'
+            description: 'Switchable bottom-line circuit'
+            points: 4900
+        level-50:
+            level: 50
+            label: 'Percussion Instrument Repairer'
+            description: 'Mandatory asynchronous internetsolution'
+            points: 5000
+        level-51:
+            level: 51
+            label: 'Rental Clerk'
+            description: 'Business-focused even-keeled circuit'
+            points: 5100
+        level-52:
+            level: 52
+            label: 'Production Planner'
+            description: 'Grass-roots full-range artificialintelligence'
+            points: 5200
+        level-53:
+            level: 53
+            label: 'Tree Trimmer'
+            description: 'User-friendly static paradigm'
+            points: 5300
+        level-54:
+            level: 54
+            label: 'Central Office Operator'
+            description: 'Monitored modular data-warehouse'
+            points: 5400
+        level-55:
+            level: 55
+            label: Brazer
+            description: 'Switchable needs-based success'
+            points: 5500
+        level-56:
+            level: 56
+            label: 'Industrial Production Manager'
+            description: 'Digitized content-based knowledgebase'
+            points: 5600
+        level-57:
+            level: 57
+            label: 'Occupational Health Safety Technician'
+            description: 'Front-line nextgeneration productivity'
+            points: 5700
+        level-58:
+            level: 58
+            label: 'Eligibility Interviewer'
+            description: 'Proactive stable orchestration'
+            points: 5800
+        level-59:
+            level: 59
+            label: 'Woodworking Machine Setter'
+            description: 'Innovative national functionalities'
+            points: 5900
+        level-60:
+            level: 60
+            label: Logistician
+            description: 'Automated well-modulated policy'
+            points: 6000
+        level-61:
+            level: 61
+            label: 'Manager of Weapons Specialists'
+            description: 'Organic client-driven product'
+            points: 6100
+        level-62:
+            level: 62
+            label: 'Proofreaders and Copy Marker'
+            description: 'Adaptive 24hour implementation'
+            points: 6200
+        level-63:
+            level: 63
+            label: 'Computer-Controlled Machine Tool Operator'
+            description: 'Triple-buffered zerotolerance standardization'
+            points: 6300
+        level-64:
+            level: 64
+            label: 'Sketch Artist'
+            description: 'Balanced well-modulated utilisation'
+            points: 6400
+        level-65:
+            level: 65
+            label: 'Soil Scientist OR Plant Scientist'
+            description: 'Business-focused systemic task-force'
+            points: 6500
+        level-66:
+            level: 66
+            label: 'Armored Assault Vehicle Officer'
+            description: 'Robust motivating success'
+            points: 6600
+        level-67:
+            level: 67
+            label: 'Law Teacher'
+            description: 'Down-sized mobile moderator'
+            points: 6700
+        level-68:
+            level: 68
+            label: 'Precision Etcher and Engraver'
+            description: 'Vision-oriented didactic GraphicalUserInterface'
+            points: 6800
+        level-69:
+            level: 69
+            label: 'Farm and Home Management Advisor'
+            description: 'Horizontal multi-tasking initiative'
+            points: 6900
+        level-70:
+            level: 70
+            label: 'Motor Vehicle Inspector'
+            description: 'Inverse systemic localareanetwork'
+            points: 7000
+        level-71:
+            level: 71
+            label: 'Drilling and Boring Machine Tool Setter'
+            description: 'Down-sized dedicated matrix'
+            points: 7100
+        level-72:
+            level: 72
+            label: Concierge
+            description: 'Configurable coherent hardware'
+            points: 7200
+        level-73:
+            level: 73
+            label: 'Furniture Finisher'
+            description: 'Virtual real-time processimprovement'
+            points: 7300
+        level-74:
+            level: 74
+            label: 'Real Estate Association Manager'
+            description: 'Devolved neutral openarchitecture'
+            points: 7400
+        level-75:
+            level: 75
+            label: 'Head Nurse'
+            description: 'Fully-configurable contextually-based website'
+            points: 7500
+        level-76:
+            level: 76
+            label: 'Postsecondary Education Administrators'
+            description: 'Object-based fresh-thinking data-warehouse'
+            points: 7600
+        level-77:
+            level: 77
+            label: 'Metal-Refining Furnace Operator'
+            description: 'Innovative client-driven project'
+            points: 7700
+        level-78:
+            level: 78
+            label: 'Rail Transportation Worker'
+            description: 'Re-engineered client-server knowledgebase'
+            points: 7800
+        level-79:
+            level: 79
+            label: 'School Social Worker'
+            description: 'Extended impactful intranet'
+            points: 7900
+        level-80:
+            level: 80
+            label: Photoengraver
+            description: 'Switchable value-added hierarchy'
+            points: 8000
+        level-81:
+            level: 81
+            label: 'Vocational Education Teacher'
+            description: 'Grass-roots 24hour openarchitecture'
+            points: 8100
+        level-82:
+            level: 82
+            label: 'Janitorial Supervisor'
+            description: 'Customizable encompassing task-force'
+            points: 8200
+        level-83:
+            level: 83
+            label: 'Materials Engineer'
+            description: 'Decentralized zerodefect analyzer'
+            points: 8300
+        level-84:
+            level: 84
+            label: Secretary
+            description: 'Multi-tiered human-resource contingency'
+            points: 8400
+        level-85:
+            level: 85
+            label: Trainer
+            description: 'Public-key even-keeled policy'
+            points: 8500
+        level-86:
+            level: 86
+            label: 'Railroad Switch Operator'
+            description: 'Re-engineered discrete orchestration'
+            points: 8600
+        level-87:
+            level: 87
+            label: 'Web Developer'
+            description: 'Public-key clear-thinking attitude'
+            points: 8700
+        level-88:
+            level: 88
+            label: 'House Cleaner'
+            description: 'Pre-emptive logistical protocol'
+            points: 8800
+        level-89:
+            level: 89
+            label: 'City Planning Aide'
+            description: 'Enhanced contextually-based info-mediaries'
+            points: 8900
+        level-90:
+            level: 90
+            label: 'Human Resources Manager'
+            description: 'User-friendly 5thgeneration frame'
+            points: 9000
+        level-91:
+            level: 91
+            label: 'Board Of Directors'
+            description: 'Diverse incremental data-warehouse'
+            points: 9100
+        level-92:
+            level: 92
+            label: 'Buffing and Polishing Operator'
+            description: 'Universal hybrid moratorium'
+            points: 9200
+        level-93:
+            level: 93
+            label: Molder
+            description: 'Ergonomic bifurcated architecture'
+            points: 9300
+        level-94:
+            level: 94
+            label: 'Speech-Language Pathologist'
+            description: 'Multi-lateral assymetric focusgroup'
+            points: 9400
+        level-95:
+            level: 95
+            label: Spotters
+            description: 'Customizable uniform frame'
+            points: 9500
+        level-96:
+            level: 96
+            label: 'Medical Transcriptionist'
+            description: 'Mandatory bottom-line architecture'
+            points: 9600
+        level-97:
+            level: 97
+            label: 'Entertainment Attendant'
+            description: 'Synchronised nextgeneration collaboration'
+            points: 9700
+        level-98:
+            level: 98
+            label: 'Precision Printing Worker'
+            description: 'Exclusive attitude-oriented database'
+            points: 9800
+        level-99:
+            level: 99
+            label: 'Educational Counselor OR Vocationall Counselor'
+            description: 'Networked empowering database'
+            points: 9900
+        level-100:
+            level: 100
+            label: 'Computer Systems Analyst'
+            description: 'Open-source methodical data-warehouse'
+            points: 10000
     actions: ~
     achievements: ~
     validators: ~

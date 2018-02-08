@@ -1,25 +1,25 @@
 <?php
 
-namespace Component\Engine\Tests\Storage;
+namespace Component\Engine\Tests\Storage\Decorator;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Component\Engine\Storage\StorageInterface;
-use Component\Engine\Storage\EventStorageTrait;
+use Component\Engine\Storage\Decorator\EventStorageDecoratorTrait;
 use Component\Entity\PlayerInterface;
 use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionInterface;
 use Component\Engine\Events;
 use Component\Engine\Event\ObjectEvent;
 
-class EventStorageTraitTest extends TestCase
+class EventStorageDecoratorTraitTest extends TestCase
 {
     public function createInstaceWithStorage(
         StorageInterface $storage,
         EventDispatcherInterface $eventDispatcher
     ): object {
         return new class($storage, $eventDispatcher) {
-            use EventStorageTrait;
+            use EventStorageDecoratorTrait;
 
             public function __construct(
                 StorageInterface $storage,
@@ -36,7 +36,7 @@ class EventStorageTraitTest extends TestCase
         $storage = $this->createMock(StorageInterface::class);
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
-        /** @var object&EventStorageTrait $instance */
+        /** @var object&EventStorageDecoratorTrait $instance */
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
         $this->assertSame($eventDispatcher, $instance->getEventDispatcher());
     }
@@ -53,7 +53,7 @@ class EventStorageTraitTest extends TestCase
             );
 
         $object = $this->createMock(PlayerInterface::class);
-        /** @var object&EventStorageTrait $instance */
+        /** @var object&EventStorageDecoratorTrait $instance */
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
         $instance->savePlayer($object);
     }
@@ -70,7 +70,7 @@ class EventStorageTraitTest extends TestCase
             );
 
         $object = $this->createMock(PersonalAchievementInterface::class);
-        /** @var object&EventStorageTrait $instance */
+        /** @var object&EventStorageDecoratorTrait $instance */
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
         $instance->savePersonalAchievement($object);
     }
@@ -87,7 +87,7 @@ class EventStorageTraitTest extends TestCase
             );
 
         $object = $this->createMock(PersonalActionInterface::class);
-        /** @var object&EventStorageTrait $instance */
+        /** @var object&EventStorageDecoratorTrait $instance */
         $instance = $this->createInstaceWithStorage($storage, $eventDispatcher);
         $instance->savePersonalAction($object);
     }

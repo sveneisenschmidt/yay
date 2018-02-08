@@ -9,8 +9,10 @@ use Component\Engine\Events;
 use Component\Engine\Event\ObjectEvent;
 use Component\Entity\Achievement\PersonalActionInterface;
 use Component\Entity\PlayerInterface;
+use Component\Engine\Storage\StorageInterface;
 use App\Mail\EventListener\MailListener;
 use App\Mail\Service\Mailer;
+use Component\Entity\Achievement\LevelCollection;
 
 class MailListenerTest extends WebTestCase
 {
@@ -44,6 +46,8 @@ class MailListenerTest extends WebTestCase
     {
         $faker = \Faker\Factory::create();
 
+        $storage = $this->createMock(StorageInterface::class);
+
         $mailer = $this->getMockBuilder(Mailer::class)
             ->disableOriginalConstructor()
             ->setMethods(['send', 'compose'])
@@ -64,13 +68,15 @@ class MailListenerTest extends WebTestCase
         ]);
 
         $event = new ObjectEvent($personalAction);
-        $listener = new MailListener($mailer);
+        $listener = new MailListener($storage, $mailer);
         $listener->onGrantPersonalAction($event);
     }
 
     public function test_on_grant_personal_achievement(): void
     {
         $faker = \Faker\Factory::create();
+
+        $storage = $this->createMock(StorageInterface::class);
 
         $mailer = $this->getMockBuilder(Mailer::class)
             ->disableOriginalConstructor()
@@ -92,13 +98,15 @@ class MailListenerTest extends WebTestCase
         ]);
 
         $event = new ObjectEvent($personalAchievement);
-        $listener = new MailListener($mailer);
+        $listener = new MailListener($storage, $mailer);
         $listener->onGrantPersonalAchievement($event);
     }
 
     public function test_on_create_player(): void
     {
         $faker = \Faker\Factory::create();
+
+        $storage = $this->createMock(StorageInterface::class);
 
         $mailer = $this->getMockBuilder(Mailer::class)
             ->disableOriginalConstructor()
@@ -119,7 +127,67 @@ class MailListenerTest extends WebTestCase
         ]);
 
         $event = new ObjectEvent($player);
-        $listener = new MailListener($mailer);
+        $listener = new MailListener($storage, $mailer);
         $listener->onCreatePlayer($event);
+    }
+
+    public function test_on_change_level(): void
+    {
+        $faker = \Faker\Factory::create();
+
+        $storage = $this->createConfiguredMock(StorageInterface::class, [
+            'findLevelBy' => new LevelCollection(),
+        ]);
+
+        $mailer = $this->getMockBuilder(Mailer::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['send', 'compose'])
+            ->getMock();
+
+        $mailer->expects($this->once())
+            ->method('send')
+            ->willReturn(0);
+
+        $mailer->expects($this->once())
+            ->method('compose')
+            ->willReturn(new Swift_Message());
+
+        $player = $this->createConfiguredMock(PlayerInterface::class, [
+            'getName' => $faker->text,
+            'getEmail' => $faker->email,
+        ]);
+
+        $event = new ObjectEvent($player);
+        $listener = new MailListener($storage, $mailer);
+        $listener->onChangeLevel($event);
+    }
+
+    public function test_on_change_score(): void
+    {
+        $faker = \Faker\Factory::create();
+
+        $storage = $this->createMock(StorageInterface::class);
+
+        $mailer = $this->getMockBuilder(Mailer::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['send', 'compose'])
+            ->getMock();
+
+        $mailer->expects($this->once())
+            ->method('send')
+            ->willReturn(0);
+
+        $mailer->expects($this->once())
+            ->method('compose')
+            ->willReturn(new Swift_Message());
+
+        $player = $this->createConfiguredMock(PlayerInterface::class, [
+            'getName' => $faker->text,
+            'getEmail' => $faker->email,
+        ]);
+
+        $event = new ObjectEvent($player);
+        $listener = new MailListener($storage, $mailer);
+        $listener->onChangeScore($event);
     }
 }

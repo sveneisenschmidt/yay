@@ -26,6 +26,11 @@ Component\Entity\Player:
         - 'player.show'
         - 'leaderboard.index'
         - 'player.index'
+    level:
+      groups:
+        - 'player.show'
+        - 'leaderboard.index'
+        - 'player.index'
     email:
       groups:
         - 'player.create'

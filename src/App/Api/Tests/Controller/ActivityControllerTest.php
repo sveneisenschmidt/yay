@@ -19,7 +19,10 @@ class ActivityControllerTest extends WebTestCase
         $this->assertInternalType('array', $data = json_decode($content, true));
         $this->assertNotEmpty($data);
 
+        $activities = [];
         foreach ($data as $key => $value) {
+            $activities[] = $value['name'];
+
             $this->assertArrayHasKey('name', $value);
             $this->assertArrayHasKey('created_at', $value);
             $this->assertArrayHasKey('data', $value);
@@ -43,7 +46,36 @@ class ActivityControllerTest extends WebTestCase
                 $this->assertArraySubsetHasKey('links', 'player', $value);
                 $this->assertArraySubsetHasKey('links', 'action', $value);
             }
+
+            if (Activity::PLAYER_CREATED == $value['name']) {
+                $this->assertArraySubsetHasKey('data', 'player', $value);
+
+                $this->assertArraySubsetHasKey('links', 'self', $value);
+                $this->assertArraySubsetHasKey('links', 'player', $value);
+            }
+
+            if (Activity::LEVEL_CHANGED == $value['name']) {
+                $this->assertArraySubsetHasKey('data', 'player', $value);
+                $this->assertArraySubsetHasKey('data', 'level', $value);
+
+                $this->assertArraySubsetHasKey('links', 'self', $value);
+                $this->assertArraySubsetHasKey('links', 'player', $value);
+            }
+
+            if (Activity::SCORE_CHANGED == $value['name']) {
+                $this->assertArraySubsetHasKey('data', 'player', $value);
+                $this->assertArraySubsetHasKey('data', 'score', $value);
+
+                $this->assertArraySubsetHasKey('links', 'self', $value);
+                $this->assertArraySubsetHasKey('links', 'player', $value);
+            }
         }
+
+        $this->assertTrue(in_array(Activity::PERSONAL_ACHIEVEMENT_GRANTED, $activities));
+        $this->assertTrue(in_array(Activity::PERSONAL_ACTION_GRANTED, $activities));
+        $this->assertTrue(in_array(Activity::PLAYER_CREATED, $activities));
+        $this->assertTrue(in_array(Activity::LEVEL_CHANGED, $activities));
+        $this->assertTrue(in_array(Activity::SCORE_CHANGED, $activities));
 
         $client->request('GET', '/api/activities/?limit=1');
         $response = $client->getResponse();
