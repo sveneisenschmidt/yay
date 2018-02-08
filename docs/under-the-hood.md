@@ -6,7 +6,7 @@
 
 * [Commands](under-the-hood.md#commands)
 * [Events](under-the-hood.md#events)
-* [Webhooks](under-the-hood.md#webhooks) ([GitHub](under-the-hood.md#github), [Gitlab](under-the-hood.md#gitlab))
+* [Webhooks](under-the-hood.md#webhooks) ([GitHub](under-the-hood.md#github), [GitLab](under-the-hood.md#gitlab))
 
 ---
 
@@ -213,9 +213,9 @@ integration:
 ```
 URL:  `/webhook/incoming/example-github/`.
 
-#### `Gitlab`
+#### `GitLab`
 
-The [GitlabProcessor](../../src/ThirdParty/Gitlab/Webhook/Incoming/Processor/GitlabProcessor.php) processes Gitlab webhook payloads to extract `username` and `actions`.
+The [GitLabProcessor](../../src/ThirdParty/GitLab/Webhook/Incoming/Processor/GitLabProcessor.php) processes GitLab webhook payloads to extract `username` and `actions`.
 
 ```yml
 integration:
@@ -223,6 +223,6 @@ integration:
      incoming_processors:
             example-gitlab:
                 type: class
-                class: Yay\ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
+                class: Yay\ThirdParty\GitLab\Webhook\Incoming\Processor\GitLabProcessor
 ```
 URL:  `/webhook/incoming/example-gitlab/`.
