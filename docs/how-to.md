@@ -50,7 +50,7 @@ Support webhook events:
 - commit & push (`push`)
 - pull request (`pull_request.{opened,updated,reviewed,merged,closed}`)
 
--- 
+---
 
 ## How to add your own levels
 
