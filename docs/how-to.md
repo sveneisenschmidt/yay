@@ -12,7 +12,7 @@
 
 ## How to connect to GitLab
 
-Emerging git platform Gitlab uses the concept of webhooks [(official documentation)](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) to connect their own and third party systems in a simple way. With this in mind it is possible to connect Gitlab and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by Gitlab, process and transform it so Yay is able to process it as well. A custom processor for Gitlab is shipped by Yay.
+Emerging git platform Gitlab uses the concept of webhooks [(official documentation)](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) to connect their own and third party systems in a simple way. With this in mind it is possible to connect Gitlab and Yay! very easily, the only needed part is a custom processor that is able to interpret the payload sent by Gitlab, process and transform it so Yay! is able to process it as well. A custom processor for Gitlab is shipped by Yay.
 
 ```yml
 integration:
@@ -33,7 +33,7 @@ Support webhook events:
 
 ## How to connect to GitHub
 
-Famous git platform GitHub uses the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to connect their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay is able to process it as well.  A custom processor for GitHub is shipped by Yay.
+Famous git platform GitHub uses the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to connect their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay! very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay! is able to process it as well.  A custom processor for GitHub is shipped by Yay.
 
 ```yml
 integration:
@@ -54,7 +54,7 @@ Support webhook events:
 
 ## How to add your own levels
 
-Yay does ship with a purely random set of levels for testing purpose via the [default integration](../integration/default.yml). Find below the script from which the levels were generated.
+Yay! does ship with a purely random set of levels for testing purpose via the [default integration](../integration/default.yml). Find below the script from which the levels were generated.
 
 ### Script to generate random levels
 ```php

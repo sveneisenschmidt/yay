@@ -34,7 +34,7 @@ It is encouraged to create your own distribution based on a docker image which i
 
 Create a new folder, or preferably clone a repository that contains your own Dockerfile and integrations to extend Yay.
 
-Let's assume you have a folder called 'mycompany-yay', it will hold our Dockerfile that will have a custom command. The default docker image has a default `CMD` that will load a `docker-run.sh` file from the `root` folder if present.
+Let's assume you have a folder called `mycompany-yay`, it will hold our Dockerfile that will have a custom command. The default docker image has a default `CMD` that will load a `docker-run.sh` file from the `root` folder if present.
 
 ```Dockerfile
 FROM sveneisenschmidt/yay:stable
@@ -126,7 +126,7 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 
 Automatically-generated API documentation can be found at [`http://localhost:50080/api/doc`](http://localhost:50080/api/doc), run it with `make start`. The latest stable version [`https://yay-demo.sloppy.zone/api/doc`](https://yay-demo.sloppy.zone/api/doc) is available via `sloppy.io`.
 
-Additionally Yay supports integrating third party applications via webhooks. Yay ships a basic Github webhook integration, more platforms will follow soon. Until then you can follow the webhook guide "[Under The Hood: Webhooks](under-the-hood.md#webhooks)" or write and contribute your own webhooks/processors, yay!
+Additionally Yay! supports integrating third party applications via webhooks. Yay! ships a basic Github webhook integration, more platforms will follow soon. Until then you can follow the webhook guide "[Under The Hood: Webhooks](under-the-hood.md#webhooks)" or write and contribute your own webhooks/processors, yay!
 
 ```yml
 integration:

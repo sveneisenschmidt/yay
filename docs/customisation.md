@@ -244,7 +244,7 @@ integration:
             # Your company provides a processor to transform Jenkins CI payloads
             example-mycompany-jenkinsci:
                 class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
-            # Your company provides a second processor to map jenkins users to Yay players
+            # Your company provides a second processor to map jenkins users to Yay! players
             # based on a static configuration file deployed with the application
             example-mycompany-jenkinsci:
                 class: MyCompany\Component\Webhook\Incoming\Processor\StaticUserProcessor
@@ -283,12 +283,12 @@ Hint: The disable routine will only remove the configuration. Entities created d
 
 ## Hosting
 
-To leverage the full potential of Yay it is encouraged to run it trough Docker. An easy way to do so is to use a platform like [sloppy.io](https://sloppy.io). We created a set of recipes to get you started, you can find them on [sveneisenschmidt/yay-recipes-sloppy](https://github.com/sveneisenschmidt/yay-recipes-sloppy).
+To leverage the full potential of Yay! it is encouraged to run it trough Docker. An easy way to do so is to use a platform like [sloppy.io](https://sloppy.io). We created a set of recipes to get you started, you can find them on [sveneisenschmidt/yay-recipes-sloppy](https://github.com/sveneisenschmidt/yay-recipes-sloppy).
 
 --
 
 ## Templates
-Yay sends a set of emails when events occur. It is powered by [Lee Munroe's](https://github.com/leemunroe) amazing [email templates](https://github.com/leemunroe/responsive-html-email-template).
+Yay! sends a set of emails when events occur. It is powered by [Lee Munroe's](https://github.com/leemunroe) amazing [email templates](https://github.com/leemunroe/responsive-html-email-template).
 
 It is possible to override the layout ([`templates/Mail/layout.html.twig`](../templates/Mail/layout.html.twig).) or any other template for your liking.
 

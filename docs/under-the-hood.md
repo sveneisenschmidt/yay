@@ -12,7 +12,7 @@
 
 ## Commands
 
-Yay is shipped with a collection of commands that are necessary to configure and control a running Yay installation.
+Yay! is shipped with a collection of commands that are necessary to configure and control a running Yay! installation.
 
 | Command | Description | Example |
 |---|---|---|
@@ -20,13 +20,13 @@ Yay is shipped with a collection of commands that are necessary to configure and
 | `yay:integration:disable <name>` | Disables an integration. | `php bin/console --env=prod yay:integration:disable demo` |
 | `yay:integration:validate <name> <path>` | Validates an integration. | `php bin/console --env=prod yay:integration:validate demo integration/demo` |
 | `yay:recalculate <player>` | Recalculates a player's progress. | `php bin/console --env=prod yay:recalculate alex.doe` |
-Hint: It is important to always pass the environment Yay is running in as the env parameter.
+Hint: It is important to always pass the environment Yay! is running in as the env parameter.
 
 ---
 
 ## Events
 
-Yay provides a set of events to easily hook into. How to work with events is illustrated through the [ActivityListener](../src/Component/Engine/EventListener/ActivityListener.php) and the [services.yml](../src/App/Engine/Resources/config/services.yml) configuration.
+Yay! provides a set of events to easily hook into. How to work with events is illustrated through the [ActivityListener](../src/Component/Engine/EventListener/ActivityListener.php) and the [services.yml](../src/App/Engine/Resources/config/services.yml) configuration.
 
 ```yml
 # services.yml
@@ -53,14 +53,15 @@ class MyListener
 | yay.engine.pre_save | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Entity\*](../src/Component/Entity)  | Triggered before an entity is saved. |
 | yay.engine.post_save | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Entity\*](../src/Component/Entity)  | Triggered after an entity was saved. |
 | yay.engine.grant_personal_achievement | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [PersonalAchievement](../src/Component/Entity/Achievement/PersonalAchievement.php)  | Triggered after a player has been awarded with a new achievement. |
-| yay.engine.grant_personal_action | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [PersonalAction](../src/Component/Entity/Achievement/PersonalAction.php) | Triggered after a player has been accounted a new action.  |
-| yay.engine.create_player | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Player](../src/Component/Entity/Player.php) | Triggered after a new player has been created.  |
-
+| yay.engine.grant_personal_action | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [PersonalAction](../src/Component/Entity/Achievement/PersonalAction.php) | Triggered after a player has been accounted a new action. |
+| yay.engine.create_player | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Player](../src/Component/Entity/Player.php) | Triggered after a new player has been created. |
+| yay.engine.change_level | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Player](../src/Component/Entity/Player.php) | Triggered after a player's level has been changed. |
+| yay.engine.change_score | [ObjectEvent](../src/Component/Engine/Event/ObjectEvent.php) | [Player](../src/Component/Entity/Player.php) | Triggered after a player's score has been changed. |
 ---
 
 ## Webhooks
 
-Webhooks are the link that joins the outside world with your Yay instance.
+Webhooks are the link that joins the outside world with your Yay! instance.
 
 ### Internals
 
@@ -139,7 +140,7 @@ integration:
             example-mycompany-jenkinsci:
                 type: class
                 class: MyCompany\Component\Webhook\Incoming\Processor\JenkinsProcessor
-            # Your company provides a second processor to map jenkins users to Yay players
+            # Your company provides a second processor to map jenkins users to Yay! players
             # based on a static configuration file deployed with the application
             example-mycompany-users:
                 type: class
