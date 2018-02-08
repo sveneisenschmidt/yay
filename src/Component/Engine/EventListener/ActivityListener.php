@@ -8,11 +8,11 @@ use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionInterface;
 use Component\Engine\Event\ObjectEvent;
 use Component\Engine\Storage\StorageInterface;
-use Component\Engine\Storage\StorageTrait;
+use Component\Engine\Storage\Decorator\StorageDecoratorTrait;
 
 class ActivityListener implements EventListenerInterface
 {
-    use StorageTrait;
+    use StorageDecoratorTrait;
 
     public function __construct(StorageInterface $storage)
     {

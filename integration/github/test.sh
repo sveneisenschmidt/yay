@@ -11,7 +11,7 @@ make start
 
 # Create new player
 curl -X POST http://localhost:50080/api/players/ \
-    -d "{\"name\": \"Jane Doe\",\"username\":\"jane.doe\",\"email\": \"jane.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
+    -d "{\"name\": \"Jane Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
 
 # Perform  pullrequest-opened action 3x via webhook
 for i in `seq 1 10`;
@@ -24,7 +24,7 @@ done
 # Assertions
 
 ## Activity
-URL="http://localhost:50080/api/players/jane.doe/personal-activities/"
+URL="http://localhost:50080/api/players/alex.doe/personal-activities/"
 
 ### Assert that 1x a player has been created
 assert "curl -sS -X GET $URL | grep player_created | wc -l | tr -d '[:space:]'" 1

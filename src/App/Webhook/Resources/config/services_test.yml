@@ -23,7 +23,7 @@ services:
         arguments:
             - test-processor-02
             -
-                username: jane.doe
+                username: alex.doe
                 action: yay.action.test_webhook_action
         tags:
             - { name: yay.webhook_incoming }
@@ -33,7 +33,7 @@ services:
         arguments:
             - test-processor-03
             -
-                username: jane.doe
+                username: alex.doe
         tags:
             - { name: yay.webhook_incoming }
 

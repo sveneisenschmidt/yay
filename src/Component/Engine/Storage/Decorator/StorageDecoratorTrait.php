@@ -1,6 +1,6 @@
 <?php
 
-namespace Component\Engine\Storage;
+namespace Component\Engine\Storage\Decorator;
 
 use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Achievement\ActionDefinitionInterface;
@@ -14,8 +14,9 @@ use Component\Entity\PlayerCollection;
 use Component\Entity\PlayerInterface;
 use Component\Entity\ActivityInterface;
 use Component\Entity\ActivityCollection;
+use Component\Engine\Storage\StorageInterface;
 
-trait StorageTrait
+trait StorageDecoratorTrait
 {
     /** @var StorageInterface */
     protected $storage;

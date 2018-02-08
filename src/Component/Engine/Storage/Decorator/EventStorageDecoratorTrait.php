@@ -1,6 +1,6 @@
 <?php
 
-namespace Component\Engine\Storage;
+namespace Component\Engine\Storage\Decorator;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Component\Engine\Events;
@@ -8,10 +8,11 @@ use Component\Engine\Event\ObjectEvent;
 use Component\Entity\PlayerInterface;
 use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionInterface;
+use Component\Engine\Storage\Decorator\StorageDecoratorTrait;
 
-trait EventStorageTrait
+trait EventStorageDecoratorTrait
 {
-    use StorageTrait {
+    use StorageDecoratorTrait {
         savePlayer              as invokeSavePlayer;
         savePersonalAchievement as invokeSavePersonalAchievement;
         savePersonalAction      as invokeSavePersonalAction;

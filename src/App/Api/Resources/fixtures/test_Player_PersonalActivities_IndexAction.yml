@@ -13,6 +13,6 @@ Component\Entity\Activity:
           - personal_action_granted
           - '@player'
           - 
-            player: jane.doe
+            player: alex.doe
             action: yay.action.test_api_action
             achieved_at: <iso8601()>

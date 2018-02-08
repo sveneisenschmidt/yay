@@ -23,12 +23,12 @@ class ProgressController extends Controller
     /**
      * **Example Request (1):**
      * ```query
-     * username=jane.doe&action=yay.action.demo_action
+     * username=alex.doe&action=yay.action.demo_action
      * ```.
      *
      * **Example Request (2):**
      * ```query
-     * username=jane.doe&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action
+     * username=alex.doe&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action&actions[]=yay.action.demo_action
      * ```
      *
      * **Example Response:**
@@ -124,7 +124,7 @@ class ProgressController extends Controller
      * **Example Request (1):**
      * ```json
      * {
-     *     "username": "jane.doe",
+     *     "username": "alex.doe",
      *     "action": "yay.action.demo_action"
      * }
      * ```.
@@ -132,7 +132,7 @@ class ProgressController extends Controller
      * **Example Request (2):**
      * ```json
      * {
-     *     "username": "jane.doe",
+     *     "username": "alex.doe",
      *     "actions": [
      *         "yay.action.demo_action",
      *         "yay.action.demo_action",

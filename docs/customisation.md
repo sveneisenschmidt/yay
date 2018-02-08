@@ -97,7 +97,7 @@ integration:
                 type: dummy
                 arguments:
                     -
-                        username: jane.doe
+                        username: alex.doe
                         action: demo.action
             # Maps third party action to application action
             example-action:
@@ -112,7 +112,7 @@ integration:
                 arguments:
                     - username
                     -
-                        third_party.example_user: jane.doe
+                        third_party.example_user: alex.doe
 
 
 ```
@@ -302,3 +302,15 @@ You've been awarded a new achievement:
 Have a nice day and keep on rockin'!
 ```
 You can find the template in [`templates/Mail/grant_personal_action.html.twig`](../templates/Mail/grant_personal_action.html.twig). Sending is triggered by the [`yay.engine.grant_personal_action`](../src/App/Mail/EventListener/MailListener.php) event.
+
+### New level reached
+```
+Yay!
+
+You've reached a new level:
+
+You're now on level 3 - Aspiring Rookie.
+
+Have a nice day and keep on rockin'!
+```
+You can find the template in [`templates/Mail/change_level.html.twig`](../templates/Mail/change_level.html.twig). Sending is triggered by the [`yay.engine.change_level`](../src/App/Mail/EventListener/MailListener.php) event.

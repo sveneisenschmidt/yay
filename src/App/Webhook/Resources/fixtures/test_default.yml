@@ -1,6 +1,6 @@
 Component\Entity\Player:
     player:
-        username: 'jane.doe'
+        username: 'alex.doe'
         name: '<firstName()> <lastName()>'
         email: '<email()>'
         imageUrl: 'https://placehold.it/512x512/007daa/ffffff'

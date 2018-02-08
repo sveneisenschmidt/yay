@@ -106,7 +106,7 @@ The application is configured through environment variables, these will be provi
 
 ```bash
 curl -X "POST" http://localhost:50080/api/progress/ \
-    -d "{\"username\":\"jane.doe\",\"action\":\"example-action\"}"
+    -d "{\"username\":\"alex.doe\",\"action\":\"example-action\"}"
 
 [
     {
@@ -116,8 +116,8 @@ curl -X "POST" http://localhost:50080/api/progress/ \
         "points": 50,
         "achieved_at": "2017-10-08T13:22:08+0000",
         "links": {
-            "self": "http://localhost:50080/api/players/jane.doe/personal-achievements/",
-            "player": "http://localhost:50080/api/players/jane.doe/",
+            "self": "http://localhost:50080/api/players/alex.doe/personal-achievements/",
+            "player": "http://localhost:50080/api/players/alex.doe/",
             "achievement": "http://localhost:50080/api/achievements/example-achievement-01/"
         }
     }
@@ -144,5 +144,5 @@ integration:
                 arguments:
                     - username
                     -
-                        octocat: jane.doe
+                        octocat: alex.doe
 ```

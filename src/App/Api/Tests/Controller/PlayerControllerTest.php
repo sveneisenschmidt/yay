@@ -66,7 +66,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/players/jane.doe/');
+        $client->request('GET', '/api/players/alex.doe/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -133,7 +133,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/players/jane.doe/personal-achievements/');
+        $client->request('GET', '/api/players/alex.doe/personal-achievements/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -150,7 +150,7 @@ class PlayerControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'achievement', $value);
         }
 
-        $client->request('GET', '/api/players/jane.doe/personal-achievements/?limit=1');
+        $client->request('GET', '/api/players/alex.doe/personal-achievements/?limit=1');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -175,7 +175,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/players/jane.doe/personal-actions/');
+        $client->request('GET', '/api/players/alex.doe/personal-actions/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -191,7 +191,7 @@ class PlayerControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'action', $value);
         }
 
-        $client->request('GET', '/api/players/jane.doe/personal-actions/?limit=1');
+        $client->request('GET', '/api/players/alex.doe/personal-actions/?limit=1');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -216,7 +216,7 @@ class PlayerControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/players/jane.doe/personal-activities/');
+        $client->request('GET', '/api/players/alex.doe/personal-activities/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());
@@ -232,7 +232,7 @@ class PlayerControllerTest extends WebTestCase
             $this->assertArraySubsetHasKey('links', 'player', $value);
         }
 
-        $client->request('GET', '/api/players/jane.doe/personal-activities/?limit=1');
+        $client->request('GET', '/api/players/alex.doe/personal-activities/?limit=1');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isOk());

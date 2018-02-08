@@ -14,7 +14,7 @@ Component\Entity\Activity:
           - personal_action_granted
           - '@player'
           - 
-            player: jane.doe
+            player: alex.doe
             action: yay.action.test_api_action
             achieved_at: <iso8601()>
   activity2:
@@ -22,6 +22,26 @@ Component\Entity\Activity:
           - personal_achievement_granted
           - '@player'
           - 
-            player: jane.doe
+            player: alex.doe
             achievement: yay.achievement.test_api_achievement
             achieved_at: <iso8601()>
+  activity3:
+      __construct:
+          - player_created
+          - '@player'
+          - 
+            player: alex.doe
+  activity4:
+      __construct:
+          - score_changed
+          - '@player'
+          - 
+            player: alex.doe
+            score: 100
+  activity5:
+      __construct:
+          - level_changed
+          - '@player'
+          - 
+            player: alex.doe
+            level: 1

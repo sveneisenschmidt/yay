@@ -26,11 +26,11 @@ class PlayerController extends Controller
      * ```json
      * [{
      *     "name": "Jane Doe",
-     *     "username": "jane.doe",
+     *     "username": "alex.doe",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe/",
-     *         "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements/",
-     *         "personal_actions": "https://example.org/api/players/jane.doe/personal-actions/"
+     *         "self": "https://example.org/api/players/alex.doe/",
+     *         "personal_achievements": "https://example.org/api/players/alex.doe/personal-achievements/",
+     *         "personal_actions": "https://example.org/api/players/alex.doe/personal-actions/"
      *     }
      * }]
      * ```.
@@ -82,13 +82,13 @@ class PlayerController extends Controller
      * ```json
      * {
      *     "name": "Jane Doe",
-     *     "username": "jane.doe",
+     *     "username": "alex.doe",
      *     "score": 0,
      *     "level": 0,
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe/",
-     *         "personal_achievements": "https://example.org/api/players/jane.doe/personal-achievements/",
-     *         "personal_actions": "https://example.org/api/players/jane.doe/personal-actions/"
+     *         "self": "https://example.org/api/players/alex.doe/",
+     *         "personal_achievements": "https://example.org/api/players/alex.doe/personal-achievements/",
+     *         "personal_actions": "https://example.org/api/players/alex.doe/personal-actions/"
      *     }
      * }
      * ```.
@@ -214,16 +214,16 @@ class PlayerController extends Controller
      *     "name": "demo-achievement-01",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe/personal-achievements/",
-     *         "player": "https://example.org/api/players/jane.doe/",
+     *         "self": "https://example.org/api/players/alex.doe/personal-achievements/",
+     *         "player": "https://example.org/api/players/alex.doe/",
      *         "achievement": "https://example.org/api/achievements/demo-achievement-01/"
      *     }
      * }, {
      *     "name": "demo-achievement-02",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe/personal-achievements/",
-     *         "player": "https://example.org/api/players/jane.doe/",
+     *         "self": "https://example.org/api/players/alex.doe/personal-achievements/",
+     *         "player": "https://example.org/api/players/alex.doe/",
      *         "achievement": "https://example.org/api/achievements/demo-achievement-02/"
      *     }
      * }]
@@ -294,16 +294,16 @@ class PlayerController extends Controller
      *     "name": "yay.action.demo_action",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe/personal-actions/",
-     *         "player": "https://example.org/api/players/jane.doe/",
+     *         "self": "https://example.org/api/players/alex.doe/personal-actions/",
+     *         "player": "https://example.org/api/players/alex.doe/",
      *         "action": "https://example.org/api/actions/yay.action.demo_action/"
      *     }
      * }, {
      *     "name": "yay.action.demo_action",
      *     "achieved_at": "2017-04-07T14:12:29+0000",
      *     "links": {
-     *         "self": "https://example.org/api/players/jane.doe/personal-actions/",
-     *         "player": "https://example.org/api/players/jane.doe/",
+     *         "self": "https://example.org/api/players/alex.doe/personal-actions/",
+     *         "player": "https://example.org/api/players/alex.doe/",
      *         "action": "https://example.org/api/actions/yay.action.demo_action/"
      *     }
      * }]
@@ -376,26 +376,26 @@ class PlayerController extends Controller
      * 		"name": "personal_action_granted",
      * 		"data": {
      * 			"action": "demo-action",
-     * 			"player": "jane.doe",
+     * 			"player": "alex.doe",
      * 			"achieved_at": "2017-11-26T14:36:17+00:00"
      * 		},
      * 		"created_at": "2017-11-26T14:36:17+00:00",
      * 		"links": {
      * 			"self": "http://localhost:50080/api/activities/",
-     * 			"player": "http://localhost:50080/api/players/jane.doe/",
+     * 			"player": "http://localhost:50080/api/players/alex.doe/",
      * 			"action": "http://localhost:50080/api/actions/demo-action/"
      * 		}
      * 	}, {
      * 		"name": "personal_action_granted",
      * 		"data": {
      * 			"action": "demo-action",
-     * 			"player": "jane.doe",
+     * 			"player": "alex.doe",
      * 			"achieved_at": "2017-11-26T14:36:18+00:00"
      * 		},
      * 		"created_at": "2017-11-26T14:36:18+00:00",
      * 		"links": {
      * 			"self": "http://localhost:50080/api/activities/",
-     * 			"player": "http://localhost:50080/api/players/jane.doe/",
+     * 			"player": "http://localhost:50080/api/players/alex.doe/",
      * 			"action": "http://localhost:50080/api/actions/demo-action/"
      * 		}
      * 	}]

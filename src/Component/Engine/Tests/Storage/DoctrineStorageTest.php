@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Component\Engine\Storage\DoctrineStorage;
-use Component\Engine\Storage\StorageTrait;
+use Component\Engine\Storage\Decorator\StorageDecoratorTrait;
 use Component\Entity\Achievement\ActionDefinition;
 use Component\Entity\Achievement\ActionDefinitionCollection;
 use Component\Entity\Achievement\AchievementDefinition;
@@ -25,7 +25,7 @@ class DoctrineStorageTest extends TestCase
     public function wrapStorage(DoctrineStorage $storage): object
     {
         return new class($storage) {
-            use StorageTrait;
+            use StorageDecoratorTrait;
 
             public function __construct(DoctrineStorage $storage)
             {
@@ -112,7 +112,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_player(): void
     {
         $manager = $this->createManagerMockOne(Player::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $object = $storage->findPlayer($primaryKey = rand(1, 100));
         $this->assertInstanceOf(Player::class, $object);
@@ -121,7 +121,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_player_empty(): void
     {
         $manager = $this->createManagerMockOne(Player::class, true);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $object = $storage->findPlayer($primaryKey = rand(1, 100));
         $this->assertNull($object);
@@ -130,7 +130,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_player_by(): void
     {
         $manager = $this->createManagerMockMany(Player::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $objects = $storage->findPlayerBy([]);
         $this->assertInstanceOf(PlayerCollection::class, $objects);
@@ -140,7 +140,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_player_by_empty(): void
     {
         $manager = $this->createManagerMockMany(Player::class, true);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $objects = $storage->findPlayerBy([]);
         $this->assertInstanceOf(PlayerCollection::class, $objects);
@@ -164,7 +164,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_achievement_definition_by(): void
     {
         $manager = $this->createManagerMockMany(AchievementDefinition::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $objects = $storage->findAchievementDefinitionBy([]);
         $this->assertInstanceOf(AchievementDefinitionCollection::class, $objects);
@@ -174,7 +174,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_achievement_definition_by_empty(): void
     {
         $manager = $this->createManagerMockMany(AchievementDefinition::class, true);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $objects = $storage->findAchievementDefinitionBy([]);
         $this->assertInstanceOf(AchievementDefinitionCollection::class, $objects);
@@ -198,7 +198,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_action_definition_by(): void
     {
         $manager = $this->createManagerMockMany(ActionDefinition::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $objects = $storage->findActionDefinitionBy([]);
         $this->assertInstanceOf(ActionDefinitionCollection::class, $objects);
@@ -208,7 +208,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_action_definition_by_empty(): void
     {
         $manager = $this->createManagerMockMany(ActionDefinition::class, true);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $objects = $storage->findActionDefinitionBy([]);
         $this->assertInstanceOf(ActionDefinitionCollection::class, $objects);
@@ -218,7 +218,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_level(): void
     {
         $manager = $this->createManagerMockOne(Level::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $object = $storage->findLevel($primaryKey = rand(1, 100));
         $this->assertInstanceOf(Level::class, $object);
@@ -227,7 +227,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_level_empty(): void
     {
         $manager = $this->createManagerMockOne(Level::class, true);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $object = $storage->findLevel($primaryKey = rand(1, 100));
         $this->assertNull($object);
@@ -236,7 +236,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_level_by(): void
     {
         $manager = $this->createManagerMockMany(Level::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $objects = $storage->findLevelBy([]);
         $this->assertInstanceOf(LevelCollection::class, $objects);
@@ -246,7 +246,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_level_by_empty(): void
     {
         $manager = $this->createManagerMockMany(Level::class, true);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $objects = $storage->findLevelBy([]);
         $this->assertInstanceOf(LevelCollection::class, $objects);
@@ -257,7 +257,7 @@ class DoctrineStorageTest extends TestCase
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(Player::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $storage->savePlayer($object);
     }
@@ -266,7 +266,7 @@ class DoctrineStorageTest extends TestCase
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(AchievementDefinition::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $storage->saveAchievementDefinition($object);
     }
@@ -275,7 +275,7 @@ class DoctrineStorageTest extends TestCase
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(ActionDefinition::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $storage->saveActionDefinition($object);
     }
@@ -284,7 +284,7 @@ class DoctrineStorageTest extends TestCase
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(PersonalAction::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $storage->savePersonalAction($object);
     }
@@ -293,7 +293,7 @@ class DoctrineStorageTest extends TestCase
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(PersonalAchievement::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $storage->savePersonalAchievement($object);
     }
@@ -302,7 +302,7 @@ class DoctrineStorageTest extends TestCase
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(Level::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $storage->saveLevel($object);
     }
@@ -311,7 +311,7 @@ class DoctrineStorageTest extends TestCase
     {
         $manager = $this->createManagerMockRefresh();
         $object = $this->createMock(Player::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $storage->refreshPlayer($object);
     }
@@ -320,7 +320,7 @@ class DoctrineStorageTest extends TestCase
     {
         $manager = $this->createManagerMockSave();
         $object = $this->createMock(Activity::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $storage->saveActivity($object);
     }
@@ -328,7 +328,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_activity(): void
     {
         $manager = $this->createManagerMockOne(Activity::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $object = $storage->findActivity($primaryKey = rand(1, 100));
         $this->assertInstanceOf(Activity::class, $object);
@@ -337,7 +337,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_activity_empty(): void
     {
         $manager = $this->createManagerMockOne(Activity::class, true);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $object = $storage->findActivity($primaryKey = rand(1, 100));
         $this->assertNull($object);
@@ -346,7 +346,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_activity_by(): void
     {
         $manager = $this->createManagerMockMany(Activity::class);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $objects = $storage->findActivityBy([]);
         $this->assertInstanceOf(ActivityCollection::class, $objects);
@@ -356,7 +356,7 @@ class DoctrineStorageTest extends TestCase
     public function test_find_activity_by_empty(): void
     {
         $manager = $this->createManagerMockMany(Activity::class, true);
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
         $objects = $storage->findActivityBy([]);
         $this->assertInstanceOf(ActivityCollection::class, $objects);
@@ -370,7 +370,7 @@ class DoctrineStorageTest extends TestCase
             ->setMethods(get_class_methods(EntityManagerInterface::class))
             ->getMock();
 
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
 
         $player = new Player();
@@ -415,7 +415,7 @@ class DoctrineStorageTest extends TestCase
             ->method('getRepository')
             ->willReturn($repository);
 
-        /** @var object&StorageTrait $storage */
+        /** @var object&StorageDecoratorTrait $storage */
         $storage = $this->wrapStorage(new DoctrineStorage($manager));
 
         $player = new Player();

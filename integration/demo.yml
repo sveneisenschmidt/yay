@@ -62,4 +62,4 @@ integration:
                 arguments:
                     - username
                     - 
-                        third_party.demo_user: jane.doe
+                        third_party.demo_user: alex.doe

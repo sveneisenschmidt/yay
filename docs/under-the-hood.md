@@ -19,7 +19,7 @@ Yay is shipped with a collection of commands that are necessary to configure and
 | `yay:integration:enable <name> <path>` | Enables an integration. | `php bin/console --env=prod yay:integration:enable demo integration/demo` |
 | `yay:integration:disable <name>` | Disables an integration. | `php bin/console --env=prod yay:integration:disable demo` |
 | `yay:integration:validate <name> <path>` | Validates an integration. | `php bin/console --env=prod yay:integration:validate demo integration/demo` |
-| `yay:recalculate <player>` | Recalculates a player's progress. | `php bin/console --env=prod yay:recalculate jane.doe` |
+| `yay:recalculate <player>` | Recalculates a player's progress. | `php bin/console --env=prod yay:recalculate alex.doe` |
 Hint: It is important to always pass the environment Yay is running in as the env parameter.
 
 ---
@@ -160,7 +160,7 @@ integration:
             type: dummy
             arguments:
                 -
-                    username: jane.doe
+                    username: alex.doe
                     action: example.action
 ```
 URL:  `/webhook/incoming/example-dummy/`.
@@ -191,8 +191,8 @@ integration:
                 arguments:
                     - username
                     -
-                    # username=octocate => username=jane.doe
-                    octocat: jane.doe
+                    # username=octocate => username=alex.doe
+                    octocat: alex.doe
 ```
 URL:  `/webhook/incoming/example-static-map/`.
 

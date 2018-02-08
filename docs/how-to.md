@@ -6,6 +6,7 @@
 
 * [How to connect to Gitlab](how-to.md#how-to-connect-to-gitlab)
 * [How to connect to GitHub](how-to.md#how-to-connect-to-github)
+* [How to add your own levels](how-to.md#how-to-add-your-own-levels)
 
 ---
 
@@ -48,3 +49,8 @@ The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/Git
 Support webhook events:
 - commit & push (`push`)
 - pull request (`pull_request.{opened,updated,reviewed,merged,closed}`)
+
+-- 
+
+## How to add your own levels
+
