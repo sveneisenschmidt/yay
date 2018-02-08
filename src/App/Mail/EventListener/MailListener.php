@@ -27,7 +27,7 @@ class MailListener implements EventListenerInterface
     public function setMailer(Mailer $mailer): void
     {
         $this->mailer = $mailer;
-    } 
+    }
 
     public function onCreatePlayer(ObjectEvent $event): void
     {
@@ -52,10 +52,10 @@ class MailListener implements EventListenerInterface
             'Yay! You\'ve reached a new level!',
             'Mail/change_level.html.twig',
             [
-                'player' => $player, 
+                'player' => $player,
                 'level' => $this->storage
                     ->findLevelBy(['level' => $player->getLevel()])
-                    ->first()
+                    ->first(),
                 ]
         ));
     }

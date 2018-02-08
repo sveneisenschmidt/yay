@@ -91,7 +91,7 @@ class ActivityListenerTest extends TestCase
 
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getUsername' => $faker->userName,
-            'getLevel' => rand(1, 100)
+            'getLevel' => rand(1, 100),
         ]);
 
         $event = new ObjectEvent($player);
@@ -110,7 +110,7 @@ class ActivityListenerTest extends TestCase
 
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'getUsername' => $faker->userName,
-            'getScore' => rand(1, 100)
+            'getScore' => rand(1, 100),
         ]);
 
         $event = new ObjectEvent($player);

@@ -8,7 +8,6 @@ use Component\Engine\Event\ObjectEvent;
 use Component\Entity\PlayerInterface;
 use Component\Entity\Achievement\PersonalAchievementInterface;
 use Component\Entity\Achievement\PersonalActionInterface;
-use Component\Engine\Storage\Decorator\StorageDecoratorTrait;
 
 trait EventStorageDecoratorTrait
 {
