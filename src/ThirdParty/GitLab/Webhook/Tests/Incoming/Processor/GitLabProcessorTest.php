@@ -1,12 +1,12 @@
 <?php
 
-namespace ThirdParty\Gitlab\Webhook\Tests\Incoming\Processor;
+namespace ThirdParty\GitLab\Webhook\Tests\Incoming\Processor;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor;
+use ThirdParty\GitLab\Webhook\Incoming\Processor\GitLabProcessor;
 
-class GitlabProcessorTest extends TestCase
+class GitLabProcessorTest extends TestCase
 {
     public function providePayloads()
     {
@@ -28,7 +28,7 @@ class GitlabProcessorTest extends TestCase
 
     public function test_set_get_name(): void
     {
-        $processor = new GitlabProcessor($name = 'gitlab-processor');
+        $processor = new GitLabProcessor($name = 'gitlab-processor');
         $this->assertEquals('gitlab-processor', $processor->getName());
     }
 
@@ -42,7 +42,7 @@ class GitlabProcessorTest extends TestCase
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
         $request->headers->set('X-Gitlab-Event', $header);
 
-        (new GitlabProcessor('gitlab-processor'))->process($request);
+        (new GitLabProcessor('gitlab-processor'))->process($request);
         $this->assertEquals($username, $request->request->get('username'));
         $this->assertEquals($action, $request->request->get('action'));
     }
@@ -52,7 +52,7 @@ class GitlabProcessorTest extends TestCase
         $contents = json_encode([]);
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
 
-        (new GitlabProcessor('github-processor'))->process($request);
+        (new GitLabProcessor('github-processor'))->process($request);
         $this->assertFalse($request->request->has('username'));
         $this->assertFalse($request->request->has('action'));
     }
@@ -63,7 +63,7 @@ class GitlabProcessorTest extends TestCase
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
         $request->headers->set('X-Gitlab-Event', 'github-event');
 
-        (new GitlabProcessor('github-processor'))->process($request);
+        (new GitLabProcessor('github-processor'))->process($request);
         $this->assertFalse($request->request->has('username'));
         $this->assertFalse($request->request->has('action'));
     }
@@ -75,6 +75,6 @@ class GitlabProcessorTest extends TestCase
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
         $request->headers->set('X-Gitlab-Event', 'github-event');
 
-        (new GitlabProcessor('github-processor'))->process($request);
+        (new GitLabProcessor('github-processor'))->process($request);
     }
 }

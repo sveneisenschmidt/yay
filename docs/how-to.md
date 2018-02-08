@@ -4,7 +4,7 @@
 
 # How To
 
-* [How to connect to Gitlab](how-to.md#how-to-connect-to-gitlab)
+* [How to connect to GitLab](how-to.md#how-to-connect-to-gitlab)
 * [How to connect to GitHub](how-to.md#how-to-connect-to-github)
 * [How to add your own levels](how-to.md#how-to-add-your-own-levels)
 
@@ -12,7 +12,7 @@
 
 ## How to connect to GitLab
 
-Emerging git platform Gitlab uses the concept of webhooks [(official documentation)](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) to connect their own and third party systems in a simple way. With this in mind it is possible to connect Gitlab and Yay! very easily, the only needed part is a custom processor that is able to interpret the payload sent by Gitlab, process and transform it so Yay! is able to process it as well. A custom processor for Gitlab is shipped by Yay.
+Emerging git platform GitLab uses the concept of webhooks [(official documentation)](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) to connect their own and third party systems in a simple way. With this in mind it is possible to connect GitLab and Yay! very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitLab, process and transform it so Yay! is able to process it as well. A custom processor for GitLab is shipped by Yay.
 
 ```yml
 integration:
@@ -20,10 +20,10 @@ integration:
         incoming_processors:
             gitlab:
                 type: class
-                class: Yay\ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
+                class: Yay\ThirdParty\GitLab\Webhook\Incoming\Processor\GitLabProcessor
 ```
 
-The [GitlabProcessor](../../src/ThirdParty/Gitlab/Webhook/Incoming/Processor/GitlabProcessor.php) processes Gitlab webhook payloads to extract `username` and `actions`.
+The [GitLabProcessor](../../src/ThirdParty/GitLab/Webhook/Incoming/Processor/GitLabProcessor.php) processes GitLab webhook payloads to extract `username` and `actions`.
 
 Support webhook events:
 - commit & push (`push`)

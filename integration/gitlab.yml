@@ -34,7 +34,7 @@ integration:
                     - [ gitlab-payload, gitlab-actions, gitlab-users ]
             gitlab-payload:
                 type: class
-                class: ThirdParty\Gitlab\Webhook\Incoming\Processor\GitlabProcessor
+                class: ThirdParty\GitLab\Webhook\Incoming\Processor\GitLabProcessor
             gitlab-actions:
                 type: static-map
                 arguments:
