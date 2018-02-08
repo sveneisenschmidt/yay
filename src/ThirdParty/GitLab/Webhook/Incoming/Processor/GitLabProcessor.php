@@ -1,12 +1,12 @@
 <?php
 
-namespace ThirdParty\Gitlab\Webhook\Incoming\Processor;
+namespace ThirdParty\GitLab\Webhook\Incoming\Processor;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Component\Webhook\Incoming\ProcessorInterface;
 
-class GitlabProcessor implements ProcessorInterface
+class GitLabProcessor implements ProcessorInterface
 {
     /** @var string */
     protected $name;
