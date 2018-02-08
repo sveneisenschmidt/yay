@@ -54,3 +54,38 @@ Support webhook events:
 
 ## How to add your own levels
 
+Yay does ship with a purely random set of levels for testing purpose via the [default integration](../integration/default.yml). Find below the script from which the levels were generated.
+
+### Script to generate random levels
+```php
+<?php
+// generate-levels.php
+
+require 'vendor/autoload.php';
+
+use Faker\Factory as FakerFactory;
+use Symfony\Component\Yaml\Yaml;
+
+$faker = FakerFactory::create();
+$faker->seed(time());
+
+$levels = [];
+foreach (range(0,100) as $index) {
+    $levels["level-{$index}"] = [
+        'level' => $index,
+        'points' => $index * 100,
+        'label' => $faker->unique()->jobTitle,
+        'description' => $faker->unique()->catchPhrase,
+    ];
+}
+
+print Yaml::dump(['levels' => $levels], 4, 4);
+```
+
+```console
+php levels.php > levels.yml
+```
+
+It is encouraged to create your own integration that adds levels including meaningful score theresholds to the platform. Think of it as getting experience points in RPGs, with every level the amoint of experience you have to earn is getting bigger. How to add levels to your integration can be found in the documentation for [levels](customization.md#levels).
+
+For players reaching new levels it is of importance that the achievements they earn are configured to have points, for further information please see the documentation for configuring [achievements](customization.md#achievements).

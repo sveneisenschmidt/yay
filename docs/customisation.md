@@ -12,7 +12,7 @@
 
 ## Integration with Third-Parties
 
-Integrations are used to extend the application with new actions, achievements and validators. Before creating your own integration it is advised to have a look at the the [demo integration](../../integration/demo.yml) provided in the application's source.
+Integrations are used to extend the application with new actions, achievements and validators. Before creating your own integration it is advised to have a look at the the [demo integration](../integration/demo.yml) provided in the application's source.
 
 In our example we will create a `mycompany` integration. To start please execute the following commands to create our integration setup file.
 
@@ -26,9 +26,9 @@ The integration setup file has a root element `integration` and four possible ch
 
 | Node | Description |
 |---|---|
-| actions | Actions a player can perform. |
-| achievements | Achievements a player can earn. |
-| levels | Levels a player can reach. |
+| actions | Actions a player is able to perform. |
+| achievements | Achievements a player is able to earn. |
+| levels | Levels a player is able to reach. |
 | validators | Validators verify a player's actions against any achievement and grants if they pass required checks. |
 | webhooks | Processors that listen to incoming and outgoing webhooks to process payloads to provide username and actions to the engine |
 
@@ -166,6 +166,33 @@ integration:
             description: Demo example description
             points: 100
             actions: ["example-action"]
+    # ...
+```
+#### `levels`
+
+Levels are declared as multi-dimensional associative arrays. Keys on the first level are the levels name, keys and values on second level are the properties of the levels. 
+
+Supported properties: `level`, `points`, `label` and `description`. The attribute `points` define when the level is valid as reached.
+
+```yml
+integration:
+    # ...
+    levels:
+        level-01:
+            level: 1
+            label: Example level label
+            description: Example level description
+            points: 100
+        level-02:
+            level: 2
+            label: Example level label
+            description: Example level description
+            points: 200
+        level-03:
+            level: 3
+            label: Example level label
+            description: Example level description
+            points: 300
     # ...
 ```
 
