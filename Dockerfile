@@ -24,6 +24,7 @@ RUN docker-php-ext-install \
     mbstring \
     opcache \
     zip
+    
 COPY ./ /data
 COPY ./dist/apache2/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 COPY ./dist/php/php.ini $PHP_INI_DIR/conf.d/999-custom.ini
@@ -33,7 +34,7 @@ RUN a2enmod rewrite
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \
     php -r "unlink('composer-setup.php');" && \
-    composer install --ignore-platform-reqs --optimize-autoloader 
+    composer install
     
 RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
