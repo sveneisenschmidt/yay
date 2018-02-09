@@ -1,4 +1,8 @@
 imports:
     - { resource: services.php }
 
-services: ~
+services:
+    cache.app.simple:
+        class: Symfony\Component\Cache\Simple\Psr6Cache
+        arguments: ['@cache.app']
+    Psr\SimpleCache\CacheInterface: '@cache.app.simple'

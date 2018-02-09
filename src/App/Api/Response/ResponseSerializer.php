@@ -5,15 +5,22 @@ namespace App\Api\Response;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Psr\SimpleCache\CacheInterface;
 
 class ResponseSerializer
 {
     /** @var SerializerInterface */
     protected $serializer;
 
-    public function __construct(SerializerInterface $serializer)
-    {
+    /** @var CacheInterface */
+    protected $cache;
+
+    public function __construct(
+        SerializerInterface $serializer,
+        CacheInterface $cache
+    ) {
         $this->serializer = $serializer;
+        $this->cache = $cache;
     }
 
     public function createResponse(
@@ -22,11 +29,29 @@ class ResponseSerializer
         int $status = 200,
         array $headers = []
     ): JsonResponse {
-        $context = SerializationContext::create();
-        !empty($serializationGroups) ? $context->setGroups($serializationGroups) : null;
+        $key = $this->generateCacheKey($unserializedData, $serializationGroups);
 
-        $content = $this->serializer->serialize($unserializedData, 'json', $context);
+        if (!$this->cache->has($key)) {
+            $context = SerializationContext::create();
+            !empty($serializationGroups) ? $context->setGroups($serializationGroups) : null;
+
+            $content = $this->serializer->serialize($unserializedData, 'json', $context);
+            $this->cache->set($key, $content);
+        } else {
+            $content = $this->cache->get($key);
+        }
 
         return new JsonResponse($content, $status, $headers, true);
+    }
+
+    public function generateCacheKey(
+        $unserializedData,
+        array $serializationGroups = []
+    ): string {
+        return implode('.', [
+            'response_serializer.',
+            md5(serialize($unserializedData)),
+            md5(serialize($serializationGroups)),
+        ]);
     }
 }
