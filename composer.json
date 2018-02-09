@@ -39,6 +39,8 @@
     },
     "config": {
         "cache-dir": ".build/cache",
+        "optimize-autoloader": true,
+        "apcu-autoloader": true,
         "preferred-install": {
             "*": "dist"
         }

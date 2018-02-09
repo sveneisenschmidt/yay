@@ -2,13 +2,15 @@
 .editorconfig
 .gitignore
 .styleci.yml
+.docker.env
+.docker.local.env
 var
 vendor
 Makefile
 Dockerfile
 docker-compose.yml
 LICENSE
-phpuni.xml.dist
+phpunit.xml.dist
 README.md
 codecov.yml
 coverage.xml

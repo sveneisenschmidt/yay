@@ -12,6 +12,8 @@ web:
         - ./:/data:cached
     env_file:
         - .docker.env
+        - .docker.local.env
+        - .docker.prod.env
 
 # Command Line Tools
 cli:
@@ -24,6 +26,7 @@ cli:
         - ./:/data:cached
     env_file:
         - .docker.env
+        - .docker.local.env
 
 # MySQL
 mysqldb:
@@ -46,6 +49,7 @@ blackfire:
         - "8707:8707"
     env_file:
         - .docker.env
+        - .docker.local.env
 
 # Mail
 mail:

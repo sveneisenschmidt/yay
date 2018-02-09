@@ -13,7 +13,7 @@ if (isset($_ENV['APP_ENV'])) {
 }
 
 if (isset($_ENV['APP_DEBUG'])) {
-    $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'];
+    $_SERVER['APP_DEBUG'] = (bool) $_ENV['APP_DEBUG'];
 }
 
 if ($_SERVER['APP_DEBUG'] ?? ('prod' !== ($_SERVER['APP_ENV'] ?? 'dev'))) {
