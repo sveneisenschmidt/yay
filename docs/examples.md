@@ -19,7 +19,7 @@ Automatically-generated API documentation can be found at [`http://localhost:500
 
 Filtering for specific results is achieved by the `filter` query parameter.
 
-#### Filter by `name`, it must equal `Jane Doe`:
+#### Filter by `name`, it must equal `Alex Doe`:
 ```bash
 curl -gX "GET" http://localhost:50080/api/players/?filter[name]=Jane+Doe
 // Same as: curl -gX "GET" http://localhost:50080/api/players/?filter[name:eq]=Jane+Doe
@@ -31,7 +31,7 @@ curl -gX "GET" http://localhost:50080/api/players/?filter[name]=Jane+Doe
         "created_at": "2018-01-02T13:24:40+00:00",
     },
     {
-        "name": "Jane Doe",
+        "name": "Alex Doe",
         "username": "alex.doe",
         "created_at": "2018-01-02T13:24:19+00:00",
     }
@@ -44,13 +44,13 @@ The filtering uses a specific syntax to enable different types of matching strat
 
 | Expression | Example | Description |
 |---|---|---|
-| * | `filter[name]=Jane+Doe` | Value of field `name` equals `Jane Doe`. |
-| eq | `filter[name:eq]=Jane+Doe` | Value of field `name` equals `Jane Doe`. |
+| * | `filter[name]=Jane+Doe` | Value of field `name` equals `Alex Doe`. |
+| eq | `filter[name:eq]=Jane+Doe` | Value of field `name` equals `Alex Doe`. |
 | gt | `filter[score:gt]=10` | Value of field `name` is greater than `10`. |
 | lt | `filter[score:lt]=10` | Value of field `name` is less than `10`. |
 | lte | `filter[score:lte]=10` | Value of field `name` is greater than or equals `10`. |
 | gte | `filter[score:gte]=10` | Value of field `name` is less than or equals `10`. |
-| neq | `filter[name:neq]=Jane+Doe` | Value of field `name` does not equal `Jane Doe`. |
+| neq | `filter[name:neq]=Jane+Doe` | Value of field `name` does not equal `Alex Doe`. |
 | contains | `filter[name:contains]=Doe` | Value of field `name` contains `Doe`. |
 | startsWith | `filter[name:startsWith]=Jane` | Value of field `name` ends with `Jane`. |
 | endsWith | `filter[name:endsWith]=Doe` | Value of field `name` ends with `Doe`. |
@@ -73,7 +73,7 @@ curl -gX "GET" http://localhost:50080/api/players/?order[created_at]
         "created_at": "2018-01-02T13:24:40+00:00",
     },
     {
-        "name": "Jane Doe",
+        "name": "Alex Doe",
         "username": "alex.doe",
         "created_at": "2018-01-02T13:24:19+00:00",
     }
@@ -86,7 +86,7 @@ curl -gX "GET" http://localhost:50080/api/players/?order[created_at]=asc
 
 [
     {
-        "name": "Jane Doe",
+        "name": "Alex Doe",
         "username": "alex.doe",
         "created_at": "2018-01-02T13:24:19+00:00",
     },
@@ -108,7 +108,7 @@ curl -gX "GET" http://localhost:50080/api/players/?limit=1
 
 [
     {
-        "name": "Jane Doe",
+        "name": "Alex Doe",
         "username": "alex.doe",
         "created_at": "2018-01-02T13:24:19+00:00",
     }
@@ -159,10 +159,10 @@ curl -X "GET" http://localhost:50080/api/players/
 There are no users created yet, let's create a user by executing the following request.
 ```bash
 curl -X "POST" http://localhost:50080/api/players/ \
-    -d "{\"name\": \"Jane Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
+    -d "{\"name\": \"Alex Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
 
 {
-    "name": "Jane Doe",
+    "name": "Alex Doe",
     "username": "alex.doe",
     "image_url": "https://api.adorable.io/avatars/128/354",
     "score": 0,

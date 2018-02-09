@@ -25,7 +25,7 @@ class PlayerController extends Controller
      * **Example Response:**
      * ```json
      * [{
-     *     "name": "Jane Doe",
+     *     "name": "Alex Doe",
      *     "username": "alex.doe",
      *     "links": {
      *         "self": "https://example.org/api/players/alex.doe/",
@@ -81,7 +81,7 @@ class PlayerController extends Controller
      * **Example Response:**
      * ```json
      * {
-     *     "name": "Jane Doe",
+     *     "name": "Alex Doe",
      *     "username": "alex.doe",
      *     "score": 0,
      *     "level": 0,
