@@ -13,3 +13,4 @@
 !config/integration/.gitkeep
 coverage.xml
 /docker-run.sh
+/.docker.local.env
