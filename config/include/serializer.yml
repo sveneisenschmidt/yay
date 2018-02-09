@@ -1,6 +1,5 @@
 # JMS Serializer
 jms_serializer:
-#    enable_short_alias: true
     metadata:
         cache: file
         debug: "%kernel.debug%"
@@ -10,6 +9,8 @@ jms_serializer:
             yay:
                 namespace_prefix: 'Component\Entity'
                 path: "@Api/Resources/config/serializer"
+    property_naming:
+        enable_cache: true
     visitors:
             json:
                 options: 192
