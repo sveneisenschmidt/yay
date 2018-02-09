@@ -13,7 +13,6 @@ web:
     env_file:
         - .docker.env
         - .docker.local.env
-        - .docker.prod.env
 
 # Command Line Tools
 cli:
