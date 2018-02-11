@@ -1,0 +1,187 @@
+{
+  "pullrequest": {
+    "type": "pullrequest",
+    "description": "tmp",
+    "links": {
+      "decline": {
+        "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/pullrequests/1/decline"
+      },
+      "commits": {
+        "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/pullrequests/1/commits"
+      },
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/pullrequests/1"
+      },
+      "comments": {
+        "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/pullrequests/1/comments"
+      },
+      "merge": {
+        "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/pullrequests/1/merge"
+      },
+      "html": {
+        "href": "https://bitbucket.org/jsmith/demo/pull-requests/1"
+      },
+      "activity": {
+        "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/pullrequests/1/activity"
+      },
+      "diff": {
+        "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/pullrequests/1/diff"
+      },
+      "approve": {
+        "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/pullrequests/1/approve"
+      },
+      "statuses": {
+        "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/pullrequests/1/statuses"
+      }
+    },
+    "title": "README.md wurden online mit Bitbucket bearbeitet",
+    "close_source_branch": false,
+    "reviewers": [],
+    "id": 1,
+    "destination": {
+      "commit": {
+        "hash": "4c238edd8cb6",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/commit/4c238edd8cb6"
+          }
+        }
+      },
+      "branch": {
+        "name": "master"
+      },
+      "repository": {
+        "full_name": "jsmith/demo",
+        "type": "repository",
+        "name": "demo",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo"
+          },
+          "html": {
+            "href": "https://bitbucket.org/jsmith/demo"
+          },
+          "avatar": {
+            "href": "https://bitbucket.org/jsmith/demo/avatar/32/"
+          }
+        },
+        "uuid": "{f2664e3c-8b98-4df7-b678-0edffbd9128f}"
+      }
+    },
+    "comment_count": 0,
+    "summary": {
+      "raw": "tmp",
+      "markup": "markdown",
+      "html": "<p>tmp</p>"
+    },
+    "source": {
+      "commit": {
+        "hash": "3f801853c7c1",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo/commit/3f801853c7c1"
+          }
+        }
+      },
+      "branch": {
+        "name": "branch"
+      },
+      "repository": {
+        "full_name": "jsmith/demo",
+        "type": "repository",
+        "name": "demo",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo"
+          },
+          "html": {
+            "href": "https://bitbucket.org/jsmith/demo"
+          },
+          "avatar": {
+            "href": "https://bitbucket.org/jsmith/demo/avatar/32/"
+          }
+        },
+        "uuid": "{f2664e3c-8b98-4df7-b678-0edffbd9128f}"
+      }
+    },
+    "state": "OPEN",
+    "author": {
+      "username": "jsmith",
+      "type": "user",
+      "display_name": "Sven Eisenschmidt",
+      "uuid": "{7cd0234b-24a8-4a8a-ba0c-ed3eabd2e848}",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/users/jsmith"
+        },
+        "html": {
+          "href": "https://bitbucket.org/jsmith/"
+        },
+        "avatar": {
+          "href": "https://bitbucket.org/account/jsmith/avatar/32/"
+        }
+      }
+    },
+    "created_on": "2018-02-11T14:51:02.525689+00:00",
+    "participants": [],
+    "reason": "",
+    "updated_on": "2018-02-11T14:51:02.567068+00:00",
+    "merge_commit": null,
+    "closed_by": null,
+    "task_count": 0
+  },
+  "actor": {
+    "username": "jsmith",
+    "type": "user",
+    "display_name": "Sven Eisenschmidt",
+    "uuid": "{7cd0234b-24a8-4a8a-ba0c-ed3eabd2e848}",
+    "links": {
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/users/jsmith"
+      },
+      "html": {
+        "href": "https://bitbucket.org/jsmith/"
+      },
+      "avatar": {
+        "href": "https://bitbucket.org/account/jsmith/avatar/32/"
+      }
+    }
+  },
+  "repository": {
+    "scm": "git",
+    "website": "",
+    "name": "demo",
+    "links": {
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/repositories/jsmith/demo"
+      },
+      "html": {
+        "href": "https://bitbucket.org/jsmith/demo"
+      },
+      "avatar": {
+        "href": "https://bitbucket.org/jsmith/demo/avatar/32/"
+      }
+    },
+    "full_name": "jsmith/demo",
+    "owner": {
+      "username": "jsmith",
+      "type": "user",
+      "display_name": "Sven Eisenschmidt",
+      "uuid": "{7cd0234b-24a8-4a8a-ba0c-ed3eabd2e848}",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/users/jsmith"
+        },
+        "html": {
+          "href": "https://bitbucket.org/jsmith/"
+        },
+        "avatar": {
+          "href": "https://bitbucket.org/account/jsmith/avatar/32/"
+        }
+      }
+    },
+    "type": "repository",
+    "is_private": true,
+    "uuid": "{f2664e3c-8b98-4df7-b678-0edffbd9128f}"
+  }
+}

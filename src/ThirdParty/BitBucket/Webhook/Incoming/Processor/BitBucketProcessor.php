@@ -1,12 +1,12 @@
 <?php
 
-namespace ThirdParty\GitLab\Webhook\Incoming\Processor;
+namespace ThirdParty\BitBucket\Webhook\Incoming\Processor;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Component\Webhook\Incoming\ProcessorInterface;
 
-class GitLabProcessor implements ProcessorInterface
+class BitBucketProcessor implements ProcessorInterface
 {
     /** @var string */
     protected $name;
@@ -23,11 +23,11 @@ class GitLabProcessor implements ProcessorInterface
 
     public function process(Request $request): void
     {
-        if (!$request->headers->has('X-Gitlab-Event')) {
+        if (!$request->headers->has('X-Event-Key')) {
             return;
         }
 
-        $event = $request->headers->get('X-Gitlab-Event');
+        $event = $request->headers->get('X-Event-Key');
         $contents = $request->getContent(false);
         $payload = json_decode($contents, true, 32);
 
@@ -35,14 +35,14 @@ class GitLabProcessor implements ProcessorInterface
             throw new \InvalidArgumentException('Could not decode json payload.');
         }
 
-        if ('Push Hook' === $event) {
+        if ('repo:push' === $event) {
             list ($action, $username) = $this->processPushHook($event, $payload);
 
             $request->request->set('action', $action);
             $request->request->set('username', $username);
         }
 
-        if ('Merge Request Hook' === $event) {
+        if (preg_match('/^pullrequest:/', $event)) {
             list ($action, $username) = $this->processMergeRequestHook($event, $payload);
 
             $request->request->set('action', $action);
@@ -55,8 +55,8 @@ class GitLabProcessor implements ProcessorInterface
         $action = 'push';
         $username = '';
 
-        if (isset($payload['user_username'])) {
-            $username = $payload['user_username'];
+        if (isset($payload['actor']['username'])) {
+            $username = $payload['actor']['username'];
         }
 
         return [$action, $username];
@@ -67,12 +67,12 @@ class GitLabProcessor implements ProcessorInterface
         $action = '';
         $username = '';
 
-        if (isset($payload['object_kind']) && isset($payload['object_attributes']['state'])) {
-            $action = sprintf('%s.%s', $payload['object_kind'], $payload['object_attributes']['state']);
+        if (isset($payload['actor']['username'])) {
+            $username = $payload['actor']['username'];
         }
 
-        if (isset($payload['user']['username'])) {
-            $username = $payload['user']['username'];
+        if (preg_match('/^pullrequest:(?P<action>[A-Za-z]+)$/', $event, $matches) > 0) {
+            $action = sprintf('pull_request.%s', $matches['action']);
         }
 
         return [$action, $username];

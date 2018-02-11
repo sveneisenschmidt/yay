@@ -29,48 +29,56 @@ class GitHubProcessor implements ProcessorInterface
 
         $event = $request->headers->get('X-GitHub-Event');
         $contents = $request->getContent(false);
-        $data = json_decode($contents, true, 32);
+        $payload = json_decode($contents, true, 32);
 
-        if (null === $data) {
+        if (null === $payload) {
             throw new \InvalidArgumentException('Could not decode json payload.');
         }
 
         if ('push' === $event) {
-            $this->processPushHook($request->request, $data);
+            list ($action, $username) = $this->processPushHook($event, $payload);
+
+            $request->request->set('action', $action);
+            $request->request->set('username', $username);
         }
 
         if ('pull_request' === $event) {
-            $this->processMergeRequestHook($request->request, $data);
+            list ($action, $username) = $this->processMergeRequestHook($event, $payload);
+
+            $request->request->set('action', $action);
+            $request->request->set('username', $username);
         }
     }
 
-    public function processPushHook(ParameterBag $request, array $data): void
+    public function processPushHook(string $event, array $payload): array
     {
         $action = 'push';
         $username = '';
 
-        if (isset($data['pusher']['name'])) {
-            $username = $data['pusher']['name'];
+        if (isset($payload['pusher']['name'])) {
+            $username = $payload['pusher']['name'];
         }
 
-        $request->set('action', $action);
-        $request->set('username', $username);
+        return [$action, $username];
     }
 
-    public function processMergeRequestHook(ParameterBag $request, array $data): void
+    public function processMergeRequestHook(string $event, array $payload): array
     {
         $action = '';
         $username = '';
 
-        if (isset($data['action'])) {
-            $action = sprintf('pull_request.%s', $data['action']);
+        if (isset($payload['action'])) {
+            if ($payload['action'] === 'closed' && isset($payload['pull_request']['merged'])) {
+                $action = sprintf('pull_request.%s', $payload['pull_request']['merged'] ? 'merged' : 'closed');
+            } else {
+                $action = sprintf('pull_request.%s', $payload['action']);
+            }
         }
 
-        if (isset($data['pull_request']['user']['login'])) {
-            $username = $data['pull_request']['user']['login'];
+        if (isset($payload['pull_request']['user']['login'])) {
+            $username = $payload['pull_request']['user']['login'];
         }
 
-        $request->set('action', $action);
-        $request->set('username', $username);
+        return [$action, $username];
     }
 }

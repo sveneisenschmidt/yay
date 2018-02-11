@@ -1,47 +1,35 @@
 <?php
 
-namespace ThirdParty\GitHub\Webhook\Tests\Incoming\Processor;
+namespace ThirdParty\BitBucket\Webhook\Tests\Incoming\Processor;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use ThirdParty\GitHub\Webhook\Incoming\Processor\GitHubProcessor;
+use ThirdParty\BitBucket\Webhook\Incoming\Processor\BitBucketProcessor;
 
-class GitHubProcessorTest extends TestCase
+class BitBucketProcessorTest extends TestCase
 {
     public function providePayloads()
     {
         return [
             [
-                'push',
+                'repo:push',
                 file_get_contents(__DIR__.'/Fixtures/PushWebhook.json'),
-                'baxterthehacker',
+                'jsmith',
                 'push',
             ],
             [
-                'pull_request',
+                'pullrequest:created',
                 file_get_contents(__DIR__.'/Fixtures/PullRequestWebhook.json'),
-                'baxterthehacker',
-                'pull_request.opened',
-            ],
-            [
-                'pull_request',
-                file_get_contents(__DIR__.'/Fixtures/PullRequestWebhookMerged.json'),
-                'baxterthehacker',
-                'pull_request.merged',
-            ],
-            [
-                'pull_request',
-                file_get_contents(__DIR__.'/Fixtures/PullRequestWebhookClosed.json'),
-                'baxterthehacker',
-                'pull_request.closed',
+                'jsmith',
+                'pull_request.created',
             ],
         ];
     }
 
     public function test_set_get_name(): void
     {
-        $processor = new GitHubProcessor($name = 'github-processor');
-        $this->assertEquals('github-processor', $processor->getName());
+        $processor = new BitBucketProcessor($name = 'gitlab-processor');
+        $this->assertEquals('gitlab-processor', $processor->getName());
     }
 
     /** @dataProvider providePayloads */
@@ -52,9 +40,9 @@ class GitHubProcessorTest extends TestCase
         string $action
     ): void {
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
-        $request->headers->set('X-GitHub-Event', $header);
+        $request->headers->set('X-Event-Key', $header);
 
-        (new GitHubProcessor('github-processor'))->process($request);
+        (new BitBucketProcessor('gitlab-processor'))->process($request);
         $this->assertEquals($username, $request->request->get('username'));
         $this->assertEquals($action, $request->request->get('action'));
     }
@@ -64,7 +52,7 @@ class GitHubProcessorTest extends TestCase
         $contents = json_encode([]);
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
 
-        (new GitHubProcessor('github-processor'))->process($request);
+        (new BitBucketProcessor('bitbucket-processor'))->process($request);
         $this->assertFalse($request->request->has('username'));
         $this->assertFalse($request->request->has('action'));
     }
@@ -73,9 +61,9 @@ class GitHubProcessorTest extends TestCase
     {
         $contents = json_encode([]);
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
-        $request->headers->set('X-GitHub-Event', 'github-event');
+        $request->headers->set('X-Event-Key', 'bitbucket-event');
 
-        (new GitHubProcessor('github-processor'))->process($request);
+        (new BitBucketProcessor('bitbucket-processor'))->process($request);
         $this->assertFalse($request->request->has('username'));
         $this->assertFalse($request->request->has('action'));
     }
@@ -85,8 +73,8 @@ class GitHubProcessorTest extends TestCase
     {
         $contents = ',1%}';
         $request = Request::create('/', 'POST', [], [], [], [], $contents);
-        $request->headers->set('X-GitHub-Event', 'github-event');
+        $request->headers->set('X-Event-Key', 'bitbucket-event');
 
-        (new GitHubProcessor('github-processor'))->process($request);
+        (new BitBucketProcessor('bitbucket-processor'))->process($request);
     }
 }
