@@ -17,8 +17,14 @@ all:
 	#    default-publish      Publish demo docker image to sveneisenschmidt/yay
 	#    enable-demo          Enable demo integration
 	#    disable-demo         Remove demo integration
-	#    enable-github        Disable github integration
-	#    disable-github       Disable github integration
+	#    enable-github        Disable GitHub (Test only) integration
+	#    disable-github       Disable GitHub (Test only) integration
+	#    enable-gitlab        Disable GitLab (Test only) integration
+	#    disable-gitlab       Disable GitLab (Test only) integration
+	#    enable-bitbucket	  Disable BitBucket (Test only) integration
+	#    disable-bitbucket	  Disable BitBucket (Test only) integration
+	#    enable-travisci	  Disable Travis CI (Test only) integration
+	#    disable-travisci	  Disable Travis CI (Test only) integration
 	#    demo-publish         Publish demo docker image to sveneisenschmidt/yay-demo
 	#    watch-logs           Watch all log files
 	#    watch-redis          Watch all redis queries
@@ -92,6 +98,12 @@ enable-bitbucket: .integration-enable-bitbucket
 
 .PHONY: disable-bitbucket
 disable-bitbucket: .integration-disable-bitbucket
+
+.PHONY: enable-travisci
+enable-travisci: .integration-enable-travisci
+
+.PHONY: disable-travisci
+disable-travisci: .integration-disable-travisci
 
 .PHONY: publish-default
 publish-default:

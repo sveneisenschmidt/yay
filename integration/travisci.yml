@@ -1,0 +1,48 @@
+# ATTENTION
+# These integrations were created for testing purpose only, please do not use them in production.
+# Rather take them as examples to write and combine your own integrations.
+
+integration:
+
+    actions:
+        build-success:
+            label: Build job executed successful
+            description: ...
+
+    achievements:
+        build-success-streak-badge:
+            label: Release-aholic
+            description: Trigger three successful builds. Can be awarded multiple times.
+            points: 50
+            actions: [build-success]
+
+    validators:
+        build-success-streak-validator:
+            type: expression
+            arguments:
+                - "actions.count()%5 == 0" # expression
+                - ['build-success-streak-badge'] # supported achievements
+                - true # multiple: true
+
+    webhooks:
+        incoming_processors:
+            travisci:
+                type: chain
+                arguments:
+                    - [ travisci-payload, travisci-actions, travisci-users ]
+            travisci-payload:
+                type: class
+                class: ThirdParty\TravisCI\Webhook\Incoming\Processor\TravisCIProcessor
+            travisci-actions:
+                type: static-map
+                arguments:
+                    - action
+                    - 
+                        build.passed: build-success
+                        build.fixed: build-success
+            travisci-users:
+                type: static-map
+                arguments:
+                    - username
+                    - 
+                        J. Smith: alex.doe

@@ -42,3 +42,9 @@ endef
 
 .integration-disable-bitbucket:
 	@$(call .integration-disable,bitbucket)
+
+.integration-enable-travisci:
+	@$(call .integration-enable,travisci)
+
+.integration-disable-travisci:
+	@$(call .integration-disable,travisci)

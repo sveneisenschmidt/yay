@@ -1,0 +1,86 @@
+{
+	"id": 340174206,
+	"number": "8",
+	"config": {
+		"language": "generic",
+		"sudo": false,
+		"git": {
+			"depth": false
+		},
+		"notifications": {
+			"webhooks": ["http://aede482b.ngrok.io/webhook/incoming/travisci/"]
+		},
+		"script": "date",
+		".result": "configured",
+		"group": "stable",
+		"dist": "trusty"
+	},
+	"type": "push",
+	"state": "passed",
+	"status": 0,
+	"result": 0,
+	"status_message": "Passed",
+	"result_message": "Passed",
+	"started_at": "2018-02-11T16:47:19Z",
+	"finished_at": "2018-02-11T16:47:52Z",
+	"duration": 33,
+	"build_url": "https://travis-ci.org/jsmith/demo/builds/340174206",
+	"commit_id": 101147409,
+	"commit": "463e6d703e3285136f76c1508931c2cbc829bb2c",
+	"base_commit": "463e6d703e3285136f76c1508931c2cbc829bb2c",
+	"head_commit": null,
+	"branch": "master",
+	"message": "push",
+	"compare_url": "https://github.com/jsmith/demo/compare/ad559bb27d28...463e6d703e32",
+	"committed_at": "2018-02-11T16:46:55Z",
+	"author_name": "J. Smith",
+	"author_email": "jsmith@example.org",
+	"committer_name": "J. Smith",
+	"committer_email": "jsmith@example.org",
+	"pull_request": false,
+	"pull_request_number": null,
+	"pull_request_title": null,
+	"tag": null,
+	"repository": {
+		"id": 17598770,
+		"name": "demo",
+		"owner_name": "jsmith",
+		"url": null
+	},
+	"matrix": [{
+		"id": 340174207,
+		"repository_id": 17598770,
+		"parent_id": 340174206,
+		"number": "8.1",
+		"state": "passed",
+		"config": {
+			"language": "generic",
+			"sudo": false,
+			"git": {
+				"depth": false
+			},
+			"notifications": {
+				"webhooks": ["http://aede482b.ngrok.io/webhook/incoming/travisci/"]
+			},
+			"script": "date",
+			".result": "configured",
+			"group": "stable",
+			"dist": "trusty",
+			"os": "linux"
+		},
+		"status": 0,
+		"result": 0,
+		"commit": "463e6d703e3285136f76c1508931c2cbc829bb2c",
+		"branch": "master",
+		"message": "push",
+		"compare_url": "https://github.com/jsmith/demo/compare/ad559bb27d28...463e6d703e32",
+		"started_at": null,
+		"finished_at": null,
+		"committed_at": "2018-02-11T16:46:55Z",
+		"author_name": "J. Smith",
+		"author_email": "jsmith@example.org",
+		"committer_name": "J. Smith",
+		"committer_email": "jsmith@example.org",
+		"allow_failure": false
+	}]
+}

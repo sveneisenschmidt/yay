@@ -1,3 +1,7 @@
+# ATTENTION
+# These integrations were created for testing purpose only, please do not use them in production.
+# Rather take them as examples to write and combine your own integrations.
+
 integration:
 
     actions:
@@ -14,7 +18,7 @@ integration:
     achievements:
         pull-request-streak-badge:
             label: Code-aholic
-            description: Perform five times an action on any pull request. Can be awarded multiple times.
+            description: Perform three times an action on any pull request. Can be awarded multiple times.
             points: 50
             actions: [pullrequest-opened, pullrequest-reviewed, pullrequest-merged]
 
