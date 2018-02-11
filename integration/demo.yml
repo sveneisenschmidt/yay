@@ -1,3 +1,7 @@
+# ATTENTION
+# These integrations were created for testing purpose only, please do not use them in production.
+# Rather take them as examples to write and combine your own integrations.
+
 integration:
     levels: []
 
