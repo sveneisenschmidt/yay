@@ -77,7 +77,7 @@ Supported webhook events:
 
 ## How to connect to Travis CI
 
-CI platform Travis CI uses the concept of webhooks [(official documentation)](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) to connect their own and third party systems in a simple way. With this in mind it is possible to connect Travis CI and Yay! very easily, the only needed part is a custom processor that is able to interpret the payload sent by Travis CI, process and transform it so Yay! is able to process it as well. A custom processor for Travis CI is shipped by Yay.
+CI platform Travis CI uses the concept of webhooks [(official documentation)](https://docs.travis-ci.com/user/notifications/#Configuring-webhook-notifications) to connect their own and third party systems in a simple way. With this in mind it is possible to connect Travis CI and Yay! very easily, the only needed part is a custom processor that is able to interpret the payload sent by Travis CI, process and transform it so Yay! is able to process it as well. A custom processor for Travis CI is shipped by Yay.
 
 ```yml
 integration:
