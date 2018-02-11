@@ -26,7 +26,7 @@ jobs:
       - make test-coverage
       - make qa
       after_success:
-      - bash <(curl -s https://codecov.io/bash)
+      - bash <(curl -s https://codecov.io/bash) -y .codecov.yml
       - cat "$TRAVIS_BUILD_DIR"/install.log
     - stage: "Build Docker Images (stable)"
       if: branch = master AND type IN (push, api, cron) AND fork = false

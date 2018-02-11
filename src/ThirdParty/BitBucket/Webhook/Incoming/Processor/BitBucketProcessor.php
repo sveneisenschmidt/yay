@@ -1,11 +1,11 @@
 <?php
 
-namespace ThirdParty\GitHub\Webhook\Incoming\Processor;
+namespace ThirdParty\BitBucket\Webhook\Incoming\Processor;
 
 use Symfony\Component\HttpFoundation\Request;
 use Component\Webhook\Incoming\ProcessorInterface;
 
-class GitHubProcessor implements ProcessorInterface
+class BitBucketProcessor implements ProcessorInterface
 {
     /** @var string */
     protected $name;
@@ -22,11 +22,11 @@ class GitHubProcessor implements ProcessorInterface
 
     public function process(Request $request): void
     {
-        if (!$request->headers->has('X-GitHub-Event')) {
+        if (!$request->headers->has('X-Event-Key')) {
             return;
         }
 
-        $event = $request->headers->get('X-GitHub-Event');
+        $event = $request->headers->get('X-Event-Key');
         $contents = $request->getContent(false);
         $payload = json_decode($contents, true, 32);
 
@@ -34,14 +34,14 @@ class GitHubProcessor implements ProcessorInterface
             throw new \InvalidArgumentException('Could not decode json payload.');
         }
 
-        if ('push' === $event) {
+        if ('repo:push' === $event) {
             list($action, $username) = $this->processPushHook($event, $payload);
 
             $request->request->set('action', $action);
             $request->request->set('username', $username);
         }
 
-        if ('pull_request' === $event) {
+        if (preg_match('/^pullrequest:/', $event)) {
             list($action, $username) = $this->processMergeRequestHook($event, $payload);
 
             $request->request->set('action', $action);
@@ -54,8 +54,8 @@ class GitHubProcessor implements ProcessorInterface
         $action = 'push';
         $username = '';
 
-        if (isset($payload['pusher']['name'])) {
-            $username = $payload['pusher']['name'];
+        if (isset($payload['actor']['username'])) {
+            $username = $payload['actor']['username'];
         }
 
         return [$action, $username];
@@ -66,16 +66,12 @@ class GitHubProcessor implements ProcessorInterface
         $action = '';
         $username = '';
 
-        if (isset($payload['action'])) {
-            if ('closed' === $payload['action'] && isset($payload['pull_request']['merged'])) {
-                $action = sprintf('pull_request.%s', $payload['pull_request']['merged'] ? 'merged' : 'closed');
-            } else {
-                $action = sprintf('pull_request.%s', $payload['action']);
-            }
+        if (isset($payload['actor']['username'])) {
+            $username = $payload['actor']['username'];
         }
 
-        if (isset($payload['pull_request']['user']['login'])) {
-            $username = $payload['pull_request']['user']['login'];
+        if (preg_match('/^pullrequest:(?P<action>[A-Za-z]+)$/', $event, $matches) > 0) {
+            $action = sprintf('pull_request.%s', $matches['action']);
         }
 
         return [$action, $username];

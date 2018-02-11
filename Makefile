@@ -87,6 +87,12 @@ enable-gitlab: .integration-enable-gitlab
 .PHONY: disable-gitlab
 disable-gitlab: .integration-disable-gitlab
 
+.PHONY: enable-bitbucket
+enable-bitbucket: .integration-enable-bitbucket
+
+.PHONY: disable-bitbucket
+disable-bitbucket: .integration-disable-bitbucket
+
 .PHONY: publish-default
 publish-default:
 	@$(call .publish,dist/docker-run.default.sh,sveneisenschmidt/yay,$(DOCKER_ENV),$(DOCKER_BRANCH))

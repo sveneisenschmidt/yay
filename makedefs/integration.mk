@@ -36,3 +36,9 @@ endef
 
 .integration-disable-gitlab:
 	@$(call .integration-disable,gitlab)
+
+.integration-enable-bitbucket:
+	@$(call .integration-enable,bitbucket)
+
+.integration-disable-bitbucket:
+	@$(call .integration-disable,bitbucket)

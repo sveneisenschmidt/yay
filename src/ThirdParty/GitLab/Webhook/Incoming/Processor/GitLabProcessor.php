@@ -3,7 +3,6 @@
 namespace ThirdParty\GitLab\Webhook\Incoming\Processor;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\ParameterBag;
 use Component\Webhook\Incoming\ProcessorInterface;
 
 class GitLabProcessor implements ProcessorInterface
@@ -29,48 +28,52 @@ class GitLabProcessor implements ProcessorInterface
 
         $event = $request->headers->get('X-Gitlab-Event');
         $contents = $request->getContent(false);
-        $data = json_decode($contents, true, 32);
+        $payload = json_decode($contents, true, 32);
 
-        if (null === $data) {
+        if (null === $payload) {
             throw new \InvalidArgumentException('Could not decode json payload.');
         }
 
         if ('Push Hook' === $event) {
-            $this->processPushHook($request->request, $data);
+            list($action, $username) = $this->processPushHook($event, $payload);
+
+            $request->request->set('action', $action);
+            $request->request->set('username', $username);
         }
 
         if ('Merge Request Hook' === $event) {
-            $this->processMergeRequestHook($request->request, $data);
+            list($action, $username) = $this->processMergeRequestHook($event, $payload);
+
+            $request->request->set('action', $action);
+            $request->request->set('username', $username);
         }
     }
 
-    public function processPushHook(ParameterBag $request, array $data): void
+    public function processPushHook(string $event, array $payload): array
     {
         $action = 'push';
         $username = '';
 
-        if (isset($data['user_username'])) {
-            $username = $data['user_username'];
+        if (isset($payload['user_username'])) {
+            $username = $payload['user_username'];
         }
 
-        $request->set('action', $action);
-        $request->set('username', $username);
+        return [$action, $username];
     }
 
-    public function processMergeRequestHook(ParameterBag $request, array $data): void
+    public function processMergeRequestHook(string $event, array $payload): array
     {
         $action = '';
         $username = '';
 
-        if (isset($data['object_kind']) && isset($data['object_attributes']['state'])) {
-            $action = sprintf('%s.%s', $data['object_kind'], $data['object_attributes']['state']);
+        if (isset($payload['object_kind']) && isset($payload['object_attributes']['state'])) {
+            $action = sprintf('%s.%s', $payload['object_kind'], $payload['object_attributes']['state']);
         }
 
-        if (isset($data['user']['username'])) {
-            $username = $data['user']['username'];
+        if (isset($payload['user']['username'])) {
+            $username = $payload['user']['username'];
         }
 
-        $request->set('action', $action);
-        $request->set('username', $username);
+        return [$action, $username];
     }
 }
