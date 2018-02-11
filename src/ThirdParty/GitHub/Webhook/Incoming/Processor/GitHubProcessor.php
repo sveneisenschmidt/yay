@@ -3,7 +3,6 @@
 namespace ThirdParty\GitHub\Webhook\Incoming\Processor;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\ParameterBag;
 use Component\Webhook\Incoming\ProcessorInterface;
 
 class GitHubProcessor implements ProcessorInterface
@@ -36,14 +35,14 @@ class GitHubProcessor implements ProcessorInterface
         }
 
         if ('push' === $event) {
-            list ($action, $username) = $this->processPushHook($event, $payload);
+            list($action, $username) = $this->processPushHook($event, $payload);
 
             $request->request->set('action', $action);
             $request->request->set('username', $username);
         }
 
         if ('pull_request' === $event) {
-            list ($action, $username) = $this->processMergeRequestHook($event, $payload);
+            list($action, $username) = $this->processMergeRequestHook($event, $payload);
 
             $request->request->set('action', $action);
             $request->request->set('username', $username);
@@ -68,7 +67,7 @@ class GitHubProcessor implements ProcessorInterface
         $username = '';
 
         if (isset($payload['action'])) {
-            if ($payload['action'] === 'closed' && isset($payload['pull_request']['merged'])) {
+            if ('closed' === $payload['action'] && isset($payload['pull_request']['merged'])) {
                 $action = sprintf('pull_request.%s', $payload['pull_request']['merged'] ? 'merged' : 'closed');
             } else {
                 $action = sprintf('pull_request.%s', $payload['action']);

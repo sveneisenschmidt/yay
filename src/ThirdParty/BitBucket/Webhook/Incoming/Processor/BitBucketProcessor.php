@@ -3,7 +3,6 @@
 namespace ThirdParty\BitBucket\Webhook\Incoming\Processor;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\ParameterBag;
 use Component\Webhook\Incoming\ProcessorInterface;
 
 class BitBucketProcessor implements ProcessorInterface
@@ -36,14 +35,14 @@ class BitBucketProcessor implements ProcessorInterface
         }
 
         if ('repo:push' === $event) {
-            list ($action, $username) = $this->processPushHook($event, $payload);
+            list($action, $username) = $this->processPushHook($event, $payload);
 
             $request->request->set('action', $action);
             $request->request->set('username', $username);
         }
 
         if (preg_match('/^pullrequest:/', $event)) {
-            list ($action, $username) = $this->processMergeRequestHook($event, $payload);
+            list($action, $username) = $this->processMergeRequestHook($event, $payload);
 
             $request->request->set('action', $action);
             $request->request->set('username', $username);
