@@ -233,7 +233,7 @@ curl -X "POST" http://localhost:50080/api/progress/ \
 
 No achievements were granted yet, although if you check now our players personal actions you will find our recent action.
 ```bash
-curl -X "GET" http://localhost:50080/api/players/alex.doe/personal-actions
+curl -X "GET" http://localhost:50080/api/players/alex.doe/personal-actions/
 
 [
     {
