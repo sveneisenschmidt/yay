@@ -1,0 +1,180 @@
+{
+    "timestamp": 1518964108560,
+    "webhookEvent": "jira:issue_updated",
+    "issue_event_type_name": "issue_generic",
+    "user": {
+        "self": "http://localhost:8080/rest/api/2/user?username=sveneisenschmidt",
+        "name": "sveneisenschmidt",
+        "key": "sveneisenschmidt",
+        "emailAddress": "sven.eisenschmidt@gmail.com",
+        "avatarUrls": {
+            "48x48": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=48",
+            "24x24": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=24",
+            "16x16": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=16",
+            "32x32": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=32"
+        },
+        "displayName": "sven.eisenschmidt@gmail.com",
+        "active": true,
+        "timeZone": "GMT"
+    },
+    "issue": {
+        "id": "10000",
+        "self": "http://localhost:8080/rest/api/2/issue/10000",
+        "key": "YAY-1",
+        "fields": {
+            "issuetype": {
+                "self": "http://localhost:8080/rest/api/2/issuetype/10001",
+                "id": "10001",
+                "description": "A task that needs to be done.",
+                "iconUrl": "http://localhost:8080/secure/viewavatar?size=xsmall&avatarId=10318&avatarType=issuetype",
+                "name": "Task",
+                "subtask": false,
+                "avatarId": 10318
+            },
+            "components": [],
+            "timespent": null,
+            "timeoriginalestimate": null,
+            "description": "h2. This is your first task. \n{color:#707070} Issues are the things you do in a project. In business projects, issues are called tasks. {color}\nh4. Types of tasks\n{color:#707070}A task can represent a document, a creative asset, a purchase and even a person.{color}\n!IssueTypes.png!\nh4. Details\n{color:#707070}The 'Details' section above, provides the information you need, such as priority and status, to help you track the progress of your tasks.{color}\nNext: [Workflows and statuses|YAY-2]\n\n----\n[Learn more |http://blogs.atlassian.com/2015/11/make-jira-core-issues-work-for-your-business-team/]",
+            "project": {
+                "self": "http://localhost:8080/rest/api/2/project/10000",
+                "id": "10000",
+                "key": "YAY",
+                "name": "Yay!",
+                "avatarUrls": {
+                    "48x48": "http://localhost:8080/secure/projectavatar?avatarId=10324",
+                    "24x24": "http://localhost:8080/secure/projectavatar?size=small&avatarId=10324",
+                    "16x16": "http://localhost:8080/secure/projectavatar?size=xsmall&avatarId=10324",
+                    "32x32": "http://localhost:8080/secure/projectavatar?size=medium&avatarId=10324"
+                }
+            },
+            "fixVersions": [],
+            "aggregatetimespent": null,
+            "resolution": null,
+            "timetracking": {},
+            "attachment": [],
+            "aggregatetimeestimate": null,
+            "resolutiondate": null,
+            "workratio": -1,
+            "summary": "This is your first task",
+            "lastViewed": "2018-02-18T14:28:28.548+0000",
+            "watches": {
+                "self": "http://localhost:8080/rest/api/2/issue/YAY-1/watchers",
+                "watchCount": 0,
+                "isWatching": false
+            },
+            "creator": {
+                "self": "http://localhost:8080/rest/api/2/user?username=sveneisenschmidt",
+                "name": "sveneisenschmidt",
+                "key": "sveneisenschmidt",
+                "emailAddress": "sven.eisenschmidt@gmail.com",
+                "avatarUrls": {
+                    "48x48": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=48",
+                    "24x24": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=24",
+                    "16x16": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=16",
+                    "32x32": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=32"
+                },
+                "displayName": "sven.eisenschmidt@gmail.com",
+                "active": true,
+                "timeZone": "GMT"
+            },
+            "subtasks": [],
+            "created": "2018-02-18T11:48:22.144+0000",
+            "reporter": {
+                "self": "http://localhost:8080/rest/api/2/user?username=sveneisenschmidt",
+                "name": "sveneisenschmidt",
+                "key": "sveneisenschmidt",
+                "emailAddress": "sven.eisenschmidt@gmail.com",
+                "avatarUrls": {
+                    "48x48": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=48",
+                    "24x24": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=24",
+                    "16x16": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=16",
+                    "32x32": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=32"
+                },
+                "displayName": "sven.eisenschmidt@gmail.com",
+                "active": true,
+                "timeZone": "GMT"
+            },
+            "aggregateprogress": {
+                "progress": 0,
+                "total": 0
+            },
+            "priority": {
+                "self": "http://localhost:8080/rest/api/2/priority/3",
+                "iconUrl": "http://localhost:8080/images/icons/priorities/medium.svg",
+                "name": "Medium",
+                "id": "3"
+            },
+            "labels": [],
+            "environment": null,
+            "timeestimate": null,
+            "aggregatetimeoriginalestimate": null,
+            "versions": [],
+            "duedate": null,
+            "progress": {
+                "progress": 0,
+                "total": 0
+            },
+            "comment": {
+                "comments": [],
+                "maxResults": 0,
+                "total": 0,
+                "startAt": 0
+            },
+            "issuelinks": [],
+            "votes": {
+                "self": "http://localhost:8080/rest/api/2/issue/YAY-1/votes",
+                "votes": 0,
+                "hasVoted": false
+            },
+            "worklog": {
+                "startAt": 0,
+                "maxResults": 20,
+                "total": 0,
+                "worklogs": []
+            },
+            "assignee": {
+                "self": "http://localhost:8080/rest/api/2/user?username=sveneisenschmidt",
+                "name": "sveneisenschmidt",
+                "key": "sveneisenschmidt",
+                "emailAddress": "sven.eisenschmidt@gmail.com",
+                "avatarUrls": {
+                    "48x48": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=48",
+                    "24x24": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=24",
+                    "16x16": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=16",
+                    "32x32": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=32"
+                },
+                "displayName": "sven.eisenschmidt@gmail.com",
+                "active": true,
+                "timeZone": "GMT"
+            },
+            "updated": "2018-02-18T14:28:28.560+0000",
+            "status": {
+                "self": "http://localhost:8080/rest/api/2/status/10000",
+                "description": "",
+                "iconUrl": "http://localhost:8080/images/icons/status_generic.gif",
+                "name": "To Do",
+                "id": "10000",
+                "statusCategory": {
+                    "self": "http://localhost:8080/rest/api/2/statuscategory/2",
+                    "id": 2,
+                    "key": "new",
+                    "colorName": "blue-gray",
+                    "name": "To Do"
+                }
+            }
+        }
+    },
+    "changelog": {
+        "id": "10025",
+        "items": [
+            {
+                "field": "status",
+                "fieldtype": "jira",
+                "from": "3",
+                "fromString": "In Progress",
+                "to": "10000",
+                "toString": "To Do"
+            }
+        ]
+    }
+}

@@ -48,3 +48,9 @@ endef
 
 .integration-disable-travisci:
 	@$(call .integration-disable,travisci)
+
+.integration-enable-jira:
+	@$(call .integration-enable,jira)
+
+.integration-disable-jira:
+	@$(call .integration-disable,jira)

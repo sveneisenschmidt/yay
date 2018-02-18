@@ -105,6 +105,12 @@ enable-travisci: .integration-enable-travisci
 .PHONY: disable-travisci
 disable-travisci: .integration-disable-travisci
 
+.PHONY: enable-jira
+enable-jira: .integration-enable-jira
+
+.PHONY: disable-jira
+disable-jira: .integration-disable-jira
+
 .PHONY: publish-default
 publish-default:
 	@$(call .publish,dist/docker-run.default.sh,sveneisenschmidt/yay,$(DOCKER_ENV),$(DOCKER_BRANCH))
