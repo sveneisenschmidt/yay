@@ -14,17 +14,20 @@ WORKDIR /data
 RUN apt -y update && \
     apt install -y \
         libicu-dev \
-        libxml2-dev && \
+        libxml2-dev \
+        zlib1g-dev && \
     docker-php-ext-install \
         pdo_mysql \
         intl \
         xml \
         dom \
         mbstring \
-        opcache && \
+        opcache  \
+        zip && \
     apt remove -y \
         libicu-dev \
-        libxml2-dev && \
+        libxml2-dev \
+        zlib1g-dev && \
     apt autoremove -y
 
 RUN a2enmod rewrite
