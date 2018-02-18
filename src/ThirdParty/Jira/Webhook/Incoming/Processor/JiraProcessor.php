@@ -28,7 +28,7 @@ class JiraProcessor implements ProcessorInterface
     {
         return $this->name;
     }
-    
+
     public function process(Request $request): void
     {
         $contents = $request->getContent(false);
@@ -54,8 +54,9 @@ class JiraProcessor implements ProcessorInterface
 
         foreach ($this->map as $mapAction => $mapExpression) {
             if ((bool) $this->lanuage->evaluate($mapExpression, $payload)) {
-               $request->request->set('action', $mapAction);
-               break;
+                $request->request->set('action', $mapAction);
+
+                break;
             }
         }
     }

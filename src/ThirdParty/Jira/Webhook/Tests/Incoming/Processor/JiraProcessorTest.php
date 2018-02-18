@@ -33,8 +33,8 @@ class JiraProcessorTest extends TestCase
                 'sveneisenschmidt',
                 'jira.issue_closed',
                 [
-                    'jira.issue_closed' => "issue['fields']['resolution'] != null"
-                ]
+                    'jira.issue_closed' => "issue['fields']['resolution'] != null",
+                ],
             ],
         ];
     }
