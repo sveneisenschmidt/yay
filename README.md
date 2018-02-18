@@ -46,6 +46,7 @@ Yay! is a **gamification engine** directly exposing a web service API to bring e
 </p>
 
 ## Features
+- **[Demo](https://github.com/sveneisenschmidt/yay/blob/master/docs/examples.md#demo)**
 - Achievements
 - Activity Stream
 - Goals
@@ -54,6 +55,7 @@ Yay! is a **gamification engine** directly exposing a web service API to bring e
 - Player Scores & Levels
 - [API](docs/examples.md#usage--api)
 - [Webhooks](docs/under-the-hood.md#webhooks)
+- [Examples](https://github.com/sveneisenschmidt/yay/blob/master/docs/examples.md)
 
 **Developer Highlights**
 - Deploy and run it everywhere with [Docker](docs/getting-started.md#installation)
