@@ -4,17 +4,25 @@
 
 # How To
 
-* [How to connect to BitBucket](how-to.md#how-to-connect-to-bitbucket)
-* [How to connect to GitHub](how-to.md#how-to-connect-to-github)
-* [How to connect to GitLab](how-to.md#how-to-connect-to-gitlab)
-* [How to connect to Travis CI](how-to.md#how-to-connect-to-travis-ci)
+* [How to connect Third Parties](how-to.md#how-to-connect-third-parties)
 * [How to add your own levels](how-to.md#how-to-add-your-own-levels)
 
 ---
 
-## How to connect to BitBucket
+## How to connect Third Parties
 
-Git platform BitBucket uses the concept of webhooks [(official documentation)](https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html) to connect their own and third party systems in a simple way. With this in mind it is possible to connect BitBucket and Yay! very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay! is able to process it as well.  A custom processor for BitBucket is shipped by Yay.
+| Service | Type | Events | Documentation | Processor | Example |
+|---|---|---|---|---|---|
+| BitBucket | Source Code Management | commit & push (`push`), pull request (`pull_request.{created,updated,approved,unapproved,fulfilled,rejected}`) | [Webhook documentation](https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html) | [ThirdParty\BitBucket\Webhook\Incoming\Processor\BitBucketProcessor](../src/ThirdParty/BitBucket/Webhook/Incoming/Processor/BitBucketProcessor.php) | [integration/example/bitbucket.yml](../integration/example/bitbucket.yml) |
+| GitHub | Source Code Management | commit & push (`push`), pull request (`pull_request.{opened,merged,closed}`) | [Webhook documentation](https://developer.github.com/webhooks/) | [ThirdParty\GitHub\Webhook\Incoming\Processor\GitHubProcessor](../src/ThirdParty/GitHub/Webhook/Incoming/Processor/GitHubProcessor.php) | [integration/example/github.yml](../integration/example/github.yml) |
+| GitLab | Source Code Management | commit & push (`push`), merge request (`merge_request.{opened,updated,merged,closed}`) | [Webhook documentation](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) | [ThirdParty\GitLab\Webhook\Incoming\Processor\GitLabProcessor](../src/ThirdParty/GitLab/Webhook/Incoming/Processor/GitLabProcessor.php) | [integration/example/gitlab.yml](../integration/example/gitlab.yml) |
+| TravisCI | Continuous Integration | build events (`build.{pending,passed,fixed,failed,broken,still failing,canceled,errored}`) | [Webhook documentation](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) | [ThirdParty\TravisCI\Webhook\Incoming\Processor\TravisCIProcessor](../src/ThirdParty/TravisCI/Webhook/Incoming/Processor/TravisCIProcessor.php) | [integration/example/travisci.yml](../integration/example/travisci.yml) |
+| Jira | Task management  | issue (`jira:issue_created, jira:issue_updated, jira:issue_deleted, jira:worklog_updated`), worklog (`jira.worklog_created, jira.worklog_updated, worklog_deleted`), comment (`jira.comment_created, jira.comment_updated`), project (`jira.project_created, jira.project_updated, jira.project_deleted`), version (`jira:version_released, jira:version_unreleased, jira:version_created, jira:version_moved, jira:version_updated, jira:version_deleted`), user (`jira.user_created, jira.user_updated, jira.user_deleted`), feature (`jira.option_voting_changed, jira.option_watching_changed, jira.option_unassigned_issues_changed, jira.option_subtasks_changed, jira.option_attachments_changed, jira.option_issuelinks_changed, jira.option_timetracking_changed`), sprint (`jira.sprint_created, jira.sprint_deleted, jira.sprint_updated, jira.sprint_started, jira.sprint_closed`), board (`jira.board_created, jira.board_updated, jira.board_deleted, jira.board_configuration_changed`) | [Webhook documentation](https://developer.atlassian.com/server/jira/platform/webhooks/) | [ThirdParty\Jira\Webhook\Incoming\Processor\JiraProcessor](../src/ThirdParty/Jira/Webhook/Incoming/Processor/JiraProcessor.php) | [integration/example/jira.yml](../integration/example/jira.yml) |
+
+
+Example (BitBucket):
+
+`POST /webhook/incoming/bitbucket/`
 
 ```yml
 integration:
@@ -22,74 +30,10 @@ integration:
         incoming_processors:
             bitbucket:
                 type: class
-                class: Yay\ThirdParty\BitBucket\Webhook\Incoming\Processor\BitBucketProcessor
+                class: ThirdParty\BitBucket\Webhook\Incoming\Processor\BitBucketProcessor
 ```
 
-The [BitBucketProcessor](../../src/ThirdParty/BitBucket/Webhook/Incoming/Processor/BitBucketProcessor.php) processes BitBucket webhook payloads to extract `username` and `actions`.
 
-Supported webhook events:
-- commit & push (`push`)
-- pull request (`pull_request.{created,updated,approved,unapproved,fulfilled,rejected}`)
-
----
-
-## How to connect to GitHub
-
-Git platform GitHub uses the concept of webhooks [(official documentation)](https://developer.github.com/webhooks/) to connect their own and third party systems in a simple way. With this in mind it is possible to connect GitHub and Yay! very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitHub, process and transform it so Yay! is able to process it as well.  A custom processor for GitHub is shipped by Yay.
-
-```yml
-integration:
-    webhooks:
-        incoming_processors:
-            github:
-                type: class
-                class: Yay\ThirdParty\GitHub\Webhook\Incoming\Processor\GitHubProcessor
-```
-
-The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/GitHubProcessor.php) processes GitHub webhook payloads to extract `username` and `actions`.
-
-Supported webhook events:
-- commit & push (`push`)
-- pull request (`pull_request.{opened,merged,closed}`)
-
----
-
-## How to connect to GitLab
-
-Git and CI platform GitLab uses the concept of webhooks [(official documentation)](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) to connect their own and third party systems in a simple way. With this in mind it is possible to connect GitLab and Yay! very easily, the only needed part is a custom processor that is able to interpret the payload sent by GitLab, process and transform it so Yay! is able to process it as well. A custom processor for GitLab is shipped by Yay.
-
-```yml
-integration:
-    webhooks:
-        incoming_processors:
-            gitlab:
-                type: class
-                class: Yay\ThirdParty\GitLab\Webhook\Incoming\Processor\GitLabProcessor
-```
-
-The [GitLabProcessor](../../src/ThirdParty/GitLab/Webhook/Incoming/Processor/GitLabProcessor.php) processes GitLab webhook payloads to extract `username` and `actions`.
-
-Supported webhook events:
-- commit & push (`push`)
-- merge request (`merge_request.{opened,updated,merged,closed}`)
-
---
-
-## How to connect to Travis CI
-
-CI platform Travis CI uses the concept of webhooks [(official documentation)](https://docs.travis-ci.com/user/notifications/#Configuring-webhook-notifications) to connect their own and third party systems in a simple way. With this in mind it is possible to connect Travis CI and Yay! very easily, the only needed part is a custom processor that is able to interpret the payload sent by Travis CI, process and transform it so Yay! is able to process it as well. A custom processor for Travis CI is shipped by Yay.
-
-```yml
-integration:
-    webhooks:
-        incoming_processors:
-            travisci:
-                type: class
-                class: Yay\ThirdParty\TravisCI\Webhook\Incoming\Processor\TravisCIProcessor
-```
-
-Supported webhook events:
-- build events (`build.{pending,passed,fixed,failed,broken,still failing,canceled,errored}`)
 
 ---
 

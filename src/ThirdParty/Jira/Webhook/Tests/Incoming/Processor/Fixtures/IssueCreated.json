@@ -1,0 +1,153 @@
+{
+    "timestamp": 1518964092481,
+    "webhookEvent": "jira:issue_created",
+    "issue_event_type_name": "issue_created",
+    "user": {
+        "self": "http://localhost:8080/rest/api/2/user?username=sveneisenschmidt",
+        "name": "sveneisenschmidt",
+        "key": "sveneisenschmidt",
+        "emailAddress": "sven.eisenschmidt@gmail.com",
+        "avatarUrls": {
+            "48x48": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=48",
+            "24x24": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=24",
+            "16x16": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=16",
+            "32x32": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=32"
+        },
+        "displayName": "sven.eisenschmidt@gmail.com",
+        "active": true,
+        "timeZone": "GMT"
+    },
+    "issue": {
+        "id": "10007",
+        "self": "http://localhost:8080/rest/api/2/issue/10007",
+        "key": "YAY-8",
+        "fields": {
+            "issuetype": {
+                "self": "http://localhost:8080/rest/api/2/issuetype/10001",
+                "id": "10001",
+                "description": "A task that needs to be done.",
+                "iconUrl": "http://localhost:8080/secure/viewavatar?size=xsmall&avatarId=10318&avatarType=issuetype",
+                "name": "Task",
+                "subtask": false,
+                "avatarId": 10318
+            },
+            "components": [],
+            "timespent": null,
+            "timeoriginalestimate": null,
+            "description": null,
+            "project": {
+                "self": "http://localhost:8080/rest/api/2/project/10000",
+                "id": "10000",
+                "key": "YAY",
+                "name": "Yay!",
+                "avatarUrls": {
+                    "48x48": "http://localhost:8080/secure/projectavatar?avatarId=10324",
+                    "24x24": "http://localhost:8080/secure/projectavatar?size=small&avatarId=10324",
+                    "16x16": "http://localhost:8080/secure/projectavatar?size=xsmall&avatarId=10324",
+                    "32x32": "http://localhost:8080/secure/projectavatar?size=medium&avatarId=10324"
+                }
+            },
+            "fixVersions": [],
+            "aggregatetimespent": null,
+            "resolution": null,
+            "timetracking": {},
+            "attachment": [],
+            "aggregatetimeestimate": null,
+            "resolutiondate": null,
+            "workratio": -1,
+            "summary": "Add Jira Integration",
+            "lastViewed": null,
+            "watches": {
+                "self": "http://localhost:8080/rest/api/2/issue/YAY-8/watchers",
+                "watchCount": 0,
+                "isWatching": false
+            },
+            "creator": {
+                "self": "http://localhost:8080/rest/api/2/user?username=sveneisenschmidt",
+                "name": "sveneisenschmidt",
+                "key": "sveneisenschmidt",
+                "emailAddress": "sven.eisenschmidt@gmail.com",
+                "avatarUrls": {
+                    "48x48": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=48",
+                    "24x24": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=24",
+                    "16x16": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=16",
+                    "32x32": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=32"
+                },
+                "displayName": "sven.eisenschmidt@gmail.com",
+                "active": true,
+                "timeZone": "GMT"
+            },
+            "subtasks": [],
+            "created": "2018-02-18T14:28:12.438+0000",
+            "reporter": {
+                "self": "http://localhost:8080/rest/api/2/user?username=sveneisenschmidt",
+                "name": "sveneisenschmidt",
+                "key": "sveneisenschmidt",
+                "emailAddress": "sven.eisenschmidt@gmail.com",
+                "avatarUrls": {
+                    "48x48": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=48",
+                    "24x24": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=24",
+                    "16x16": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=16",
+                    "32x32": "http://www.gravatar.com/avatar/3f43832361bf8629b248d322e0b861cb?d=mm&s=32"
+                },
+                "displayName": "sven.eisenschmidt@gmail.com",
+                "active": true,
+                "timeZone": "GMT"
+            },
+            "aggregateprogress": {
+                "progress": 0,
+                "total": 0
+            },
+            "priority": {
+                "self": "http://localhost:8080/rest/api/2/priority/3",
+                "iconUrl": "http://localhost:8080/images/icons/priorities/medium.svg",
+                "name": "Medium",
+                "id": "3"
+            },
+            "labels": [],
+            "environment": null,
+            "timeestimate": null,
+            "aggregatetimeoriginalestimate": null,
+            "versions": [],
+            "duedate": null,
+            "progress": {
+                "progress": 0,
+                "total": 0
+            },
+            "comment": {
+                "comments": [],
+                "maxResults": 0,
+                "total": 0,
+                "startAt": 0
+            },
+            "issuelinks": [],
+            "votes": {
+                "self": "http://localhost:8080/rest/api/2/issue/YAY-8/votes",
+                "votes": 0,
+                "hasVoted": false
+            },
+            "worklog": {
+                "startAt": 0,
+                "maxResults": 20,
+                "total": 0,
+                "worklogs": []
+            },
+            "assignee": null,
+            "updated": "2018-02-18T14:28:12.438+0000",
+            "status": {
+                "self": "http://localhost:8080/rest/api/2/status/10000",
+                "description": "",
+                "iconUrl": "http://localhost:8080/images/icons/status_generic.gif",
+                "name": "To Do",
+                "id": "10000",
+                "statusCategory": {
+                    "self": "http://localhost:8080/rest/api/2/statuscategory/2",
+                    "id": 2,
+                    "key": "new",
+                    "colorName": "blue-gray",
+                    "name": "To Do"
+                }
+            }
+        }
+    }
+}

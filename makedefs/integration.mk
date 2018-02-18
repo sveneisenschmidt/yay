@@ -24,27 +24,3 @@ endef
 
 .integration-disable-demo:
 	@$(call .integration-disable,demo)
-
-.integration-enable-github:
-	@$(call .integration-enable,github)
-
-.integration-disable-github:
-	@$(call .integration-disable,github)
-
-.integration-enable-gitlab:
-	@$(call .integration-enable,gitlab)
-
-.integration-disable-gitlab:
-	@$(call .integration-disable,gitlab)
-
-.integration-enable-bitbucket:
-	@$(call .integration-enable,bitbucket)
-
-.integration-disable-bitbucket:
-	@$(call .integration-disable,bitbucket)
-
-.integration-enable-travisci:
-	@$(call .integration-enable,travisci)
-
-.integration-disable-travisci:
-	@$(call .integration-disable,travisci)

@@ -199,30 +199,4 @@ URL:  `/webhook/incoming/example-static-map/`.
 
 ### Third party incoming processors
 
-#### `GitHub`
-
-The [GithubProcessor](../../src/ThirdParty/Github/Webhook/Incoming/Processor/GithubProcessor.php) processes GitHub webhook payloads to extract `username` and `actions`.
-
-```yml
-integration:
-    webhooks:
-     incoming_processors:
-            example-github:
-                type: class
-                class: Yay\ThirdParty\Github\Webhook\Incoming\Processor\GithubProcessor
-```
-URL:  `/webhook/incoming/example-github/`.
-
-#### `GitLab`
-
-The [GitLabProcessor](../../src/ThirdParty/GitLab/Webhook/Incoming/Processor/GitLabProcessor.php) processes GitLab webhook payloads to extract `username` and `actions`.
-
-```yml
-integration:
-    webhooks:
-     incoming_processors:
-            example-gitlab:
-                type: class
-                class: Yay\ThirdParty\GitLab\Webhook\Incoming\Processor\GitLabProcessor
-```
-URL:  `/webhook/incoming/example-gitlab/`.
+Yay ships with a colleciton of incoming processors to connect to third parties like GitHub, GitLab, BitBucket, Travsic CI and more. Supported actions and events can be found at [How to connect Third Parties](how-to.md#how-to-connect-third-parties).

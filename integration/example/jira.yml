@@ -1,0 +1,62 @@
+# ATTENTION
+# These integrations were created for testing purpose only, please do not use them in production.
+# Rather take them as examples to write and combine your own integrations.
+
+integration:
+
+    actions:
+        issue-created:
+            label: Create an issue
+            description: ...
+        issue-updated:
+            label: Update an issue
+            description: ...
+        issue-closed:
+            label: Close an issue
+            description: ...
+
+    achievements:
+        issue-action-streak-badge:
+            label: Issue-maniac!
+            description: Work with issues en mass.
+            points: 50
+            actions: [issue-created, issue-updated, issue-closed]
+
+    validators:
+        issue-action-streak-validator:
+            type: expression
+            arguments:
+                - "actions.count()%10 == 0" # expression
+                - ['issue-action-streak-badge'] # supported achievements
+                - true # multiple: true
+
+    webhooks:
+        incoming_processors:
+            jira:
+                type: chain
+                arguments:
+                    - [ jira-payload, jira-actions, jira-users ]
+            # The JiraProcessor brings an optional way to interpret payloads further
+            # to map actions e.g. a updated task can be also an closed task, in this particular case
+            # the processor should set the action jira.issue_closed instead of another action if
+            # the issue has been marked as resolved
+            jira-payload:
+                type: class
+                class: ThirdParty\Jira\Webhook\Incoming\Processor\JiraProcessor
+                arguments:
+                    -
+                        jira.issue_closed: "issue['fields']['resolution'] != null"
+            jira-actions:
+                type: static-map
+                arguments:
+                    - action
+                    - 
+                        jira.issue_created: issue-created
+                        jira.issue_updated: issue-updated
+                        jira.issue_closed: issue-closed
+            jira-users:
+                type: static-map
+                arguments:
+                    - username
+                    - 
+                        sveneisenschmidt: alex.doe

@@ -1,3 +1,4 @@
+FROM composer:1
 FROM php:7.2-apache
 
 LABEL org.label-schema.name="yay" \
@@ -10,38 +11,37 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 WORKDIR /data
 
-RUN apt-get -y update && \
-    apt-get install -y \
+RUN apt -y update && \
+    apt install -y \
         libicu-dev \
         libxml2-dev \
-        zlib1g-dev
-
-RUN docker-php-ext-install \
-    pdo_mysql \
-    intl \
-    xml \
-    dom \
-    mbstring \
-    opcache \
-    zip
-    
-COPY ./ /data
-COPY ./dist/apache2/vhost.conf /etc/apache2/sites-enabled/000-default.conf
-COPY ./dist/php/php.ini $PHP_INI_DIR/conf.d/999-custom.ini
+        zlib1g-dev && \
+    docker-php-ext-install \
+        pdo_mysql \
+        intl \
+        xml \
+        dom \
+        mbstring \
+        opcache  \
+        zip && \
+    apt remove -y \
+        libicu-dev \
+        libxml2-dev \
+        zlib1g-dev && \
+    apt autoremove -y
 
 RUN a2enmod rewrite
 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-    php composer-setup.php --install-dir=/usr/bin --filename=composer && \
-    php -r "unlink('composer-setup.php');" && \
-    composer install
+COPY ./ /data
+COPY ./dist/apache2/vhost.conf /etc/apache2/sites-enabled/000-default.conf
+COPY ./dist/php/php.ini $PHP_INI_DIR/conf.d/999-custom.ini
+COPY --from=0 /usr/bin/composer /usr/bin/composer
+
     
 RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
     && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp \
     && mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so \
     && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini
-
-RUN rm -rf ./.build/* ./var/* 
 
 CMD ["./docker-run.dist.sh"]
