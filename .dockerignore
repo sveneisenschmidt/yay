@@ -4,6 +4,7 @@
 .styleci.yml
 .docker.env
 .docker.local.env
+.build
 var
 vendor
 Makefile
