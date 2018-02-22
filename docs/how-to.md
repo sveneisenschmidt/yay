@@ -51,7 +51,7 @@ integration:
 
 2. After our build is finished we need to send our data to Yay!. To do so add a final `Post-build Actions` in `Build`. Configure it to have a new build step via `Add post build step`, select all build status or the ones you want the webhook triggered. Next add within the post build step a new build step by clicking `Add build step`, select `Execute Shell`. Paste the following code into the text area, replace the `WEBHOOK_URL` with your incoming webhook endpoint. 
 
-```shell
+```bash
 WEBHOOK_URL="http://localhost:50080/webhook/incoming/jenkins/"
 PAYLOAD="{\"username\":\"${BUILD_USER}\",\"action\":\"build.${BUILD_RESULT}\"}"
 
@@ -62,7 +62,7 @@ The data structure defined in `PAYLOAD` consists of a JSON payload including `us
 
 3. If you also need to get notified when a regular build job starts, you can modify above example and set `BUILD_RESULT` to `STARTED`.
 
-```shell
+```bash
 BUILD_RESULT="STARTED"
 WEBHOOK_URL="http://localhost:50080/webhook/incoming/jenkins/"
 PAYLOAD="{\"username\":\"${BUILD_USER}\",\"action\":\"jenkins.build_${BUILD_RESULT}\"}"
