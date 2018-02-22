@@ -105,7 +105,7 @@ The application is configured through environment variables, these will be provi
 ## Usage / API
 
 ```bash
-curl -X "POST" http://localhost:50080/api/progress/ \
+curl -X POST http://localhost:50080/api/progress/ \
     -d "{\"username\":\"alex.doe\",\"action\":\"example-action\"}"
 
 [

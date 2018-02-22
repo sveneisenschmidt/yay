@@ -158,7 +158,7 @@ curl -X "GET" http://localhost:50080/api/players/
 
 There are no users created yet, let's create a user by executing the following request.
 ```bash
-curl -X "POST" http://localhost:50080/api/players/ \
+curl -X POST http://localhost:50080/api/players/ \
     -d "{\"name\": \"Alex Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
 
 {
@@ -225,7 +225,7 @@ curl -X "GET" http://localhost:50080/api/achievements/
 
 4\) Let our player `alex.doe` perform the action `demo-action-01` one time.
 ```bash
-curl -X "POST" http://localhost:50080/api/progress/ \
+curl -X POST http://localhost:50080/api/progress/ \
     -d "{\"username\":\"alex.doe\",\"action\":\"demo-action-01\"}"
 
 []
@@ -253,7 +253,7 @@ curl -X "GET" http://localhost:50080/api/players/alex.doe/personal-actions/
 Now let us get our first achievement. For this, perform the `demo.action` action four more times.
 
 ```bash
-curl -X "POST" http://localhost:50080/api/progress/ \
+curl -X POST http://localhost:50080/api/progress/ \
     -d "{\"username\":\"alex.doe\",\"actions\":[\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\"]}"
 
 [
@@ -275,7 +275,7 @@ Et voilà: we earned our first achievement!
 
 5\) Now let's go further. Let the player perform the `demo-action-01` action five more times.
 ```bash
-curl -X "POST" http://localhost:50080/api/progress/ \
+curl -X POST http://localhost:50080/api/progress/ \
     -d "{\"username\":\"alex.doe\",\"actions\":[\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\",\"demo-action-01\"]}"
 
 [

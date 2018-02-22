@@ -47,13 +47,15 @@ integration:
             test-webhook-incoming-processor-01:
                 type: chain
                 arguments:
-                    - [test-webhook-incoming-processor-02, test-webhook-incoming-processor-03]
+                    - [test-webhook-incoming-processor-02, test-webhook-incoming-processor-03, test-webhook-incoming-processor-04, test-webhook-incoming-processor-05]
             test-webhook-incoming-processor-02:
                 type: dummy
             test-webhook-incoming-processor-03:
                 type: 'null'
             test-webhook-incoming-processor-04:
                 type: 'static-map'
+            test-webhook-incoming-processor-05:
+                type: 'simple'
         outgoing_processors:
             test-webhook-outgoing-processor-01:
                 type: 'null'

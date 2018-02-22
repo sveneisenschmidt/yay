@@ -197,6 +197,27 @@ integration:
 ```
 URL:  `/webhook/incoming/example-static-map/`.
 
+#### `SimpleProcessor`
+
+The [SimpleProcessor](../../src/Component/Webhook/Incoming/Processor/SimpleProcessor.php) accepts a json payload and extracts `username` and `action` fields.
+
+```json
+{
+	"username": "Alex Doe",
+	"action": "example.action"
+}
+```
+
+```yml
+integration:
+    webhooks:
+     incoming_processors:
+            example-simple:
+                type: simple
+```
+URL:  `/webhook/incoming/example-simple/`.
+
+
 ### Third party incoming processors
 
 Yay ships with a colleciton of incoming processors to connect to third parties like GitHub, GitLab, BitBucket, Travsic CI and more. Supported actions and events can be found at [How to connect Third Parties](how-to.md#how-to-connect-third-parties).
