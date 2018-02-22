@@ -46,12 +46,10 @@ integration:
 
 **Configuration inside Jenkins**
 
-1. Under *Build Environment enable* in *General* `Set jenkins user build variables` to prove the `BUILD_USER` environment variable inside tasks and actions.
+1. Under `Build Environment` in `General` enable `Set jenkins user build variables` to prove the `BUILD_USER` environment variable inside tasks and actions.
 
 
-2. After our build is finished we need to send our data to Yay!. To do so add a final *Post-build Actions* in *Build*. Configure it to have a new build step via *Add post build step*, select all build status or the ones you want the webhook triggered. Next add within the post build step a new build step by clicking *Add build step*, select *Execute Shell*. Paste the following code into the text area, replace the `WEBHOOK_URL` with your incoming webhook endpoint. 
-
-The data structure defined in `PAYLOAD` sends a JSON payload including `username` and `action`. The `SimpleProcessor` processor shipped by Yay! is able to process the payload.
+2. After our build is finished we need to send our data to Yay!. To do so add a final `Post-build Actions` in `Build`. Configure it to have a new build step via `Add post build step`, select all build status or the ones you want the webhook triggered. Next add within the post build step a new build step by clicking `Add build step`, select `Execute Shell`. Paste the following code into the text area, replace the `WEBHOOK_URL` with your incoming webhook endpoint. 
 
 ```shell
 WEBHOOK_URL="http://localhost:50080/webhook/incoming/jenkins/"
@@ -59,6 +57,8 @@ PAYLOAD="{\"username\":\"${BUILD_USER}\",\"action\":\"build.${BUILD_RESULT}\"}"
 
 curl -sS -X POST -d "${PAYLOAD}" ${WEBHOOK_URL} 
 ```
+
+The data structure defined in `PAYLOAD` consists of a JSON payload including `username` and `action`. The `SimpleProcessor` processor shipped by Yay! is then able to process the payload with ease. 
 
 3. If you also need to get notified when a regular build job starts, you can modify above example and set `BUILD_RESULT` to `STARTED`.
 
