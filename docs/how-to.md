@@ -14,10 +14,10 @@
 
 | Service | Category | Events | Documentation | Processor |
 |---|---|---|---|---|
-| BitBucket | Source Code Management |  commit & push (`push`), pull request (`pull_request.{created,updated,approved,unapproved,fulfilled,rejected}`) | [Webhook documentation](https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html) | [BitBucketProcessor](../src/ThirdParty/BitBucket/Webhook/Incoming/Processor/BitBucketProcessor.php) |
-| GitHub | Source Code Management |  commit & push (`push`), pull request (`pull_request.{opened,merged,closed}`) | [Webhook documentation](https://developer.github.com/webhooks/) | [GitHubProcessor](../src/ThirdParty/GitHub/Webhook/Incoming/Processor/GitHubProcessor.php) |
-| GitLab | Source Code Management |  commit & push (`push`), merge request (`merge_request.{opened,updated,merged,closed}`) | [Webhook documentation](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) | [GitLabProcessor](../src/ThirdParty/GitLab/Webhook/Incoming/Processor/GitLabProcessor.php) |
-| TravisCI | Continuous Integration |  build events (`build.{pending,passed,fixed,failed,broken,still failing,canceled,errored}`) | [Webhook documentation](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) | [TravisCIProcessor](../src/ThirdParty/TravisCI/Webhook/Incoming/Processor/TravisCIProcessor.php) |
+| BitBucket | Source Code Management |  commit & push (`push`), pull request (`pull_request.{created, updated, approved, unapproved,fulfilled, rejected}`) | [Webhook documentation](https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html) | [BitBucketProcessor](../src/ThirdParty/BitBucket/Webhook/Incoming/Processor/BitBucketProcessor.php) |
+| GitHub | Source Code Management |  commit & push (`push`), pull request (`pull_request.{opened, merged, closed}`) | [Webhook documentation](https://developer.github.com/webhooks/) | [GitHubProcessor](../src/ThirdParty/GitHub/Webhook/Incoming/Processor/GitHubProcessor.php) |
+| GitLab | Source Code Management |  commit & push (`push`), merge request (`merge_request.{opened, updated, merged, closed}`) | [Webhook documentation](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) | [GitLabProcessor](../src/ThirdParty/GitLab/Webhook/Incoming/Processor/GitLabProcessor.php) |
+| TravisCI | Continuous Integration |  build events (`build.{pending, passed, fixed, failed, broken, still failing, canceled, errored}`) | [Webhook documentation](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) | [TravisCIProcessor](../src/ThirdParty/TravisCI/Webhook/Incoming/Processor/TravisCIProcessor.php) |
 | Jira | Task management  |  issue (`jira:issue_created, jira:issue_updated, jira:issue_deleted, jira:worklog_updated`), worklog (`jira.worklog_created, jira.worklog_updated, worklog_deleted`), comment (`jira.comment_created, jira.comment_updated`), project (`jira.project_created, jira.project_updated, jira.project_deleted`), version (`jira:version_released, jira:version_unreleased, jira:version_created, jira:version_moved, jira:version_updated, jira:version_deleted`), user (`jira.user_created, jira.user_updated, jira.user_deleted`), feature (`jira.option_voting_changed, jira.option_watching_changed, jira.option_unassigned_issues_changed, jira.option_subtasks_changed, jira.option_attachments_changed, jira.option_issuelinks_changed, jira.option_timetracking_changed`), sprint (`jira.sprint_created, jira.sprint_deleted, jira.sprint_updated, jira.sprint_started, jira.sprint_closed`), board (`jira.board_created, jira.board_updated, jira.board_deleted, jira.board_configuration_changed`) | [Webhook documentation](https://developer.atlassian.com/server/jira/platform/webhooks/) | [JiraProcessor](../src/ThirdParty/Jira/Webhook/Incoming/Processor/JiraProcessor.php) |
 
 Example (BitBucket):
@@ -35,8 +35,8 @@ integration:
 
 | Service | Category | Events | Documentation | Processor |
 |---|---|---|---|---|
-| Jenkins | Continuous Integration | build events (`build.{STARTED,ABORTED,FAILED,SUCCESS}`) | [Guide](how-to.md#guide-jenkins) | [SimpleProcessor](../src/Component/Webhook/Incoming/Processor/SimpleProcessor.php)
-| Bamboo | Continuous Integration | build events (`build.{started,failed,success}`) | [Guide](how-to.md#guide-bamboo) | [SimpleProcessor](../src/Component/Webhook/Incoming/Processor/SimpleProcessor.php)
+| Jenkins | Continuous Integration | build events (`build.{STARTED, ABORTED, FAILED, SUCCESS}`) | [Guide](how-to.md#guide-jenkins) | [SimpleProcessor](../src/Component/Webhook/Incoming/Processor/SimpleProcessor.php)
+| Bamboo | Continuous Integration | build events (`build.{started, failed, success}`) | [Guide](how-to.md#guide-bamboo) | [SimpleProcessor](../src/Component/Webhook/Incoming/Processor/SimpleProcessor.php)
 
 Yay! can be connected to any application that supports sending one or another way a curl request towards Yay!. Additionaly Yay! ships with a simple processor called SimpleProcessor which accepts basic json payloads. The payload consists of an object that holds username and action (`{"username":"Alex Doe","action":"push"}`).
 
