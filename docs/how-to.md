@@ -53,7 +53,7 @@ integration:
 ```
 
 2. Call it from your application
-```console
+```bash
 PAYLOAD="{\"username\":\"Alex Doe\",\"action\":\"push\"}"
 WEBHOOK_URL="http://localhost:50080/webhook/incoming/third-party-application/"
 
@@ -75,7 +75,7 @@ curl -sS -X POST -d "${PAYLOAD}" ${WEBHOOK_URL}
 
 2. After our build is finished we need to send our data to Yay!. To do so add a final `Post-build Actions` in `Build`. Configure it to have a new build step via `Add post build step`, select all build status or the ones you want the webhook triggered. Next add within the post build step a new build step by clicking `Add build step`, select `Execute Shell`. Paste the following code into the text area, replace the `WEBHOOK_URL` with your incoming webhook endpoint. 
 
-```console
+```bash
 PAYLOAD="{\"username\":\"${BUILD_USER}\",\"action\":\"build.${BUILD_RESULT}\"}"
 WEBHOOK_URL="http://localhost:50080/webhook/incoming/third-party-application/"
 
@@ -86,7 +86,7 @@ The data structure defined in `PAYLOAD` consists of a JSON payload including `us
 
 3. If you also need to get notified when a build job starts, you can modify above example and set `BUILD_RESULT` to `STARTED`.
 
-```console
+```bash
 BUILD_RESULT="STARTED"
 PAYLOAD="{\"username\":\"${BUILD_USER}\",\"action\":\"jenkins.build_${BUILD_RESULT}\"}"
 WEBHOOK_URL="http://localhost:50080/webhook/incoming/third-party-application/"
@@ -112,7 +112,7 @@ integration:
 
 1. After our build is finished we need to send our data to Yay!. To do so add a final task in `Final Tasks` of your plan. Configure it to have a new task of type `Shell`, add then the following snippet. It will call Yay! but before doing so it will either check via git the current commit user or if executed manual will fall back to the Bamboo user that triggered the plan. If both failes it will fall back and set the user to `unknown`.
 
-```console
+```bash
 BUILD_RESULT=$([ "${bamboo_jobFailed}" == "false" ] && echo "success" || echo "failed" )
 BUILD_USER=$( \
     echo ${bamboo.ManualBuildTriggerReason.userName} || \
@@ -129,7 +129,7 @@ The data structure defined in `PAYLOAD` consists of a JSON payload including `us
 
 2. If you also need to get notified when a plan job starts, you can modify above example and set `BUILD_RESULT` to `started`.
 
-```console
+```bash
 BUILD_RESULT="started"
 BUILD_USER=$( \
     echo ${bamboo.ManualBuildTriggerReason.userName} || \
@@ -185,7 +185,7 @@ foreach (range(0,100) as $index) {
 print Yaml::dump(['levels' => $levels], 4, 4);
 ```
 
-```console
+```bash
 php levels.php > levels.yml
 ```
 

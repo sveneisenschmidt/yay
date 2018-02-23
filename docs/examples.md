@@ -134,7 +134,7 @@ curl -gX "GET" http://localhost:50080/api/players/?limit=1&offset=1
 
 To run the demo we need to enable the demo integration. You can do so by using the built-in make command `make enable-demo` for your local dev environment or executing the appropriate console command (`php bin/console yay:integration:enable demo integration/demo`), we choose the former.
 
-```console
+```bash
 $ make enable-demo
 
 [OK] Integration "default" enabled
@@ -143,7 +143,7 @@ $ make enable-demo
 
 Now we can run the application.
 
-```console
+```bash
 $ make start
 # ...
 # http://localhost:50080
