@@ -36,7 +36,7 @@ integration:
 | Service | Category | Events | Documentation | Processor |
 |---|---|---|---|---|---|
 | Jenkins | Continuous Integration | build events (`build.{STARTED,ABORTED,FAILED,SUCCESS}`) | [Guide](how-to.md#guide-jenkins) | [SimpleProcessor](../src/Component/Webhook/Incoming/Processor/SimpleProcessor.php)
-| Bamboo | Continuous Integration | ... | [Guide](how-to.md#bamboo) | [SimpleProcessor](../src/Component/Webhook/Incoming/Processor/SimpleProcessor.php)
+| Bamboo | Continuous Integration | build events (`build.{started,failed,success}`) | [Guide](how-to.md#guide-bamboo) | [SimpleProcessor](../src/Component/Webhook/Incoming/Processor/SimpleProcessor.php)
 
 Yay! can be connected to any application that supports sending one or another way a curl request towards Yay!. Additionaly Yay! ships with a simple processor called SimpleProcessor which accepts basic json payloads. The payload consists of an object that holds username and action (`{"username":"Alex Doe","action":"push"}`).
 
@@ -69,7 +69,7 @@ curl -sS -X POST -d "${PAYLOAD}" ${WEBHOOK_URL}
 | [Build User Vars](https://plugins.jenkins.io/build-user-vars-plugin) | This plugin provides a set of environment variables that describe the user who started the build.  |
 | [PostBuild Script](https://plugins.jenkins.io/postbuildscript) | This plugin makes it possible to execute a set of scripts at the end of the build. |
 
-**Configuration inside Jenkins**
+**Jenkins Configuration**
 
 1. Under `Build Environment` in `General` enable `Set jenkins user build variables` to prove the `BUILD_USER` environment variable inside tasks and actions.
 
@@ -84,7 +84,7 @@ curl -sS -X POST -d "${PAYLOAD}" ${WEBHOOK_URL}
 
 The data structure defined in `PAYLOAD` consists of a JSON payload including `username` and `action`. The `SimpleProcessor` processor shipped by Yay! is then able to process the payload with ease. 
 
-3. If you also need to get notified when a regular build job starts, you can modify above example and set `BUILD_RESULT` to `STARTED`.
+3. If you also need to get notified when a build job starts, you can modify above example and set `BUILD_RESULT` to `STARTED`.
 
 ```console
 BUILD_RESULT="STARTED"
@@ -94,7 +94,7 @@ WEBHOOK_URL="http://localhost:50080/webhook/incoming/third-party-application/"
 curl -sS -X POST -d "${PAYLOAD}" ${WEBHOOK_URL} 
 ```
 
-**Configuration inside Yay!**
+**Yay! Configuration**
 
 Accepting and processing the Jenkins payload is as easy as setting `type: simple` in your incoming processor configuration.
 
@@ -106,6 +106,53 @@ integration:
                 type: simple
 ```
 
+### Guide: Bamboo
+
+**Bamboo Configuration**
+
+1. After our build is finished we need to send our data to Yay!. To do so add a final task in `Final Tasks` of your plan. Configure it to have a new task of type `Shell`, add then the following snippet. It will call Yay! but before doing so it will either check via git the current commit user or if executed manual will fall back to the Bamboo user that triggered the plan. If both failes it will fall back and set the user to `unknown`.
+
+```console
+BUILD_RESULT=$([ "${bamboo_jobFailed}" == "false" ] && echo "success" || echo "failed" )
+BUILD_USER=$( \
+    echo ${bamboo.ManualBuildTriggerReason.userName} || \
+    git log -n 1 --format='%an' HEAD
+) || 'unknown'
+
+PAYLOAD="{\"username\":\"${BUILD_USER}\",\"action\":\"build.${BUILD_RESULT}\"}"
+WEBHOOK_URL="http://a774a5df.ngrok.io/webhook/incoming/third-party-application/"
+
+curl -sS -X POST -d "${PAYLOAD}" ${WEBHOOK_URL}
+```
+
+The data structure defined in `PAYLOAD` consists of a JSON payload including `username` and `action`. The `SimpleProcessor` processor shipped by Yay! is then able to process the payload with ease. 
+
+2. If you also need to get notified when a plan job starts, you can modify above example and set `BUILD_RESULT` to `started`.
+
+```console
+BUILD_RESULT="started"
+BUILD_USER=$( \
+    echo ${bamboo.ManualBuildTriggerReason.userName} || \
+    git log -n 1 --format='%an' HEAD
+) || 'unknown'
+
+PAYLOAD="{\"username\":\"${BUILD_USER}\",\"action\":\"build.${BUILD_RESULT}\"}"
+WEBHOOK_URL="http://a774a5df.ngrok.io/webhook/incoming/third-party-application/"
+
+curl -sS -X POST -d "${PAYLOAD}" ${WEBHOOK_URL}
+```
+
+**Yay! Configuration**
+
+Accepting and processing the Bamboo payload is as easy as setting `type: simple` in your incoming processor configuration.
+
+```yml
+integration:
+    webhooks:
+        incoming_processors:
+            bamboo:
+                type: simple
+```
 
 ---
 
