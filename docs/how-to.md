@@ -13,7 +13,7 @@
 ## How to connect to Third Parties (native support)
 
 | Service | Category | Events | Documentation | Processor |
-|---|---|---|---|---|---|
+|---|---|---|---|---|
 | BitBucket | Source Code Management |  commit & push (`push`), pull request (`pull_request.{created,updated,approved,unapproved,fulfilled,rejected}`) | [Webhook documentation](https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html) | [BitBucketProcessor](../src/ThirdParty/BitBucket/Webhook/Incoming/Processor/BitBucketProcessor.php) |
 | GitHub | Source Code Management |  commit & push (`push`), pull request (`pull_request.{opened,merged,closed}`) | [Webhook documentation](https://developer.github.com/webhooks/) | [GitHubProcessor](../src/ThirdParty/GitHub/Webhook/Incoming/Processor/GitHubProcessor.php) |
 | GitLab | Source Code Management |  commit & push (`push`), merge request (`merge_request.{opened,updated,merged,closed}`) | [Webhook documentation](https://docs.gitlab.com/ce/user/project/integrations/webhooks.html) | [GitLabProcessor](../src/ThirdParty/GitLab/Webhook/Incoming/Processor/GitLabProcessor.php) |
@@ -34,7 +34,7 @@ integration:
 ## How to connect to Third Parties (custom support)
 
 | Service | Category | Events | Documentation | Processor |
-|---|---|---|---|---|---|
+|---|---|---|---|---|
 | Jenkins | Continuous Integration | build events (`build.{STARTED,ABORTED,FAILED,SUCCESS}`) | [Guide](how-to.md#guide-jenkins) | [SimpleProcessor](../src/Component/Webhook/Incoming/Processor/SimpleProcessor.php)
 | Bamboo | Continuous Integration | build events (`build.{started,failed,success}`) | [Guide](how-to.md#guide-bamboo) | [SimpleProcessor](../src/Component/Webhook/Incoming/Processor/SimpleProcessor.php)
 
