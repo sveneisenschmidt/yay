@@ -4,8 +4,8 @@
 
 # How To
 
-* [How to connect to Third Parties (native support)](how-to.md#how-to-connect-third-parties-native-support)
-* [How to connect to Third Parties (custom support)](how-to.md#how-to-connect-thirs-parties-custom-support)
+* [How to connect to Third Parties (native support)](how-to.md#how-to-connect-to-third-parties-native-support)
+* [How to connect to Third Parties (custom support)](how-to.md#how-to-connect-to-third-parties-custom-support)
 * [How to add your own levels](how-to.md#how-to-add-your-own-levels)
 
 ---
