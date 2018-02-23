@@ -4,7 +4,6 @@ namespace Component\Webhook\Tests\Incoming\Processor;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\ParameterBag;
 use Component\Webhook\Incoming\Processor\SimpleProcessor;
 
 class SimpleProcessorTest extends TestCase
