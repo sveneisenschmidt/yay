@@ -24,10 +24,10 @@
         "sensio/framework-extra-bundle": "~5.0",
         "snc/redis-bundle": "~2.0.6",
         "symfony/monolog-bundle": "~3.1|~4.0",
-        "symfony/swiftmailer-bundle": "^3.1"
+        "symfony/swiftmailer-bundle": "^3.1|~4.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "~3.0",
+        "doctrine/doctrine-fixtures-bundle": "~3.0|~4.0",
         "nelmio/alice": "~3.0",
         "phpunit/phpunit": "~7.0",
         "symfony/phpunit-bridge": "~4.0",

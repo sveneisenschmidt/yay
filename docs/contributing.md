@@ -33,18 +33,18 @@ $ cd yay
 
 Install the build and application dependencies:
 
-```console
+```bash
 $ make install
 ```
 
 A good way of making sure everything is all right is running the test suite:
 
-```console
+```bash
 $ make test
 ```
 Run the application with `make start`. The application will then respond to request at `http://localhost:50080`.
 
-```console
+```bash
 $ make start
 # ...
 # http://localhost:50080
@@ -78,13 +78,13 @@ $ make
 
 You can create a branch for your changes and try to build from the source as you go:
 
-```console
+```bash
 $ make build
 ```
 
 When you are satisfied with the changes, we suggest you run:
 
-```console
+```bash
 $ make test-coverage // Run tests and checks code coverage
 $ make qa // Run static code analysis and checks for violations
 ```

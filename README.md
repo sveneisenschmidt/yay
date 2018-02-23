@@ -62,7 +62,7 @@ Yay! is a **gamification engine** directly exposing a web service API to bring e
 - Fast and easy to learn, runs on [PHP 7 & MySQL](docs/contributing.md#submit-a-pull-request)
 - Easy to customise through a single [configuration format](docs/customisation.md#integration-with-third-parties)
 - All functions are availabe through a [JSON-based API](docs/examples.md#usage--api)
-- Support for third party systems like [BitBucket, GitHub, GitLab, Travis CI, Jira](docs/how-to.md#how-to-connect-third-parties) via [webhooks](docs/under-the-hood.md#webhooks)
+- Support for many [third party](docs/how-to.md#how-to-connect-to-third-parties-native-support) systems (BitBucket, GitHub, GitLab, Travis CI, Jira, Jenkins, Bamboo, ...) via [webhooks](docs/under-the-hood.md#webhooks)
 
 ## Documentation
 

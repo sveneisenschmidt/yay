@@ -11,6 +11,7 @@ use Component\Webhook\Incoming\Processor\ChainProcessor as IncomingChainProcesso
 use Component\Webhook\Incoming\Processor\DummyProcessor as IncomingDummyProcessor;
 use Component\Webhook\Incoming\Processor\NullProcessor as IncomingNullProcessor;
 use Component\Webhook\Incoming\Processor\StaticMapProcessor as IncomingStaticMapProcessor;
+use Component\Webhook\Incoming\Processor\SimpleProcessor as IncomingSimpleProcessor;
 use Component\Webhook\Outgoing\Processor\NullProcessor as OutgoingNullProcessor;
 
 class ConfigurationTransformer
@@ -121,6 +122,9 @@ class ConfigurationTransformer
             }
             if ('static-map' === $processor['type']) {
                 $processor['class'] = IncomingStaticMapProcessor::class;
+            }
+            if ('simple' === $processor['type']) {
+                $processor['class'] = IncomingSimpleProcessor::class;
             }
 
             $services['services'][$name] = [
