@@ -1,0 +1,225 @@
+{
+    "payload": {
+        "compare": "https://example.org/j.smith/demo/compare/4b987b377de0...5b6de33927fa",
+        "previous_successful_build": {
+            "build_num": 7,
+            "status": "success",
+            "build_time_millis": 62485
+        },
+        "build_parameters": null,
+        "oss": true,
+        "all_commit_details_truncated": false,
+        "committer_date": "2018-02-24T10:17:55+01:00",
+        "steps": [
+            {
+                "name": "Spin up Environment",
+                "actions": [
+                    {
+                        "truncated": false,
+                        "index": 0,
+                        "parallel": true,
+                        "failed": null,
+                        "infrastructure_fail": null,
+                        "name": "Spin up Environment",
+                        "bash_command": null,
+                        "status": "success",
+                        "timedout": null,
+                        "continue": null,
+                        "end_time": "2018-02-24T09:18:02.783Z",
+                        "type": "test",
+                        "allocation_id": "5a912dc6c9e77c0001411484-0-build/690209DB",
+                        "output_url": "https://circle-production-action-output.s3.amazonaws.com/13a09310007f89a99cd219a5-j.smith-demo-0-0?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20180224T091806Z&X-Amz-SignedHeaders=host&X-Amz-Expires=431999&X-Amz-Credential=AKIAIQ65EYQDTMSJK2DQ%2F20180224%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=a789201efef662a8a2cbfda3e59bc973dc1b0ec2ce3b6399cf4f7260f27efb6b",
+                        "start_time": "2018-02-24T09:18:01.866Z",
+                        "background": false,
+                        "exit_code": null,
+                        "insignificant": false,
+                        "canceled": null,
+                        "step": 0,
+                        "run_time_millis": 917,
+                        "has_output": true
+                    }
+                ]
+            },
+            {
+                "name": "Checkout code",
+                "actions": [
+                    {
+                        "truncated": false,
+                        "index": 0,
+                        "parallel": true,
+                        "failed": null,
+                        "infrastructure_fail": null,
+                        "name": "Checkout code",
+                        "bash_command": null,
+                        "status": "success",
+                        "timedout": null,
+                        "continue": null,
+                        "end_time": "2018-02-24T09:18:06.147Z",
+                        "type": "test",
+                        "allocation_id": "5a912dc6c9e77c0001411484-0-build/690209DB",
+                        "start_time": "2018-02-24T09:18:02.849Z",
+                        "background": false,
+                        "exit_code": null,
+                        "insignificant": false,
+                        "canceled": null,
+                        "step": 101,
+                        "run_time_millis": 3298,
+                        "has_output": true
+                    }
+                ]
+            },
+            {
+                "name": "Print the Current Time",
+                "actions": [
+                    {
+                        "truncated": false,
+                        "index": 0,
+                        "parallel": true,
+                        "failed": null,
+                        "infrastructure_fail": null,
+                        "name": "Print the Current Time",
+                        "bash_command": "#!/bin/bash -eo pipefail\ndate",
+                        "status": "success",
+                        "timedout": null,
+                        "continue": null,
+                        "end_time": "2018-02-24T09:18:06.172Z",
+                        "type": "test",
+                        "allocation_id": "5a912dc6c9e77c0001411484-0-build/690209DB",
+                        "start_time": "2018-02-24T09:18:06.158Z",
+                        "background": false,
+                        "exit_code": 0,
+                        "insignificant": false,
+                        "canceled": null,
+                        "step": 102,
+                        "run_time_millis": 14,
+                        "has_output": true
+                    }
+                ]
+            },
+            {
+                "name": "Fail",
+                "actions": [
+                    {
+                        "truncated": false,
+                        "index": 0,
+                        "parallel": true,
+                        "failed": true,
+                        "infrastructure_fail": null,
+                        "name": "Fail",
+                        "bash_command": "#!/bin/bash -eo pipefail\nasdasd",
+                        "status": "failed",
+                        "timedout": null,
+                        "continue": null,
+                        "end_time": "2018-02-24T09:18:06.218Z",
+                        "type": "test",
+                        "allocation_id": "5a912dc6c9e77c0001411484-0-build/690209DB",
+                        "start_time": "2018-02-24T09:18:06.178Z",
+                        "background": false,
+                        "exit_code": 127,
+                        "insignificant": false,
+                        "canceled": null,
+                        "step": 103,
+                        "run_time_millis": 40,
+                        "has_output": true
+                    }
+                ]
+            }
+        ],
+        "body": "",
+        "usage_queued_at": "2018-02-24T09:17:58.941Z",
+        "fail_reason": null,
+        "retry_of": null,
+        "reponame": "demo",
+        "ssh_users": [],
+        "build_url": "https://circleci.com/gh/j.smith/demo/8",
+        "parallel": 1,
+        "failed": true,
+        "branch": "master",
+        "username": "j.smith",
+        "author_date": "2018-02-24T10:17:55+01:00",
+        "why": "github",
+        "user": {
+            "is_user": true,
+            "login": "j.smith",
+            "avatar_url": "https://avatars1.githubusercontent.com/u/62278?v=4",
+            "name": "J. Smith",
+            "vcs_type": "github",
+            "id": 62278
+        },
+        "vcs_revision": "5b6de33927fa6f986ef44293a75ef8c5960205e7",
+        "owners": [
+            "j.smith"
+        ],
+        "vcs_tag": null,
+        "pull_requests": [],
+        "build_num": 8,
+        "infrastructure_fail": false,
+        "committer_email": "j.smith@example.org",
+        "has_artifacts": true,
+        "previous": {
+            "build_num": 7,
+            "status": "success",
+            "build_time_millis": 62485
+        },
+        "status": "failed",
+        "committer_name": "J. Smith",
+        "retries": null,
+        "subject": "push",
+        "vcs_type": "github",
+        "timedout": false,
+        "dont_build": null,
+        "lifecycle": "finished",
+        "no_dependency_cache": false,
+        "stop_time": "2018-02-24T09:18:06.224Z",
+        "ssh_disabled": true,
+        "build_time_millis": 4399,
+        "picard": {
+            "build_agent": {
+                "image": null,
+                "properties": {
+                    "build_agent": "0.0.4666-05dad47",
+                    "executor": "docker"
+                }
+            },
+            "resource_class": {
+                "cpu": 2,
+                "ram": 4096,
+                "class": "medium"
+            },
+            "executor": "docker"
+        },
+        "circle_yml": {
+            "string": "version: 2\njobs:\n  build:\n    docker:\n      - image: debian:stretch\n    steps:\n      - checkout\n      - run:\n          name: Print the Current Time\n          command: date\n      - run:\n          name: Fail\n          command: asdasd\nnotify:\n  webhooks:\n    - url: http://60d52bd3.ngrok.io/webhook/incoming/cricleci/\n\n"
+        },
+        "messages": [],
+        "is_first_green_build": false,
+        "job_name": null,
+        "start_time": "2018-02-24T09:18:01.825Z",
+        "canceler": null,
+        "all_commit_details": [
+            {
+                "committer_date": "2018-02-24T10:17:55+01:00",
+                "body": "",
+                "branch": "master",
+                "author_date": "2018-02-24T10:17:55+01:00",
+                "committer_email": "j.smith@example.org",
+                "commit": "5b6de33927fa6f986ef44293a75ef8c5960205e7",
+                "committer_login": "j.smith",
+                "committer_name": "J. Smith",
+                "subject": "push",
+                "commit_url": "https://example.org/j.smith/demo/commit/5b6de33927fa6f986ef44293a75ef8c5960205e7",
+                "author_login": "j.smith",
+                "author_name": "J. Smith",
+                "author_email": "j.smith@example.org"
+            }
+        ],
+        "platform": "2.0",
+        "outcome": "failed",
+        "vcs_url": "https://example.org/j.smith/demo",
+        "author_name": "J. Smith",
+        "node": null,
+        "queued_at": "2018-02-24T09:17:58.966Z",
+        "canceled": false,
+        "author_email": "j.smith@example.org"
+    }
+}

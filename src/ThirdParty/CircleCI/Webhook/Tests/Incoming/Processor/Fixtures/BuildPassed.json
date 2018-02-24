@@ -1,0 +1,224 @@
+{
+    "payload": {
+        "compare": "https://example.org/j.smith/demo/compare/ff9da15eaefa...8326a0bfbc4e",
+        "previous_successful_build": {
+            "build_num": 4,
+            "status": "success",
+            "build_time_millis": 3007
+        },
+        "build_parameters": null,
+        "oss": true,
+        "all_commit_details_truncated": false,
+        "committer_date": "2018-02-24T10:09:33+01:00",
+        "steps": [
+            {
+                "name": "Spin up Environment",
+                "actions": [
+                    {
+                        "truncated": false,
+                        "index": 0,
+                        "parallel": true,
+                        "failed": null,
+                        "infrastructure_fail": null,
+                        "name": "Spin up Environment",
+                        "bash_command": null,
+                        "status": "success",
+                        "timedout": null,
+                        "continue": null,
+                        "end_time": "2018-02-24T09:09:40.828Z",
+                        "type": "test",
+                        "allocation_id": "5a912bd1c9e77c0001071bfa-0-build/6E60A52",
+                        "start_time": "2018-02-24T09:09:39.727Z",
+                        "background": false,
+                        "exit_code": null,
+                        "insignificant": false,
+                        "canceled": null,
+                        "step": 0,
+                        "run_time_millis": 1101,
+                        "has_output": true
+                    }
+                ]
+            },
+            {
+                "name": "Checkout code",
+                "actions": [
+                    {
+                        "truncated": false,
+                        "index": 0,
+                        "parallel": true,
+                        "failed": null,
+                        "infrastructure_fail": null,
+                        "name": "Checkout code",
+                        "bash_command": null,
+                        "status": "success",
+                        "timedout": null,
+                        "continue": null,
+                        "end_time": "2018-02-24T09:09:41.114Z",
+                        "type": "test",
+                        "allocation_id": "5a912bd1c9e77c0001071bfa-0-build/6E60A52",
+                        "start_time": "2018-02-24T09:09:40.901Z",
+                        "background": false,
+                        "exit_code": null,
+                        "insignificant": false,
+                        "canceled": null,
+                        "step": 101,
+                        "run_time_millis": 213,
+                        "has_output": true
+                    }
+                ]
+            },
+            {
+                "name": "Print the Current Time",
+                "actions": [
+                    {
+                        "truncated": false,
+                        "index": 0,
+                        "parallel": true,
+                        "failed": null,
+                        "infrastructure_fail": null,
+                        "name": "Print the Current Time",
+                        "bash_command": "#!/bin/bash -eo pipefail\ndate",
+                        "status": "success",
+                        "timedout": null,
+                        "continue": null,
+                        "end_time": "2018-02-24T09:09:41.135Z",
+                        "type": "test",
+                        "allocation_id": "5a912bd1c9e77c0001071bfa-0-build/6E60A52",
+                        "start_time": "2018-02-24T09:09:41.122Z",
+                        "background": false,
+                        "exit_code": 0,
+                        "insignificant": false,
+                        "canceled": null,
+                        "step": 102,
+                        "run_time_millis": 13,
+                        "has_output": true
+                    }
+                ]
+            },
+            {
+                "name": "Show env variables",
+                "actions": [
+                    {
+                        "truncated": false,
+                        "index": 0,
+                        "parallel": true,
+                        "failed": null,
+                        "infrastructure_fail": null,
+                        "name": "Show env variables",
+                        "bash_command": "#!/bin/bash -eo pipefail\nenv",
+                        "status": "success",
+                        "timedout": null,
+                        "continue": null,
+                        "end_time": "2018-02-24T09:09:41.149Z",
+                        "type": "test",
+                        "allocation_id": "5a912bd1c9e77c0001071bfa-0-build/6E60A52",
+                        "start_time": "2018-02-24T09:09:41.139Z",
+                        "background": false,
+                        "exit_code": 0,
+                        "insignificant": false,
+                        "canceled": null,
+                        "step": 103,
+                        "run_time_millis": 10,
+                        "has_output": true
+                    }
+                ]
+            }
+        ],
+        "body": "",
+        "usage_queued_at": "2018-02-24T09:09:37.473Z",
+        "fail_reason": null,
+        "retry_of": null,
+        "reponame": "demo",
+        "ssh_users": [],
+        "build_url": "https://circleci.com/gh/j.smith/demo/5",
+        "parallel": 1,
+        "failed": false,
+        "branch": "master",
+        "username": "j.smith",
+        "author_date": "2018-02-24T10:09:33+01:00",
+        "why": "github",
+        "user": {
+            "is_user": true,
+            "login": "j.smith",
+            "avatar_url": "https://avatars1.githubusercontent.com/u/62278?v=4",
+            "name": "J. Smith",
+            "vcs_type": "github",
+            "id": 62278
+        },
+        "vcs_revision": "8326a0bfbc4ef29b068ec3ab662967832b04d57c",
+        "owners": [
+            "j.smith"
+        ],
+        "vcs_tag": null,
+        "pull_requests": [],
+        "build_num": 5,
+        "infrastructure_fail": false,
+        "committer_email": "j.smith@example.org",
+        "has_artifacts": true,
+        "previous": {
+            "build_num": 4,
+            "status": "success",
+            "build_time_millis": 3007
+        },
+        "status": "success",
+        "committer_name": "J. Smith",
+        "retries": null,
+        "subject": "push",
+        "vcs_type": "github",
+        "timedout": false,
+        "dont_build": null,
+        "lifecycle": "finished",
+        "no_dependency_cache": false,
+        "stop_time": "2018-02-24T09:09:41.154Z",
+        "ssh_disabled": true,
+        "build_time_millis": 1460,
+        "picard": {
+            "build_agent": {
+                "image": null,
+                "properties": {
+                    "executor": "docker",
+                    "build_agent": "0.0.4666-05dad47"
+                }
+            },
+            "resource_class": {
+                "cpu": 2,
+                "ram": 4096,
+                "class": "medium"
+            },
+            "executor": "docker"
+        },
+        "circle_yml": {
+            "string": "version: 2\njobs:\n  build:\n    docker:\n      - image: debian:stretch\n    steps:\n      - checkout\n      - run:\n          name: Print the Current Time\n          command: date\n      - run:\n          name: Show env variables\n          command: env\nnotify:\n  webhooks:\n    - url: http://60d52bd3.ngrok.io/webhook/incoming/cricleci/\n\n"
+        },
+        "messages": [],
+        "is_first_green_build": false,
+        "job_name": null,
+        "start_time": "2018-02-24T09:09:39.694Z",
+        "canceler": null,
+        "all_commit_details": [
+            {
+                "committer_date": "2018-02-24T10:09:33+01:00",
+                "body": "",
+                "branch": "master",
+                "author_date": "2018-02-24T10:09:33+01:00",
+                "committer_email": "j.smith@example.org",
+                "commit": "8326a0bfbc4ef29b068ec3ab662967832b04d57c",
+                "committer_login": "j.smith",
+                "committer_name": "J. Smith",
+                "subject": "push",
+                "commit_url": "https://example.org/j.smith/demo/commit/8326a0bfbc4ef29b068ec3ab662967832b04d57c",
+                "author_login": "j.smith",
+                "author_name": "J. Smith",
+                "author_email": "j.smith@example.org"
+            }
+        ],
+        "platform": "2.0",
+        "outcome": "success",
+        "vcs_url": "https://example.org/j.smith/demo",
+        "author_name": "J. Smith",
+        "node": null,
+        "queued_at": "2018-02-24T09:09:37.492Z",
+        "canceled": false,
+        "author_email": "j.smith@example.org"
+    }
+}
