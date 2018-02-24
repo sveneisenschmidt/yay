@@ -35,7 +35,7 @@ class CircleCIProcessor implements ProcessorInterface
 
         if (isset($payload['payload']['canceled']) && $payload['payload']['canceled'] === true) {
             $request->request->set('action', 'build.canceled');
-        } else if (isset($payload['payload']['outcome'])) {
+        } elseif (isset($payload['payload']['outcome'])) {
             $request->request->set('action', sprintf('build.%s', $payload['payload']['outcome']));
         }
     }
