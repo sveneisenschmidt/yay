@@ -1,8 +1,8 @@
 # This file is auto-generated during the composer install
 parameters:
     # default parameters
-    env(SECRET): 12345abcdef
-    env(DATABASE_PORT): 3306
+    env(SECRET): "12345abcdef"
+    env(DATABASE_PORT): "3306"
     env(MAILER_URL): ~
 
     # env variables
