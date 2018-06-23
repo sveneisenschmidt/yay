@@ -58,7 +58,7 @@ class ProgressController extends Controller
      *     name="api_progress_submit_get"
      * )
      * @ApiDoc(
-     *     section="Progress of an Player",
+     *     section="Progress of a Player",
      *     resource=true,
      *     description="Submit a payload to update a users progress",
      *     requirements={
@@ -169,7 +169,7 @@ class ProgressController extends Controller
      *     name="api_progress_submit_post"
      * )
      * @ApiDoc(
-     *     section="Progress of an Player",
+     *     section="Progress of a Player",
      *     resource=true,
      *     description="Submit a payload to update a users progress",
      *     requirements={
