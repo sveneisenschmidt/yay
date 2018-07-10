@@ -6,6 +6,10 @@ WebhookBundle:
     resource: "@Webhook/Resources/config/routing.yml"
     prefix:   /webhook
 
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+#NelmioApiDocBundle:
+#    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+#    prefix:   /api/doc
+
+AppCompatNelmioApiDocBundle:
+    resource: "@Compat/Resources/config/NelmioApiDocBundle/routing.yml"
     prefix:   /api/doc
