@@ -3,8 +3,7 @@
 namespace App\Api\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,11 +51,10 @@ class ActivityController extends Controller
      * }]
      * ```.
      *
-     * @Method("GET")
-     *
      * @Route(
      *     "/",
-     *     name="api_activity_index"
+     *     name="api_activity_index",
+     *     methods={"GET"}
      * )
      *
      * @ApiDoc(

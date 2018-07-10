@@ -3,8 +3,7 @@
 namespace App\Api\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,11 +34,10 @@ class AchievementController extends Controller
      * }]
      * ```.
      *
-     * @Method("GET")
-     *
      * @Route(
      *     "/",
-     *     name="api_achievement_index"
+     *     name="api_achievement_index",
+     *     methods={"GET"}
      * )
      *
      * @ApiDoc(
@@ -91,12 +89,11 @@ class AchievementController extends Controller
      * }
      * ```.
      *
-     * @Method("GET")
-     *
      * @Route(
      *     "/{name}/",
      *     name="api_achievement_show",
-     *     requirements={"name" = "[A-Za-z0-9\-\_\.]+"}
+     *     requirements={"name" = "[A-Za-z0-9\-\_\.]+"},
+     *     methods={"GET"}
      * )
      *
      * @ApiDoc(

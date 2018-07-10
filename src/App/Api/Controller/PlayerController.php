@@ -3,9 +3,8 @@
 namespace App\Api\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,10 +34,10 @@ class PlayerController extends Controller
      * }]
      * ```.
      *
-     * @Method("GET")
      * @Route(
      *     "/",
-     *     name="api_player_index"
+     *     name="api_player_index",
+     *     methods={"GET"}
      * )
      * @ApiDoc(
      *     section="Players",
@@ -93,12 +92,13 @@ class PlayerController extends Controller
      * }
      * ```.
      *
-     * @Method("GET")
      * @Route(
      *     "/{username}/",
      *     name="api_player_show",
-     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"}
+     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"},
+     *     methods={"GET"}
      * )
+     * 
      * @ApiDoc(
      *     section="Players",
      *     resource=true,
@@ -159,11 +159,12 @@ class PlayerController extends Controller
      * }
      * ```
      *
-     * @Method("POST")
      * @Route(
      *     "/",
-     *     name="api_player_create"
+     *     name="api_player_create",
+     *     methods={"POST"}
      * )
+     * 
      * @ApiDoc(
      *     section="Players",
      *     resource=true,
@@ -228,13 +229,14 @@ class PlayerController extends Controller
      *     }
      * }]
      * ```.
-     *
-     * @Method("GET")
+     * 
      * @Route(
      *     "/{username}/personal-achievements/",
      *     name="api_player_personal_achievements_show",
-     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"}
+     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"},
+     *     methods={"GET"}
      * )
+     * 
      * @ApiDoc(
      *     section="Players",
      *     resource=true,
@@ -309,12 +311,11 @@ class PlayerController extends Controller
      * }]
      * ```.
      *
-     * @Method("GET")
-     *
      * @Route(
      *     "/{username}/personal-actions/",
      *     name="api_player_personal_actions_show",
-     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"}
+     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"},
+     *     methods={"GET"}
      * )
      *
      * @ApiDoc(
@@ -401,12 +402,11 @@ class PlayerController extends Controller
      * 	}]
      * ```.
      *
-     * @Method("GET")
-     *
      * @Route(
      *     "/{username}/personal-activities/",
      *     name="api_player_personal_activities_show",
-     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"}
+     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"},
+     *     methods={"GET"}
      * )
      *
      * @ApiDoc(

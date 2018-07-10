@@ -2,8 +2,8 @@
 
 namespace App\Webhook\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,10 +20,10 @@ class IncomingController extends Controller
     use EngineControllerTrait;
 
     /**
-     * @Method({"GET", "POST"})
      * @Route(
      *     "/{processorName}/",
-     *     name="webhook_incoming_submit_post"
+     *     name="webhook_incoming_submit_post",
+     *     methods={"GET", "POST"}
      * )
      */
     public function submitPostAction(
