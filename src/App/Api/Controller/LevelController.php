@@ -39,7 +39,7 @@ class LevelController extends Controller
      *     name="api_level_index",
      *     methods={"GET"}
      * )
-     * 
+     *
      * @ApiDoc(
      *     section="Levels",
      *     resource=true,

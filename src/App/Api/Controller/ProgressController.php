@@ -56,7 +56,7 @@ class ProgressController extends Controller
      *     name="api_progress_submit_get",
      *     methods={"GET"}
      * )
-     * 
+     *
      * @ApiDoc(
      *     section="Progress of a Player",
      *     resource=true,
@@ -162,7 +162,7 @@ class ProgressController extends Controller
      *     }
      * }]
      * ```
-     * 
+     *
      * @Route(
      *     "/",
      *     name="api_progress_submit_post",

@@ -27,7 +27,7 @@ class ActionController extends Controller
      *     }
      * }]
      * ```.
-     * 
+     *
      * @Route(
      *     "/",
      *     name="api_action_index",
