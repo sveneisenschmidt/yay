@@ -3,9 +3,8 @@
 namespace App\Api\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use App\Api\Response\ResponseSerializer;
@@ -52,11 +51,12 @@ class ProgressController extends Controller
      * }]
      * ```
      *
-     * @Method("GET")
      * @Route(
      *     "/",
-     *     name="api_progress_submit_get"
+     *     name="api_progress_submit_get",
+     *     methods={"GET"}
      * )
+     *
      * @ApiDoc(
      *     section="Progress of a Player",
      *     resource=true,
@@ -163,10 +163,10 @@ class ProgressController extends Controller
      * }]
      * ```
      *
-     * @Method("POST")
      * @Route(
      *     "/",
-     *     name="api_progress_submit_post"
+     *     name="api_progress_submit_post",
+     *     methods={"POST"}
      * )
      * @ApiDoc(
      *     section="Progress of a Player",

@@ -3,8 +3,7 @@
 namespace App\Api\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,11 +41,12 @@ class LeaderboardController extends Controller
      * }]
      * ```.
      *
-     * @Method("GET")
      * @Route(
      *     "/",
-     *     name="api_leaderboard_index"
+     *     name="api_leaderboard_index",
+     *     methods={"GET"}
      * )
+     *
      * @ApiDoc(
      *     section="Misc",
      *     resource=true,

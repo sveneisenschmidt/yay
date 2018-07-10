@@ -30,15 +30,15 @@
 
     <filter>
         <whitelist>
-            <directory>src</directory>
+            <directory suffix=".php">src</directory>
             <exclude>
+                <directory suffix=".php">src/*/*/Formatter</directory>
+                <directory suffix=".php">src/*/*/Resources</directory>
+                <directory suffix=".php">src/*/*/Tests</directory>
+                <directory suffix=".php">src/*/*/Test</directory>
+                <directory suffix=".php">src/App/Compat</directory>
+                <directory suffix=".php">src/ThirdParty/*/Webhook/Tests</directory>
                 <file>src/App/Kernel.php</file>
-                <directory>src/*/*/Formatter</directory>
-                <directory>src/*/*/Resources</directory>
-                <directory>src/*/*/Tests</directory>
-                <directory>src/*/*/Test</directory>
-                <directory>src/App/Compat</directory>
-                <directory>src/ThirdParty/*/Webhook/Tests</directory>
             </exclude>
         </whitelist>
     </filter>
