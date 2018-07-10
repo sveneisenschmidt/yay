@@ -46,7 +46,7 @@ class LeaderboardController extends Controller
      *     name="api_leaderboard_index",
      *     methods={"GET"}
      * )
-     * 
+     *
      * @ApiDoc(
      *     section="Misc",
      *     resource=true,

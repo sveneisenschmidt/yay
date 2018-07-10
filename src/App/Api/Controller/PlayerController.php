@@ -98,7 +98,7 @@ class PlayerController extends Controller
      *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"},
      *     methods={"GET"}
      * )
-     * 
+     *
      * @ApiDoc(
      *     section="Players",
      *     resource=true,
@@ -164,7 +164,7 @@ class PlayerController extends Controller
      *     name="api_player_create",
      *     methods={"POST"}
      * )
-     * 
+     *
      * @ApiDoc(
      *     section="Players",
      *     resource=true,
@@ -229,14 +229,14 @@ class PlayerController extends Controller
      *     }
      * }]
      * ```.
-     * 
+     *
      * @Route(
      *     "/{username}/personal-achievements/",
      *     name="api_player_personal_achievements_show",
      *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"},
      *     methods={"GET"}
      * )
-     * 
+     *
      * @ApiDoc(
      *     section="Players",
      *     resource=true,
