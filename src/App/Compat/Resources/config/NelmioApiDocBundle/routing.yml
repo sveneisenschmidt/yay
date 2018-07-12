@@ -1,6 +1,6 @@
 nelmio_api_doc_index:
     path: /{view}
     defaults: 
-        _controller: Nelmio\ApiDocBundle\Controller\ApiDocController::indexActionAction
+        _controller: Nelmio\ApiDocBundle\Controller\ApiDocController::indexAction
         view: 'default'
     methods: [GET]
