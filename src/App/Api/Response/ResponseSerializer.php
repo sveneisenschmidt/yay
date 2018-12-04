@@ -40,7 +40,7 @@ class ResponseSerializer
         } else {
             $content = $this->cache->get($key);
         }
-
+        //$headers['Access-Control-Allow-Origin'] = '*';
         return new JsonResponse($content, $status, $headers, true);
     }
 

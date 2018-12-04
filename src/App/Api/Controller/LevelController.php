@@ -4,7 +4,7 @@ namespace App\Api\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Api\Request\CriteriaHandler;
@@ -14,7 +14,7 @@ use Component\Engine\Engine;
 /**
  * @Route("/levels")
  */
-class LevelController extends Controller
+class LevelController extends AbstractController
 {
     /**
      * **Example Response:**

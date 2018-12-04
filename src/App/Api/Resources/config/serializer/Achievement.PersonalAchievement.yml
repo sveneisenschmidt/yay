@@ -8,25 +8,25 @@ Component\Entity\Achievement\PersonalAchievement:
         - 'progress.submit'
   virtual_properties:
     name:
-      exp: object.getAchievementDefinition().getName()
+      exp: 'object.getAchievementDefinition().getName()'
       groups:
         - 'player.show'
         - 'player.personal_achievements.show'
         - 'progress.submit'
     label:
-      exp: object.getAchievementDefinition().getName()
+      exp: 'object.getAchievementDefinition().getName()'
       groups:
         - 'player.show'
         - 'player.personal_achievements.show'
         - 'progress.submit'
     description:
-      exp: object.getAchievementDefinition().getName()
+      exp: 'object.getAchievementDefinition().getName()'
       groups:
         - 'player.show'
         - 'player.personal_achievements.show'
         - 'progress.submit'
     points:
-      exp: object.getAchievementDefinition().getPoints()
+      exp: 'object.getAchievementDefinition().getPoints()'
       groups:
         - 'player.show'
         - 'player.personal_achievements.show'
