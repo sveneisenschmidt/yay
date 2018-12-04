@@ -5,7 +5,7 @@ namespace App\Api\Controller;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Api\Response\ResponseSerializer;
 use App\Engine\Controller\EngineControllerTrait;
@@ -15,7 +15,7 @@ use Component\Entity\Player;
 /**
  * @Route("/progress")
  */
-class ProgressController extends Controller
+class ProgressController extends AbstractController
 {
     use EngineControllerTrait;
 

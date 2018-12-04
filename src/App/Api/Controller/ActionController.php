@@ -4,7 +4,7 @@ namespace App\Api\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Api\Request\CriteriaHandler;
@@ -15,7 +15,7 @@ use Component\Entity\Collection;
 /**
  * @Route("/actions")
  */
-class ActionController extends Controller
+class ActionController extends AbstractController
 {
     /**
      * **Example Response:**
