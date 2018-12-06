@@ -15,14 +15,14 @@ class AllowedOriginsListenerTest extends WebTestCase
     {
         $client = static::createClient();
         $listener = new AllowedOriginsListener([
-            'https://test.example.org'
+            'https://test.example.org',
         ]);
 
         $event = new FilterResponseEvent(
             $client->getKernel(),
-            $request  = new Request(),
+            $request = new Request(),
             HttpKernelInterface::MASTER_REQUEST,
-            $response  = new Response()
+            $response = new Response()
         );
 
         $this->assertFalse($response->headers->has('Access-Control-Allow-Origin'));
@@ -39,14 +39,14 @@ class AllowedOriginsListenerTest extends WebTestCase
     {
         $client = static::createClient();
         $listener = new AllowedOriginsListener([
-            'https://test.example.org'
+            'https://test.example.org',
         ]);
 
         $event = new FilterResponseEvent(
             $client->getKernel(),
-            $request  = new Request(),
+            $request = new Request(),
             HttpKernelInterface::MASTER_REQUEST,
-            $response  = new Response()
+            $response = new Response()
         );
 
         $request->headers->set('Origin', 'https://test.example.com');
@@ -60,14 +60,14 @@ class AllowedOriginsListenerTest extends WebTestCase
     {
         $client = static::createClient();
         $listener = new AllowedOriginsListener([
-            'https://test.example.org'
+            'https://test.example.org',
         ]);
 
         $event = new FilterResponseEvent(
             $client->getKernel(),
-            $request  = new Request(),
+            $request = new Request(),
             HttpKernelInterface::SUB_REQUEST,
-            $response  = new Response()
+            $response = new Response()
         );
 
         $request->headers->set('Origin', 'https://test.example.org');
@@ -84,9 +84,9 @@ class AllowedOriginsListenerTest extends WebTestCase
 
         $event = new FilterResponseEvent(
             $client->getKernel(),
-            $request  = new Request(),
+            $request = new Request(),
             HttpKernelInterface::MASTER_REQUEST,
-            $response  = new Response()
+            $response = new Response()
         );
 
         $request->headers->set('Origin', 'https://test.example.org');
@@ -100,14 +100,14 @@ class AllowedOriginsListenerTest extends WebTestCase
     {
         $client = static::createClient();
         $listener = new AllowedOriginsListener([
-            'https://test.example.org'
+            'https://test.example.org',
         ]);
 
         $event = new FilterResponseEvent(
             $client->getKernel(),
-            $request  = new Request(),
+            $request = new Request(),
             HttpKernelInterface::MASTER_REQUEST,
-            $response  = new Response()
+            $response = new Response()
         );
 
         $listener->onKernelResponse($event);
@@ -120,14 +120,14 @@ class AllowedOriginsListenerTest extends WebTestCase
     {
         $client = static::createClient();
         $listener = new AllowedOriginsListener([
-            '*'
+            '*',
         ]);
 
         $event = new FilterResponseEvent(
             $client->getKernel(),
-            $request  = new Request(),
+            $request = new Request(),
             HttpKernelInterface::MASTER_REQUEST,
-            $response  = new Response()
+            $response = new Response()
         );
 
         $request->headers->set('Origin', 'https://test.example.org');
