@@ -24,20 +24,42 @@ integration:
             description: Demo achievement description
             points: 100
             actions: [demo-action-01, demo-action-02]
+        demo-achievement-03:
+            label: Demo achievement label
+            description: Demo achievement description
+            points: 200
+            actions: [demo-action-01, demo-action-02]
+        demo-achievement-04:
+            label: Demo achievement label
+            description: Demo achievement description
+            points: 400
+            actions: [demo-action-01, demo-action-02]
 
     validators:
-        # Grants achviement 'demo-achievement-01' if action `demo-action`
+        # Grants achievement 'demo-achievement-01' if action `demo-action`
         # has been performed by the player 5 times.
         demo-achievement-validator-01:
             type: expression
             arguments:
                 - "achievement.getName() in ['demo-achievement-01'] and actions.count() >= 5"
-        # Grants achviement 'demo-achievement-01' if action `demo-action`
+        # Grants achievement 'demo-achievement-02' if action `demo-action`
         # has been performed by the player 10 times.
         demo-achievement-validator-02:
             type: expression
             arguments:
-                - "achievement.getName() in ['demo-achievement-02'] and actions.count() >= 10"
+                - "achievement.getName() in ['demo-achievement-02'] and actions.count() >= 15"
+        # Grants achievement 'demo-achievement-03' if action `demo-action`
+        # has been performed by the player 20 times.
+        demo-achievement-validator-03:
+            type: expression
+            arguments:
+            - "achievement.getName() in ['demo-achievement-03'] and actions.count() >= 20"
+        # Grants achievement 'demo-achievement-04' if action `demo-action`
+        # has been performed by the player 30 times.
+        demo-achievement-validator-04:
+            type: expression
+            arguments:
+            - "achievement.getName() in ['demo-achievement-04'] and actions.count() >= 30"
 
     webhooks:
         incoming_processors:

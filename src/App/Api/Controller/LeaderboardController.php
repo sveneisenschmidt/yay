@@ -82,7 +82,7 @@ class LeaderboardController extends AbstractController
         $players = $engine->findPlayerBy()
             ->matching($criteria)
             ->filter(function (PlayerInterface $player) {
-                return $player->getScore() > 0;
+                return $player->getScore() > -1;
             })
             ->getValues();
 
