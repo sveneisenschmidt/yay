@@ -13,6 +13,13 @@ services:
     App\Api\Response\ResponseSerializer: ~
     App\Api\Validator\EntityValidator: ~
 
+
+    App\Api\EventListener\AllowedOriginsListener:
+        bind:
+            $allowedOrigins: '%allowed_origins%'
+        tags:
+        - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
     App\Api\EventListener\KernelExceptionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
