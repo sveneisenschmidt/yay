@@ -7,13 +7,17 @@ use Component\Engine\AchievementValidatorInterface;
 use Component\Engine\AchievementValidator\ValidationContext;
 use Component\Entity\Achievement\AchievementDefinitionInterface;
 
-class ExpressionLanguageValidator implements AchievementValidatorInterface
+class ExpressionLanguageValidator
+    implements AchievementValidatorInterface, CalculableProgressInterface
 {
     /** @var ExpressionLanguage */
     protected $language;
 
     /** @var string */
-    protected $expression;
+    protected $validationExpression;
+
+    /** @var string */
+    protected $calculationExpression;
 
     /** @var array */
     protected $supports;
@@ -21,10 +25,16 @@ class ExpressionLanguageValidator implements AchievementValidatorInterface
     /** @var bool */
     protected $multiple = false;
 
-    public function __construct(string $expression, array $supports = [], bool $multiple = false)
+    public function __construct(
+        string $validationExpression,
+        string $calculationExpression = '',
+        array $supports = [],
+        bool $multiple = false
+    )
     {
         $this->language = new ExpressionLanguage();
-        $this->expression = $expression;
+        $this->validationExpression = $validationExpression;
+        $this->calculationExpression = $calculationExpression;
         $this->supports = $supports;
         $this->multiple = $multiple;
     }
@@ -32,7 +42,23 @@ class ExpressionLanguageValidator implements AchievementValidatorInterface
     public function validate(ValidationContext $validationContext): bool
     {
         return (bool) $this->language->evaluate(
-            $this->expression,
+            $this->validationExpression,
+            [
+                'player' => $validationContext->getPlayer(),
+                'achievement' => $validationContext->getAchievementDefinition(),
+                'actions' => $validationContext->getFilteredPersonalActions(),
+            ]
+        );
+    }
+
+    public function calculate(ValidationContext $validationContext): int
+    {
+        if (empty($this->calculationExpression)) {
+            return 0;
+        }
+
+        return (int) $this->language->evaluate(
+            $this->calculationExpression,
             [
                 'player' => $validationContext->getPlayer(),
                 'achievement' => $validationContext->getAchievementDefinition(),

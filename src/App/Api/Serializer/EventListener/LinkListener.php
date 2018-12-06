@@ -2,6 +2,7 @@
 
 namespace App\Api\Serializer\EventListener;
 
+use Component\Entity\Achievement\TransientAchievementInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use JMS\Serializer\GenericSerializationVisitor;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -62,6 +63,10 @@ class LinkListener
         if ($event->getObject() instanceof ActivityInterface) {
             $this->handleActivity($visitor, $event->getObject());
         }
+
+        if ($event->getObject() instanceof TransientAchievementInterface) {
+            $this->handleTransientAchievement($visitor, $event->getObject());
+        }
     }
 
     public function handlePlayer(
@@ -83,6 +88,10 @@ class LinkListener
             ),
             'personal_activities' => $this->generateRoute(
                 'api_player_personal_activities_show',
+                ['username' => $player->getUsername()]
+            ),
+            'transient_achievements' => $this->generateRoute(
+                'api_player_personal_transient_achievements_show',
                 ['username' => $player->getUsername()]
             ),
         ]);
@@ -267,6 +276,26 @@ class LinkListener
             'achievement' => $this->generateRoute(
                 'api_achievement_show',
                 ['name' => $activity->getData()['achievement']]
+            ),
+        ]);
+    }
+
+    public function handleTransientAchievement(
+        GenericSerializationVisitor $visitor,
+        TransientAchievementInterface $transientAchievement
+    ): void {
+        $visitor->setData('links', [
+            'self' => $this->generateRoute(
+                'api_player_personal_transient_achievements_show',
+                ['username' => $transientAchievement->getPlayer()->getUsername()]
+            ),
+            'player' => $this->generateRoute(
+                'api_player_show',
+                ['username' => $transientAchievement->getPlayer()->getUsername()]
+            ),
+            'achievement' => $this->generateRoute(
+                'api_achievement_show',
+                ['name' => $transientAchievement->getAchievementDefinition()->getName()]
             ),
         ]);
     }

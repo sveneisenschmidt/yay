@@ -2,6 +2,7 @@
 
 namespace App\Api\Controller;
 
+use Component\Engine\AchievementValidator\Validator\CalculableProgressInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Annotation\Route;
@@ -458,6 +459,52 @@ class PlayerController extends AbstractController
         return $serializer->createResponse(
             $activities,
             ['player.personal_activities.show']
+        );
+    }
+    /**
+     * **Example Response:**
+     * ```json
+     * 	[]
+     * ```.
+     *
+     * @Route(
+     *     "/{username}/transient-achievements/",
+     *     name="api_player_personal_transient_achievements_show",
+     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"},
+     *     methods={"GET"}
+     * )
+     *
+     * @ApiDoc(
+     *     section="Players",
+     *     resource=true,
+     *     description="Returns a Player's progress identified by its username property",
+     *     requirements={
+     *         {
+     *             "name"="username",
+     *             "dataType"="string",
+     *             "requirement"="[A-Za-z0-9\-\_\.]+"
+     *         }
+     *     },
+     *     statusCodes = {
+     *         200 = "Returned when successful",
+     *         404 = "Returned when the player is not found"
+     *     }
+     * )
+     */
+    public function indexTransientAchievementsAction(
+        Engine $engine,
+        ResponseSerializer $serializer,
+        string $username
+    ): Response {
+        $players = $engine->findPlayerBy(['username' => $username]);
+        if ($players->isEmpty()) {
+            throw $this->createNotFoundException();
+        }
+
+        $transientAchievements = $engine->progress($players->first());
+        return $serializer->createResponse(
+            $transientAchievements,
+            ['player.transient_achievements.show']
         );
     }
 }

@@ -250,6 +250,25 @@ curl -X "GET" http://localhost:50080/api/players/alex.doe/personal-actions/
 ]
 ```
 
+If you're curious to see how far our player progress towards an achievement, you can query transient achievements.
+```bash
+curl -X "GET" http://localhost:50080/api/players/alex.doe/transient-achievements/
+
+[
+    {
+        "achievement": "demo-achievement-01",
+        "progress": 20,
+        "points": 50,
+        "links": {
+            "self": "http://localhost:50080/api/players/alex.doe/transient-actions/",
+            "player": "http://localhost:50080/api/players/alex.doe/",
+            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
+        }
+    }
+]
+```
+
+
 Now let us get our first achievement. For this, perform the `demo.action` action four more times.
 
 ```bash

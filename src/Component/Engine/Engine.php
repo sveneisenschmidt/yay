@@ -2,6 +2,8 @@
 
 namespace Component\Engine;
 
+use Component\Engine\AchievementValidator\Validator\CalculableProgressInterface;
+use Component\Entity\Achievement\TransientAchievement;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Component\Engine\Storage\StorageInterface;
 use Component\Engine\Storage\Decorator\EventStorageDecoratorTrait;
@@ -80,6 +82,46 @@ class Engine
         }
 
         return $matchingAchievementDefinitionCollection;
+    }
+
+    public function progress(PlayerInterface $player): array
+    {
+        $achievementValidatorCollection = $this->getAchievementValidators();
+        $achievementDefinitionCollection = $this->findAchievementDefinitionAny();
+
+        if ($achievementDefinitionCollection->count() < 1) {
+            return [];
+        }
+
+        if ($achievementValidatorCollection->count() < 1) {
+            return [];
+        }
+
+        $transientAchievements = [];
+        foreach ($achievementValidatorCollection as $achievementValidator) {
+            foreach ($achievementDefinitionCollection as $achievementDefinition) {
+                if (!$achievementValidator->supports($achievementDefinition)) {
+                    continue;
+                }
+
+                if ($player->hasPersonalAchievement($achievementDefinition) &&
+                    !$achievementValidator->multiple()
+                ) {
+                    continue;
+                }
+
+                $validationContext = $this->createValidationContext($player, $achievementDefinition);
+                if ($achievementValidator instanceof CalculableProgressInterface) {
+                    $transientAchievements[] = new TransientAchievement(
+                        $achievementDefinition,
+                        $player,
+                        $achievementValidator->calculate($validationContext)
+                    );
+                }
+            }
+        }
+
+        return $transientAchievements;
     }
 
     public function advance(

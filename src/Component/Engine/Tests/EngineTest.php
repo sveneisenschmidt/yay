@@ -329,4 +329,54 @@ class EngineTest extends TestCase
         $results = $engine->advance($player);
         $this->assertNotEmpty($results);
     }
+
+    public function test_calclulate_no_validators(): void
+    {
+        $actionDefinition = new ActionDefinition('test-action');
+        $player = $this->createConfiguredMock(PlayerInterface::class, [
+            'hasPersonalAchievement' => false,
+        ]);
+
+        $achievementDefinition = new AchievementDefinition('test-achievement');
+        $achievementDefinition->addActionDefinition($actionDefinition);
+        $achievementDefinitionCollection = new AchievementDefinitionCollection();
+        $achievementDefinitionCollection->add($achievementDefinition);
+
+        $storage = $this->createConfiguredMock(StorageInterface::class, [
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection,
+            'findLevelBy' => new LevelCollection(),
+        ]);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+
+        $engine = new Engine($storage, $eventDispatcher);
+        $results = $engine->progress($player);
+        $this->assertEmpty($results);
+    }
+
+    public function test_calclulate_no_achievement_definitions(): void
+    {
+        $player = $this->createConfiguredMock(PlayerInterface::class, [
+            'hasPersonalAchievement' => false,
+        ]);
+
+        $storage = $this->createConfiguredMock(StorageInterface::class, [
+            'findAchievementDefinitionBy' => new AchievementDefinitionCollection(),
+            'findLevelBy' => new LevelCollection(),
+        ]);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+
+        $engine = new Engine($storage, $eventDispatcher);
+        $results = $engine->progress($player);
+        $this->assertEmpty($results);
+    }
+
+    public function test_calclulate_grant_achievement_not_multiple(): void
+    {
+
+    }
+
+    public function test_calclulate_grant_achievement_multiple(): void
+    {
+
+    }
 }
