@@ -15,3 +15,4 @@ parameters:
     redis_port: "%env(REDIS_PORT)%"
     mailer_url: "%env(MAILER_URL)%"
     secret: "%env(SECRET)%"
+    allowed_origins: "%env(json:ALLOWED_ORIGINS)%"
