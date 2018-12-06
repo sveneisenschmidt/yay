@@ -24,7 +24,10 @@ class AllowedOriginsListener
 
         $request = $event->getRequest();
         $response = $event->getResponse();
+
+        // Clean exiting configuration
         $response->headers->remove('Access-Control-Allow-Origin');
+        $response->headers->remove('Vary');
 
         if (!$request->headers->has('Origin') || $request->headers->get('Origin') == $request->getSchemeAndHttpHost()) {
             return;
@@ -35,7 +38,15 @@ class AllowedOriginsListener
         }
 
         $origin = $request->headers->get('Origin');
+
+        // Origin is explicitly set inside allowed origins
         if (in_array($origin, $this->allowedOrigins)) {
+            $response->headers->set('Access-Control-Allow-Origin', $origin, true);
+            $response->headers->set('Vary', 'Origin', true);
+        }
+
+        // Allowed Origins is a wildcard, send Cary back
+        if ($this->allowedOrigins === ['*']) {
             $response->headers->set('Access-Control-Allow-Origin', $origin, true);
         }
     }
