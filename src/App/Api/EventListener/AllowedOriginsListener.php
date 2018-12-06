@@ -4,7 +4,6 @@ namespace App\Api\EventListener;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-use App\Api\Response\ResponseSerializer;
 
 class AllowedOriginsListener
 {
