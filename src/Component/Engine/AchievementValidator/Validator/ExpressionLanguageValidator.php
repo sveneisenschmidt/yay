@@ -7,8 +7,7 @@ use Component\Engine\AchievementValidatorInterface;
 use Component\Engine\AchievementValidator\ValidationContext;
 use Component\Entity\Achievement\AchievementDefinitionInterface;
 
-class ExpressionLanguageValidator
-    implements AchievementValidatorInterface, CalculableProgressInterface
+class ExpressionLanguageValidator implements AchievementValidatorInterface, CalculableProgressInterface
 {
     /** @var ExpressionLanguage */
     protected $language;
@@ -30,8 +29,7 @@ class ExpressionLanguageValidator
         string $calculationExpression = '',
         array $supports = [],
         bool $multiple = false
-    )
-    {
+    ) {
         $this->language = new ExpressionLanguage();
         $this->validationExpression = $validationExpression;
         $this->calculationExpression = $calculationExpression;

@@ -392,7 +392,7 @@ class EngineTest extends TestCase
         $achievementDefinitionCollection->add($achievementDefinition);
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
-            'findAchievementDefinitionBy' => $achievementDefinitionCollection
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
 
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
@@ -400,7 +400,7 @@ class EngineTest extends TestCase
         $engine = new Engine($storage, $eventDispatcher);
         $validator = $this->createConfiguredMock([
             AchievementValidatorInterface::class,
-            CalculableProgressInterface::class
+            CalculableProgressInterface::class,
         ], [
             'supports' => true,
             'validate' => true,
@@ -437,7 +437,7 @@ class EngineTest extends TestCase
         $achievementDefinitionCollection->add($achievementDefinition);
 
         $storage = $this->createConfiguredMock(StorageInterface::class, [
-            'findAchievementDefinitionBy' => $achievementDefinitionCollection
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection,
         ]);
 
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
@@ -445,7 +445,7 @@ class EngineTest extends TestCase
         $engine = new Engine($storage, $eventDispatcher);
         $validator = $this->createConfiguredMock([
             AchievementValidatorInterface::class,
-            CalculableProgressInterface::class
+            CalculableProgressInterface::class,
         ], [
             'supports' => true,
             'validate' => true,

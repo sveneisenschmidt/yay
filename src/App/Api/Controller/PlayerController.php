@@ -2,7 +2,6 @@
 
 namespace App\Api\Controller;
 
-use Component\Engine\AchievementValidator\Validator\CalculableProgressInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Annotation\Route;
@@ -461,6 +460,7 @@ class PlayerController extends AbstractController
             ['player.personal_activities.show']
         );
     }
+
     /**
      * **Example Response:**
      * ```json
@@ -511,6 +511,7 @@ class PlayerController extends AbstractController
         }
 
         $transientAchievements = $engine->calculate($players->first());
+
         return $serializer->createResponse(
             $transientAchievements,
             ['player.transient_achievements.show']
