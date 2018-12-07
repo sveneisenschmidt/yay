@@ -1,0 +1,5 @@
+integration:
+    imports:
+    - test_load_imports_1.yml
+    - test_load_imports_2.yml
+    - test_load_imports_3.yml
