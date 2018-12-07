@@ -512,7 +512,7 @@ class PlayerController extends AbstractController
 
         $transientAchievements = $engine->calculate($players->first());
         return $serializer->createResponse(
-            $transientAchievements,
+            array_unique($transientAchievements),
             ['player.transient_achievements.show']
         );
     }

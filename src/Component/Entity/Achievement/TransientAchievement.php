@@ -39,4 +39,9 @@ class TransientAchievement implements TransientAchievementInterface
     {
         return $this->progress;
     }
+
+    public function __toString(): string
+    {
+        return $this->getAchievementDefinition()->getName();
+    }
 }
