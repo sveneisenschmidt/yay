@@ -139,7 +139,7 @@ class PlayerController extends AbstractController
      *     "name": "Billy Turner V",
      *     "username": "marianne58",
      *     "email": "marianne58@gmail.com",
-     *     "image_url": "https://api.adorable.io/avatars/128/497"
+     *     "image_url": "https://avatars.dicebear.com/v2/female/497.svg"
      * }
      * ```.
      *
@@ -148,7 +148,7 @@ class PlayerController extends AbstractController
      * {
      *     "name": "Billy Turner V",
      *     "username": "marianne58",
-     *     "image_url": "https://api.adorable.io/avatars/128/497",
+     *     "image_url": "https://avatars.dicebear.com/v2/female/497.svg",
      *     "score": 0,
      *     "level": 0,
      *     "links": {
@@ -458,6 +458,63 @@ class PlayerController extends AbstractController
         return $serializer->createResponse(
             $activities,
             ['player.personal_activities.show']
+        );
+    }
+
+    /**
+     * **Example Response:**
+     * ```json
+     * 	[{
+     *     "achievement": "demo-achievement-01",
+     *     "progress": 20,
+     *     "points": 50,
+     *     "links": {
+     *         "self": "http://localhost:50080/api/players/alex.doe/transient-actions/",
+     *         "player": "http://localhost:50080/api/players/alex.doe/",
+     *         "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
+     *      }
+     *  }]
+     * ```.
+     *
+     * @Route(
+     *     "/{username}/transient-achievements/",
+     *     name="api_player_personal_transient_achievements_show",
+     *     requirements={"username" = "[A-Za-z0-9\-\_\.]+"},
+     *     methods={"GET"}
+     * )
+     *
+     * @ApiDoc(
+     *     section="Players",
+     *     resource=true,
+     *     description="Returns a Player's progress identified by its username property",
+     *     requirements={
+     *         {
+     *             "name"="username",
+     *             "dataType"="string",
+     *             "requirement"="[A-Za-z0-9\-\_\.]+"
+     *         }
+     *     },
+     *     statusCodes = {
+     *         200 = "Returned when successful",
+     *         404 = "Returned when the player is not found"
+     *     }
+     * )
+     */
+    public function indexTransientAchievementsAction(
+        Engine $engine,
+        ResponseSerializer $serializer,
+        string $username
+    ): Response {
+        $players = $engine->findPlayerBy(['username' => $username]);
+        if ($players->isEmpty()) {
+            throw $this->createNotFoundException();
+        }
+
+        $transientAchievements = $engine->calculate($players->first());
+
+        return $serializer->createResponse(
+            array_unique($transientAchievements),
+            ['player.transient_achievements.show']
         );
     }
 }

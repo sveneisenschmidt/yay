@@ -10,8 +10,9 @@ function email {
 }
 
 function image {
-    echo "https://api.adorable.io/avatars/128/${RANDOM}"
+    echo "https://avatars.dicebear.com/v2/female/${RANDOM}.svg"
 }
+
 # Enable demo integration
 make enable-demo
 

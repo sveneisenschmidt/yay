@@ -159,12 +159,12 @@ curl -X "GET" http://localhost:50080/api/players/
 There are no users created yet, let's create a user by executing the following request.
 ```bash
 curl -X POST http://localhost:50080/api/players/ \
-    -d "{\"name\": \"Alex Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
+    -d "{\"name\": \"Alex Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://avatars.dicebear.com/v2/female/354.svg\"}"
 
 {
     "name": "Alex Doe",
     "username": "alex.doe",
-    "image_url": "https://api.adorable.io/avatars/128/354",
+    "image_url": "https://avatars.dicebear.com/v2/female/354.svg",
     "score": 0,
     "links": {
         "self": "http://localhost:50080/api/players/alex.doe/",
@@ -249,6 +249,25 @@ curl -X "GET" http://localhost:50080/api/players/alex.doe/personal-actions/
     }
 ]
 ```
+
+If you're curious to see how far our player progress towards an achievement, you can query transient achievements.
+```bash
+curl -X "GET" http://localhost:50080/api/players/alex.doe/transient-achievements/
+
+[
+    {
+        "achievement": "demo-achievement-01",
+        "progress": 20,
+        "points": 50,
+        "links": {
+            "self": "http://localhost:50080/api/players/alex.doe/transient-actions/",
+            "player": "http://localhost:50080/api/players/alex.doe/",
+            "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
+        }
+    }
+]
+```
+
 
 Now let us get our first achievement. For this, perform the `demo.action` action four more times.
 

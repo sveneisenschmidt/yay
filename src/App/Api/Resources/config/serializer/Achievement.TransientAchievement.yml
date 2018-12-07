@@ -1,0 +1,24 @@
+Component\Entity\Achievement\TransientAchievement:
+    exclusion_policy: ALL
+    properties:
+        progress:
+            groups:
+            - 'player.transient_achievements.show'
+    virtual_properties:
+        name:
+            exp: 'object.getAchievementDefinition().getName()'
+            groups:
+            - 'player.transient_achievements.show'
+        label:
+            exp: 'object.getAchievementDefinition().getLabel()'
+            groups:
+            - 'player.transient_achievements.show'
+        description:
+            exp: 'object.getAchievementDefinition().getDescription()'
+            groups:
+            - 'player.transient_achievements.show'
+        points:
+            exp: 'object.getAchievementDefinition().getPoints()'
+            groups:
+            - 'player.transient_achievements.show'
+
