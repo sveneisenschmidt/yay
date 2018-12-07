@@ -2,6 +2,8 @@
 
 namespace Component\Engine\Tests;
 
+use Component\Engine\AchievementValidator\Validator\CalculableProgressInterface;
+use Component\Entity\Achievement\TransientAchievement;
 use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -330,7 +332,7 @@ class EngineTest extends TestCase
         $this->assertNotEmpty($results);
     }
 
-    public function test_calclulate_no_validators(): void
+    public function test_calculate_no_validators(): void
     {
         $actionDefinition = new ActionDefinition('test-action');
         $player = $this->createConfiguredMock(PlayerInterface::class, [
@@ -349,11 +351,11 @@ class EngineTest extends TestCase
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
         $engine = new Engine($storage, $eventDispatcher);
-        $results = $engine->progress($player);
+        $results = $engine->calculate($player);
         $this->assertEmpty($results);
     }
 
-    public function test_calclulate_no_achievement_definitions(): void
+    public function test_calculate_no_achievement_definitions(): void
     {
         $player = $this->createConfiguredMock(PlayerInterface::class, [
             'hasPersonalAchievement' => false,
@@ -366,17 +368,129 @@ class EngineTest extends TestCase
         $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
         $engine = new Engine($storage, $eventDispatcher);
-        $results = $engine->progress($player);
+        $results = $engine->calculate($player);
         $this->assertEmpty($results);
     }
 
-    public function test_calclulate_grant_achievement_not_multiple(): void
+    public function test_calculate_transient_achievement_not_multiple(): void
     {
+        $actionDefinition = new ActionDefinition('test-action');
+        $personalActionCollection = new PersonalActionCollection();
 
+        $player = $this->createConfiguredMock(PlayerInterface::class, [
+            'getPersonalActions' => $personalActionCollection,
+            'hasPersonalAchievement' => false,
+            'getPersonalAchievements' => new PersonalAchievementCollection(),
+        ]);
+
+        $personalAction = new PersonalAction($player, $actionDefinition);
+        $personalActionCollection->add($personalAction);
+
+        $achievementDefinition = new AchievementDefinition('test-achievement');
+        $achievementDefinition->addActionDefinition($actionDefinition);
+        $achievementDefinitionCollection = new AchievementDefinitionCollection();
+        $achievementDefinitionCollection->add($achievementDefinition);
+
+        $storage = $this->createConfiguredMock(StorageInterface::class, [
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection
+        ]);
+
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+
+        $engine = new Engine($storage, $eventDispatcher);
+        $validator = $this->createConfiguredMock([
+            AchievementValidatorInterface::class,
+            CalculableProgressInterface::class
+        ], [
+            'supports' => true,
+            'validate' => true,
+            'multiple' => false,
+        ]);
+        $engine->getAchievementValidators()->add($validator);
+
+        $results = $engine->calculate($player);
+        $this->assertNotEmpty($results);
+        $this->assertCount(1, $results);
+
+        $this->assertInstanceOf(TransientAchievement::class, $results[0]);
+        $this->assertSame($achievementDefinition, $results[0]->getAchievementDefinition());
+        $this->assertSame($player, $results[0]->getPlayer());
     }
 
-    public function test_calclulate_grant_achievement_multiple(): void
+    public function test_calculate_transient_achievement_multiple(): void
     {
+        $actionDefinition = new ActionDefinition('test-action');
+        $personalActionCollection = new PersonalActionCollection();
 
+        $player = $this->createConfiguredMock(PlayerInterface::class, [
+            'getPersonalActions' => $personalActionCollection,
+            'hasPersonalAchievement' => true,
+            'getPersonalAchievements' => new PersonalAchievementCollection(),
+        ]);
+
+        $personalAction = new PersonalAction($player, $actionDefinition);
+        $personalActionCollection->add($personalAction);
+
+        $achievementDefinition = new AchievementDefinition('test-achievement');
+        $achievementDefinition->addActionDefinition($actionDefinition);
+        $achievementDefinitionCollection = new AchievementDefinitionCollection();
+        $achievementDefinitionCollection->add($achievementDefinition);
+
+        $storage = $this->createConfiguredMock(StorageInterface::class, [
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection
+        ]);
+
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+
+        $engine = new Engine($storage, $eventDispatcher);
+        $validator = $this->createConfiguredMock([
+            AchievementValidatorInterface::class,
+            CalculableProgressInterface::class
+        ], [
+            'supports' => true,
+            'validate' => true,
+            'multiple' => false,
+        ]);
+        $engine->getAchievementValidators()->add($validator);
+
+        $results = $engine->calculate($player);
+        $this->assertEmpty($results);
+    }
+
+    public function test_calculate_transient_achievement_no_supported_validator(): void
+    {
+        $actionDefinition = new ActionDefinition('test-action');
+        $personalActionCollection = new PersonalActionCollection();
+
+        $player = $this->createConfiguredMock(PlayerInterface::class, [
+            'getPersonalActions' => $personalActionCollection,
+            'hasPersonalAchievement' => false,
+            'getPersonalAchievements' => new PersonalAchievementCollection(),
+        ]);
+
+        $personalAction = new PersonalAction($player, $actionDefinition);
+        $personalActionCollection->add($personalAction);
+
+        $achievementDefinition = new AchievementDefinition('test-achievement');
+        $achievementDefinition->addActionDefinition($actionDefinition);
+        $achievementDefinitionCollection = new AchievementDefinitionCollection();
+        $achievementDefinitionCollection->add($achievementDefinition);
+
+        $storage = $this->createConfiguredMock(StorageInterface::class, [
+            'findAchievementDefinitionBy' => $achievementDefinitionCollection,
+            'findLevelBy' => new LevelCollection(),
+        ]);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+
+        $engine = new Engine($storage, $eventDispatcher);
+        $validator = $this->createConfiguredMock(AchievementValidatorInterface::class, [
+            'supports' => false,
+            'validate' => false,
+            'multiple' => false,
+        ]);
+        $engine->getAchievementValidators()->add($validator);
+
+        $results = $engine->calculate($player);
+        $this->assertEmpty($results);
     }
 }

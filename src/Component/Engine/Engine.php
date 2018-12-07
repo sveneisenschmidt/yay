@@ -84,7 +84,7 @@ class Engine
         return $matchingAchievementDefinitionCollection;
     }
 
-    public function progress(PlayerInterface $player): array
+    public function calculate(PlayerInterface $player): array
     {
         $achievementValidatorCollection = $this->getAchievementValidators();
         $achievementDefinitionCollection = $this->findAchievementDefinitionAny();

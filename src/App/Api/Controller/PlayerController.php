@@ -140,7 +140,7 @@ class PlayerController extends AbstractController
      *     "name": "Billy Turner V",
      *     "username": "marianne58",
      *     "email": "marianne58@gmail.com",
-     *     "image_url": "https://api.adorable.io/avatars/128/497"
+     *     "image_url": "https://avatars.dicebear.com/v2/female/497.svg"
      * }
      * ```.
      *
@@ -149,7 +149,7 @@ class PlayerController extends AbstractController
      * {
      *     "name": "Billy Turner V",
      *     "username": "marianne58",
-     *     "image_url": "https://api.adorable.io/avatars/128/497",
+     *     "image_url": "https://avatars.dicebear.com/v2/female/497.svg",
      *     "score": 0,
      *     "level": 0,
      *     "links": {
@@ -464,7 +464,16 @@ class PlayerController extends AbstractController
     /**
      * **Example Response:**
      * ```json
-     * 	[]
+     * 	[{
+     *     "achievement": "demo-achievement-01",
+     *     "progress": 20,
+     *     "points": 50,
+     *     "links": {
+     *         "self": "http://localhost:50080/api/players/alex.doe/transient-actions/",
+     *         "player": "http://localhost:50080/api/players/alex.doe/",
+     *         "achievement": "http://localhost:50080/api/achievements/demo-achievement-01/"
+     *      }
+     *  }]
      * ```.
      *
      * @Route(
@@ -501,7 +510,7 @@ class PlayerController extends AbstractController
             throw $this->createNotFoundException();
         }
 
-        $transientAchievements = $engine->progress($players->first());
+        $transientAchievements = $engine->calculate($players->first());
         return $serializer->createResponse(
             $transientAchievements,
             ['player.transient_achievements.show']

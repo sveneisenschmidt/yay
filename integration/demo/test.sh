@@ -11,7 +11,7 @@ make start
 
 # Create new player
 curl -X POST http://localhost:50080/api/players/ \
-    -d "{\"name\": \"Alex Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
+    -d "{\"name\": \"Alex Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://avatars.dicebear.com/v2/female/354.svg\"}"
 
 # Perform demo action 5x via api
 curl -X POST http://localhost:50080/api/progress/ \

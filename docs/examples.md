@@ -159,12 +159,12 @@ curl -X "GET" http://localhost:50080/api/players/
 There are no users created yet, let's create a user by executing the following request.
 ```bash
 curl -X POST http://localhost:50080/api/players/ \
-    -d "{\"name\": \"Alex Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://api.adorable.io/avatars/128/354\"}"
+    -d "{\"name\": \"Alex Doe\",\"username\":\"alex.doe\",\"email\": \"alex.doe@example.org\",\"image_url\":\"https://avatars.dicebear.com/v2/female/354.svg\"}"
 
 {
     "name": "Alex Doe",
     "username": "alex.doe",
-    "image_url": "https://api.adorable.io/avatars/128/354",
+    "image_url": "https://avatars.dicebear.com/v2/female/354.svg",
     "score": 0,
     "links": {
         "self": "http://localhost:50080/api/players/alex.doe/",

@@ -1,0 +1,8 @@
+include:
+- test_default.yml
+
+Component\Entity\Achievement\PersonalAction:
+    personalAction{1..3}:
+        __construct:
+        - '@player'
+        - '@action_definition'

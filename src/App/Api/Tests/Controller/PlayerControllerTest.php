@@ -16,7 +16,7 @@ class PlayerControllerTest extends WebTestCase
                     'name' => $faker->name,
                     'username' => $faker->userName,
                     'email' => $faker->email,
-                    'image_url' => sprintf('https://api.adorable.io/avatars/128/%s', random_int(100, 999)),
+                    'image_url' => sprintf('https://avatars.dicebear.com/v2/female/%s.svg', random_int(100, 999)),
                 ],
             ],
         ];
@@ -247,6 +247,42 @@ class PlayerControllerTest extends WebTestCase
         $client = static::createClient();
 
         $client->request('GET', '/api/players/john.doe/personal-activities/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isNotFound());
+        $this->assertJson($content = $response->getContent());
+    }
+
+    public function test_Player_TransientAchievements_IndexAction(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/players/alex.doe/transient-achievements/');
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isOk());
+        $this->assertJson($content = $response->getContent());
+        $this->assertInternalType('array', $data = json_decode($content, true));
+        $this->assertNotEmpty($data);
+        $this->assertCount(1, $data);
+
+        foreach ($data as $key => $value) {
+            $this->assertArrayHasKey('name', $value);
+            $this->assertArrayHasKey('label', $value);
+            $this->assertArrayHasKey('description', $value);
+            $this->assertArrayHasKey('points', $value);
+            $this->assertArrayHasKey('progress', $value);
+            $this->assertArraySubsetHasKey('links', 'self', $value);
+            $this->assertArraySubsetHasKey('links', 'player', $value);
+            $this->assertArraySubsetHasKey('links', 'achievement', $value);
+        }
+    }
+
+    public function test_Player_TransientAchievements__NotFound(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/players/john.doe/transient-achievements/');
         $response = $client->getResponse();
 
         $this->assertTrue($response->isNotFound());
