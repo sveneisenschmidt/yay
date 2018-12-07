@@ -54,7 +54,7 @@ By providing your own `docker-run.sh` it is possible to install custom integrati
 #!/bin/bash
 
 php bin/console yay:integration:enable default integration/default --env=${APP_ENV}
-php bin/console yay:integration:enable demo integration/demo --env=${APP_ENV}
+php bin/console yay:integration:enable mycompany integration/mycompany --env=${APP_ENV}
 
 apache2-foreground
 ```
