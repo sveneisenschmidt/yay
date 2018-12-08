@@ -58,13 +58,46 @@ class InstallerService
         return $this->transformer->transformFromUnprocessedConfig($config);
     }
 
-    public function loadConfig(string $sourceFile): ?array
+    public function loadConfig(string $sourceFile, $depth = 0, $maxDepth = 16): ?array
     {
         if (!$this->filesystem->exists($sourceFile)) {
-            throw new \RuntimeException('Could not find source file.');
+            throw new \RuntimeException(sprintf('Could not find source file: %s.', $sourceFile));
         }
 
-        return Yaml::parse(file_get_contents($sourceFile));
+        $config = Yaml::parse(file_get_contents($sourceFile));
+        if ($this->hasImports($config)) {
+            if ($depth >= $maxDepth) {
+                throw new \RuntimeException(sprintf('Maximum depth of %s exceeded. Abort.', $maxDepth));
+            }
+
+            foreach ($this->getImports($config) as $import) {
+                $directorySourceFile = dirname($sourceFile);
+                $importSourceFile = sprintf('%s/%s', $directorySourceFile, $import);
+                $importConfig = $this->loadConfig($importSourceFile, $depth + 1, $maxDepth);
+                $config = array_merge_recursive($config, $importConfig);
+            }
+
+            return $this->removeImports($config);
+        }
+
+        return $config;
+    }
+
+    public function hasImports(array $config): bool
+    {
+        return isset($config['integration']['imports']) && is_array($config['integration']['imports']);
+    }
+
+    public function getImports(array $config): array
+    {
+        return $config['integration']['imports'];
+    }
+
+    public function removeImports(array $config): array
+    {
+        unset($config['integration']['imports']);
+
+        return $config;
     }
 
     public function loadEntities(array $data): array

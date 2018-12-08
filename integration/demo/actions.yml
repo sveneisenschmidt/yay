@@ -1,0 +1,8 @@
+integration:
+    actions:
+        demo-action-01:
+            label: Demo 01 action label
+            description: Demo actions description
+        demo-action-02:
+            label: Demo 02 action label
+            description: Demo actions description

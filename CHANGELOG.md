@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 the project is released continuously and aims to keep backward capability.
 
+## [latest] - 2018-12-08
+### Added
+- Allow imports in configuration files (#225)
+
 ## [latest] - 2018-12-07
 ### Added
 -  Implement Achievement Progress (#216)

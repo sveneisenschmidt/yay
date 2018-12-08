@@ -16,6 +16,11 @@ class Configuration implements ConfigurationInterface
         /* @var ArrayNodeDefinition $rootNode */
         $rootNode
             ->children()
+                ->arrayNode('imports')
+                    ->normalizeKeys(false)
+                    ->defaultValue([])
+                    ->prototype('scalar')->end()
+                ->end()
                 ->arrayNode('levels')
                     ->normalizeKeys(false)
                     ->defaultValue([])
