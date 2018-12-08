@@ -73,7 +73,7 @@ class InstallerService
             foreach ($this->getImports($config) as $import) {
                 $directorySourceFile = dirname($sourceFile);
                 $importSourceFile = sprintf('%s/%s', $directorySourceFile, $import);
-                $importConfig = $this->loadConfig($importSourceFile, $depth+1, $maxDepth);
+                $importConfig = $this->loadConfig($importSourceFile, $depth + 1, $maxDepth);
                 $config = array_merge_recursive($config, $importConfig);
             }
 
@@ -96,6 +96,7 @@ class InstallerService
     public function removeImports(array $config): array
     {
         unset($config['integration']['imports']);
+
         return $config;
     }
 

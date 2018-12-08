@@ -338,9 +338,9 @@ class InstallerServiceTest extends TestCase
                 'imports' => [
                     'dummy_1.yml',
                     'dummy_2.yml',
-                    'dummy_3.yml'
-                ]
-            ]
+                    'dummy_3.yml',
+                ],
+            ],
         ]);
 
         $this->assertTrue($actual);
@@ -363,14 +363,13 @@ class InstallerServiceTest extends TestCase
                 'imports' => $expected = [
                     'dummy_1.yml',
                     'dummy_2.yml',
-                    'dummy_3.yml'
-                ]
-            ]
+                    'dummy_3.yml',
+                ],
+            ],
         ]);
 
         $this->assertEquals($expected, $actual);
     }
-
 
     public function test_remove_imports()
     {
@@ -391,9 +390,9 @@ class InstallerServiceTest extends TestCase
                 'imports' => [
                     'dummy_1.yml',
                     'dummy_2.yml',
-                    'dummy_3.yml'
-                ]
-            ]
+                    'dummy_3.yml',
+                ],
+            ],
         ]);
 
         $this->assertEquals($expected, $actual);
@@ -439,8 +438,7 @@ class InstallerServiceTest extends TestCase
         $installer->loadConfig(
             __DIR__.'/Fixture/test_load_imports_recursively_fails_too_deep.yml',
             0,
-            rand(8,32)
+            rand(8, 32)
         );
-
     }
 }
