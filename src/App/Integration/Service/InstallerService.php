@@ -2,7 +2,6 @@
 
 namespace App\Integration\Service;
 
-use http\Exception\RuntimeException;
 use Nelmio\Alice\Loader\NativeLoader;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
@@ -68,15 +67,17 @@ class InstallerService
         $config = Yaml::parse(file_get_contents($sourceFile));
         if ($this->hasImports($config)) {
             if ($depth >= $maxDepth) {
-                throw new RuntimeException(sprintf('Maximum depth of %s exceeded. Abort.', $maxDepth));
+                throw new \RuntimeException(sprintf('Maximum depth of %s exceeded. Abort.', $maxDepth));
             }
 
             foreach ($this->getImports($config) as $import) {
                 $directorySourceFile = dirname($sourceFile);
                 $importSourceFile = sprintf('%s/%s', $directorySourceFile, $import);
                 $importConfig = $this->loadConfig($importSourceFile, $depth+1, $maxDepth);
-                $config = array_merge($config, $importConfig);
+                $config = array_merge_recursive($config, $importConfig);
             }
+
+            return $this->removeImports($config);
         }
 
         return $config;
@@ -90,6 +91,12 @@ class InstallerService
     public function getImports(array $config): array
     {
         return $config['integration']['imports'];
+    }
+
+    public function removeImports(array $config): array
+    {
+        unset($config['integration']['imports']);
+        return $config;
     }
 
     public function loadEntities(array $data): array

@@ -371,6 +371,34 @@ class InstallerServiceTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
+
+    public function test_remove_imports()
+    {
+        $storage = $this->getMockBuilder(StorageInterface::class)
+            ->setMethods(get_class_methods(StorageInterface::class))
+            ->getMock();
+
+        $transformer = $this->getMockBuilder(ConfigurationTransformer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $installer = new InstallerService(new Filesystem(), $storage, $transformer);
+
+        $expected = ['integration' => []];
+
+        $actual = $installer->removeImports([
+            'integration' => [
+                'imports' => [
+                    'dummy_1.yml',
+                    'dummy_2.yml',
+                    'dummy_3.yml'
+                ]
+            ]
+        ]);
+
+        $this->assertEquals($expected, $actual);
+    }
+
     public function test_load_imports()
     {
         $storage = $this->getMockBuilder(StorageInterface::class)
@@ -383,11 +411,36 @@ class InstallerServiceTest extends TestCase
 
         $installer = new InstallerService(new Filesystem(), $storage, $transformer);
 
+        $expected = ['integration' => [
+            'test_1' => 1,
+            'test_2' => 2,
+            'test_3' => 3,
+        ]];
+
         $actual = $installer->loadConfig(
             __DIR__.'/Fixture/test_load_imports.yml'
         );
 
-        print_r($actual);
+        $this->assertEquals($expected, $actual);
+    }
+
+    /** @expectedException \RuntimeException */
+    public function test_load_imports_recursively_fails_too_deep()
+    {
+        $storage = $this->getMockBuilder(StorageInterface::class)
+            ->setMethods(get_class_methods(StorageInterface::class))
+            ->getMock();
+
+        $transformer = $this->getMockBuilder(ConfigurationTransformer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $installer = new InstallerService(new Filesystem(), $storage, $transformer);
+        $installer->loadConfig(
+            __DIR__.'/Fixture/test_load_imports_recursively_fails_too_deep.yml',
+            0,
+            rand(8,32)
+        );
 
     }
 }

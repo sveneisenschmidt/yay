@@ -1,0 +1,22 @@
+integration:
+    achievements:
+        demo-achievement-01:
+            label: Demo achievement label
+            description: Demo achievement description
+            points: 50
+            actions: [demo-action-01, demo-action-02]
+        demo-achievement-02:
+            label: Demo achievement label
+            description: Demo achievement description
+            points: 100
+            actions: [demo-action-01, demo-action-02]
+        demo-achievement-03:
+            label: Demo achievement label
+            description: Demo achievement description
+            points: 200
+            actions: [demo-action-01, demo-action-02]
+        demo-achievement-04:
+            label: Demo achievement label
+            description: Demo achievement description
+            points: 400
+            actions: [demo-action-01, demo-action-02]

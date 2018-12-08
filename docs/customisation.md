@@ -26,6 +26,7 @@ The integration setup file has a root element `integration` and four possible ch
 
 | Node | Description |
 |---|---|
+| imports | Further configuration files to load from. |
 | actions | Actions a player is able to perform. |
 | achievements | Achievements a player is able to earn. |
 | levels | Levels a player is able to reach. |
@@ -37,6 +38,10 @@ The integration setup file has a root element `integration` and four possible ch
 
 ```yml
 integration:
+    imports:
+        - demo/further_actions.yml
+        - demo/further_levels.yml
+
     actions:
         example-action:
             label: Example action label
@@ -118,6 +123,17 @@ integration:
 ```
 
 ### Structure
+
+#### `imports`
+
+Imports are declared as a list of file paths. Configuration files are merged by their order and recursively.
+```yml
+integration:
+    # ...
+    imports:
+        - actions.yml
+        - levels.yml
+```
 
 #### `actions`
 

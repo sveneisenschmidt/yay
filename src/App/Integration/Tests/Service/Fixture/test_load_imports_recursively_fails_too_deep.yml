@@ -1,0 +1,3 @@
+integration:
+    imports:
+        - test_load_imports_recursively_fails_too_deep.yml
