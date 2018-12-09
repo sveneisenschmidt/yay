@@ -10,11 +10,11 @@ Component\Entity\Achievement\PersonalAction:
       groups:
         - 'player.personal_actions.show'
     label:
-      exp: 'object.getActionDefinition().getName()'
+      exp: 'object.getActionDefinition().getLabel()'
       groups:
         - 'player.personal_actions.show'
     description:
-      exp: 'object.getActionDefinition().getName()'
+      exp: 'object.getActionDefinition().getDescription()'
       groups:
         - 'player.personal_actions.show'
     imageUrl:
