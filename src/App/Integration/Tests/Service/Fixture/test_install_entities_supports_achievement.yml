@@ -5,3 +5,4 @@ Component\Entity\Achievement\AchievementDefinition:
         label: label-<current()>
         description: description-<current()>
         points: <current()>
+        imageUrl: https://example.org/example.png

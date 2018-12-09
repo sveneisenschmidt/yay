@@ -21,4 +21,7 @@ Component\Entity\Achievement\TransientAchievement:
             exp: 'object.getAchievementDefinition().getPoints()'
             groups:
             - 'player.transient_achievements.show'
-
+        imageUrl:
+            exp: 'object.getAchievementDefinition().getImageUrl()'
+            groups:
+            - 'player.transient_achievements.show'

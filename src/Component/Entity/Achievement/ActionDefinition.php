@@ -18,6 +18,9 @@ class ActionDefinition implements ActionDefinitionInterface
      */
     protected $personalActions;
 
+    /** @var string */
+    protected $imageUrl;
+
     public function __construct(string $name)
     {
         $this->personalActions = new PersonalActionCollection();
@@ -57,5 +60,15 @@ class ActionDefinition implements ActionDefinitionInterface
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public function getImageUrl(): string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(string $imageUrl): void
+    {
+        $this->imageUrl = $imageUrl;
     }
 }

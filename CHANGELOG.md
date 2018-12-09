@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 the project is released continuously and aims to keep backward capability.
 
+## [latest] - 2018-12-09
+### Added
+- Added image url field to Achievements (#217)
+- Added image url field to Actions
+- Added image url field to Levels (#224)
+
 ## [latest] - 2018-12-08
 ### Added
 - Allow imports in configuration files (#225)

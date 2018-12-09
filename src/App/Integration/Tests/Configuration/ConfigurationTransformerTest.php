@@ -34,6 +34,7 @@ class ConfigurationTransformerTest extends TestCase
             $this->assertArrayHasKey('__construct', $action);
             $this->assertArrayHasKey('label', $action);
             $this->assertArrayHasKey('description', $action);
+            $this->assertArrayHasKey('imageUrl', $action);
         }
 
         foreach ($configs['entities.yml'][AchievementDefinition::class] as $achievement) {
@@ -42,12 +43,14 @@ class ConfigurationTransformerTest extends TestCase
             $this->assertArrayHasKey('label', $achievement);
             $this->assertArrayHasKey('description', $achievement);
             $this->assertArrayHasKey('points', $achievement);
+            $this->assertArrayHasKey('imageUrl', $achievement);
         }
 
         foreach ($configs['entities.yml'][Level::class] as $level) {
             $this->assertArrayHasKey('__construct', $level);
             $this->assertArrayHasKey('label', $level);
             $this->assertArrayHasKey('description', $level);
+            $this->assertArrayHasKey('imageUrl', $level);
         }
 
         foreach ($configs['services.yml']['services'] as $name => $service) {

@@ -4,3 +4,4 @@ Component\Entity\Achievement\ActionDefinition:
             - 'action-<current()>'
         label: label-<current()>
         description: description-<current()>
+        imageUrl: https://example.org/example.png

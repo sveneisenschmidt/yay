@@ -5,18 +5,22 @@ integration:
             description: Demo achievement description
             points: 50
             actions: [demo-action-01, demo-action-02]
+            imageUrl: https://avatars.dicebear.com/v2/identicon/demo-achievement-01.svg
         demo-achievement-02:
             label: Demo achievement label
             description: Demo achievement description
             points: 100
             actions: [demo-action-01, demo-action-02]
+            imageUrl: https://avatars.dicebear.com/v2/identicon/demo-achievement-02.svg
         demo-achievement-03:
             label: Demo achievement label
             description: Demo achievement description
             points: 200
             actions: [demo-action-01, demo-action-02]
+            imageUrl: https://avatars.dicebear.com/v2/identicon/demo-achievement-03.svg
         demo-achievement-04:
             label: Demo achievement label
             description: Demo achievement description
             points: 400
             actions: [demo-action-01, demo-action-02]
+            imageUrl: https://avatars.dicebear.com/v2/identicon/demo-achievement-04.svg

@@ -26,8 +26,11 @@ class ActionDefinitionTest extends TestCase
 
         $instance->setLabel($label = $this->faker->word);
         $instance->setDescription($description = $this->faker->word);
+        $instance->setImageUrl($imageUrl = 'https://example.org/example.png');
+
         $this->assertEquals($label, $instance->getLabel());
         $this->assertEquals($description, $instance->getDescription());
+        $this->assertEquals($imageUrl, $instance->getImageUrl());
     }
 
     public function test_get_personal_actions(): void

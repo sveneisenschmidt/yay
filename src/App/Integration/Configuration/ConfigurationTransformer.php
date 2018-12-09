@@ -56,6 +56,7 @@ class ConfigurationTransformer
                 '__construct' => [$name],
                 'label' => $action['label'],
                 'description' => $action['description'],
+                'imageUrl' => $action['imageUrl'],
             ];
         }
 
@@ -73,6 +74,7 @@ class ConfigurationTransformer
                 'label' => $achievement['label'],
                 'description' => $achievement['description'],
                 'points' => $achievement['points'],
+                'imageUrl' => $achievement['imageUrl'],
             ];
         }
 
@@ -84,6 +86,7 @@ class ConfigurationTransformer
                 '__construct' => [$name, $level['level'], $level['points']],
                 'label' => $level['label'],
                 'description' => $level['description'],
+                'imageUrl' => $level['imageUrl'],
             ];
         }
 

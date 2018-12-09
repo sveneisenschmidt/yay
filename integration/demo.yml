@@ -5,5 +5,6 @@ integration:
     imports:
         - demo/actions.yml
         - demo/achievements.yml
+        - demo/levels.yml
         - demo/validators.yml
         - demo/webhooks.yml
