@@ -11,6 +11,8 @@ Component\Entity\Achievement\ActionDefinition:
       type: string
     description:
       type: string
+    imageUrl:
+        type: string
   # Relationships
   oneToMany:
     personalActions:

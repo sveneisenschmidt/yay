@@ -46,6 +46,7 @@ integration:
         example-action:
             label: Example action label
             description: Example action description
+            imageUrl: https://example.org/example.png
 
     achievements:
         example-achievement-01:
@@ -53,11 +54,13 @@ integration:
             description: Example achievement description
             points: 50
             actions: ["example-action"]
+            imageUrl: https://example.org/example.png
         example-achievement-02:
             label: Example achievement label
             description: Example achievement description
             points: 100
             actions: ["example-action"]
+            imageUrl: https://example.org/example.png
 
     levels:
         level-01:
@@ -65,16 +68,19 @@ integration:
             label: Example level label
             description: Example level description
             points: 100
+            imageUrl: https://example.org/example.png
         level-02:
             level: 2
             label: Example level label
             description: Example level description
             points: 200
+            imageUrl: https://example.org/example.png
         level-03:
             level: 3
             label: Example level label
             description: Example level description
             points: 300
+            imageUrl: https://example.org/example.png
 
     validators:
         # Grants achievement 'example-achievement-01' if action `example-action`
@@ -139,7 +145,7 @@ integration:
 
 Actions are declared as multi-dimensional associative arrays. Keys on the first level are the actions name, keys and values on second level are the properties of the action. Internally actions are of type [ActionDefinition](../src/Component/Entity/Achievement/ActionDefinition.php) and need to be imported to the database during installation.
 
-Supported properties: `label`, `description`.
+Supported properties: `label`, `description`, `imageUrl`.
 
 ```yml
 integration:
@@ -150,11 +156,13 @@ integration:
             # Second level
             label: Example action label
             description: Example actions description"
+            imageUrl: https://example.org/example.png
         # First level
         example-action-02:
             # Second level
             label: Example action label
             description: Example actions description"
+            imageUrl: https://example.org/example.png
     # ...
 ```
 
@@ -162,7 +170,7 @@ integration:
 
 Achievements are declared as multi-dimensional associative arrays. Keys on the first level are the achievements name, keys and values on second level are the properties of the achievement. The `actions` property takes a list of actions defined under `actions` or in a different integration, so they can get referenced while validation. Internally achievements are of type [AchievementDefinition](..src/Component/Entity/Achievement/AchievementDefinition.php) and need to be imported to the database during installation.
 
-Supported properties: `label`, `description`, `points`, `actions`.
+Supported properties: `label`, `description`, `points`, `actions`, `imageUrl`.
 
 ```yml
 integration:
@@ -175,6 +183,7 @@ integration:
             description: Demo example description
             points: 50
             actions: ["example-action"]
+            imageUrl: https://example.org/example.png
         # First level
         example-achievement-02:
             # Second level
@@ -182,13 +191,14 @@ integration:
             description: Demo example description
             points: 100
             actions: ["example-action"]
+            imageUrl: https://example.org/example.png
     # ...
 ```
 #### `levels`
 
 Levels are declared as multi-dimensional associative arrays. Keys on the first level are the levels name, keys and values on second level are the properties of the levels. 
 
-Supported properties: `level`, `points`, `label` and `description`. The attribute `points` define when the level is valid as reached.
+Supported properties: `level`, `points`, `label`, `imageUrl` and `description`. The attribute `points` define when the level is valid as reached.
 
 ```yml
 integration:
@@ -199,16 +209,19 @@ integration:
             label: Example level label
             description: Example level description
             points: 100
+            imageUrl: https://example.org/example.png
         level-02:
             level: 2
             label: Example level label
             description: Example level description
             points: 200
+            imageUrl: https://example.org/example.png
         level-03:
             level: 3
             label: Example level label
             description: Example level description
             points: 300
+            imageUrl: https://example.org/example.png
     # ...
 ```
 

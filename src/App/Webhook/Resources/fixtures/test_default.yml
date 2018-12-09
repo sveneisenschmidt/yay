@@ -3,12 +3,13 @@ Component\Entity\Player:
         username: 'alex.doe'
         name: '<firstName()> <lastName()>'
         email: '<email()>'
-        imageUrl: 'https://placehold.it/512x512/007daa/ffffff'
+        imageUrl: https://example.org/example.png
 
 Component\Entity\Achievement\ActionDefinition:
     action_definition:
         __construct:
           - 'yay.action.test_webhook_action'
+        image_url: https://example.org/example.png
 
 Component\Entity\Achievement\AchievementDefinition:
     achievement_definition:
@@ -17,5 +18,6 @@ Component\Entity\Achievement\AchievementDefinition:
         __calls:
           - addActionDefinition: [ '@action_definition' ]
         points: 50
+        image_url: https://example.org/example.png
 
 

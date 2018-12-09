@@ -201,7 +201,9 @@ curl -X "GET" http://localhost:50080/api/achievements/
     {
         "name": "demo-achievement-01",
         "label": "Facere quibusdam iure voluptas velit sapiente.",
+        "description": "Facere quibusdam iure voluptas velit sapiente.",
         "points": 50,
+        "image_url": "https://avatars.dicebear.com/v2/identicon/demo-achievement-01.svg",
         "links": {
             "self": "http://localhost:50080/api/achievements/demo-achievement-01/",
             "actions": [
@@ -212,7 +214,9 @@ curl -X "GET" http://localhost:50080/api/achievements/
     {
         "name": "demo-achievement-02",
         "label": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
+        "description": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
         "points": 50,
+        "image_url": "https://avatars.dicebear.com/v2/identicon/demo-achievement-02.svg",
         "links": {
             "self": "http://localhost:50080/api/achievements/demo-achievement-02/",
             "actions": [
@@ -238,8 +242,8 @@ curl -X "GET" http://localhost:50080/api/players/alex.doe/personal-actions/
 [
     {
         "name": "demo-action-01",
-        "label": "demo-action-01",
-        "description": "demo-action-01",
+        "label": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
+        "description": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
         "achieved_at": "2017-10-08T12:48:13+0000",
         "links": {
             "self": "http://localhost:50080/api/players/alex.doe/personal-actions/",
@@ -256,9 +260,12 @@ curl -X "GET" http://localhost:50080/api/players/alex.doe/transient-achievements
 
 [
     {
-        "achievement": "demo-achievement-01",
+        "name": "demo-achievement-01",
+        "label": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
+        "description": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
         "progress": 20,
         "points": 50,
+        "image_url": "https://avatars.dicebear.com/v2/identicon/demo-achievement-01.svg",
         "links": {
             "self": "http://localhost:50080/api/players/alex.doe/transient-actions/",
             "player": "http://localhost:50080/api/players/alex.doe/",
@@ -278,8 +285,8 @@ curl -X POST http://localhost:50080/api/progress/ \
 [
     {
         "name": "demo-achievement-01",
-        "label": "demo-achievement-01",
-        "description": "demo-achievement-01",
+        "label": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
+        "description": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
         "points": 50,
         "achieved_at": "2017-10-08T13:22:08+0000",
         "links": {
@@ -300,8 +307,8 @@ curl -X POST http://localhost:50080/api/progress/ \
 [
     {
         "name": "demo-achievement-02",
-        "label": "demo-achievement-02",
-        "description": "demo-achievement-02",
+        "label": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
+        "description": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
         "points": 50,
         "achieved_at": "2017-10-08T13:23:53+0000",
         "links": {
@@ -322,10 +329,11 @@ curl -X "GET" http://localhost:50080/api/players/alex.doe/personal-achievements/
 [
     {
         "name": "demo-achievement-01",
-        "label": "demo-achievement-01",
-        "description": "demo-achievement-01",
+        "label": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
+        "description": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
         "points": 50,
         "achieved_at": "2017-10-08T13:22:08+0000",
+        "image_url": "https://avatars.dicebear.com/v2/identicon/demo-achievement-02.svg",
         "links": {
             "self": "http://localhost:50080/api/players/alex.doe/personal-achievements/",
             "player": "http://localhost:50080/api/players/alex.doe/",
@@ -334,10 +342,11 @@ curl -X "GET" http://localhost:50080/api/players/alex.doe/personal-achievements/
     },
     {
         "name": "demo-achievement-02",
-        "label": "demo-achievement-02",
-        "description": "demo-achievement-02",
+        "label": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
+        "description": "Nulla soluta iusto recusandae est veritatis nesciunt sequi.",
         "points": 50,
         "achieved_at": "2017-10-08T13:23:53+0000",
+        "image_url": "https://avatars.dicebear.com/v2/identicon/demo-achievement-02.svg",
         "links": {
             "self": "http://localhost:50080/api/players/alex.doe/personal-achievements/",
             "player": "http://localhost:50080/api/players/alex.doe/",

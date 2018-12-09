@@ -5,16 +5,19 @@ integration:
             points: 25
             label: Test level's label
             description: Test level's description
+            imageUrl: https://example.org/example.png
         test-level-02:
             level: 1
             points: 50
             label: Test level's label
             description: Test level's description
+            imageUrl: https://example.org/example.png
 
     actions:
         test-action:
             label: Test action's label
             description: Test action's description
+            imageUrl: https://example.org/example.png
 
     achievements:
         test-achievement-01:
@@ -22,11 +25,13 @@ integration:
             description: Test achievement's description
             points: 50
             actions: ['test-action']
+            imageUrl: https://example.org/example.png
         test-achievement-02:
             label: Test achievement's label
             description: Test achievement's description
             points: 100
             actions: ['test-action']
+            imageUrl: https://example.org/example.png
 
     validators:
         test-achievement-validator-01:

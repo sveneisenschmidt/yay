@@ -21,6 +21,9 @@ class AchievementDefinition implements AchievementDefinitionInterface
     /** @var \DateTime */
     protected $createdAt;
 
+    /** @var string */
+    protected $imageUrl;
+
     /**
      * @var array<ActionDefinitionInterface>|ActionDefinitionCollection
      */
@@ -95,11 +98,18 @@ class AchievementDefinition implements AchievementDefinitionInterface
         return (int) $this->points;
     }
 
-    /**
-     * Set the {@see $points} property.
-     */
     public function setPoints(string $points): void
     {
         $this->points = $points;
+    }
+
+    public function getImageUrl(): string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(string $imageUrl): void
+    {
+        $this->imageUrl = $imageUrl;
     }
 }

@@ -465,9 +465,12 @@ class PlayerController extends AbstractController
      * **Example Response:**
      * ```json
      * 	[{
-     *     "achievement": "demo-achievement-01",
+     *     "name": "demo-achievement-01",
+     *     "label": "demo-achievement-02",
+     *     "description": "demo-achievement-02",
      *     "progress": 20,
      *     "points": 50,
+     *     "imageUrl": "https://exmaple.org/example.png"
      *     "links": {
      *         "self": "http://localhost:50080/api/players/alex.doe/transient-actions/",
      *         "player": "http://localhost:50080/api/players/alex.doe/",

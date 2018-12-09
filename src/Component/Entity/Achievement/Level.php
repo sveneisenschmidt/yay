@@ -19,6 +19,9 @@ class Level implements LevelInterface
     /** @var int */
     protected $points;
 
+    /** @var string */
+    protected $imageUrl;
+
     public function __construct(string $name, int $level, int $points)
     {
         $this->name = $name;
@@ -69,5 +72,15 @@ class Level implements LevelInterface
     public function setPoints(int $points): void
     {
         $this->points = $points;
+    }
+
+    public function getImageUrl(): string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(string $imageUrl): void
+    {
+        $this->imageUrl = $imageUrl;
     }
 }

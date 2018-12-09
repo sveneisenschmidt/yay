@@ -45,8 +45,10 @@ class ProgressControllerTest extends WebTestCase
 
         $this->assertArrayHasKey('score', $data);
         $this->assertArrayHasKey('level', $data);
+        $this->assertArrayHasKey('image_url', $data);
         $this->assertEquals(0, $data['score']);
         $this->assertEquals(0, $data['level']);
+        $this->assertEquals('https://example.org/example.png', $data['image_url']);
     }
 
     public function test_Progress_SubmitPostAction_ValidUser_OneAction(): void
@@ -88,8 +90,10 @@ class ProgressControllerTest extends WebTestCase
 
         $this->assertArrayHasKey('score', $data);
         $this->assertArrayHasKey('level', $data);
+        $this->assertArrayHasKey('image_url', $data);
         $this->assertEquals(0, $data['score']);
         $this->assertEquals(0, $data['level']);
+        $this->assertEquals('https://example.org/example.png', $data['image_url']);
     }
 
     public function test_Progress_SubmitGetAction_ValidUser_ManyAction(): void
@@ -162,8 +166,10 @@ class ProgressControllerTest extends WebTestCase
 
         $this->assertArrayHasKey('score', $data);
         $this->assertArrayHasKey('level', $data);
+        $this->assertArrayHasKey('image_url', $data);
         $this->assertEquals(50, $data['score']);
         $this->assertEquals(1, $data['level']);
+        $this->assertEquals('https://example.org/example.png', $data['image_url']);
     }
 
     public function test_Progress_SubmitPostAction_ValidUser_ManyAction(): void
@@ -236,8 +242,10 @@ class ProgressControllerTest extends WebTestCase
 
         $this->assertArrayHasKey('score', $data);
         $this->assertArrayHasKey('level', $data);
+        $this->assertArrayHasKey('image_url', $data);
         $this->assertEquals(50, $data['score']);
         $this->assertEquals(1, $data['level']);
+        $this->assertEquals('https://example.org/example.png', $data['image_url']);
     }
 
     public function test_Progress_SubmitGetAction_ValidUser_NoAction(): void

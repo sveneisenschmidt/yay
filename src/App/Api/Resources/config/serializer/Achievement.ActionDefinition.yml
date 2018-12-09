@@ -16,5 +16,9 @@ Component\Entity\Achievement\ActionDefinition:
       groups:
         - 'action.show'
         - 'achievement.show'
+    imageUrl:
+        groups:
+        - 'action.index'
+        - 'action.show'
 
 

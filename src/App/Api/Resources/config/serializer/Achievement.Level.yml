@@ -16,4 +16,7 @@ Component\Entity\Achievement\Level:
     points:
       groups:
         - 'level.index'
+    imageUrl:
+        groups:
+        - 'level.index'
 

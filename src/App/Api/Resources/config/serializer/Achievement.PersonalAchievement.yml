@@ -31,4 +31,9 @@ Component\Entity\Achievement\PersonalAchievement:
         - 'player.show'
         - 'player.personal_achievements.show'
         - 'progress.submit'
-
+    imageUrl:
+        exp: 'object.getAchievementDefinition().getImageUrl()'
+        groups:
+        - 'player.show'
+        - 'player.personal_achievements.show'
+        - 'progress.submit'

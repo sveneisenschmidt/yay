@@ -4,23 +4,24 @@ Component\Entity\Player:
         name: '<firstName()> <lastName()>'
         email: '<email()>'
         score: 100
-        imageUrl: 'https://placehold.it/512x512/007daa/ffffff'
+        imageUrl: 'https://example.org/example.png'
     player2:
         username: '<username()>'
         name: '<firstName()> <lastName()>'
         email: '<email()>'
         score: 50
-        imageUrl: 'https://placehold.it/512x512/007daa/ffffff'
+        imageUrl: 'https://example.org/example.png'
     player{3..5}:
         username: '<username()>'
         name: '<firstName()> <lastName()>'
         email: '<email()>'
-        imageUrl: 'https://placehold.it/512x512/007daa/ffffff'
+        imageUrl: 'https://example.org/example.png'
 
 Component\Entity\Achievement\ActionDefinition:
     action_definition:
         __construct:
           - 'yay.action.test_api_action'
+        image_url: https://example.org/example.png
 
 Component\Entity\Achievement\AchievementDefinition:
     achievement_definition:
@@ -29,6 +30,7 @@ Component\Entity\Achievement\AchievementDefinition:
         __calls:
           - addActionDefinition: [ '@action_definition' ]
         points: 50
+        image_url: https://example.org/example.png
 
 Component\Entity\Achievement\PersonalAchievement:
     achievement_1:

@@ -143,8 +143,11 @@ class PlayerControllerTest extends WebTestCase
 
         foreach ($data as $key => $value) {
             $this->assertArrayHasKey('name', $value);
+            $this->assertArrayHasKey('label', $value);
+            $this->assertArrayHasKey('description', $value);
             $this->assertArrayHasKey('achieved_at', $value);
             $this->assertArrayHasKey('points', $value);
+            $this->assertArrayHasKey('image_url', $value);
             $this->assertArraySubsetHasKey('links', 'self', $value);
             $this->assertArraySubsetHasKey('links', 'player', $value);
             $this->assertArraySubsetHasKey('links', 'achievement', $value);
@@ -185,7 +188,10 @@ class PlayerControllerTest extends WebTestCase
 
         foreach ($data as $key => $value) {
             $this->assertArrayHasKey('name', $value);
+            $this->assertArrayHasKey('label', $value);
+            $this->assertArrayHasKey('description', $value);
             $this->assertArrayHasKey('achieved_at', $value);
+            $this->assertArrayHasKey('image_url', $value);
             $this->assertArraySubsetHasKey('links', 'self', $value);
             $this->assertArraySubsetHasKey('links', 'player', $value);
             $this->assertArraySubsetHasKey('links', 'action', $value);
@@ -272,13 +278,14 @@ class PlayerControllerTest extends WebTestCase
             $this->assertArrayHasKey('description', $value);
             $this->assertArrayHasKey('points', $value);
             $this->assertArrayHasKey('progress', $value);
+            $this->assertArrayHasKey('image_url', $value);
             $this->assertArraySubsetHasKey('links', 'self', $value);
             $this->assertArraySubsetHasKey('links', 'player', $value);
             $this->assertArraySubsetHasKey('links', 'achievement', $value);
         }
     }
 
-    public function test_Player_TransientAchievements__NotFound(): void
+    public function test_Player_TransientAchievements_NotFound(): void
     {
         $client = static::createClient();
 

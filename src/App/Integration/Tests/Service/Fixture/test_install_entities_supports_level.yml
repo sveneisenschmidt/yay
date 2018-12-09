@@ -6,3 +6,4 @@ Component\Entity\Achievement\Level:
             - <numberBetween(1000, 2000)>
         label: label-<current()>
         description: description-<current()>
+        imageUrl: https://example.org/example.png

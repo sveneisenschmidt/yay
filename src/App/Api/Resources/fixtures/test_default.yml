@@ -3,7 +3,7 @@ Component\Entity\Player:
         username: 'alex.doe'
         name: '<firstName()> <lastName()>'
         email: '<email()>'
-        imageUrl: 'https://placehold.it/512x512/007daa/ffffff'
+        imageUrl: 'https://example.org/example.png'
 
 Component\Entity\Achievement\Level:
     level1:
@@ -13,6 +13,7 @@ Component\Entity\Achievement\Level:
             - 50
         label: '<text()>'
         description: '<text()>'
+        image_url: https://example.org/example.png
     level2:
         __construct:
             - level-2
@@ -20,6 +21,7 @@ Component\Entity\Achievement\Level:
             - 100
         label: '<text()>'
         description: '<text()>'
+        image_url: https://example.org/example.png
     level3:
         __construct:
             - level-3
@@ -27,11 +29,13 @@ Component\Entity\Achievement\Level:
             - 150
         label: '<text()>'
         description: '<text()>'
+        image_url: https://example.org/example.png
 
 Component\Entity\Achievement\ActionDefinition:
     action_definition:
         __construct:
           - 'yay.action.test_api_action'
+        image_url: https://example.org/example.png
 
 Component\Entity\Achievement\AchievementDefinition:
     achievement_definition:
@@ -40,5 +44,6 @@ Component\Entity\Achievement\AchievementDefinition:
         __calls:
           - addActionDefinition: [ '@action_definition' ]
         points: 50
+        image_url: https://example.org/example.png
 
 

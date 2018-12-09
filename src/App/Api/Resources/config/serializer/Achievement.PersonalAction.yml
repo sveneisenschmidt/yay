@@ -17,4 +17,7 @@ Component\Entity\Achievement\PersonalAction:
       exp: 'object.getActionDefinition().getName()'
       groups:
         - 'player.personal_actions.show'
-
+    imageUrl:
+      exp: 'object.getActionDefinition().getImageUrl()'
+      groups:
+        - 'player.personal_actions.show'
