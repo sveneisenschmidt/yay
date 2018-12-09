@@ -8,6 +8,10 @@ services:
         resource: '../../Command'
         tags: ['console.command']
 
+    App\Integration\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
+
     App\Integration\Service\InstallerService:
         public: true
 

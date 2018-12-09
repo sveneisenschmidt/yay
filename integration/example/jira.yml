@@ -8,12 +8,15 @@ integration:
         issue-created:
             label: Create an issue
             description: ...
+            imageUrl: 'https://avatars.dicebear.com/v2/identicon/3968.svg'
         issue-updated:
             label: Update an issue
             description: ...
+            imageUrl: 'https://avatars.dicebear.com/v2/identicon/3968.svg'
         issue-closed:
             label: Close an issue
             description: ...
+            imageUrl: 'https://avatars.dicebear.com/v2/identicon/3968.svg'
 
     achievements:
         issue-action-streak-badge:
@@ -21,13 +24,15 @@ integration:
             description: Work with issues en mass.
             points: 50
             actions: [issue-created, issue-updated, issue-closed]
+            imageUrl: 'https://avatars.dicebear.com/v2/identicon/3968.svg'
 
     validators:
         issue-action-streak-validator:
             type: expression
             arguments:
                 - "actions.count()%10 == 0" # expression
-                - ['issue-action-streak-badge'] # supported achievements
+                - "actions.count()/10" # expression
+                - [issue-action-streak-badge] # supported achievements
                 - true # multiple: true
 
     webhooks:
@@ -35,7 +40,7 @@ integration:
             jira:
                 type: chain
                 arguments:
-                    - [ jira-payload, jira-actions, jira-users ]
+                    - [jira-payload, jira-actions, jira-users]
             # The JiraProcessor brings an optional way to interpret payloads further
             # to map actions e.g. a updated task can be also an closed task, in this particular case
             # the processor should set the action jira.issue_closed instead of another action if

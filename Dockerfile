@@ -15,7 +15,8 @@ RUN apt -y update && \
     apt install -y \
         libicu-dev \
         libxml2-dev \
-        zlib1g-dev && \
+        zlib1g-dev \
+        graphviz && \
     docker-php-ext-install \
         pdo_mysql \
         intl \
