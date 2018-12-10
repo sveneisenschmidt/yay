@@ -1,26 +1,26 @@
 integration:
     achievements:
         demo-achievement-01:
-            label: Demo achievement label
-            description: Demo achievement description
+            label: "You did something 5x!"
+            description: "Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem."
             points: 50
             actions: [demo-action-01, demo-action-02]
             imageUrl: https://avatars.dicebear.com/v2/identicon/demo-achievement-01.svg
         demo-achievement-02:
-            label: Demo achievement label
-            description: Demo achievement description
+            label: "You did another thing 10x!"
+            description: "Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus."
             points: 100
             actions: [demo-action-01, demo-action-02]
             imageUrl: https://avatars.dicebear.com/v2/identicon/demo-achievement-02.svg
         demo-achievement-03:
-            label: Demo achievement label
-            description: Demo achievement description
+            label: "You did it again 20x!"
+            description: "Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt."
             points: 200
             actions: [demo-action-01, demo-action-02]
             imageUrl: https://avatars.dicebear.com/v2/identicon/demo-achievement-03.svg
         demo-achievement-04:
-            label: Demo achievement label
-            description: Demo achievement description
+            label: "You did somewhat 30x!"
+            description: "Duis leo. Sed fringilla mauris sit amet nibh."
             points: 400
             actions: [demo-action-01, demo-action-02]
             imageUrl: https://avatars.dicebear.com/v2/identicon/demo-achievement-04.svg

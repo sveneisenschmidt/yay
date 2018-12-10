@@ -10,6 +10,9 @@ the project is released continuously and aims to keep backward capability.
 - Added image url field to Actions
 - Added image url field to Levels (#224)
 
+### Bugfix
+- Personal Actions and Achievements had wrong label and description values (#232)
+
 ## [latest] - 2018-12-08
 ### Added
 - Allow imports in configuration files (#225)

@@ -1,10 +1,10 @@
 integration:
     actions:
         demo-action-01:
-            label: Demo 01 action label
-            description: Demo actions description
+            label: "Some Action"
+            description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
             imageUrl: https://avatars.dicebear.com/v2/identicon/demo-action-01.svg
         demo-action-02:
-            label: Demo 02 action label
-            description: Demo actions description
+            label: "Another Action"
+            description: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
             imageUrl: https://avatars.dicebear.com/v2/identicon/demo-action-02.svg
