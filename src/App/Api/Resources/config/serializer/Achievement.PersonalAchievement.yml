@@ -14,13 +14,13 @@ Component\Entity\Achievement\PersonalAchievement:
         - 'player.personal_achievements.show'
         - 'progress.submit'
     label:
-      exp: 'object.getAchievementDefinition().getName()'
+      exp: 'object.getAchievementDefinition().getLabel()'
       groups:
         - 'player.show'
         - 'player.personal_achievements.show'
         - 'progress.submit'
     description:
-      exp: 'object.getAchievementDefinition().getName()'
+      exp: 'object.getAchievementDefinition().getDescription()'
       groups:
         - 'player.show'
         - 'player.personal_achievements.show'
