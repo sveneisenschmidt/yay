@@ -2,6 +2,10 @@ ApiBundle:
     resource: "@Api/Resources/config/routing.yml"
     prefix:   /api
 
+IntegrationBundle:
+    resource: "@Integration/Resources/config/routing.yml"
+    prefix:   /integration
+
 WebhookBundle:
     resource: "@Webhook/Resources/config/routing.yml"
     prefix:   /webhook

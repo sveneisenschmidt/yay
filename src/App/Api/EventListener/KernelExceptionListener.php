@@ -18,6 +18,7 @@ class KernelExceptionListener
 
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
+        return;
         $exception = $event->getException();
         $response = $this->serializer->createResponse([
             'exception' => get_class($exception),

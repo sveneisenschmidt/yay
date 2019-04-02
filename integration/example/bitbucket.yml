@@ -8,12 +8,15 @@ integration:
         pullrequest-opened:
             label: Pull request opened
             description: ...
+            imageUrl: 'https://avatars.dicebear.com/v2/identicon/3968.svg'
         pullrequest-reviewed:
             label: Pull request reviewed
             description: ...
+            imageUrl: 'https://avatars.dicebear.com/v2/identicon/3968.svg'
         pullrequest-merged:
             label: Pull request merged
             description: ...
+            imageUrl: 'https://avatars.dicebear.com/v2/identicon/3968.svg'
 
     achievements:
         pull-request-streak-badge:
@@ -21,6 +24,7 @@ integration:
             description: Perform three times an action on any pull request. Can be awarded multiple times.
             points: 50
             actions: [pullrequest-opened, pullrequest-reviewed, pullrequest-merged]
+            imageUrl: 'https://avatars.dicebear.com/v2/identicon/3968.svg'
 
     validators:
         pull-request-streak-validator:
